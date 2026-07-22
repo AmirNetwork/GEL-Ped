@@ -7,7 +7,8 @@ The project deliberately separates three objects:
 
 1. `legacy_reset`: the paper's stated zero-velocity-at-each-step update;
 2. `corrected_ode`: persistent-velocity integration of the corrected Newtonian equations;
-3. `anisotropic_pilot`: a calibration-ready geometric navigation model.
+3. `anisotropic_pilot`: an early collective-motion pilot retained as a negative result;
+4. `anisotropic_geometry`: the empirically calibrated short-horizon prediction model.
 
 The publication-facing reconstruction is `canonical_geometric_gradient`. It makes the
 paper's actual per-decision rule explicit as `v* = -mobility * grad(U)`, retaining the
@@ -54,5 +55,7 @@ and expected location are recorded in `data/README.md`.
 No publication claim is made unless it survives held-out empirical validation against
 calibrated mechanistic baselines with sensitivity and timestep-convergence analyses.
 
-The first anisotropic pilot is retained as a negative result: it does not yet satisfy
-the joint collision-safety, speed, and lane-formation criteria.
+The calibrated anisotropic field improves all five ordinary held-out runs and all three
+altered-geometry stress runs. The first collective lane-formation pilot is retained as a
+negative result: it does not yet satisfy the joint collision-safety, speed, and lane-formation
+criteria. See `reports/publication_evidence_and_value_case.md` for the claim boundary.

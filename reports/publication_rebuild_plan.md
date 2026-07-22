@@ -4,12 +4,12 @@
 
 The defensible target is not that pedestrians obey general relativity. It is:
 
-> A data-calibrated direction-dependent movement geometry may provide an interpretable
-> representation of anticipatory pedestrian interaction, provided that it improves held-out
-> microscopic and collective behaviour over isotropic geometry and established velocity
-> models.
+> A data-calibrated direction-dependent movement geometry provides an interpretable
+> representation of pedestrian interaction and improves short-horizon microscopic prediction
+> over persistence and an isotropic social-force restriction.
 
-This claim remains a hypothesis. The current pilot has not established it.
+This microscopic claim is now supported on five held-out experimental runs and three
+altered-geometry stress runs. A collective rollout claim remains unestablished.
 
 The original model is now retained as the canonical geometric-gradient baseline rather than
 discarded. Its verified update is `v*=-kappa grad(U)`, the overdamped limit of the geometric
@@ -36,6 +36,10 @@ acceleration field and a transparent social-force-like decision rule.
 8. The canonical gradient update reproduces Table 2 with 0.169 m coordinate RMSE while
    remaining stable under timestep halving. Publication figures now distinguish raw
    time-factor deviation from dimensionless rescaled geometric elevation.
+9. The calibrated anisotropic field improves vector RMSE over persistence in all five
+   ordinary held-out runs (mean 6.62%) and all three altered-geometry runs (mean 5.44%).
+10. It also improves on the isotropic social-force restriction in every ordinary held-out run,
+    with mean RMSE improvement 4.29%. Results persist at 0.2, 0.4, and 0.8 s horizons.
 
 ## Revised model architecture
 
