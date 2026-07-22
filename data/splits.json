@@ -1,0 +1,25 @@
+{
+  "calibration": [
+    "bi_corr_400_a_01",
+    "bi_corr_400_a_02",
+    "bi_corr_400_b_01",
+    "bi_corr_400_b_03",
+    "bi_corr_400_b_05",
+    "bi_corr_400_b_07",
+    "bi_corr_400_b_09"
+  ],
+  "held_out_validation": [
+    "bi_corr_400_a_03",
+    "bi_corr_400_b_02",
+    "bi_corr_400_b_04",
+    "bi_corr_400_b_06",
+    "bi_corr_400_b_10"
+  ],
+  "held_out_geometry_stress": [
+    "bi_corr_400_a_04",
+    "bi_corr_400_a_05",
+    "bi_corr_400_b_08"
+  ],
+  "rationale": "Whole runs are held out. Validation spans uninstructed, assigned-exit, and screen-informed conditions; altered corridor lengths and exit configurations are reserved for geometry stress tests."
+}
+
