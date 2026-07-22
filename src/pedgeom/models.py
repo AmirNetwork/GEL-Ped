@@ -1,6 +1,6 @@
 """Parameter objects with explicit SI units."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal
 
 
@@ -59,3 +59,20 @@ class AVMParameters:
     interaction_cutoff: float = 3.0
     wall_range: float = 0.35
     wall_strength: float = 1.5
+
+
+@dataclass(frozen=True)
+class GeometricGradientParameters:
+    """Canonical reconstruction of the manuscript's implemented movement rule.
+
+    The potential creates a social-force-like acceleration field. `mobility_time`
+    converts that field into an instantaneous desired velocity, which is the
+    mathematically explicit form of resetting velocity at each decision update.
+    """
+
+    mobility_time: float = 0.1
+    maximum_speed: float = 1.5
+    velocity_relaxation_time: float = 0.0
+    potential: LegacyParameters = field(
+        default_factory=lambda: LegacyParameters(destination_form="linear")
+    )

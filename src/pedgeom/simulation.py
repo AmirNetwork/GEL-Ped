@@ -10,7 +10,12 @@ from numpy.typing import NDArray
 from .avm import avm_speed, desired_avm_direction
 from .geometry import collision_free_speed, geometric_direction
 from .integrators import rk4_step
-from .models import AVMParameters, AnisotropicParameters, LegacyParameters
+from .models import (
+    AVMParameters,
+    AnisotropicParameters,
+    GeometricGradientParameters,
+    LegacyParameters,
+)
 from .potential import accelerations
 
 FloatArray = NDArray[np.float64]
@@ -132,6 +137,55 @@ def simulate_legacy_reset(
         velocity_history[frame] = displacement / step
 
     return SimulationResult(times, position_history, velocity_history, "legacy_reset")
+
+
+def simulate_geometric_gradient(
+    initial_positions: FloatArray,
+    destinations: FloatArray,
+    duration: float,
+    step: float,
+    parameters: GeometricGradientParameters = GeometricGradientParameters(),
+    obstacles: FloatArray | None = None,
+    initial_velocities: FloatArray | None = None,
+) -> SimulationResult:
+    """Simulate the canonical first-order geometric potential model.
+
+    The update is `v* = -mobility_time * grad(U)`. With zero relaxation this is
+    the direct decision rule implicit in the manuscript's per-step velocity reset,
+    but it remains well-defined when the numerical integration step changes.
+    """
+
+    if initial_velocities is None:
+        initial_velocities = np.zeros_like(initial_positions, dtype=float)
+    positions, velocities, goals = _validate_scene(
+        initial_positions, initial_velocities, destinations
+    )
+    times = _time_grid(duration, step)
+    position_history = np.empty((len(times), *positions.shape))
+    velocity_history = np.empty_like(position_history)
+    position_history[0], velocity_history[0] = positions, velocities
+
+    for frame in range(1, len(times)):
+        target_velocities = parameters.mobility_time * accelerations(
+            positions, goals, obstacles, parameters.potential
+        )
+        target_speeds = np.linalg.norm(target_velocities, axis=1)
+        over_limit = target_speeds > parameters.maximum_speed
+        if np.any(over_limit):
+            target_velocities[over_limit] *= (
+                parameters.maximum_speed / target_speeds[over_limit]
+            )[:, None]
+        if parameters.velocity_relaxation_time > 0.0:
+            blend = min(step / parameters.velocity_relaxation_time, 1.0)
+            velocities = velocities + blend * (target_velocities - velocities)
+        else:
+            velocities = target_velocities
+        positions = positions + step * velocities
+        position_history[frame], velocity_history[frame] = positions, velocities
+
+    return SimulationResult(
+        times, position_history, velocity_history, "canonical_geometric_gradient"
+    )
 
 
 def simulate_anisotropic(

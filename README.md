@@ -9,6 +9,11 @@ The project deliberately separates three objects:
 2. `corrected_ode`: persistent-velocity integration of the corrected Newtonian equations;
 3. `anisotropic_pilot`: a calibration-ready geometric navigation model.
 
+The publication-facing reconstruction is `canonical_geometric_gradient`. It makes the
+paper's actual per-decision rule explicit as `v* = -mobility * grad(U)`, retaining the
+social-force-like field and the spacetime-style visualisation without claiming relativistic
+pedestrian physics.
+
 The original paper is treated as a scientific baseline, not silently modified. Every
 correction is documented in `reports/mathematical_audit.md`.
 
@@ -51,4 +56,3 @@ calibrated mechanistic baselines with sensitivity and timestep-convergence analy
 
 The first anisotropic pilot is retained as a negative result: it does not yet satisfy
 the joint collision-safety, speed, and lane-formation criteria.
-

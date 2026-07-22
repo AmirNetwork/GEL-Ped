@@ -3,6 +3,7 @@ import numpy as np
 from pedgeom import (
     simulate_anisotropic,
     simulate_corrected,
+    simulate_geometric_gradient,
     simulate_legacy_reset,
     simulate_periodic_corridor,
 )
@@ -55,3 +56,10 @@ def test_periodic_corridor_stays_inside_domain():
     assert np.all(result.positions[:, :, 0] < 1.0)
     assert np.all(result.positions[:, :, 1] > 0.0)
     assert np.all(result.positions[:, :, 1] < 2.0)
+
+
+def test_canonical_model_is_stable_under_timestep_halving():
+    positions, _, destinations = scene()
+    coarse = simulate_geometric_gradient(positions, destinations, 1.0, 0.02)
+    fine = simulate_geometric_gradient(positions, destinations, 1.0, 0.01)
+    np.testing.assert_allclose(coarse.positions[-1], fine.positions[-1], atol=0.02)

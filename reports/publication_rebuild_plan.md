@@ -11,6 +11,10 @@ The defensible target is not that pedestrians obey general relativity. It is:
 
 This claim remains a hypothesis. The current pilot has not established it.
 
+The original model is now retained as the canonical geometric-gradient baseline rather than
+discarded. Its verified update is `v*=-kappa grad(U)`, the overdamped limit of the geometric
+acceleration field and a transparent social-force-like decision rule.
+
 ## Evidence already obtained
 
 1. The printed reciprocal destination potential does not reproduce the paper and is
@@ -29,6 +33,9 @@ This claim remains a hypothesis. The current pilot has not established it.
    speed falls from about 1.36 m/s at low occupancy to about 0.3-0.4 m/s in the densest
    standard-corridor runs, while lane-order values range from about 0.60 to 0.97 depending
    on inflow and route information.
+8. The canonical gradient update reproduces Table 2 with 0.169 m coordinate RMSE while
+   remaining stable under timestep halving. Publication figures now distinguish raw
+   time-factor deviation from dimensionless rescaled geometric elevation.
 
 ## Revised model architecture
 
