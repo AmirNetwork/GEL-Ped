@@ -1,0 +1,13 @@
+item,selected_using,frozen_before,analysis_id
+Complete-run partitions,Archive metadata and design rationale,Before any model fitting,trc-major-revision-2026-07-23
+Primary past-only route estimator,Calibration runs; endpoint retained only as sensitivity,Before all test stages,trc-major-revision-2026-07-23
+Interaction scale,Calibration-run sensitivity; 0.8 m inherited and declared,Before all test stages,trc-major-revision-2026-07-23
+Neighbour cutoff,3 m fixed a priori; calibration-run sensitivity reported,Before all test stages,trc-major-revision-2026-07-23
+Tensor specification and bounds,"Calibration runs only; bounds [-5, 5]",Before all test stages,trc-major-revision-2026-07-23
+Speed cap,Leave-one-calibration-run-out CV,Before all test stages,trc-major-revision-2026-07-23
+Ridge penalty,Leave-one-calibration-run-out CV,Before all test stages,trc-major-revision-2026-07-23
+MLP architecture and regularization,Fixed a priori; 64-64 tanh network with L2=0.001,Before all test stages,trc-major-revision-2026-07-23
+MLP iteration count,One prespecified complete calibration run (bi_corr_400_b_09),Before all test stages,trc-major-revision-2026-07-23
+Ordinary corridor evaluation,Five untouched runs,No model selection,trc-major-revision-2026-07-23
+Altered-geometry evaluation,Three reserved runs,After ordinary evaluation; no refitting,trc-major-revision-2026-07-23
+Crossing evaluation,Thirteen external runs,No coefficient or architecture changes,trc-major-revision-2026-07-23

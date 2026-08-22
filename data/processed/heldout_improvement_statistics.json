@@ -1,0 +1,50 @@
+{
+  "persistence": {
+    "per_run_percent": {
+      "bi_corr_400_a_03": 7.562658141650039,
+      "bi_corr_400_b_02": 6.591672531849472,
+      "bi_corr_400_b_04": 7.79950855010076,
+      "bi_corr_400_b_06": 5.889845200268655,
+      "bi_corr_400_b_10": 8.38591865315069
+    },
+    "mean_percent": 7.245920615403923,
+    "run_bootstrap_95_percent_ci": [
+      6.412143336551241,
+      7.986702509630588
+    ],
+    "runs_improved": 5,
+    "runs_total": 5
+  },
+  "isotropic_social_force": {
+    "per_run_percent": {
+      "bi_corr_400_a_03": 4.885937460052194,
+      "bi_corr_400_b_02": 5.950212057401366,
+      "bi_corr_400_b_04": 4.167520155770033,
+      "bi_corr_400_b_06": 3.9296025329406747,
+      "bi_corr_400_b_10": 5.028670673655935
+    },
+    "mean_percent": 4.792388575964041,
+    "run_bootstrap_95_percent_ci": [
+      4.196999685649598,
+      5.4093654003260125
+    ],
+    "runs_improved": 5,
+    "runs_total": 5
+  },
+  "anisotropic_geometry": {
+    "per_run_percent": {
+      "bi_corr_400_a_03": -0.5395335288031615,
+      "bi_corr_400_b_02": 2.979393181142111,
+      "bi_corr_400_b_04": -0.12243530264694481,
+      "bi_corr_400_b_06": -0.7113774392820981,
+      "bi_corr_400_b_10": 1.0290831362483985
+    },
+    "mean_percent": 0.527026009331661,
+    "run_bootstrap_95_percent_ci": [
+      -0.5248514477634928,
+      1.8511770480785266
+    ],
+    "runs_improved": 2,
+    "runs_total": 5
+  }
+}

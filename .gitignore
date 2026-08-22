@@ -1,0 +1,16 @@
+# GEL-Ped repository hygiene - Author: Amir Ghorbani
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+data/raw/*
+!data/raw/.gitkeep
+reports/generated/
+tmp/
+work/
+manuscript/overleaf_trc/*.aux
+manuscript/overleaf_trc/*.log
+manuscript/overleaf_trc/*.out
+manuscript/overleaf_trc/*.blg
+manuscript/overleaf_trc/*.spl

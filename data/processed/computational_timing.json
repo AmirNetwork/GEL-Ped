@@ -1,0 +1,59 @@
+{
+  "environment": {
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "machine": "AMD64",
+    "logical_cpu_count": 28,
+    "memory_gb": 31.85161590576172,
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "scikit_learn": "1.9.0",
+    "operating_system": "Windows-11-10.0.26200-SP0"
+  },
+  "model_head_precomputed_features": {
+    "batch_size": 6000,
+    "repetitions": 200,
+    "warmup_repetitions": 10,
+    "mean_batch_ms": 0.533185,
+    "mean_microseconds_per_pedestrian": 0.08886416666666666,
+    "interpretation": "amortized vectorized arithmetic; not end-to-end latency"
+  },
+  "full_observed_scene_processing": {
+    "corridor": {
+      "mean_scene_ms": 0.656814,
+      "p95_scene_ms": 0.73034,
+      "mean_occupancy": 110.34,
+      "mean_ms_per_pedestrian": 0.005952667500426676,
+      "included_steps": [
+        "dense pairwise neighbour discovery",
+        "isotropic, forward, closing, and wall field construction",
+        "goal-frame projection",
+        "tensor head",
+        "radial speed cap"
+      ],
+      "excluded_steps": [
+        "video tracking",
+        "disk I/O",
+        "route-estimator update"
+      ]
+    },
+    "crossing": {
+      "mean_scene_ms": 1.356748,
+      "p95_scene_ms": 1.48379,
+      "mean_occupancy": 176.68,
+      "mean_ms_per_pedestrian": 0.007679035632462503,
+      "included_steps": [
+        "dense pairwise neighbour discovery",
+        "isotropic, forward, closing, and wall field construction",
+        "goal-frame projection",
+        "tensor head",
+        "radial speed cap"
+      ],
+      "excluded_steps": [
+        "video tracking",
+        "disk I/O",
+        "route-estimator update"
+      ]
+    }
+  }
+}

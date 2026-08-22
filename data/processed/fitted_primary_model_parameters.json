@@ -1,0 +1,49 @@
+{
+  "social_force": {
+    "relaxation_time_s": 3.295470239351645,
+    "desired_speed_mps": 0.6943842770018461,
+    "pedestrian_acceleration_mps2": 0.01662511253359623,
+    "wall_acceleration_mps2": 0.4488122589258234
+  },
+  "tensor_parallel_coefficients": [
+    0.9115004784570773,
+    0.10328569853498097,
+    -0.0016627084902023051,
+    0.018930663372451584,
+    0.00278792595824914
+  ],
+  "tensor_lateral_coefficients": [
+    0.4200837136726767,
+    0.01311266725377102,
+    -0.018430253413941826,
+    -0.03386318780868629,
+    0.05929282551048304
+  ],
+  "tensor_parallel_features": [
+    "persistence",
+    "goal",
+    "isotropic",
+    "forward",
+    "closing"
+  ],
+  "tensor_lateral_features": [
+    "persistence",
+    "isotropic",
+    "forward",
+    "closing",
+    "wall"
+  ],
+  "residual_network": {
+    "hidden_layers": [
+      64,
+      64
+    ],
+    "alpha": 0.01,
+    "maximum_epochs": 40,
+    "selected_epoch": 40
+  },
+  "residual_selected_epoch": 120,
+  "support_quantile": 0.95,
+  "gate_strength": 4.0,
+  "direct_expert_blend_weight": 0.5
+}

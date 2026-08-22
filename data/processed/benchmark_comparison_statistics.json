@@ -1,0 +1,88 @@
+{
+  "paired_comparisons": {
+    "corridor held-out": {
+      "constant_velocity": {
+        "mean_percent": 15.176884766190351,
+        "run_bootstrap_95_percent_ci": [
+          7.828123445921096,
+          19.939424035949223
+        ],
+        "runs_tensor_improves": 5,
+        "runs_total": 5
+      },
+      "isotropic_social_force": {
+        "mean_percent": 12.099601753380345,
+        "run_bootstrap_95_percent_ci": [
+          6.2118547221998455,
+          16.251249364115903
+        ],
+        "runs_tensor_improves": 5,
+        "runs_total": 5
+      },
+      "invariant_ridge": {
+        "mean_percent": -0.47440646031981276,
+        "run_bootstrap_95_percent_ci": [
+          -1.6761206914779365,
+          1.138846442385237
+        ],
+        "runs_tensor_improves": 1,
+        "runs_total": 5
+      },
+      "interaction_mlp": {
+        "mean_percent": -12.467619179937548,
+        "run_bootstrap_95_percent_ci": [
+          -14.919965940765774,
+          -10.015272419109326
+        ],
+        "runs_tensor_improves": 0,
+        "runs_total": 5
+      }
+    },
+    "crossing external": {
+      "constant_velocity": {
+        "mean_percent": 16.78835110555312,
+        "run_bootstrap_95_percent_ci": [
+          15.494957990818646,
+          18.07511638596453
+        ],
+        "runs_tensor_improves": 13,
+        "runs_total": 13
+      },
+      "isotropic_social_force": {
+        "mean_percent": 13.824965950191503,
+        "run_bootstrap_95_percent_ci": [
+          12.649070382424453,
+          14.919648979184911
+        ],
+        "runs_tensor_improves": 13,
+        "runs_total": 13
+      },
+      "invariant_ridge": {
+        "mean_percent": 0.1176538149331296,
+        "run_bootstrap_95_percent_ci": [
+          -0.204468994603991,
+          0.4341253613042585
+        ],
+        "runs_tensor_improves": 7,
+        "runs_total": 13
+      },
+      "interaction_mlp": {
+        "mean_percent": 0.4522993520521361,
+        "run_bootstrap_95_percent_ci": [
+          -1.4239953272706993,
+          2.549567997674269
+        ],
+        "runs_tensor_improves": 4,
+        "runs_total": 13
+      }
+    }
+  },
+  "fitted_parameter_counts": {
+    "constant_velocity": 0,
+    "isotropic_social_force": 4,
+    "decoupled_geometry": 8,
+    "tensor_geometry": 10,
+    "invariant_ridge": 26,
+    "interaction_mlp": 5122
+  }
+}

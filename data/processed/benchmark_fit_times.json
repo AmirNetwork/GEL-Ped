@@ -1,0 +1,7 @@
+{
+  "isotropic_social_force": 0.005576099996687844,
+  "decoupled_geometry": 0.04018740000901744,
+  "tensor_geometry": 0.012013300001854077,
+  "invariant_ridge": 0.030161199989379384,
+  "interaction_mlp": 22.340611199993873
+}

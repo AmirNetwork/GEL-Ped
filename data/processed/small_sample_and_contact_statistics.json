@@ -1,0 +1,805 @@
+{
+  "calibration": {
+    "constant_velocity": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.04988868538947674,
+      "mean_relative_rmse_reduction_percent": 21.790832082420142,
+      "run_bootstrap_95_ci_mps": [
+        -0.05918950117209465,
+        -0.038972700659022995
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.05938060972507913,
+        -0.037939898227358125
+      ],
+      "exact_paired_randomization_p": 0.015625,
+      "exact_sign_test_p": 0.015625,
+      "runs_primary_lower": 7,
+      "runs_total": 7,
+      "holm_adjusted_randomization_p": 0.078125
+    },
+    "social_force": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.042061783036047476,
+      "mean_relative_rmse_reduction_percent": 19.12683921435741,
+      "run_bootstrap_95_ci_mps": [
+        -0.04917978619170942,
+        -0.033890810015246436
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.049476586130563105,
+        -0.033663304660156435
+      ],
+      "exact_paired_randomization_p": 0.015625,
+      "exact_sign_test_p": 0.015625,
+      "runs_primary_lower": 7,
+      "runs_total": 7,
+      "holm_adjusted_randomization_p": 0.078125
+    },
+    "tensor_response": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.022860444316366017,
+      "mean_relative_rmse_reduction_percent": 11.425126692333103,
+      "run_bootstrap_95_ci_mps": [
+        -0.026966114153565295,
+        -0.01848847389715261
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.027061465734298736,
+        -0.018228352858055897
+      ],
+      "exact_paired_randomization_p": 0.015625,
+      "exact_sign_test_p": 0.015625,
+      "runs_primary_lower": 7,
+      "runs_total": 7
+    },
+    "unrestricted_ten_scalar": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.022729183033970018,
+      "mean_relative_rmse_reduction_percent": 11.337045181282093,
+      "run_bootstrap_95_ci_mps": [
+        -0.02620702833486668,
+        -0.019352391145613688
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.026296127799167884,
+        -0.019287530066723915
+      ],
+      "exact_paired_randomization_p": 0.015625,
+      "exact_sign_test_p": 0.015625,
+      "runs_primary_lower": 7,
+      "runs_total": 7,
+      "holm_adjusted_randomization_p": 0.078125
+    },
+    "invariant_ridge": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.022232015141785178,
+      "mean_relative_rmse_reduction_percent": 11.12679667534522,
+      "run_bootstrap_95_ci_mps": [
+        -0.02530441488076559,
+        -0.019250750959133374
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.025450318667614526,
+        -0.01915119861089072
+      ],
+      "exact_paired_randomization_p": 0.015625,
+      "exact_sign_test_p": 0.015625,
+      "runs_primary_lower": 7,
+      "runs_total": 7
+    },
+    "interaction_mlp": {
+      "mean_rmse_difference_primary_minus_comparator_mps": 0.001020925517227263,
+      "mean_relative_rmse_reduction_percent": -0.552969709303266,
+      "run_bootstrap_95_ci_mps": [
+        0.0002029037493357168,
+        0.001801585682314279
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        0.0001775317673112582,
+        0.001906861792415257
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.125,
+      "runs_primary_lower": 1,
+      "runs_total": 7,
+      "holm_adjusted_randomization_p": 0.125
+    },
+    "goal_stable_neural": {
+      "mean_rmse_difference_primary_minus_comparator_mps": 0.0007180170084621669,
+      "mean_relative_rmse_reduction_percent": -0.38688494651674166,
+      "run_bootstrap_95_ci_mps": [
+        -0.00021277839434580677,
+        0.0016777094196905992
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.0002827001287650224,
+        0.0017401278492844509
+      ],
+      "exact_paired_randomization_p": 0.234375,
+      "exact_sign_test_p": 1.0,
+      "runs_primary_lower": 3,
+      "runs_total": 7,
+      "holm_adjusted_randomization_p": 0.234375
+    },
+    "tensor_residual": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.0050415157870638706,
+      "mean_relative_rmse_reduction_percent": 2.675656374024757,
+      "run_bootstrap_95_ci_mps": [
+        -0.007044174262495726,
+        -0.003133637030989491
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.007109662839289837,
+        -0.0031290238816537304
+      ],
+      "exact_paired_randomization_p": 0.015625,
+      "exact_sign_test_p": 0.015625,
+      "runs_primary_lower": 7,
+      "runs_total": 7
+    },
+    "false_contact_constant_velocity": {
+      "mean": 0.007636894682216797,
+      "run_bootstrap_95_ci": [
+        0.006208743173626664,
+        0.009146713954946872
+      ]
+    },
+    "false_contact_social_force": {
+      "mean": 0.006982755781190673,
+      "run_bootstrap_95_ci": [
+        0.005503628156738465,
+        0.00852576134459786
+      ]
+    },
+    "false_contact_gel_ped": {
+      "mean": 0.003770947068745304,
+      "run_bootstrap_95_ci": [
+        0.002681487206345296,
+        0.005015821636139645
+      ]
+    },
+    "false_contact_interaction_mlp": {
+      "mean": 0.0038049526316174735,
+      "run_bootstrap_95_ci": [
+        0.0026034958668487524,
+        0.005100700054623544
+      ]
+    },
+    "false_contact_goal_stable_neural": {
+      "mean": 0.0038160845573395057,
+      "run_bootstrap_95_ci": [
+        0.0026064986529098512,
+        0.005120414380442236
+      ]
+    },
+    "false_contact_primary_minus_constant": {
+      "mean_absolute_difference": -0.0038659476134714934,
+      "run_bootstrap_95_ci": [
+        -0.004357154234937737,
+        -0.0033865718709193394
+      ]
+    }
+  },
+  "corridor held-out": {
+    "constant_velocity": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.04775471613176742,
+      "mean_relative_rmse_reduction_percent": 20.56030787338467,
+      "run_bootstrap_95_ci_mps": [
+        -0.05739905270649983,
+        -0.03574968263039054
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.05762018701752171,
+        -0.03528829176228981
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 5,
+      "runs_total": 5,
+      "holm_adjusted_randomization_p": 0.3125
+    },
+    "social_force": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.04084832945446646,
+      "mean_relative_rmse_reduction_percent": 18.183641030849476,
+      "run_bootstrap_95_ci_mps": [
+        -0.04909734167691112,
+        -0.031342020978302056
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.04940204523396333,
+        -0.031193538245351506
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 5,
+      "runs_total": 5,
+      "holm_adjusted_randomization_p": 0.3125
+    },
+    "tensor_response": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.026737678673825076,
+      "mean_relative_rmse_reduction_percent": 12.753100677249495,
+      "run_bootstrap_95_ci_mps": [
+        -0.03142912566717191,
+        -0.0208670849188382
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.031752800848523645,
+        -0.020716459530662926
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 5,
+      "runs_total": 5
+    },
+    "unrestricted_ten_scalar": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.026838021817428014,
+      "mean_relative_rmse_reduction_percent": 12.792445378351434,
+      "run_bootstrap_95_ci_mps": [
+        -0.02962608214371897,
+        -0.023132779315685637
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.029815313532363597,
+        -0.022931098828211607
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 5,
+      "runs_total": 5,
+      "holm_adjusted_randomization_p": 0.3125
+    },
+    "invariant_ridge": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.02540942136059498,
+      "mean_relative_rmse_reduction_percent": 12.20186294994021,
+      "run_bootstrap_95_ci_mps": [
+        -0.02777643283481877,
+        -0.022390134042246816
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.027979373139555657,
+        -0.022196103233966025
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 5,
+      "runs_total": 5
+    },
+    "interaction_mlp": {
+      "mean_rmse_difference_primary_minus_comparator_mps": 0.0018770204816345448,
+      "mean_relative_rmse_reduction_percent": -1.0316579152926075,
+      "run_bootstrap_95_ci_mps": [
+        0.0016264027275700033,
+        0.0022382335059397186
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        0.0014741179252618095,
+        0.0023576668699996782
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 0,
+      "runs_total": 5,
+      "holm_adjusted_randomization_p": 0.3125
+    },
+    "goal_stable_neural": {
+      "mean_rmse_difference_primary_minus_comparator_mps": 0.0015451636607975883,
+      "mean_relative_rmse_reduction_percent": -0.8464765241406006,
+      "run_bootstrap_95_ci_mps": [
+        0.0011024304039926381,
+        0.0020927712834650225
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        0.0009315658614643015,
+        0.002191725839234555
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 0,
+      "runs_total": 5,
+      "holm_adjusted_randomization_p": 0.3125
+    },
+    "tensor_residual": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.0070865385952888936,
+      "mean_relative_rmse_reduction_percent": 3.7151026157403564,
+      "run_bootstrap_95_ci_mps": [
+        -0.007876351130240915,
+        -0.0061953702680407445
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.00799921937230588,
+        -0.006099250647854786
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "exact_sign_test_p": 0.0625,
+      "runs_primary_lower": 5,
+      "runs_total": 5
+    },
+    "false_contact_constant_velocity": {
+      "mean": 0.007865204330689353,
+      "run_bootstrap_95_ci": [
+        0.005694305908240574,
+        0.009504209168334537
+      ]
+    },
+    "false_contact_social_force": {
+      "mean": 0.006967656092520265,
+      "run_bootstrap_95_ci": [
+        0.005084352256367389,
+        0.008076015242380077
+      ]
+    },
+    "false_contact_gel_ped": {
+      "mean": 0.004913359542106393,
+      "run_bootstrap_95_ci": [
+        0.0036765598401987433,
+        0.005866444324587889
+      ]
+    },
+    "false_contact_interaction_mlp": {
+      "mean": 0.004720580693011432,
+      "run_bootstrap_95_ci": [
+        0.003570198870922389,
+        0.005606619341616961
+      ]
+    },
+    "false_contact_goal_stable_neural": {
+      "mean": 0.004651766984680033,
+      "run_bootstrap_95_ci": [
+        0.0035380799720758096,
+        0.005545272927164219
+      ]
+    },
+    "false_contact_primary_minus_constant": {
+      "mean_absolute_difference": -0.0029518447885829593,
+      "run_bootstrap_95_ci": [
+        -0.00419312313413238,
+        -0.00171056644303354
+      ]
+    }
+  },
+  "altered geometry": {
+    "constant_velocity": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.04839184435735819,
+      "mean_relative_rmse_reduction_percent": 21.129136750285777,
+      "run_bootstrap_95_ci_mps": [
+        -0.051341737001224796,
+        -0.04681486728740317
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.051269739694116336,
+        -0.045750116267938484
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "exact_sign_test_p": 0.25,
+      "runs_primary_lower": 3,
+      "runs_total": 3,
+      "holm_adjusted_randomization_p": 1.0
+    },
+    "social_force": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.0420329766071379,
+      "mean_relative_rmse_reduction_percent": 18.877142839732112,
+      "run_bootstrap_95_ci_mps": [
+        -0.042497183091981694,
+        -0.04141937930234049
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.04357187350943802,
+        -0.040473135353711436
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "exact_sign_test_p": 0.25,
+      "runs_primary_lower": 3,
+      "runs_total": 3,
+      "holm_adjusted_randomization_p": 1.0
+    },
+    "tensor_response": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.024755242275407884,
+      "mean_relative_rmse_reduction_percent": 12.028191842272562,
+      "run_bootstrap_95_ci_mps": [
+        -0.02955262510689044,
+        -0.02205950392559386
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.029318949704716723,
+        -0.021542038847077862
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "exact_sign_test_p": 0.25,
+      "runs_primary_lower": 3,
+      "runs_total": 3
+    },
+    "unrestricted_ten_scalar": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.02470969082602741,
+      "mean_relative_rmse_reduction_percent": 12.003091528668532,
+      "run_bootstrap_95_ci_mps": [
+        -0.02794959321347118,
+        -0.020949605139190197
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.028016843724666438,
+        -0.02125481725543863
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "exact_sign_test_p": 0.25,
+      "runs_primary_lower": 3,
+      "runs_total": 3,
+      "holm_adjusted_randomization_p": 1.0
+    },
+    "invariant_ridge": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.02252536185288112,
+      "mean_relative_rmse_reduction_percent": 11.062025529213686,
+      "run_bootstrap_95_ci_mps": [
+        -0.0258150177989058,
+        -0.019309937183072445
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.02568730737195679,
+        -0.019467611445185436
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "exact_sign_test_p": 0.25,
+      "runs_primary_lower": 3,
+      "runs_total": 3
+    },
+    "interaction_mlp": {
+      "mean_rmse_difference_primary_minus_comparator_mps": 0.0008744113009547342,
+      "mean_relative_rmse_reduction_percent": -0.4888414367184441,
+      "run_bootstrap_95_ci_mps": [
+        0.0005011124402636569,
+        0.0010818197375989103
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        0.0003448209679734866,
+        0.0013570719154043234
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "exact_sign_test_p": 0.25,
+      "runs_primary_lower": 0,
+      "runs_total": 3,
+      "holm_adjusted_randomization_p": 1.0
+    },
+    "goal_stable_neural": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -8.519667520231107e-05,
+      "mean_relative_rmse_reduction_percent": 0.0378943817402112,
+      "run_bootstrap_95_ci_mps": [
+        -0.0011481981200406055,
+        0.0006565036581934747
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.001268296941509382,
+        0.0008486818241738727
+      ],
+      "exact_paired_randomization_p": 1.0,
+      "exact_sign_test_p": 1.0,
+      "runs_primary_lower": 1,
+      "runs_total": 3,
+      "holm_adjusted_randomization_p": 1.0
+    },
+    "tensor_residual": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.006889910623313428,
+      "mean_relative_rmse_reduction_percent": 3.668370871930712,
+      "run_bootstrap_95_ci_mps": [
+        -0.0081997285865541,
+        -0.005914640873976307
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.00809130740881922,
+        -0.005846577397134189
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "exact_sign_test_p": 0.25,
+      "runs_primary_lower": 3,
+      "runs_total": 3
+    },
+    "false_contact_constant_velocity": {
+      "mean": 0.010285824983138743,
+      "run_bootstrap_95_ci": [
+        0.009237875288683603,
+        0.010833880499015102
+      ]
+    },
+    "false_contact_social_force": {
+      "mean": 0.00933428804222566,
+      "run_bootstrap_95_ci": [
+        0.008391070053887607,
+        0.01039614795360035
+      ]
+    },
+    "false_contact_gel_ped": {
+      "mean": 0.006801529717722625,
+      "run_bootstrap_95_ci": [
+        0.005850654349499616,
+        0.007440780940678546
+      ]
+    },
+    "false_contact_interaction_mlp": {
+      "mean": 0.006761168010929204,
+      "run_bootstrap_95_ci": [
+        0.0062355658198614316,
+        0.0073725168953512185
+      ]
+    },
+    "false_contact_goal_stable_neural": {
+      "mean": 0.006606225511023966,
+      "run_bootstrap_95_ci": [
+        0.0062355658198614316,
+        0.007235988804696566
+      ]
+    },
+    "false_contact_primary_minus_constant": {
+      "mean_absolute_difference": -0.0034842952654161184,
+      "run_bootstrap_95_ci": [
+        -0.003720726636025389,
+        -0.003344938221038979
+      ]
+    }
+  },
+  "crossing external": {
+    "constant_velocity": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.05393032857073908,
+      "mean_relative_rmse_reduction_percent": 13.013503912103769,
+      "run_bootstrap_95_ci_mps": [
+        -0.06100753360703603,
+        -0.04657971102428248
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.06128868582899664,
+        -0.04650052054379436
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "exact_sign_test_p": 0.000244140625,
+      "runs_primary_lower": 13,
+      "runs_total": 13,
+      "holm_adjusted_randomization_p": 0.001220703125
+    },
+    "social_force": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.0403278017121603,
+      "mean_relative_rmse_reduction_percent": 10.09497233028596,
+      "run_bootstrap_95_ci_mps": [
+        -0.045781363438469176,
+        -0.03519128305910551
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.046071106753649574,
+        -0.035043299607467514
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "exact_sign_test_p": 0.000244140625,
+      "runs_primary_lower": 13,
+      "runs_total": 13,
+      "holm_adjusted_randomization_p": 0.001220703125
+    },
+    "tensor_response": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.010625656902464172,
+      "mean_relative_rmse_reduction_percent": 2.6676021525180875,
+      "run_bootstrap_95_ci_mps": [
+        -0.01865213586192968,
+        -0.001989409667563432
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.018519297232923497,
+        -0.0014739579272500353
+      ],
+      "exact_paired_randomization_p": 0.037353515625,
+      "exact_sign_test_p": 0.266845703125,
+      "runs_primary_lower": 9,
+      "runs_total": 13
+    },
+    "unrestricted_ten_scalar": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.011500619823906988,
+      "mean_relative_rmse_reduction_percent": 2.851798229486699,
+      "run_bootstrap_95_ci_mps": [
+        -0.020355282749955406,
+        -0.0019711097802117238
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.02009918302534133,
+        -0.001451406955269575
+      ],
+      "exact_paired_randomization_p": 0.038330078125,
+      "exact_sign_test_p": 0.266845703125,
+      "runs_primary_lower": 9,
+      "runs_total": 13,
+      "holm_adjusted_randomization_p": 0.038330078125
+    },
+    "invariant_ridge": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.012997370086143229,
+      "mean_relative_rmse_reduction_percent": 3.2719368011671697,
+      "run_bootstrap_95_ci_mps": [
+        -0.021339898371202485,
+        -0.004045773706882371
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.021103368880613906,
+        -0.0034689699772438836
+      ],
+      "exact_paired_randomization_p": 0.019287109375,
+      "exact_sign_test_p": 0.266845703125,
+      "runs_primary_lower": 9,
+      "runs_total": 13
+    },
+    "interaction_mlp": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.005055942163729066,
+      "mean_relative_rmse_reduction_percent": 1.3788264679732483,
+      "run_bootstrap_95_ci_mps": [
+        -0.008984386360893005,
+        -0.001691679322897647
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.00916854525861225,
+        -0.0016662500930630334
+      ],
+      "exact_paired_randomization_p": 0.01171875,
+      "exact_sign_test_p": 0.0224609375,
+      "runs_primary_lower": 11,
+      "runs_total": 13,
+      "holm_adjusted_randomization_p": 0.02490234375
+    },
+    "goal_stable_neural": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.0054790764928459405,
+      "mean_relative_rmse_reduction_percent": 1.4941374933990301,
+      "run_bootstrap_95_ci_mps": [
+        -0.00937985611692286,
+        -0.002058502283789904
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.009420521920647905,
+        -0.0019745669659102768
+      ],
+      "exact_paired_randomization_p": 0.00830078125,
+      "exact_sign_test_p": 0.0224609375,
+      "runs_primary_lower": 11,
+      "runs_total": 13,
+      "holm_adjusted_randomization_p": 0.02490234375
+    },
+    "tensor_residual": {
+      "mean_rmse_difference_primary_minus_comparator_mps": -0.003694113580777959,
+      "mean_relative_rmse_reduction_percent": 0.9879896001655373,
+      "run_bootstrap_95_ci_mps": [
+        -0.00609191887575039,
+        -0.00109384100684261
+      ],
+      "hierarchical_run_and_forecast_bootstrap_95_ci_mps": [
+        -0.00610948806812914,
+        -0.0009973265245703735
+      ],
+      "exact_paired_randomization_p": 0.019287109375,
+      "exact_sign_test_p": 0.09228515625,
+      "runs_primary_lower": 10,
+      "runs_total": 13
+    },
+    "false_contact_constant_velocity": {
+      "mean": 0.016047177983067238,
+      "run_bootstrap_95_ci": [
+        0.015095150324964921,
+        0.0170107531263369
+      ]
+    },
+    "false_contact_social_force": {
+      "mean": 0.014585713466166864,
+      "run_bootstrap_95_ci": [
+        0.013571613522440896,
+        0.01555254788668451
+      ]
+    },
+    "false_contact_gel_ped": {
+      "mean": 0.010655899589989047,
+      "run_bootstrap_95_ci": [
+        0.009693143637878767,
+        0.01163884600416202
+      ]
+    },
+    "false_contact_interaction_mlp": {
+      "mean": 0.010614690025972855,
+      "run_bootstrap_95_ci": [
+        0.009675831438812453,
+        0.011589463535642152
+      ]
+    },
+    "false_contact_goal_stable_neural": {
+      "mean": 0.010587686189370595,
+      "run_bootstrap_95_ci": [
+        0.009667712461516365,
+        0.011534276674499964
+      ]
+    },
+    "false_contact_primary_minus_constant": {
+      "mean_absolute_difference": -0.005391278393078191,
+      "run_bootstrap_95_ci": [
+        -0.005671207171233115,
+        -0.005100064232661369
+      ]
+    }
+  },
+  "held_out_pooled_relative_rmse": {
+    "constant_velocity": {
+      "mean_relative_rmse_difference_percent": -15.969738117863322,
+      "run_bootstrap_95_ci_percent": [
+        -18.221287131490044,
+        -13.757290384448599
+      ],
+      "exact_paired_randomization_p": 9.5367431640625e-07,
+      "exact_sign_test_p": 9.5367431640625e-07,
+      "runs_primary_lower": 21,
+      "runs_total": 21,
+      "holm_adjusted_randomization_p": 4.76837158203125e-06
+    },
+    "social_force": {
+      "mean_relative_rmse_difference_percent": -13.27544161748387,
+      "run_bootstrap_95_ci_percent": [
+        -15.458383063493288,
+        -11.162138690555915
+      ],
+      "exact_paired_randomization_p": 9.5367431640625e-07,
+      "exact_sign_test_p": 9.5367431640625e-07,
+      "runs_primary_lower": 21,
+      "runs_total": 21,
+      "holm_adjusted_randomization_p": 4.76837158203125e-06
+    },
+    "tensor_response": {
+      "mean_relative_rmse_difference_percent": -6.406138423609537,
+      "run_bootstrap_95_ci_percent": [
+        -8.935585081331569,
+        -3.8014094556335003
+      ],
+      "exact_paired_randomization_p": 0.0002079010009765625,
+      "exact_sign_test_p": 0.007197380065917969,
+      "runs_primary_lower": 17,
+      "runs_total": 21
+    },
+    "unrestricted_ten_scalar": {
+      "mean_relative_rmse_difference_percent": -6.52594659338523,
+      "run_bootstrap_95_ci_percent": [
+        -9.00718032372871,
+        -3.8931618749013754
+      ],
+      "exact_paired_randomization_p": 0.00021266937255859375,
+      "exact_sign_test_p": 0.007197380065917969,
+      "runs_primary_lower": 17,
+      "runs_total": 21,
+      "holm_adjusted_randomization_p": 0.0006380081176757812
+    },
+    "invariant_ridge": {
+      "mean_relative_rmse_difference_percent": -6.510979512024538,
+      "run_bootstrap_95_ci_percent": [
+        -8.732824171978772,
+        -4.143632064144768
+      ],
+      "exact_paired_randomization_p": 9.822845458984375e-05,
+      "exact_sign_test_p": 0.007197380065917969,
+      "runs_primary_lower": 17,
+      "runs_total": 21
+    },
+    "interaction_mlp": {
+      "mean_relative_rmse_difference_percent": -0.5380919141444697,
+      "run_bootstrap_95_ci_percent": [
+        -1.341889661231778,
+        0.16718440590982994
+      ],
+      "exact_paired_randomization_p": 0.2017965316772461,
+      "exact_sign_test_p": 1.0,
+      "runs_primary_lower": 11,
+      "runs_total": 21,
+      "holm_adjusted_randomization_p": 0.2017965316772461
+    },
+    "goal_stable_neural": {
+      "mean_relative_rmse_difference_percent": -0.7288137113669058,
+      "run_bootstrap_95_ci_percent": [
+        -1.5153635092622708,
+        -0.032134482026753834
+      ],
+      "exact_paired_randomization_p": 0.08138465881347656,
+      "exact_sign_test_p": 0.6636238098144531,
+      "runs_primary_lower": 12,
+      "runs_total": 21,
+      "holm_adjusted_randomization_p": 0.16276931762695312
+    },
+    "tensor_residual": {
+      "mean_relative_rmse_difference_percent": -2.0202138331736146,
+      "run_bootstrap_95_ci_percent": [
+        -2.710963752818154,
+        -1.2951138528923725
+      ],
+      "exact_paired_randomization_p": 8.392333984375e-05,
+      "exact_sign_test_p": 0.0014896392822265625,
+      "runs_primary_lower": 18,
+      "runs_total": 21
+    }
+  }
+}

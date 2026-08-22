@@ -1,0 +1,97 @@
+{
+  "parallel": {
+    "standardized_design_condition_number": 3.532481457606728,
+    "correlation_matrix_condition_number": 12.47842524833536,
+    "maximum_absolute_predictor_correlation": 0.7205314683131048,
+    "predictor_correlation_matrix": [
+      [
+        1.0,
+        0.1372784858909686,
+        0.7205314683131048,
+        -0.06912487438753645
+      ],
+      [
+        0.1372784858909686,
+        0.9999999999999998,
+        0.4862096844121307,
+        0.2681798713207257
+      ],
+      [
+        0.7205314683131047,
+        0.4862096844121307,
+        1.0,
+        0.26686137651711406
+      ],
+      [
+        -0.06912487438753645,
+        0.2681798713207257,
+        0.26686137651711406,
+        1.0
+      ]
+    ],
+    "correlation_feature_order": [
+      "persistence",
+      "isotropic",
+      "forward",
+      "closing"
+    ],
+    "constant_predictors_excluded_from_correlation": [
+      "goal"
+    ]
+  },
+  "lateral": {
+    "standardized_design_condition_number": 4.842755139326545,
+    "correlation_matrix_condition_number": 23.45227733947372,
+    "maximum_absolute_predictor_correlation": 0.8824172716592327,
+    "predictor_correlation_matrix": [
+      [
+        0.9999999999999998,
+        0.07903625649863298,
+        0.0621680659402711,
+        -0.2865989933186095,
+        -0.12112096028465144
+      ],
+      [
+        0.07903625649863298,
+        1.0,
+        0.8824172716592327,
+        0.4854369058408093,
+        -0.5714186170436023
+      ],
+      [
+        0.0621680659402711,
+        0.8824172716592327,
+        0.9999999999999998,
+        0.4319308645559336,
+        -0.524682866362948
+      ],
+      [
+        -0.2865989933186095,
+        0.4854369058408093,
+        0.43193086455593355,
+        1.0,
+        -0.2837613125203228
+      ],
+      [
+        -0.12112096028465144,
+        -0.5714186170436023,
+        -0.5246828663629479,
+        -0.2837613125203228,
+        0.9999999999999998
+      ]
+    ],
+    "correlation_feature_order": [
+      "persistence",
+      "isotropic",
+      "forward",
+      "closing",
+      "wall"
+    ],
+    "constant_predictors_excluded_from_correlation": []
+  },
+  "bounds": {
+    "lower": -5.0,
+    "upper": 5.0,
+    "minimum_distance_of_fitted_coefficient_to_bound": 4.088499521542923
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "interaction_range_m": 0.8,
+  "parallel_features": [
+    "persistence",
+    "goal",
+    "isotropic",
+    "forward",
+    "closing"
+  ],
+  "parallel_coefficients": [
+    0.9064724964742735,
+    0.11074010415049214,
+    0.0011740473051212452,
+    0.018844731540433493,
+    0.004796181357708429
+  ],
+  "lateral_features": [
+    "persistence",
+    "isotropic",
+    "forward",
+    "closing",
+    "wall"
+  ],
+  "lateral_coefficients": [
+    0.31337242280506905,
+    0.013210641252913092,
+    -0.01859991643669819,
+    -0.03297741715301124,
+    0.06471710773699547
+  ],
+  "speed_cap_mps": 2.5,
+  "forecast_horizon_s": 0.4
+}

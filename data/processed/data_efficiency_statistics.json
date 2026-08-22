@@ -1,0 +1,79 @@
+{
+  "1": {
+    "mean_relative_rmse_difference_percent": -14.11874871877473,
+    "subset_bootstrap_95_ci_percent": [
+      -18.917954824648785,
+      -10.492849513203671
+    ],
+    "exact_paired_randomization_p": 0.015625,
+    "subsets_gel_ped_lower": 7,
+    "subsets_total": 7,
+    "interpretation": "descriptive robustness over overlapping calibration subsets; subsets are not independent test experiments"
+  },
+  "2": {
+    "mean_relative_rmse_difference_percent": -7.2854068883619645,
+    "subset_bootstrap_95_ci_percent": [
+      -8.70658879081148,
+      -5.918236873779216
+    ],
+    "exact_paired_randomization_p": 9.5367431640625e-07,
+    "subsets_gel_ped_lower": 21,
+    "subsets_total": 21,
+    "interpretation": "descriptive robustness over overlapping calibration subsets; subsets are not independent test experiments"
+  },
+  "3": {
+    "mean_relative_rmse_difference_percent": -4.600365726382112,
+    "subset_bootstrap_95_ci_percent": [
+      -5.538322000873025,
+      -3.747202359551654
+    ],
+    "exact_paired_randomization_p": null,
+    "subsets_gel_ped_lower": 35,
+    "subsets_total": 35,
+    "interpretation": "descriptive robustness over overlapping calibration subsets; subsets are not independent test experiments"
+  },
+  "4": {
+    "mean_relative_rmse_difference_percent": -2.9861215490601447,
+    "subset_bootstrap_95_ci_percent": [
+      -3.54271920435528,
+      -2.502351839308154
+    ],
+    "exact_paired_randomization_p": null,
+    "subsets_gel_ped_lower": 35,
+    "subsets_total": 35,
+    "interpretation": "descriptive robustness over overlapping calibration subsets; subsets are not independent test experiments"
+  },
+  "5": {
+    "mean_relative_rmse_difference_percent": -2.161582211600115,
+    "subset_bootstrap_95_ci_percent": [
+      -2.7215094862944342,
+      -1.646921783456284
+    ],
+    "exact_paired_randomization_p": 9.5367431640625e-07,
+    "subsets_gel_ped_lower": 21,
+    "subsets_total": 21,
+    "interpretation": "descriptive robustness over overlapping calibration subsets; subsets are not independent test experiments"
+  },
+  "6": {
+    "mean_relative_rmse_difference_percent": -1.4757800249656914,
+    "subset_bootstrap_95_ci_percent": [
+      -1.8556324791931205,
+      -1.0891469448646618
+    ],
+    "exact_paired_randomization_p": 0.015625,
+    "subsets_gel_ped_lower": 7,
+    "subsets_total": 7,
+    "interpretation": "descriptive robustness over overlapping calibration subsets; subsets are not independent test experiments"
+  },
+  "7": {
+    "mean_relative_rmse_difference_percent": -0.8694332443785087,
+    "subset_bootstrap_95_ci_percent": [
+      -0.8694332443785087,
+      -0.8694332443785087
+    ],
+    "exact_paired_randomization_p": 1.0,
+    "subsets_gel_ped_lower": 1,
+    "subsets_total": 1,
+    "interpretation": "descriptive robustness over overlapping calibration subsets; subsets are not independent test experiments"
+  }
+}

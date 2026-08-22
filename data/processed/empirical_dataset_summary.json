@@ -1,0 +1,26 @@
+{
+  "run": "bi_corr_400_a_03",
+  "rows": 377315,
+  "pedestrians": 541,
+  "duration_s": 140.68,
+  "x_range_m": [
+    -5.64745,
+    4.5405
+  ],
+  "y_range_m": [
+    0.0827511,
+    4.69057
+  ],
+  "direction_positive_count": 265,
+  "direction_negative_count": 276,
+  "median_speed_mps": 0.36400662296453057,
+  "speed_iqr_mps": [
+    0.2565197665380875,
+    0.5381696697429232
+  ],
+  "mean_lane_order": 0.8088171579008754,
+  "lane_order_iqr": [
+    0.7747046186895811,
+    0.8434424212598425
+  ]
+}

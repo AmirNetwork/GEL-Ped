@@ -1,0 +1,14 @@
+{
+  "per_run_percent_rmse_improvement": {
+    "bi_corr_400_a_04": 16.905214644657207,
+    "bi_corr_400_a_05": 19.195532534446965,
+    "bi_corr_400_b_08": 17.764475062349497
+  },
+  "mean_percent_rmse_improvement": 17.955074080484557,
+  "run_bootstrap_95_percent_ci": [
+    16.905214644657207,
+    19.195532534446965
+  ],
+  "runs_improved": 3,
+  "runs_total": 3
+}

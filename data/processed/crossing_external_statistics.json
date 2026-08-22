@@ -1,0 +1,29 @@
+{
+  "constant_velocity": {
+    "mean_percent": 7.802160049851884,
+    "run_bootstrap_95_percent_ci": [
+      7.240236577937651,
+      8.29510204413923
+    ],
+    "runs_improved": 13,
+    "runs_total": 13
+  },
+  "calibrated_persistence": {
+    "mean_percent": 7.023317314733206,
+    "run_bootstrap_95_percent_ci": [
+      6.579745176808934,
+      7.433917238200717
+    ],
+    "runs_improved": 13,
+    "runs_total": 13
+  },
+  "isotropic_social_force": {
+    "mean_percent": 4.508840595697128,
+    "run_bootstrap_95_percent_ci": [
+      4.034225267279377,
+      5.008235601136209
+    ],
+    "runs_improved": 13,
+    "runs_total": 13
+  }
+}

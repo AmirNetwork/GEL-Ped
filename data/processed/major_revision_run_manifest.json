@@ -1,0 +1,29 @@
+{
+  "analysis_id": "trc-major-revision-2026-07-23",
+  "entry_point": "experiments/major_revision_analysis.py",
+  "configuration": "configs/major_revision.json",
+  "selected_hyperparameters": {
+    "speed_cap_mps": 100.0,
+    "ridge_penalty": 0.01,
+    "mlp_configuration_index": 2,
+    "mlp_configuration": {
+      "hidden_layers": [
+        64,
+        64
+      ],
+      "alpha": 0.01,
+      "maximum_epochs": 40,
+      "selected_epoch": 40
+    },
+    "residual_epoch": 120,
+    "direct_blend_weight": 0.5,
+    "criterion": "ridge and cap: lowest mean leave-one-calibration-run-out RMSE; MLP: lowest mean complete-run cross-validation RMSE, with the epoch count set to the median early-stopped epoch across calibration folds; residual epoch and convex expert weight: lowest mean complete-run cross-validation RMSE",
+    "independent_unit": "complete experimental run for every selection decision"
+  },
+  "random_seed": 20260722,
+  "primary_route_information": "dominant cardinal displacement during first 10 observed frames; predictions begin only once this past-only direction is available",
+  "topology_specific_inputs": {
+    "corridor": "two-wall boundary field and past-only route direction",
+    "crossing": "no two-wall field; past-only route direction"
+  }
+}

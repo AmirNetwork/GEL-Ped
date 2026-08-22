@@ -1,0 +1,60 @@
+{
+  "interaction_range_m": 0.8,
+  "horizon_s": 0.4,
+  "calibration_runs": [
+    "bi_corr_400_a_01",
+    "bi_corr_400_a_02",
+    "bi_corr_400_b_01",
+    "bi_corr_400_b_03",
+    "bi_corr_400_b_05",
+    "bi_corr_400_b_07",
+    "bi_corr_400_b_09"
+  ],
+  "held_out_validation_runs": [
+    "bi_corr_400_a_03",
+    "bi_corr_400_b_02",
+    "bi_corr_400_b_04",
+    "bi_corr_400_b_06",
+    "bi_corr_400_b_10"
+  ],
+  "models": {
+    "persistence": {
+      "persistence": 0.9632853518601272
+    },
+    "goal_only": {
+      "goal": 0.6841993242603277
+    },
+    "canonical_field": {
+      "goal": 0.6900897837884933,
+      "isotropic": 0.023333571915993962,
+      "wall": 0.28706987712530946
+    },
+    "isotropic_social_force": {
+      "persistence": 0.8714183441516878,
+      "goal": 0.09101921720712475,
+      "isotropic": 0.007242325257045344,
+      "wall": 0.1959224040095078
+    },
+    "anisotropic_geometry": {
+      "persistence": 0.7305738877340688,
+      "goal": 0.30829842217547576,
+      "isotropic": 1.7237317891550004e-15,
+      "forward": 0.05461878693737789,
+      "wall": 0.18059826536601442
+    },
+    "decoupled_geometry": {
+      "field": {
+        "persistence": 0.7305738877340688,
+        "goal": 0.30829842217547576,
+        "isotropic": 1.7237317891550004e-15,
+        "forward": 0.05461878693737789,
+        "wall": 0.18059826536601442
+      },
+      "speed": [
+        0.4950541930719988,
+        0.5149756480135422,
+        0.0006372686753158274
+      ]
+    }
+  }
+}

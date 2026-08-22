@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "author": "Amir Ghorbani",
+  "method": "GEL-Ped: Geometry-Encoded Learning for Pedestrian Forecasting",
+  "split_sizes": {
+    "calibration": 7,
+    "held_out_validation": 5,
+    "held_out_geometry_stress": 3
+  },
+  "neural_parameter_fairness": {
+    "direct_network": 5122,
+    "goal_stable_neural": 5122,
+    "structured_expert": 5260,
+    "gel_ped_two_expert_total": 10382,
+    "same_observed_fields": true,
+    "future_endpoint_used": false
+  },
+  "external_crossing_rmse_mps": {
+    "direct_network": 0.3638210514430712,
+    "goal_stable_neural": 0.3642441857721881,
+    "gel_ped": 0.3587651092793421
+  },
+  "data_efficiency_subsets": 127,
+  "data_efficiency_subsets_gel_ped_lower": 127,
+  "manuscript_source": "manuscript\\manuscript.md"
+}
