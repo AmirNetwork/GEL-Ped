@@ -20,13 +20,17 @@
   "mlp_candidates": [
     {"hidden_layers": [32, 32], "alpha": 0.001, "maximum_epochs": 40},
     {"hidden_layers": [64, 64], "alpha": 0.001, "maximum_epochs": 40},
-    {"hidden_layers": [64, 64], "alpha": 0.01, "maximum_epochs": 40}
+    {"hidden_layers": [64, 64], "alpha": 0.01, "maximum_epochs": 40},
+    {"hidden_layers": [96, 96], "alpha": 0.01, "maximum_epochs": 60},
+    {"hidden_layers": [128, 128], "alpha": 0.01, "maximum_epochs": 60}
   ],
   "mlp_inner_maximum_samples_per_run": 750,
+  "data_efficiency_maximum_samples_per_run": 750,
+  "data_efficiency_parallel_jobs": 3,
   "mlp_run_stopping_patience": 5,
   "residual_support_quantile": 0.95,
-  "residual_gate_strength": 4.0,
-  "residual_epoch_candidates": [20, 40, 80, 120],
+  "residual_gate_strength_candidates": [0.0, 1.0, 4.0],
+  "residual_epoch_candidates": [20, 40, 80, 120, 180],
   "blend_weight_candidates": [0.0, 0.25, 0.5, 0.75, 1.0],
   "neural_seed_repetitions": 5,
   "run_bootstrap_repetitions": 20000,

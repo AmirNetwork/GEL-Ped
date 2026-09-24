@@ -8,19 +8,21 @@
     "held_out_geometry_stress": 3
   },
   "neural_parameter_fairness": {
-    "direct_network": 5122,
-    "goal_stable_neural": 5122,
-    "structured_expert": 5260,
-    "gel_ped_two_expert_total": 10382,
+    "direct_network": 18434,
+    "goal_stable_neural": 18434,
+    "direct_neural_ensemble": 36868,
+    "structured_expert": 18700,
+    "gel_ped_two_expert_total": 37134,
     "same_observed_fields": true,
     "future_endpoint_used": false
   },
   "external_crossing_rmse_mps": {
-    "direct_network": 0.3638210514430712,
-    "goal_stable_neural": 0.3642441857721881,
-    "gel_ped": 0.3587651092793421
+    "direct_network": 0.367990201240426,
+    "goal_stable_neural": 0.3684536087513986,
+    "direct_neural_ensemble": 0.3626316368503754,
+    "gel_ped": 0.3572200491257588
   },
   "data_efficiency_subsets": 127,
   "data_efficiency_subsets_gel_ped_lower": 127,
-  "manuscript_source": "manuscript\\manuscript.md"
+  "manuscript_source": null
 }

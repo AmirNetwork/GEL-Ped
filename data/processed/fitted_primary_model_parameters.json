@@ -35,15 +35,15 @@
   ],
   "residual_network": {
     "hidden_layers": [
-      64,
-      64
+      128,
+      128
     ],
     "alpha": 0.01,
-    "maximum_epochs": 40,
-    "selected_epoch": 40
+    "maximum_epochs": 60,
+    "selected_epoch": 60
   },
-  "residual_selected_epoch": 120,
+  "residual_selected_epoch": 40,
   "support_quantile": 0.95,
-  "gate_strength": 4.0,
+  "gate_strength": 0.0,
   "direct_expert_blend_weight": 0.5
 }

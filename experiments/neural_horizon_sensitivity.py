@@ -74,7 +74,7 @@ def main() -> None:
                 max_iter=selected["residual_epoch"],
                 seed=config["seed"],
                 support_quantile=config["residual_support_quantile"],
-                gate_strength=config["residual_gate_strength"],
+                gate_strength=selected["residual_gate_strength"],
             )
         models = {
             "direct_network": direct,

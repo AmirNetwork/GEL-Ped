@@ -238,28 +238,33 @@ def select_hyperparameters(
                     max_iter=epoch,
                     seed=config["seed"],
                     support_quantile=config["residual_support_quantile"],
-                    gate_strength=config["residual_gate_strength"],
+                    gate_strength=0.0,
                 )
-            rows.append(
-                {
-                    "selection": "residual_epoch",
-                    "candidate": str(epoch),
-                    "held_out_run": held_out,
-                    "best_epoch": epoch,
-                    "epochs_trained": epoch,
-                    "vector_rmse_mps": velocity_metrics(
-                        validation.target,
-                        hybrid.predict(validation, speed_cap=100.0),
-                    )["vector_rmse_mps"],
-                }
-            )
-        print(f"tensor-residual epoch search, validation run {held_out}", flush=True)
+            for gate_strength in config["residual_gate_strength_candidates"]:
+                candidate = replace(hybrid, gate_strength=float(gate_strength))
+                rows.append(
+                    {
+                        "selection": "residual_epoch_gate",
+                        "candidate": f"{epoch}|{gate_strength:g}",
+                        "held_out_run": held_out,
+                        "best_epoch": epoch,
+                        "epochs_trained": epoch,
+                        "vector_rmse_mps": velocity_metrics(
+                            validation.target,
+                            candidate.predict(validation, speed_cap=100.0),
+                        )["vector_rmse_mps"],
+                    }
+                )
+        print(f"tensor-residual epoch/gate search, validation run {held_out}", flush=True)
     results = pd.DataFrame(rows)
     results.to_csv(processed / "model_selection_inner_run_cv.csv", index=False)
-    residual_means = results[results["selection"] == "residual_epoch"].groupby(
+    residual_means = results[results["selection"] == "residual_epoch_gate"].groupby(
         "candidate"
     )["vector_rmse_mps"].mean()
-    selected_residual_epoch = int(residual_means.idxmin())
+    selected_residual_candidate = residual_means.idxmin()
+    epoch_text, gate_text = selected_residual_candidate.split("|")
+    selected_residual_epoch = int(epoch_text)
+    selected_residual_gate_strength = float(gate_text)
     for held_out in runs:
         inner = [mlp_training[run] for run in runs if run != held_out]
         validation = mlp_training[held_out]
@@ -281,7 +286,7 @@ def select_hyperparameters(
                 max_iter=selected_residual_epoch,
                 seed=config["seed"],
                 support_quantile=config["residual_support_quantile"],
-                gate_strength=config["residual_gate_strength"],
+                gate_strength=selected_residual_gate_strength,
             )
         direct_prediction = direct.predict(validation, speed_cap=100.0)
         structured_prediction = structured.predict(validation, speed_cap=100.0)
@@ -310,12 +315,14 @@ def select_hyperparameters(
         "mlp_configuration_index": selected_mlp_index,
         "mlp_configuration": mlp_configuration,
         "residual_epoch": selected_residual_epoch,
+        "residual_gate_strength": selected_residual_gate_strength,
         "direct_blend_weight": selected_blend_weight,
         "criterion": (
             "ridge and cap: lowest mean leave-one-calibration-run-out RMSE; "
             "MLP: lowest mean complete-run cross-validation RMSE, with the epoch count "
             "set to the median early-stopped epoch across calibration folds; residual "
-            "epoch and convex expert weight: lowest mean complete-run cross-validation RMSE"
+            "epoch, candidate residual-shrinkage strength, and convex expert weight: lowest mean "
+            "complete-run cross-validation RMSE"
         ),
         "independent_unit": "complete experimental run for every selection decision",
     }
@@ -351,7 +358,7 @@ def fit_models(
             max_iter=selected["residual_epoch"],
             seed=config["seed"],
             support_quantile=config["residual_support_quantile"],
-            gate_strength=config["residual_gate_strength"],
+            gate_strength=selected["residual_gate_strength"],
         )
     return {
         "constant_velocity": ModelSpec(
@@ -676,7 +683,7 @@ def neural_seed_sensitivity(
                 max_iter=selected["residual_epoch"],
                 seed=seed,
                 support_quantile=config["residual_support_quantile"],
-                gate_strength=config["residual_gate_strength"],
+                gate_strength=selected["residual_gate_strength"],
             )
             ensemble = GELPedRegressor(
                 direct, hybrid, selected["direct_blend_weight"]
@@ -1429,7 +1436,7 @@ def main() -> None:
                 "residual_network": selected["mlp_configuration"],
                 "residual_selected_epoch": selected["residual_epoch"],
                 "support_quantile": config["residual_support_quantile"],
-                "gate_strength": config["residual_gate_strength"],
+                "gate_strength": selected["residual_gate_strength"],
                 "direct_expert_blend_weight": selected["direct_blend_weight"],
             },
             indent=2,

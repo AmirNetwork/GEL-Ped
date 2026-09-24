@@ -1,29 +1,29 @@
 dataset,run,mean_residual_gate,median_residual_gate,fraction_residual_shrunk,fraction_gate_below_half
-calibration,bi_corr_400_a_01,0.9993782022266403,1.0,0.004166666666666667,0.0003333333333333333
-calibration,bi_corr_400_a_02,0.9842669934646604,1.0,0.047,0.017
-calibration,bi_corr_400_b_01,0.9981309809332689,1.0,0.016772438803263828,0.0009066183136899365
-calibration,bi_corr_400_b_03,0.9956041249411931,1.0,0.021,0.0033333333333333335
-calibration,bi_corr_400_b_05,0.9860967703282739,1.0,0.06816666666666667,0.0115
-calibration,bi_corr_400_b_07,0.9636888993186904,1.0,0.16583333333333333,0.028333333333333332
-calibration,bi_corr_400_b_09,0.9976025363418394,1.0,0.005333333333333333,0.0028333333333333335
-corridor held-out,bi_corr_400_a_03,0.9706294103718403,1.0,0.0725,0.029833333333333333
-corridor held-out,bi_corr_400_b_02,0.9969848729508457,1.0,0.0188595518082982,0.0013312624805857556
-corridor held-out,bi_corr_400_b_04,0.9804390092170768,1.0,0.07033333333333333,0.018666666666666668
-corridor held-out,bi_corr_400_b_06,0.9607610698353448,1.0,0.1245,0.037333333333333336
-corridor held-out,bi_corr_400_b_10,0.9793472427188029,1.0,0.0475,0.0225
-altered geometry,bi_corr_400_a_04,0.9476248527905092,1.0,0.12766666666666668,0.05266666666666667
-altered geometry,bi_corr_400_a_05,0.9722650775060213,1.0,0.1085,0.0265
-altered geometry,bi_corr_400_b_08,0.9513629046096165,1.0,0.21816666666666668,0.03666666666666667
-crossing external,crossing_90_d_1,0.9630857763394434,1.0,0.2395,0.014
-crossing external,crossing_90_d_2,0.9514580580531612,1.0,0.3545,0.013666666666666667
-crossing external,crossing_90_d_3,0.9733595386233431,1.0,0.23983333333333334,0.008833333333333334
-crossing external,crossing_90_d_5,0.9794677991090855,1.0,0.12933333333333333,0.011666666666666667
-crossing external,crossing_90_d_6,0.9810994674053412,1.0,0.11983333333333333,0.0105
-crossing external,crossing_90_d_7,0.9540199947925896,1.0,0.181,0.039
-crossing external,crossing_90_d_8,0.9573796339025493,1.0,0.205,0.029833333333333333
-crossing external,crossing_90_e_1,0.9756214288174648,1.0,0.151,0.0145
-crossing external,crossing_90_e_2,0.9661286310284591,1.0,0.17883333333333334,0.0235
-crossing external,crossing_90_e_3,0.9719959339037538,1.0,0.13466666666666666,0.0215
-crossing external,crossing_90_e_4,0.9664809619546401,1.0,0.14583333333333334,0.0255
-crossing external,crossing_90_e_5,0.9612897098068275,1.0,0.15166666666666667,0.036
-crossing external,crossing_90_e_6,0.9460220887715277,1.0,0.212,0.043166666666666666
+calibration,bi_corr_400_a_01,1.0,1.0,0.0,0.0
+calibration,bi_corr_400_a_02,1.0,1.0,0.0,0.0
+calibration,bi_corr_400_b_01,1.0,1.0,0.0,0.0
+calibration,bi_corr_400_b_03,1.0,1.0,0.0,0.0
+calibration,bi_corr_400_b_05,1.0,1.0,0.0,0.0
+calibration,bi_corr_400_b_07,1.0,1.0,0.0,0.0
+calibration,bi_corr_400_b_09,1.0,1.0,0.0,0.0
+corridor held-out,bi_corr_400_a_03,1.0,1.0,0.0,0.0
+corridor held-out,bi_corr_400_b_02,1.0,1.0,0.0,0.0
+corridor held-out,bi_corr_400_b_04,1.0,1.0,0.0,0.0
+corridor held-out,bi_corr_400_b_06,1.0,1.0,0.0,0.0
+corridor held-out,bi_corr_400_b_10,1.0,1.0,0.0,0.0
+altered geometry,bi_corr_400_a_04,1.0,1.0,0.0,0.0
+altered geometry,bi_corr_400_a_05,1.0,1.0,0.0,0.0
+altered geometry,bi_corr_400_b_08,1.0,1.0,0.0,0.0
+crossing external,crossing_90_d_1,1.0,1.0,0.0,0.0
+crossing external,crossing_90_d_2,1.0,1.0,0.0,0.0
+crossing external,crossing_90_d_3,1.0,1.0,0.0,0.0
+crossing external,crossing_90_d_5,1.0,1.0,0.0,0.0
+crossing external,crossing_90_d_6,1.0,1.0,0.0,0.0
+crossing external,crossing_90_d_7,1.0,1.0,0.0,0.0
+crossing external,crossing_90_d_8,1.0,1.0,0.0,0.0
+crossing external,crossing_90_e_1,1.0,1.0,0.0,0.0
+crossing external,crossing_90_e_2,1.0,1.0,0.0,0.0
+crossing external,crossing_90_e_3,1.0,1.0,0.0,0.0
+crossing external,crossing_90_e_4,1.0,1.0,0.0,0.0
+crossing external,crossing_90_e_5,1.0,1.0,0.0,0.0
+crossing external,crossing_90_e_6,1.0,1.0,0.0,0.0

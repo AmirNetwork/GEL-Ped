@@ -107,8 +107,8 @@ def architecture_figure(project: Path) -> None:
         "progress  |  lateral avoidance")
     box(5.25, 3.2, 2.5, 1.2, "Direct neural expert", ORANGE,
         "strong matched-scene learner")
-    box(5.25, 0.65, 2.5, 1.45, "Tensor-residual expert", TEAL,
-        "10-coefficient prior + gated correction")
+    box(5.25, 0.65, 2.5, 1.45, "Geometry-guided expert", TEAL,
+        "simple directional forecast + learned correction")
     box(8.55, 1.85, 2.1, 1.45, "Calibrated blend", RED,
         "weight from run-wise CV")
     box(11.25, 1.85, 1.5, 1.45, "Forecast", NAVY,
@@ -123,12 +123,12 @@ def architecture_figure(project: Path) -> None:
 
     axis.text(6.5, 4.72, "two complementary experts", color=NAVY,
               ha="center", fontsize=10.5, fontweight="bold")
-    axis.text(6.5, 0.2, "the structured branch learns only what the tensor does not explain", color=TEAL,
+    axis.text(6.5, 0.2, "the geometry-guided branch learns only the remaining error", color=TEAL,
               ha="center", fontsize=10.5, fontweight="bold")
     axis.text(0.25, 4.88, "GEL-Ped: geometry-encoded dual-expert prediction", color=NAVY,
               fontsize=18, fontweight="bold")
     axis.text(0.25, 4.52,
-              "Run-wise calibration combines neural accuracy with a structured, data-efficient prior.",
+              "Run-wise calibration combines flexible learning with a simple directional starting point.",
               color=GREY, fontsize=11)
     figure.tight_layout()
     figure.savefig(project / "figures" / "tensor_residual_architecture.png", dpi=300,
@@ -144,18 +144,22 @@ def _run_bootstrap(values: np.ndarray, seed: int = 20260722) -> tuple[float, flo
 
 def performance_figure(project: Path) -> None:
     metrics = pd.read_csv(project / "data" / "processed" / "major_revision_metrics.csv")
+    ensemble = pd.read_csv(
+        project / "data" / "processed" / "capacity_matched_ensemble_metrics.csv"
+    )
+    metrics = pd.concat([metrics, ensemble], ignore_index=True, sort=False)
     statistics = json.loads(
         (project / "data" / "processed" / "small_sample_and_contact_statistics.json").read_text()
     )
     models = [
         "constant_velocity", "social_force", "unrestricted_ten_scalar",
-        "interaction_mlp", "goal_stable_neural", "gel_ped",
+        "interaction_mlp", "direct_neural_ensemble", "goal_stable_neural", "gel_ped",
     ]
     labels = [
         "Constant velocity", "Social Force", "Linear", "Direct NN",
-        "Goal-stable", "GEL-Ped",
+        "Direct ensemble", "Goal-stable", "GEL-Ped",
     ]
-    colors = ["#9AA7B7", "#6B7B8C", BLUE, ORANGE, PURPLE, TEAL]
+    colors = ["#9AA7B7", "#6B7B8C", BLUE, ORANGE, "#C7921E", PURPLE, TEAL]
     datasets = ["corridor held-out", "altered geometry", "crossing external"]
     titles = ["A  Familiar corridor", "B  Altered corridor geometry", "C  Perpendicular crossing"]
 
@@ -227,7 +231,9 @@ def performance_figure(project: Path) -> None:
 def diagnostics_figure(project: Path) -> None:
     processed = project / "data" / "processed"
     metrics = pd.read_csv(processed / "major_revision_metrics.csv")
-    support = pd.read_csv(processed / "residual_support_diagnostics.csv")
+    ensemble = pd.read_csv(processed / "capacity_matched_ensemble_metrics.csv")
+    metrics = pd.concat([metrics, ensemble], ignore_index=True, sort=False)
+    selection = pd.read_csv(processed / "model_selection_inner_run_cv.csv")
     seed_summary = pd.read_csv(processed / "neural_seed_sensitivity_summary.csv")
     coefficients = pd.read_csv(processed / "coefficient_stability_summary.csv")
 
@@ -235,10 +241,10 @@ def diagnostics_figure(project: Path) -> None:
 
     ablations = [
         "tensor_response", "unrestricted_ten_scalar", "interaction_mlp",
-        "tensor_residual_ungated", "tensor_residual", "gel_ped",
+        "direct_neural_ensemble", "tensor_residual", "gel_ped",
     ]
     labels = ["Tensor\nprior", "Unrestricted\nlinear", "Direct\nnetwork",
-              "Residual\n(no gate)", "Tensor\nresidual", "GEL-Ped"]
+              "Direct\nensemble", "Structured\nresidual", "GEL-Ped"]
     for dataset, color, marker in (
         ("corridor held-out", BLUE, "o"),
         ("altered geometry", ORANGE, "D"),
@@ -255,16 +261,23 @@ def diagnostics_figure(project: Path) -> None:
                    title="A  Component and capacity ablation")
     axes[0, 0].legend(frameon=False, fontsize=8.5)
 
-    aggregate = support.groupby("dataset").agg(
-        mean_gate=("mean_residual_gate", "mean"),
-        shrunk=("fraction_residual_shrunk", "mean"),
-    ).reindex(["calibration", "corridor held-out", "altered geometry", "crossing external"])
+    capacity = selection[selection.selection == "mlp_configuration"].copy()
+    capacity["candidate"] = capacity.candidate.astype(int)
+    aggregate = capacity.groupby("candidate").vector_rmse_mps.agg(["mean", "sem"])
+    configuration_labels = ["32x32", "64x64\nweak reg.", "64x64\nstrong reg.",
+                            "96x96", "128x128"]
     x = np.arange(len(aggregate))
-    axes[0, 1].bar(x - 0.18, aggregate.mean_gate, 0.36, color=TEAL, label="mean gate")
-    axes[0, 1].bar(x + 0.18, aggregate.shrunk, 0.36, color=RED, label="fraction shrunk")
-    axes[0, 1].set(xticks=x, xticklabels=["calibration", "held-out\ncorridor", "altered\ngeometry", "crossing"],
-                   ylim=(0, 1.08), title="B  Data-support gate is observable")
-    axes[0, 1].legend(frameon=False, fontsize=8.5)
+    selected_index = int(aggregate["mean"].idxmin())
+    colors = [TEAL if index == selected_index else "#B8C3CF" for index in aggregate.index]
+    axes[0, 1].bar(x, aggregate["mean"], color=colors, width=0.68)
+    axes[0, 1].errorbar(x, aggregate["mean"], yerr=aggregate["sem"], fmt="none",
+                        ecolor=NAVY, capsize=3, linewidth=1.1)
+    axes[0, 1].set(xticks=x, xticklabels=configuration_labels,
+                   ylabel="Complete-run validation RMSE (m/s)",
+                   title="B  Capacity selected before external testing")
+    axes[0, 1].text(selected_index, aggregate.loc[selected_index, "mean"] - 0.001,
+                    "selected", ha="center", va="top", fontsize=8.5,
+                    color="white", fontweight="bold")
 
     ordered = coefficients.copy()
     ordered["label"] = ordered["channel"].str[0].str.upper() + ": " + ordered["feature"]
@@ -300,7 +313,7 @@ def diagnostics_figure(project: Path) -> None:
     for axis in axes.flat:
         axis.grid(alpha=0.18)
         axis.tick_params(labelsize=8.8)
-    figure.suptitle("What GEL-Ped gains, when it defers, and how stable it is",
+    figure.suptitle("Why GEL-Ped improves and how robust the result is",
                     fontsize=16, fontweight="bold", color=NAVY)
     figure.tight_layout()
     figure.savefig(project / "figures" / "hybrid_diagnostics.png", dpi=300,
@@ -355,7 +368,7 @@ def data_efficiency_figure(project: Path) -> None:
         bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.82, "pad": 2},
     )
     axes[1].grid(axis="y", alpha=0.2)
-    figure.suptitle("Structured guidance improves fixed-design estimation across all subsets",
+    figure.suptitle("Structured guidance improves all low-data subsets (up to 750 forecasts/run)",
                     fontsize=16, fontweight="bold", color=NAVY)
     figure.tight_layout()
     figure.savefig(project / "figures" / "data_efficiency.png", dpi=300,
@@ -482,7 +495,7 @@ def forecast_snapshot(project: Path) -> None:
         rmse = velocity_metrics(target, prediction)["vector_rmse_mps"]
         axis.scatter(position[:, 0], position[:, 1], s=22, color=NAVY, alpha=0.65, zorder=3)
         axis.quiver(position[:, 0], position[:, 1], target[:, 0], target[:, 1],
-                    color="#20A4A8", angles="xy", scale_units="xy", scale=2.5,
+                    color="#62C3C1", angles="xy", scale_units="xy", scale=2.5,
                     width=0.008, alpha=0.9, label="observed")
         axis.quiver(position[:, 0], position[:, 1], prediction[:, 0], prediction[:, 1],
                     color=color, angles="xy", scale_units="xy", scale=2.5,

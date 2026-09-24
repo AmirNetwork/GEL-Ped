@@ -8,10 +8,11 @@ import json
 import warnings
 from pathlib import Path
 
+from joblib import Parallel, delayed, parallel_config
 import pandas as pd
 from sklearn.exceptions import ConvergenceWarning
 
-from major_revision_analysis import build_batch
+from major_revision_analysis import build_batch, subsample_batch
 from pedgeom.benchmarks import GELPedRegressor, fit_interaction_mlp, fit_tensor_residual_mlp
 from pedgeom.calibration import fit_tensor_geometry_model, velocity_metrics
 from pedgeom.statistics import exact_paired_randomization_pvalue, run_bootstrap_interval
@@ -21,6 +22,65 @@ def selected_subsets(run_count: int, total: int = 7) -> list[tuple[int, ...]]:
     """Enumerate every calibration-run subset to avoid favorable subset selection."""
 
     return list(combinations(range(total), run_count))
+
+
+def evaluate_subset(
+    run_count: int,
+    subset_number: int,
+    indices: tuple[int, ...],
+    training: list,
+    evaluation: dict,
+    config: dict,
+    selected: dict,
+) -> list[dict]:
+    """Fit both frozen designs to one calibration-run subset."""
+
+    mlp = selected["mlp_configuration"]
+    batches = [training[index] for index in indices]
+    tensor = fit_tensor_geometry_model(batches)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", ConvergenceWarning)
+        direct = fit_interaction_mlp(
+            batches,
+            hidden_layers=tuple(mlp["hidden_layers"]),
+            alpha=mlp["alpha"],
+            max_iter=mlp["selected_epoch"],
+            seed=config["seed"],
+        )
+        structured = fit_tensor_residual_mlp(
+            batches,
+            tensor,
+            hidden_layers=tuple(mlp["hidden_layers"]),
+            alpha=mlp["alpha"],
+            max_iter=selected["residual_epoch"],
+            seed=config["seed"],
+            support_quantile=config["residual_support_quantile"],
+            gate_strength=selected["residual_gate_strength"],
+        )
+    gel_ped = GELPedRegressor(direct, structured, selected["direct_blend_weight"])
+    rows: list[dict] = []
+    for dataset, test_batches in evaluation.items():
+        for batch in test_batches:
+            for name, model in (("direct_network", direct), ("gel_ped", gel_ped)):
+                rows.append(
+                    {
+                        "calibration_runs": run_count,
+                        "subset": subset_number,
+                        "training_run_names": ";".join(
+                            training[index].run for index in indices
+                        ),
+                        "maximum_samples_per_training_run": config[
+                            "data_efficiency_maximum_samples_per_run"
+                        ],
+                        "dataset": dataset,
+                        "run": batch.run,
+                        "model": name,
+                        **velocity_metrics(
+                            batch.target, model.predict(batch, speed_cap=100.0)
+                        ),
+                    }
+                )
+    return rows
 
 
 def main() -> None:
@@ -33,7 +93,10 @@ def main() -> None:
     corridor = project / "data" / "raw" / "2013bidirectional"
     crossing = project / "data" / "raw" / "2013crossing90" / "trajectories"
     training = [
-        build_batch(corridor / f"{run}.txt", config, "entry")
+        subsample_batch(
+            build_batch(corridor / f"{run}.txt", config, "entry"),
+            config["data_efficiency_maximum_samples_per_run"],
+        )
         for run in splits["calibration"]
     ]
     evaluation = {
@@ -50,60 +113,26 @@ def main() -> None:
             for source in sorted(crossing.glob("crossing_90_[de]_*.txt"))
         ],
     }
-    mlp = selected["mlp_configuration"]
-    rows: list[dict] = []
+    tasks = []
     for run_count in range(1, 8):
         subsets = selected_subsets(run_count)
         for subset_number, indices in enumerate(subsets, start=1):
-            batches = [training[index] for index in indices]
-            tensor = fit_tensor_geometry_model(batches)
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore", ConvergenceWarning)
-                direct = fit_interaction_mlp(
-                    batches,
-                    hidden_layers=tuple(mlp["hidden_layers"]),
-                    alpha=mlp["alpha"],
-                    max_iter=mlp["selected_epoch"],
-                    seed=config["seed"],
+            tasks.append(
+                delayed(evaluate_subset)(
+                    run_count,
+                    subset_number,
+                    indices,
+                    training,
+                    evaluation,
+                    config,
+                    selected,
                 )
-                structured = fit_tensor_residual_mlp(
-                    batches,
-                    tensor,
-                    hidden_layers=tuple(mlp["hidden_layers"]),
-                    alpha=mlp["alpha"],
-                    max_iter=selected["residual_epoch"],
-                    seed=config["seed"],
-                    support_quantile=config["residual_support_quantile"],
-                    gate_strength=config["residual_gate_strength"],
-                )
-            gel_ped = GELPedRegressor(
-                direct, structured, selected["direct_blend_weight"]
             )
-            for dataset, test_batches in evaluation.items():
-                for batch in test_batches:
-                    for name, model in (
-                        ("direct_network", direct),
-                        ("gel_ped", gel_ped),
-                    ):
-                        rows.append(
-                            {
-                                "calibration_runs": run_count,
-                                "subset": subset_number,
-                                "training_run_names": ";".join(
-                                    training[index].run for index in indices
-                                ),
-                                "dataset": dataset,
-                                "run": batch.run,
-                                "model": name,
-                                **velocity_metrics(
-                                    batch.target, model.predict(batch, speed_cap=100.0)
-                                ),
-                            }
-                        )
-            print(
-                f"data efficiency: {run_count} runs, subset {subset_number}/{len(subsets)}",
-                flush=True,
-            )
+    with parallel_config(backend="loky", inner_max_num_threads=1):
+        results = Parallel(
+            n_jobs=config["data_efficiency_parallel_jobs"], verbose=10
+        )(tasks)
+    rows = [row for subset_rows in results for row in subset_rows]
     results = pd.DataFrame(rows)
     processed = project / "data" / "processed"
     results.to_csv(processed / "data_efficiency_metrics.csv", index=False)

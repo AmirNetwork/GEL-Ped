@@ -1,11 +1,11 @@
 # GEL-Ped
 
-**GEL-Ped** stands for **Geometry-Encoded Learning for Pedestrian Forecasting**. This repository, authored by **Amir Ghorbani**, reproduces the experiments and integrated manuscript for *GEL-Ped: Geometry-encoded learning for pedestrian forecasting under limited data and unseen flow topology*.
+**GEL-Ped** stands for **Geometry-Encoded Learning for Pedestrian Forecasting**. This repository, authored by **Amir Ghorbani**, reproduces the code, experiments, numerical results, and figures for *GEL-Ped: Geometry-encoded learning for pedestrian forecasting under limited data and unseen flow topology*.
 
 The method combines two experts:
 
 1. a direct invariant neural predictor for flexible interpolation; and
-2. a neural residual around a route-aligned tensor prior, attenuated outside calibration support.
+2. a geometry-guided neural predictor that starts from a route-aligned longitudinal--lateral forecast and learns only its residual error.
 
 The reported GEL-Ped model is their calibration-selected convex blend. Its machine-readable model identifier is `gel_ped`. The tensor representation is a behavioural geometry and visualization device; it is not a claim that relativistic effects govern walking.
 
@@ -13,42 +13,41 @@ The reported GEL-Ped model is their calibration-selected convex blend. Its machi
 
 At a 0.4 s forecast horizon, all model choices are made from seven complete corridor calibration runs and then frozen. On untouched runs:
 
-- with all seven calibration runs, the direct network is slightly better in familiar corridors (0.1819 versus 0.1838 m/s RMSE), so it remains the sensible choice for abundant same-topology data;
-- on thirteen external 90-degree crossing runs, GEL-Ped improves the direct network by 1.38% (0.3588 versus 0.3638 m/s) and a protocol-matched 2024 goal-stable hybrid by 1.49%; both remain significant after confirmatory Holm correction;
-- across 0.2, 0.4, 0.8, and 1.2 s horizons, crossing reductions from the direct network are 3.55%, 1.38%, 4.56%, and 2.94%, with significance retained after correction across horizons;
-- after architecture selection is fixed, GEL-Ped lowers pooled error for all 127 possible subsets of one to seven fitting runs, including a 14.12% mean reduction for singleton choices;
-- across all twenty-one untouched runs, it reduces error by 13.28% relative to calibrated Social Force and by 6.53% relative to an unrestricted tensor-feature linear model.
+- in familiar corridors, GEL-Ped and the direct network are nearly tied (0.1803 versus 0.1812 m/s RMSE); this small difference is not the basis of the paper's claim;
+- on thirteen external 90-degree crossing runs, GEL-Ped improves the direct network by 2.92% (0.3572 versus 0.3680 m/s), a protocol-matched 2024 goal-stable hybrid by 3.04%, and a parameter-matched two-network direct ensemble by 1.49%; all thirteen runs improve in each comparison;
+- across 0.2, 0.4, 0.8, and 1.2 s horizons, crossing reductions from the direct network are 1.15%, 2.92%, 3.11%, and 1.32%, with significance retained after correction across horizons;
+- after architecture selection is fixed, GEL-Ped lowers pooled error for all 127 possible subsets of one to seven fitting runs, including a 14.49% mean reduction for singleton choices; each fitting run is capped at 750 forecasts to make this a genuine low-data test;
+- across all twenty-one untouched runs, it reduces error by 16.77% relative to constant velocity, 14.10% relative to calibrated Social Force, 7.39% relative to unrestricted linear regression, 2.06% relative to the direct network, and 1.03% relative to the equal-size direct ensemble.
 
-The intended decision rule is therefore explicit: use the direct neural expert for well-sampled familiar-scene interpolation; use GEL-Ped when calibration data are scarce or the deployment topology may change.
+The intended decision rule is therefore explicit: a direct network is a reasonable simpler option for well-sampled familiar-scene interpolation; GEL-Ped is the more reliable choice when calibration data are scarce or the deployment topology may change.
 
 ## Manuscript-to-code map
 
-The implementation follows the numbered equations in the integrated manuscript:
+The implementation mirrors the manuscript without depending on fragile equation numbering:
 
-- Eqs. (1)-(5): forecast samples and observed interaction fields in `pedgeom.calibration.build_velocity_samples`.
-- Eqs. (6)-(7): route-aligned tensor response in `pedgeom.calibration.TensorGeometryModel`.
-- Eqs. (8)-(9): support score, gate, and structured residual in `pedgeom.benchmarks.TensorResidualRegressor`.
-- Eq. (10): matched direct neural expert in `pedgeom.benchmarks.InvariantRegressor` and `fit_interaction_mlp`.
-- Eq. (11): complete GEL-Ped blend in `pedgeom.benchmarks.GELPedRegressor`.
-- Eq. (12): calibrated Social Force reference in `pedgeom.calibration.SocialForceResponseModel`.
-- Eq. (13): run-balanced primary metric in `pedgeom.calibration.velocity_metrics`.
+- forecast samples and local interaction fields: `pedgeom.calibration.build_velocity_samples`;
+- route-aligned longitudinal--lateral response: `pedgeom.calibration.TensorGeometryModel`;
+- geometry-guided residual expert: `pedgeom.benchmarks.TensorResidualRegressor`;
+- matched direct expert: `pedgeom.benchmarks.InvariantRegressor` and `fit_interaction_mlp`;
+- calibration-selected GEL-Ped blend: `pedgeom.benchmarks.GELPedRegressor`;
+- calibrated Social Force reference and run-balanced metrics: `pedgeom.calibration`.
 
 ## Repository map
 
 - `src/pedgeom/`: fields, tensor model, neural benchmarks, calibration, metrics, and statistics
 - `experiments/major_revision_analysis.py`: frozen primary analysis
+- `experiments/capacity_matched_neural_ensemble.py`: equal-size two-network control
 - `experiments/data_efficiency_analysis.py`: calibration-data sensitivity
 - `experiments/neural_horizon_sensitivity.py`: frozen cross-horizon neural transfer
 - `experiments/refresh_confirmatory_holm.py`: confirmatory multiplicity update
 - `experiments/publication_figures.py`: experiment-context and real-trajectory visuals
 - `experiments/publication_upgrade_figures.py`: architecture and result visuals
-- `experiments/manuscript_consistency_audit.py`: data, benchmark-fairness, and manuscript cross-check
+- `experiments/manuscript_consistency_audit.py`: data and benchmark-fairness audit; it also checks manuscript claims when a manuscript source is present
 - `configs/major_revision.json`: machine-readable experiment configuration
 - `tests/`: analytic, numerical, data, statistical, and regression tests
 - `data/splits.json`: immutable complete-run partition
 - `data/processed/`: run-level results, uncertainty, diagnostics, and fitted values
 - `figures/`: generated publication figures
-- `manuscript/`: Markdown source, LaTeX builder, bibliography, and Overleaf project
 
 ## Reproduce
 
@@ -60,7 +59,7 @@ python -m venv .venv
 .\run_research.ps1
 ```
 
-The runner executes the tests and lint checks, rebuilds all primary and sensitivity results, regenerates the figures, and writes the single-file Overleaf manuscript with its integrated appendices. Compile `manuscript/overleaf_trc/main.tex` with pdfLaTeX, BibTeX, and two further pdfLaTeX passes.
+The runner executes the tests and lint checks, rebuilds all primary and sensitivity results, regenerates the figures, and writes the machine-readable audit. The submission manuscript is distributed separately from this public code repository.
 
 The frozen stochastic seed is `20260722`. Raw trajectory archives are not redistributed; processed result summaries contain no substitute copy of the source trajectories.
 
