@@ -1,5 +1,0 @@
-- GEL-Ped is tested against direct and goal-stable neural models.
-- Crossing gains persist across every forecast horizon from 0.2 to 1.2 s.
-- All 13 crossing runs improve at three horizons after frozen transfer.
-- GEL-Ped is lower for all 127 fixed-design calibration subsets.
-- It beats calibrated Social Force by 13.28% across 21 untouched runs.
