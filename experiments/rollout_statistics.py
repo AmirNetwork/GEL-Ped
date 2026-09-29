@@ -23,8 +23,10 @@ def main() -> None:
         frame = pivot.xs(horizon, level="horizon_s")
         results[f"{horizon:.1f}"] = {}
         for primary, comparator in (
-            ("gel_ped", "direct_mlp"),
-            ("gel_ped", "constant_velocity"),
+            ("gel_ped_anticipatory", "direct_mlp"),
+            ("gel_ped_anticipatory", "direct_anticipatory_control"),
+            ("gel_ped_anticipatory", "constant_velocity"),
+            ("gel_ped_anticipatory", "gel_ped_v1"),
             ("tensor_prior", "direct_mlp"),
             ("tensor_prior", "constant_velocity"),
         ):

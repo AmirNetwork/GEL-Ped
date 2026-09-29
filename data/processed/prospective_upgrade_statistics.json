@@ -1,0 +1,168 @@
+{
+  "corridor held-out": {
+    "direct_mlp": {
+      "mean_difference_mps": -0.011111712605568397,
+      "relative_reduction_percent": 6.132975571766435,
+      "run_bootstrap_95_ci_mps": [
+        -0.012590577970705152,
+        -0.009471639317576053
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_lower": 5
+    },
+    "direct_routed_control": {
+      "mean_difference_mps": -0.006112282134910945,
+      "relative_reduction_percent": 3.4693321983822867,
+      "run_bootstrap_95_ci_mps": [
+        -0.008825117694141394,
+        -0.003507768502984987
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_lower": 5
+    },
+    "gel_ped_v1": {
+      "mean_difference_mps": -0.005006885201837441,
+      "relative_reduction_percent": 2.859852126899933,
+      "run_bootstrap_95_ci_mps": [
+        -0.007493770129723393,
+        -0.002520000273951489
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_lower": 5
+    },
+    "prospective_direct_router": {
+      "mean_difference_mps": -0.0013323762585936648,
+      "relative_reduction_percent": 0.7773469594795536,
+      "run_bootstrap_95_ci_mps": [
+        -0.0017397861221637612,
+        -0.0008317821283877647
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_lower": 5
+    },
+    "prospective_transfer_control": {
+      "mean_difference_mps": -0.0013323762585936648,
+      "relative_reduction_percent": 0.7773469594795536,
+      "run_bootstrap_95_ci_mps": [
+        -0.0017397861221637612,
+        -0.0008317821283877647
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_lower": 5
+    }
+  },
+  "altered geometry": {
+    "direct_mlp": {
+      "mean_difference_mps": -0.013340028347124638,
+      "relative_reduction_percent": 7.4435008715940025,
+      "run_bootstrap_95_ci_mps": [
+        -0.014656990999259573,
+        -0.012667351954218475
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_lower": 3
+    },
+    "direct_routed_control": {
+      "mean_difference_mps": -0.0041865141320622246,
+      "relative_reduction_percent": 2.461734220739475,
+      "run_bootstrap_95_ci_mps": [
+        -0.005942384857591881,
+        -0.0023096557914558113
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_lower": 3
+    },
+    "gel_ped_v1": {
+      "mean_difference_mps": -0.0031192258474228482,
+      "relative_reduction_percent": 1.845735918996507,
+      "run_bootstrap_95_ci_mps": [
+        -0.0050380551709029164,
+        -0.0014068371663277235
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_lower": 3
+    },
+    "prospective_direct_router": {
+      "mean_difference_mps": -0.0021284454785249116,
+      "relative_reduction_percent": 1.2668900304927653,
+      "run_bootstrap_95_ci_mps": [
+        -0.003207378107307396,
+        -0.0014333383481114625
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_lower": 3
+    },
+    "prospective_transfer_control": {
+      "mean_difference_mps": -0.0021284454785249116,
+      "relative_reduction_percent": 1.2668900304927653,
+      "run_bootstrap_95_ci_mps": [
+        -0.003207378107307396,
+        -0.0014333383481114625
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_lower": 3
+    }
+  },
+  "crossing topology": {
+    "direct_mlp": {
+      "mean_difference_mps": -0.017234866776434113,
+      "relative_reduction_percent": 4.683512419172741,
+      "run_bootstrap_95_ci_mps": [
+        -0.022819479967216425,
+        -0.012582962971702185
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_lower": 13
+    },
+    "direct_routed_control": {
+      "mean_difference_mps": -0.01740754248353741,
+      "relative_reduction_percent": 4.728217746412911,
+      "run_bootstrap_95_ci_mps": [
+        -0.022999010023632634,
+        -0.012758779069150572
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_lower": 13
+    },
+    "gel_ped_v1": {
+      "mean_difference_mps": -0.0003867570093117932,
+      "relative_reduction_percent": 0.11014259432386993,
+      "run_bootstrap_95_ci_mps": [
+        -0.0006398869858232852,
+        -0.00016743077042891073
+      ],
+      "exact_paired_randomization_p": 0.004150390625,
+      "runs_lower": 12
+    },
+    "prospective_direct_router": {
+      "mean_difference_mps": -0.014326132424425837,
+      "relative_reduction_percent": 3.9240919421429914,
+      "run_bootstrap_95_ci_mps": [
+        -0.02068383526510737,
+        -0.009042614036877367
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_lower": 13
+    },
+    "prospective_transfer_control": {
+      "mean_difference_mps": -0.018350814871364883,
+      "relative_reduction_percent": 4.971690367231454,
+      "run_bootstrap_95_ci_mps": [
+        -0.023785018434198724,
+        -0.013815500297456292
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_lower": 13
+    }
+  },
+  "selection": {
+    "candidate": 3,
+    "horizon_s": 3.0,
+    "time_scale_s": 1.5,
+    "clearance_scale_m": 0.7,
+    "direct_router_threshold": 0.07428742586394824,
+    "gel_router_threshold": 0.08056004106189721,
+    "prospective_transfer_threshold": 0.07607984258972553,
+    "prospective_transfer_control_threshold": 0.08006547958322688
+  }
+}

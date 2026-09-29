@@ -1,26 +1,26 @@
 # GEL-Ped
 
 **GEL-Ped** is **Geometry-Encoded Learning for Pedestrian Prediction**, authored by
-**Amir Ghorbani**. It is a shift-aware predictor for local crowd motion. Current velocity
-anchors two route-aligned residual learners: gradient boosting for calibration-like flow
-and a neural residual for shifted flow. Their unlabeled disagreement determines the
-deployed mixture.
+**Amir Ghorbani**. It is an anticipatory, shift-aware predictor for local crowd motion.
+Relative motion is projected to closest approach and summarized by time, clearance,
+passing side and encounter heading. Current velocity anchors two route-aligned residual
+learners; their unlabeled disagreement determines the deployed mixture.
 
 This repository reproduces the manuscript:
-*GEL-Ped: Shift-aware geometry-encoded residual learning for short-term pedestrian
-prediction*.
+*GEL-Ped: Anticipatory geometry-encoded learning for short-term pedestrian prediction
+under flow shift*.
 
 ## What the experiments show
 
-- GEL-Ped lowers 0.4 s velocity RMSE by 3.4% in familiar corridors, 5.7% under altered
-  geometry, and 4.6% in thirteen perpendicular-crossing runs relative to a direct MLP.
-- A direct dual-backbone control uses the same boosted and neural learners and the same
-  disagreement router. GEL-Ped remains 4.6% better in crossing, isolating the value of
-  residual learning around the kinematic anchor.
+- GEL-Ped lowers 0.4 s velocity RMSE by 6.1% in familiar corridors, 7.4% under altered
+  geometry, and 4.7% in thirteen perpendicular-crossing runs relative to a direct MLP.
+- A matched direct control uses the same prospective state, boosted and neural learners,
+  and disagreement router. GEL-Ped remains 5.0% better in crossing, isolating the value
+  of residual learning around the kinematic anchor.
 - Every crossing run improves; the paired exact test reaches `p = 0.000244` and the
   run-bootstrap interval excludes zero.
-- In autoregressive crossing evaluation, displacement error is 17.0% lower at 2.0 s and
-  19.9% lower at 3.2 s than the direct MLP.
+- In autoregressive crossing evaluation, displacement error is 16.3% lower at 2.0 s and
+  18.5% lower at 3.2 s than the direct MLP.
 - With two to seven complete calibration runs, GEL-Ped beats both the direct MLP and
   constant velocity in the regime-balanced low-data analysis.
 - Wall-free retraining preserves the crossing advantage, so a missing boundary feature
@@ -33,10 +33,10 @@ test**, not naturalistic or multi-site external validation.
 ## Manuscript-to-code map
 
 - sample construction and past-only fields: `pedgeom.calibration.build_velocity_samples`
-- route-aligned inputs and kinematic anchor: `pedgeom.calibration`
-- residual experts and disagreement router: `pedgeom.benchmarks`
-- final complete-run analysis: `experiments/shift_routed_upgrade.py`
-- five-seed sensitivity: `experiments/shift_routed_seed_sensitivity.py`
+- route-aligned inputs and neighbour records: `pedgeom.calibration`
+- closest-approach state, residual experts and router: `pedgeom.benchmarks`
+- final complete-run analysis: `experiments/anticipatory_residual_upgrade.py`
+- five-seed sensitivity: `experiments/prospective_seed_sensitivity.py`
 - attribution, wall, smoothing, route and strata checks:
   `experiments/reviewer_revision_analysis.py`
 - autoregressive and conflict evaluation: `experiments/autoregressive_rollout.py`

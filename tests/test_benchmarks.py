@@ -12,6 +12,7 @@ from pedgeom.benchmarks import (
     fit_tensor_residual_mlp,
     invariant_design,
     local_target,
+    prospective_interaction_state,
     raw_neighbour_design,
     TTCResponseRegressor,
     calibrate_disagreement_router,
@@ -140,6 +141,44 @@ def test_raw_neighbour_design_is_rotation_invariant() -> None:
         raw_neighbours=rotated_raw,
     )
     assert np.allclose(raw_neighbour_design(samples), raw_neighbour_design(rotated))
+
+
+def test_prospective_interaction_state_is_bounded_and_rotation_invariant() -> None:
+    features = np.zeros((2, len(FEATURE_NAMES), 2))
+    features[:, 0] = [[0.9, 0.0], [0.7, 0.1]]
+    features[:, 1] = [1.0, 0.0]
+    raw = np.zeros((2, 8, 5))
+    raw[:, 0] = [1.0, 0.2, -0.8, -0.1, 1.0]
+    samples = VelocitySamples(
+        "base", features, np.zeros((2, 2)), np.arange(2), np.arange(2),
+        raw_neighbours=raw,
+    )
+    state = prospective_interaction_state(samples)
+    assert np.all((state[:, 0] >= 0.0) & (state[:, 0] <= 1.0))
+
+    rotation = np.array([[0.0, -1.0], [1.0, 0.0]])
+    rotated_raw = raw.copy()
+    rotated_raw[:, :, :2] = raw[:, :, :2] @ rotation.T
+    rotated_raw[:, :, 2:4] = raw[:, :, 2:4] @ rotation.T
+    rotated = VelocitySamples(
+        "rotated",
+        features @ rotation.T,
+        np.zeros((2, 2)),
+        np.arange(2),
+        np.arange(2),
+        raw_neighbours=rotated_raw,
+    )
+    assert np.allclose(state, prospective_interaction_state(rotated))
+
+
+def test_prospective_interaction_state_is_zero_without_active_encounter() -> None:
+    features = np.zeros((1, len(FEATURE_NAMES), 2))
+    features[:, 1] = [1.0, 0.0]
+    samples = VelocitySamples(
+        "empty", features, np.zeros((1, 2)), np.array([1]), np.array([1]),
+        raw_neighbours=np.zeros((1, 8, 5)),
+    )
+    assert np.allclose(prospective_interaction_state(samples), 0.0)
 
 
 def test_mechanism_baselines_are_rotation_equivariant() -> None:

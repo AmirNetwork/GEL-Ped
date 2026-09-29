@@ -1,7 +1,7 @@
 {
   "status": "pass",
   "author": "Amir Ghorbani",
-  "method": "GEL-Ped: shift-aware geometry-encoded residual learning",
+  "method": "GEL-Ped: anticipatory geometry-encoded residual learning",
   "split_sizes": {
     "calibration": 7,
     "held_out_validation": 5,
@@ -9,30 +9,30 @@
   },
   "primary_rmse_mps": {
     "corridor held-out/direct_mlp": 0.1811797956072402,
-    "corridor held-out/direct_routed_control": 0.1761803651365827,
-    "corridor held-out/gel_ped": 0.1750749682035092,
+    "corridor held-out/prospective_transfer_control": 0.1714004592602654,
+    "corridor held-out/gel_ped_prospective_transfer": 0.1700680830016718,
     "altered geometry/direct_mlp": 0.1792171261513927,
-    "altered geometry/direct_routed_control": 0.1700636119363302,
-    "altered geometry/gel_ped": 0.1689963236516909,
+    "altered geometry/prospective_transfer_control": 0.1680055432827929,
+    "altered geometry/gel_ped_prospective_transfer": 0.165877097804268,
     "crossing topology/direct_mlp": 0.367990201240426,
-    "crossing topology/direct_routed_control": 0.3681628769475293,
-    "crossing topology/gel_ped": 0.3511420914733038
+    "crossing topology/prospective_transfer_control": 0.3691061493353568,
+    "crossing topology/gel_ped_prospective_transfer": 0.350755334463992
   },
-  "matched_control_crossing_reduction_percent": 4.6231672284143475,
+  "matched_control_crossing_reduction_percent": 4.971690367231454,
   "wall_free_crossing_rmse_mps": {
     "direct_mlp": 0.3635004364860112,
-    "direct_routed_control": 0.3635171771563131,
-    "gel_ped": 0.3480789232923261
+    "prospective_direct_control": 0.3643388872067393,
+    "gel_ped_anticipatory": 0.3481417469451179
   },
   "five_seed_crossing_mean_rmse_mps": {
     "direct_mlp": 0.365141137045279,
-    "gel_ped": 0.35439397161197
+    "gel_ped": 0.353599754824037
   },
   "autoregressive_displacement_error_m": {
     "direct_2.0s": 0.7961617953640385,
-    "gel_ped_2.0s": 0.6606230683404131,
+    "gel_ped_2.0s": 0.6666279564860673,
     "direct_3.2s": 1.5283365648935208,
-    "gel_ped_3.2s": 1.223877007905798
+    "gel_ped_3.2s": 1.2460052999736733
   },
   "manuscript_source": null
 }

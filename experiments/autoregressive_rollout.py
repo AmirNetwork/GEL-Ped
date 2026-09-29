@@ -9,7 +9,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from pedgeom.benchmarks import GELPedRegressor
+from pedgeom.benchmarks import (
+    DisagreementRoutedRegressor,
+    GELPedRegressor,
+    calibrate_disagreement_router,
+)
 from pedgeom.calibration import FEATURE_NAMES, VelocitySamples, _interaction_features
 from pedgeom.datasets import (
     add_motion_features,
@@ -20,6 +24,7 @@ from pedgeom.datasets import (
 from major_revision_analysis import ModelSpec, load_inputs, project_root
 from reviewer_revision_analysis import build_datasets
 from shift_routed_upgrade import fit_routed_models
+from anticipatory_residual_upgrade import fit_hgb
 
 
 STEP_FRAMES = 10
@@ -101,6 +106,23 @@ def model_samples(
     features[:, 3] = forward
     features[:, 4] = closing
     features[:, 5] = wall
+    # Same deterministic current-state neighbour representation used in model
+    # fitting.  Recomputing it after each predicted step lets the prospective
+    # conflict state evolve without accessing future observations.
+    maximum_neighbours = 8
+    delta = position[None, :, :] - position[:, None, :]
+    relative_velocity = velocity[None, :, :] - velocity[:, None, :]
+    distance = np.linalg.norm(delta, axis=2)
+    np.fill_diagonal(distance, np.inf)
+    raw_neighbours = np.zeros((len(ids), maximum_neighbours, 5), dtype=float)
+    for focal in range(len(ids)):
+        ordered = np.argsort(distance[focal])
+        ordered = ordered[distance[focal, ordered] < 3.0][:maximum_neighbours]
+        raw_neighbours[focal, : len(ordered), :2] = delta[focal, ordered]
+        raw_neighbours[focal, : len(ordered), 2:4] = relative_velocity[
+            focal, ordered
+        ]
+        raw_neighbours[focal, : len(ordered), 4] = 1.0
     return VelocitySamples(
         run,
         features,
@@ -111,6 +133,7 @@ def model_samples(
         neighbour_count.astype(float),
         np.full(len(ids), len(ids), dtype=float),
         "entry",
+        raw_neighbours,
     )
 
 
@@ -156,12 +179,57 @@ def main() -> None:
     fitted = fit_routed_models(
         list(training.values()), selected, config, hgb_selection
     )
+    prospective_selection = json.loads(
+        (processed / "prospective_selection.json").read_text(encoding="utf-8")
+    )
+    prospective_parameters = {
+        key: prospective_selection[key]
+        for key in ("horizon_s", "time_scale_s", "clearance_scale_m")
+    }
+    prospective_settings = {
+        key: value
+        for key, value in hgb_selection["anchored_residual"].items()
+        if key != "candidate"
+    }
+    direct_settings = {
+        key: value
+        for key, value in hgb_selection["direct"].items()
+        if key != "candidate"
+    }
+    training_batches = list(training.values())
+    prospective_direct = fit_hgb(
+        training_batches,
+        prospective_parameters,
+        direct_settings,
+        config["seed"],
+        residual=False,
+    )
+    prospective_residual = fit_hgb(
+        training_batches,
+        prospective_parameters,
+        prospective_settings,
+        config["seed"],
+        residual=True,
+    )
+    direct_anticipatory_control = calibrate_disagreement_router(
+        training_batches, prospective_direct, fitted["direct_mlp"].model
+    )
+    gel_ped_anticipatory = calibrate_disagreement_router(
+        training_batches,
+        prospective_residual,
+        fitted["kinematic_residual_mlp"].model,
+    )
     models = {
         "constant_velocity": fitted["constant_velocity"],
         "direct_mlp": fitted["direct_mlp"],
-        "direct_routed_control": fitted["direct_routed_control"],
+        "direct_anticipatory_control": ModelSpec(
+            direct_anticipatory_control, selected["speed_cap_mps"], -1
+        ),
         "tensor_prior": fitted["tensor_prior"],
-        "gel_ped": fitted["gel_ped"],
+        "gel_ped_v1": fitted["gel_ped"],
+        "gel_ped_anticipatory": ModelSpec(
+            gel_ped_anticipatory, selected["speed_cap_mps"], -1
+        ),
     }
     crossing_batches = {
         batch.run: batch for batch in evaluation["crossing topology"]
@@ -172,7 +240,9 @@ def main() -> None:
     manifest = []
     for source in sorted(crossing.glob("crossing_90_[de]_*.txt")):
         run_models = dict(models)
-        for model_name in ("direct_routed_control", "gel_ped"):
+        for model_name, spec in list(run_models.items()):
+            if not isinstance(spec.model, DisagreementRoutedRegressor):
+                continue
             router = models[model_name].model
             weight = router.in_support_weight(crossing_batches[source.stem])
             run_models[model_name] = ModelSpec(

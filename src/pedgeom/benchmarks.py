@@ -92,6 +92,132 @@ def raw_neighbour_design(samples: VelocitySamples) -> np.ndarray:
     return np.column_stack((focal, neighbours.reshape(len(samples.target), -1)))
 
 
+def prospective_interaction_state(
+    samples: VelocitySamples,
+    *,
+    horizon_s: float = 3.0,
+    time_scale_s: float = 1.5,
+    clearance_scale_m: float = 0.7,
+    radius_m: float = 0.25,
+) -> np.ndarray:
+    """Return the route-aligned closest-approach state in manuscript Eq. (3).
+
+    Each neighbour is projected at constant relative velocity to its closest
+    approach inside ``horizon_s``. A bounded risk weight joins time, clearance,
+    and forward attention. The seven outputs are pooled moments of that *single
+    prospective interaction state*: total conflict risk, closing speed,
+    passing-side pressure, urgency, clearance, and encounter heading.
+    """
+
+    if samples.raw_neighbours is None:
+        raise ValueError("raw-neighbour states are required for prospective encoding")
+    raw = samples.raw_neighbours
+    relative_position = raw[:, :, :2]
+    relative_velocity = raw[:, :, 2:4]
+    present = raw[:, :, 4] > 0.5
+    goal, lateral = _local_basis(samples)
+
+    position_forward = np.einsum("nkc,nc->nk", relative_position, goal)
+    position_lateral = np.einsum("nkc,nc->nk", relative_position, lateral)
+    speed_squared = np.sum(relative_velocity**2, axis=2)
+    approach = np.sum(relative_position * relative_velocity, axis=2)
+    time_to_cpa = np.divide(
+        -approach,
+        speed_squared,
+        out=np.full_like(approach, np.inf),
+        where=speed_squared > 1e-8,
+    )
+    active = (
+        present
+        & (approach < 0.0)
+        & (time_to_cpa > 0.0)
+        & (time_to_cpa <= horizon_s)
+    )
+    clipped_time = np.where(active, time_to_cpa, horizon_s)
+    cpa_position = relative_position + clipped_time[:, :, None] * relative_velocity
+    cpa_distance = np.linalg.norm(cpa_position, axis=2)
+    clearance = np.maximum(cpa_distance - 2.0 * radius_m, 0.0)
+
+    front_attention = 0.25 + 0.75 / (1.0 + np.exp(-position_forward / 0.45))
+    raw_risk = (
+        np.exp(-clipped_time / time_scale_s)
+        * np.exp(-clearance / clearance_scale_m)
+        * front_attention
+        * active
+    )
+    bounded_risk = np.clip(raw_risk, 0.0, 0.95)
+    combined_risk = 1.0 - np.prod(1.0 - bounded_risk, axis=1)
+    risk_sum = np.sum(raw_risk, axis=1)
+    normalizer = np.maximum(risk_sum, 1e-9)
+
+    distance = np.linalg.norm(relative_position, axis=2)
+    closing_speed = np.maximum(
+        -np.divide(
+            approach,
+            distance,
+            out=np.zeros_like(approach),
+            where=distance > 1e-8,
+        ),
+        0.0,
+    )
+    predicted_side = np.einsum("nkc,nc->nk", cpa_position, lateral)
+    passing_side = np.where(predicted_side + 0.20 * position_lateral >= 0.0, -1.0, 1.0)
+    focal_velocity = samples.features[:, 0]
+    neighbour_velocity = focal_velocity[:, None, :] + relative_velocity
+    neighbour_speed = np.linalg.norm(neighbour_velocity, axis=2)
+    heading_forward = np.divide(
+        np.einsum("nkc,nc->nk", neighbour_velocity, goal),
+        neighbour_speed,
+        out=np.zeros_like(neighbour_speed),
+        where=neighbour_speed > 1e-8,
+    )
+    heading_lateral = np.divide(
+        np.einsum("nkc,nc->nk", neighbour_velocity, lateral),
+        neighbour_speed,
+        out=np.zeros_like(neighbour_speed),
+        where=neighbour_speed > 1e-8,
+    )
+
+    def attended(values: np.ndarray) -> np.ndarray:
+        return np.sum(raw_risk * values, axis=1) / normalizer
+
+    state = np.column_stack(
+        (
+            combined_risk,
+            attended(closing_speed),
+            combined_risk * attended(passing_side),
+            attended(1.0 / (clipped_time + 0.25)),
+            attended(clearance),
+            attended(heading_forward),
+            attended(heading_lateral),
+        )
+    )
+    state[risk_sum <= 1e-9] = 0.0
+    return state
+
+
+def prospective_design(
+    samples: VelocitySamples,
+    *,
+    horizon_s: float = 3.0,
+    time_scale_s: float = 1.5,
+    clearance_scale_m: float = 0.7,
+) -> np.ndarray:
+    """Join present geometry with the projected encounter state."""
+
+    return np.column_stack(
+        (
+            invariant_design(samples),
+            prospective_interaction_state(
+                samples,
+                horizon_s=horizon_s,
+                time_scale_s=time_scale_s,
+                clearance_scale_m=clearance_scale_m,
+            ),
+        )
+    )
+
+
 @dataclass
 class InvariantRegressor:
     """Direct goal-frame neural expert in manuscript Eq. (10)."""
@@ -103,6 +229,35 @@ class InvariantRegressor:
         local = self.estimator.predict(self.design_builder(samples))
         goal, lateral = _local_basis(samples)
         prediction = local[:, 0, None] * goal + local[:, 1, None] * lateral
+        speed = np.linalg.norm(prediction, axis=1)
+        scale = np.minimum(1.0, speed_cap / np.maximum(speed, 1e-12))
+        return prediction * scale[:, None]
+
+
+@dataclass
+class ProspectiveRegressor:
+    """Direct or anchor-residual predictor using closest-approach geometry."""
+
+    estimator: RegressorMixin
+    parameters: dict[str, float]
+    base: object | None = None
+
+    def _design(self, samples: VelocitySamples) -> np.ndarray:
+        design = prospective_design(samples, **self.parameters)
+        if self.base is not None:
+            base_local = local_target_from_vectors(
+                samples, self.base.predict(samples, speed_cap=100.0)
+            )
+            design = np.column_stack((design, base_local))
+        return design
+
+    def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
+        local = self.estimator.predict(self._design(samples))
+        if self.base is not None:
+            base_prediction = self.base.predict(samples, speed_cap=100.0)
+            local += local_target_from_vectors(samples, base_prediction)
+        goal, lateral = _local_basis(samples)
+        prediction = local[:, :1] * goal + local[:, 1:] * lateral
         speed = np.linalg.norm(prediction, axis=1)
         scale = np.minimum(1.0, speed_cap / np.maximum(speed, 1e-12))
         return prediction * scale[:, None]
@@ -516,6 +671,49 @@ def _hist_gradient_boosting_estimator(
             random_state=seed,
         )
     )
+
+
+def fit_prospective_boosted(
+    batches: list[VelocitySamples],
+    *,
+    base: object | None = None,
+    horizon_s: float = 3.0,
+    time_scale_s: float = 1.5,
+    clearance_scale_m: float = 0.7,
+    max_iter: int = 200,
+    max_leaf_nodes: int = 31,
+    min_samples_leaf: int = 50,
+    l2_regularization: float = 1.0,
+    learning_rate: float = 0.05,
+    seed: int = 20260722,
+) -> ProspectiveRegressor:
+    """Fit the anticipatory boosted expert or its matched direct control."""
+
+    parameters = {
+        "horizon_s": horizon_s,
+        "time_scale_s": time_scale_s,
+        "clearance_scale_m": clearance_scale_m,
+    }
+    shell = ProspectiveRegressor(None, parameters, base)
+    design = np.concatenate([shell._design(batch) for batch in batches])
+    target_parts = []
+    for batch in batches:
+        target = local_target(batch)
+        if base is not None:
+            target = target - local_target_from_vectors(
+                batch, base.predict(batch, speed_cap=100.0)
+            )
+        target_parts.append(target)
+    estimator = _hist_gradient_boosting_estimator(
+        max_iter=max_iter,
+        max_leaf_nodes=max_leaf_nodes,
+        min_samples_leaf=min_samples_leaf,
+        l2_regularization=l2_regularization,
+        learning_rate=learning_rate,
+        seed=seed,
+    )
+    estimator.fit(design, np.concatenate(target_parts))
+    return ProspectiveRegressor(estimator, parameters, base)
 
 
 def fit_gradient_boosted_direct(
