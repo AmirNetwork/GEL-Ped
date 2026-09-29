@@ -1,9 +1,5 @@
 # Author: Amir Ghorbani
-"""Audit GEL-Ped manuscript claims against the frozen machine-readable results.
-
-The audit fails on stale model names, overlapping run partitions, unmatched neural
-benchmark capacity, or a mismatch between displayed values and analysis artifacts.
-"""
+"""Audit the final GEL-Ped manuscript against machine-readable result files."""
 
 from __future__ import annotations
 
@@ -14,178 +10,175 @@ import pandas as pd
 
 
 def require(condition: bool, message: str) -> None:
-    """Raise a concise error when a reproducibility condition is not met."""
-
     if not condition:
         raise AssertionError(message)
 
 
 def close(actual: float, expected: float, tolerance: float = 5e-5) -> None:
-    """Check values at the precision reported in the manuscript."""
-
     require(abs(actual - expected) <= tolerance, f"{actual} != {expected}")
+
+
+def metric(frame: pd.DataFrame, filters: dict[str, object], column: str) -> float:
+    selected = frame
+    for name, value in filters.items():
+        selected = selected[selected[name] == value]
+    require(len(selected) == 1, f"expected one row for {filters}, found {len(selected)}")
+    return float(selected.iloc[0][column])
 
 
 def main() -> None:
     project = Path(__file__).resolve().parents[1]
     processed = project / "data" / "processed"
     manuscript_path = project / "manuscript" / "manuscript.md"
-    manuscript_present = manuscript_path.exists()
-    manuscript = manuscript_path.read_text(encoding="utf-8") if manuscript_present else ""
+    manuscript = (
+        manuscript_path.read_text(encoding="utf-8") if manuscript_path.exists() else None
+    )
 
     splits = json.loads((project / "data" / "splits.json").read_text(encoding="utf-8"))
-    groups = {
-        name: set(splits[name])
-        for name in ("calibration", "held_out_validation", "held_out_geometry_stress")
-    }
-    group_names = list(groups)
-    for index, left in enumerate(group_names):
-        for right in group_names[index + 1 :]:
-            require(groups[left].isdisjoint(groups[right]), f"overlap: {left} and {right}")
-    require([len(groups[name]) for name in groups] == [7, 5, 3], "unexpected split sizes")
+    split_names = ("calibration", "held_out_validation", "held_out_geometry_stress")
+    groups = {name: set(splits[name]) for name in split_names}
+    for index, left in enumerate(split_names):
+        for right in split_names[index + 1 :]:
+            require(groups[left].isdisjoint(groups[right]), f"overlap: {left}/{right}")
+    require([len(groups[name]) for name in split_names] == [7, 5, 3], "split sizes")
 
-    summary = pd.read_csv(processed / "major_revision_summary.csv")
-    primary = summary[
-        summary.dataset.isin(["corridor held-out", "altered geometry", "crossing external"])
-        & summary.model.isin(
-            [
-                "interaction_mlp",
-                "goal_stable_neural",
-                "tensor_residual",
-                "gel_ped",
-                "social_force",
-                "unrestricted_ten_scalar",
-            ]
+    primary = pd.read_csv(processed / "shift_routed_upgrade_summary.csv")
+    expected = {
+        ("corridor held-out", "direct_mlp"): 0.1812,
+        ("corridor held-out", "direct_routed_control"): 0.1762,
+        ("corridor held-out", "gel_ped"): 0.1751,
+        ("altered geometry", "direct_mlp"): 0.1792,
+        ("altered geometry", "direct_routed_control"): 0.1701,
+        ("altered geometry", "gel_ped"): 0.1690,
+        ("crossing topology", "direct_mlp"): 0.3680,
+        ("crossing topology", "direct_routed_control"): 0.3682,
+        ("crossing topology", "gel_ped"): 0.3511,
+    }
+    primary_values: dict[str, float] = {}
+    for (dataset, model), displayed in expected.items():
+        value = metric(primary, {"dataset": dataset, "model": model}, "mean_rmse_mps")
+        close(value, displayed)
+        if manuscript is not None:
+            require(f"{displayed:.4f}" in manuscript, f"manuscript omits {displayed:.4f}")
+        primary_values[f"{dataset}/{model}"] = value
+
+    statistics = json.loads(
+        (processed / "shift_routed_upgrade_statistics.json").read_text(encoding="utf-8")
+    )
+    crossing = statistics["crossing topology"]["direct_routed_control"]
+    close(crossing["relative_reduction_percent"], 4.623, tolerance=0.001)
+    require(crossing["runs_gel_lower"] == 13, "crossing run consistency")
+    close(crossing["exact_paired_randomization_p"], 0.000244140625, tolerance=1e-12)
+
+    router = pd.read_csv(processed / "shift_routed_router_diagnostics.csv")
+    gel_router = router[router.model == "gel_ped"]
+    fence = float(gel_router.calibration_threshold_mps.iloc[0])
+    close(fence, 0.0634733222, tolerance=1e-8)
+    crossing_scores = gel_router[gel_router.dataset == "crossing topology"]
+    familiar_scores = gel_router[gel_router.dataset == "corridor held-out"]
+    require((crossing_scores.disagreement_mps > fence).all(), "crossing router separation")
+    require((familiar_scores.disagreement_mps < fence).all(), "familiar router separation")
+
+    wall = pd.read_csv(processed / "shift_routed_wall_check_summary.csv")
+    wall_values = {
+        model: metric(
+            wall,
+            {"dataset": "crossing topology", "model": model},
+            "mean_rmse_mps",
         )
-    ]
-    require("geometry_guided_ensemble" not in set(summary.model), "stale model key")
-    require("gel_ped" in set(primary.model), "GEL-Ped result missing")
-
-    def metric(dataset: str, model: str, column: str = "vector_rmse_mps") -> float:
-        row = primary[(primary.dataset == dataset) & (primary.model == model)]
-        require(len(row) == 1, f"missing unique row: {dataset}/{model}")
-        return float(row.iloc[0][column])
-
-    expected_primary = {
-        ("corridor held-out", "interaction_mlp"): 0.1812,
-        ("corridor held-out", "goal_stable_neural"): 0.1817,
-        ("corridor held-out", "gel_ped"): 0.1803,
-        ("altered geometry", "interaction_mlp"): 0.1792,
-        ("altered geometry", "goal_stable_neural"): 0.1802,
-        ("altered geometry", "gel_ped"): 0.1774,
-        ("crossing external", "interaction_mlp"): 0.3680,
-        ("crossing external", "goal_stable_neural"): 0.3685,
-        ("crossing external", "gel_ped"): 0.3572,
+        for model in ("direct_mlp", "direct_routed_control", "gel_ped")
     }
-    for key, expected in expected_primary.items():
-        close(metric(*key), expected)
-        if manuscript_present:
-            require(f"{expected:.4f}" in manuscript, f"manuscript omits {expected:.4f}")
+    close(wall_values["direct_mlp"], 0.3635)
+    close(wall_values["gel_ped"], 0.3481)
+    require(wall_values["gel_ped"] < wall_values["direct_routed_control"], "wall check")
 
-    parameters = summary[summary.dataset == "corridor held-out"].set_index("model").parameters
-    require(int(parameters.interaction_mlp) == 18434, "direct-network capacity changed")
-    require(int(parameters.goal_stable_neural) == 18434, "goal-stable capacity is not matched")
-    require(int(parameters.tensor_residual) == 18700, "structured capacity changed")
-    require(int(parameters.gel_ped) == 37134, "GEL-Ped parameter count changed")
-    ensemble = pd.read_csv(processed / "capacity_matched_ensemble_summary.csv")
-    require(bool((ensemble.parameters == 36868).all()), "direct ensemble is not capacity matched")
-    ensemble_crossing = float(
-        ensemble.loc[
-            ensemble.dataset == "crossing external", "vector_rmse_mps"
-        ].iloc[0]
+    efficiency = pd.read_csv(processed / "shift_routed_data_efficiency_summary.csv")
+    efficiency_values: dict[str, float] = {}
+    for count in range(1, 8):
+        direct = metric(
+            efficiency,
+            {"calibration_runs": count, "model": "direct_mlp"},
+            "mean_rmse_mps",
+        )
+        gel = metric(
+            efficiency,
+            {"calibration_runs": count, "model": "gel_ped"},
+            "mean_rmse_mps",
+        )
+        require(gel < direct, f"low-data direct comparison at {count} runs")
+        efficiency_values[f"gel_ped_{count}_runs"] = gel
+    two_constant = metric(
+        efficiency,
+        {"calibration_runs": 2, "model": "constant_velocity"},
+        "mean_rmse_mps",
     )
-    close(ensemble_crossing, 0.3626)
-    if manuscript_present:
-        require("0.3626" in manuscript, "manuscript omits ensemble crossing result")
+    require(efficiency_values["gel_ped_2_runs"] < two_constant, "two-run persistence")
+    require(int(efficiency.subset_configurations.max()) == 35, "subset enumeration")
 
-    selected = json.loads(
-        (processed / "selected_hyperparameters.json").read_text(encoding="utf-8")
-    )
-    require(
-        selected["mlp_configuration"]["hidden_layers"] == [128, 128],
-        "unexpected selected architecture",
-    )
-    close(float(selected["residual_gate_strength"]), 0.0, tolerance=1e-12)
-    if manuscript_present:
-        require("128--128" in manuscript, "selected architecture missing from manuscript")
-        require("selected zero shrinkage" in manuscript, "inactive candidate shrinkage not disclosed")
+    rollout = pd.read_csv(processed / "autoregressive_rollout_summary.csv")
+    rollout_values: dict[str, float] = {}
+    for horizon, direct_expected, gel_expected in (
+        (2.0, 0.7962, 0.6606),
+        (3.2, 1.5283, 1.2239),
+    ):
+        direct = metric(rollout, {"model": "direct_mlp", "horizon_s": horizon}, "mean_m")
+        gel = metric(rollout, {"model": "gel_ped", "horizon_s": horizon}, "mean_m")
+        close(direct, direct_expected)
+        close(gel, gel_expected)
+        require(gel < direct, f"rollout ranking at {horizon} s")
+        rollout_values[f"direct_{horizon:.1f}s"] = direct
+        rollout_values[f"gel_ped_{horizon:.1f}s"] = gel
 
-    horizons = pd.read_csv(processed / "neural_horizon_sensitivity_summary.csv")
-    crossing = horizons[horizons.dataset == "crossing external"]
-    expected_horizons = {
-        0.2: (0.3933, 0.3887),
-        0.4: (0.3680, 0.3572),
-        0.8: (0.3441, 0.3332),
-        1.2: (0.3760, 0.3710),
-    }
-    for horizon, (direct_expected, gel_expected) in expected_horizons.items():
-        rows = crossing[crossing.horizon_s == horizon].set_index("model")
-        close(float(rows.loc["direct_network", "run_balanced_rmse_mps"]), direct_expected)
-        close(float(rows.loc["gel_ped", "run_balanced_rmse_mps"]), gel_expected)
+    seeds = pd.read_csv(processed / "shift_routed_seed_sensitivity_summary.csv")
+    seed_crossing = seeds[seeds.dataset == "crossing topology"]
+    seed_direct = metric(seed_crossing, {"model": "direct_mlp"}, "mean_rmse_mps")
+    seed_gel = metric(seed_crossing, {"model": "gel_ped"}, "mean_rmse_mps")
+    require(seed_gel < seed_direct, "five-seed crossing ranking")
 
-    efficiency = pd.read_csv(processed / "data_efficiency_summary.csv")
-    require(int(efficiency.subset_configurations.sum() / 2) == 127, "subset count is not 127")
-    paired = (
-        pd.read_csv(processed / "data_efficiency_metrics.csv")
-        .groupby(["calibration_runs", "subset", "model"], as_index=False)
-        .vector_rmse_mps.mean()
-    )
-    pivot = paired.pivot(
-        index=["calibration_runs", "subset"], columns="model", values="vector_rmse_mps"
-    )
-    require(bool((pivot.gel_ped < pivot.direct_network).all()), "GEL-Ped loses a subset")
-    one_run = efficiency[efficiency.calibration_runs == 1].set_index("model")
-    close(float(one_run.loc["direct_network", "mean_rmse_mps"]), 0.4069)
-    close(float(one_run.loc["gel_ped", "mean_rmse_mps"]), 0.3469)
-    if manuscript_present:
-        require("at most 750" in manuscript, "low-data observation cap is not disclosed")
-
-    required_text = [
-        "# GEL-Ped:",
-        "Table 1. Notation used in GEL-Ped.",
-        "Appendix A. Frozen partitions and reproducibility map",
-        "Appendix B. Complete-run confirmatory evidence",
-        "Appendix C. Component and optimization checks",
-        "https://github.com/AmirNetwork/GEL-Ped",
-    ]
-    if manuscript_present:
-        for text in required_text:
-            require(text in manuscript, f"missing manuscript element: {text}")
+    if manuscript is not None:
+        for required in (
+            "# GEL-Ped: Shift-aware",
+            "direct routed control",
+            "cross-topology test",
+            "Appendix A. Compact reproducibility record",
+            "https://github.com/AmirNetwork/GEL-Ped",
+        ):
+            require(required in manuscript, f"missing manuscript element: {required}")
         for stale in (
             "geometry_guided_ensemble",
-            "positive ensemble gain",
+            "goal-stable hybrid principle",
             "Supplementary material",
-            "support-gated residual expert",
-            "uses an observable support gate",
+            "crossing external",
+            "Table B.",
+            "Table C.",
         ):
             require(stale not in manuscript, f"stale manuscript text: {stale}")
+
+    for figure in (
+        "experimental_context_and_protocol.png",
+        "gel_ped_architecture.png",
+        "final_results.png",
+        "data_efficiency.png",
+    ):
+        require((project / "figures" / figure).exists(), f"missing figure: {figure}")
 
     report = {
         "status": "pass",
         "author": "Amir Ghorbani",
-        "method": "GEL-Ped: Geometry-Encoded Learning for Pedestrian Forecasting",
-        "split_sizes": {name: len(runs) for name, runs in groups.items()},
-        "neural_parameter_fairness": {
-            "direct_network": int(parameters.interaction_mlp),
-            "goal_stable_neural": int(parameters.goal_stable_neural),
-            "direct_neural_ensemble": int(ensemble.parameters.iloc[0]),
-            "structured_expert": int(parameters.tensor_residual),
-            "gel_ped_two_expert_total": int(parameters.gel_ped),
-            "same_observed_fields": True,
-            "future_endpoint_used": False,
+        "method": "GEL-Ped: shift-aware geometry-encoded residual learning",
+        "split_sizes": {name: len(groups[name]) for name in split_names},
+        "primary_rmse_mps": primary_values,
+        "matched_control_crossing_reduction_percent": crossing[
+            "relative_reduction_percent"
+        ],
+        "wall_free_crossing_rmse_mps": wall_values,
+        "five_seed_crossing_mean_rmse_mps": {
+            "direct_mlp": seed_direct,
+            "gel_ped": seed_gel,
         },
-        "external_crossing_rmse_mps": {
-            "direct_network": metric("crossing external", "interaction_mlp"),
-            "goal_stable_neural": metric("crossing external", "goal_stable_neural"),
-            "direct_neural_ensemble": ensemble_crossing,
-            "gel_ped": metric("crossing external", "gel_ped"),
-        },
-        "data_efficiency_subsets": int(len(pivot)),
-        "data_efficiency_subsets_gel_ped_lower": int(
-            (pivot.gel_ped < pivot.direct_network).sum()
-        ),
+        "autoregressive_displacement_error_m": rollout_values,
         "manuscript_source": (
-            str(manuscript_path.relative_to(project)) if manuscript_present else None
+            str(manuscript_path.relative_to(project)) if manuscript is not None else None
         ),
     }
     output = processed / "manuscript_consistency_audit.json"

@@ -1,0 +1,152 @@
+{
+  "corridor held-out": {
+    "direct_mlp": {
+      "runs": 5,
+      "mean_gel_minus_comparator_mps": -0.006104827403730956,
+      "relative_reduction_percent": 3.3694857548934105,
+      "run_bootstrap_95_ci_mps": [
+        -0.007631160623515898,
+        -0.004334985802944896
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_gel_lower": 5,
+      "minimum_attainable_two_sided_p": 0.0625
+    },
+    "hgb_direct": {
+      "runs": 5,
+      "mean_gel_minus_comparator_mps": -0.0011053969330735048,
+      "relative_reduction_percent": 0.627423454490262,
+      "run_bootstrap_95_ci_mps": [
+        -0.0015137099372453332,
+        -0.0006610814529502629
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_gel_lower": 5,
+      "minimum_attainable_two_sided_p": 0.0625
+    },
+    "direct_routed_control": {
+      "runs": 5,
+      "mean_gel_minus_comparator_mps": -0.0011053969330735048,
+      "relative_reduction_percent": 0.627423454490262,
+      "run_bootstrap_95_ci_mps": [
+        -0.0015137099372453332,
+        -0.0006610814529502629
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_gel_lower": 5,
+      "minimum_attainable_two_sided_p": 0.0625
+    },
+    "fixed_blend_gel_ped": {
+      "runs": 5,
+      "mean_gel_minus_comparator_mps": -0.005178240706905257,
+      "relative_reduction_percent": 2.8727592358585046,
+      "run_bootstrap_95_ci_mps": [
+        -0.007238105675690443,
+        -0.002981813004866879
+      ],
+      "exact_paired_randomization_p": 0.0625,
+      "runs_gel_lower": 5,
+      "minimum_attainable_two_sided_p": 0.0625
+    }
+  },
+  "altered geometry": {
+    "direct_mlp": {
+      "runs": 3,
+      "mean_gel_minus_comparator_mps": -0.01022080249970179,
+      "relative_reduction_percent": 5.703027784893627,
+      "run_bootstrap_95_ci_mps": [
+        -0.011288904921568144,
+        -0.009618935828356656
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_gel_lower": 3,
+      "minimum_attainable_two_sided_p": 0.25
+    },
+    "hgb_direct": {
+      "runs": 3,
+      "mean_gel_minus_comparator_mps": -0.0016435556380380763,
+      "relative_reduction_percent": 0.9631720585359109,
+      "run_bootstrap_95_ci_mps": [
+        -0.0026331317468850646,
+        -0.0009028186251280879
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_gel_lower": 3,
+      "minimum_attainable_two_sided_p": 0.25
+    },
+    "direct_routed_control": {
+      "runs": 3,
+      "mean_gel_minus_comparator_mps": -0.0010672882846393765,
+      "relative_reduction_percent": 0.6275818045302697,
+      "run_bootstrap_95_ci_mps": [
+        -0.0013947165421010765,
+        -0.0009028186251280879
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_gel_lower": 3,
+      "minimum_attainable_two_sided_p": 0.25
+    },
+    "fixed_blend_gel_ped": {
+      "runs": 3,
+      "mean_gel_minus_comparator_mps": -0.008449669469554869,
+      "relative_reduction_percent": 4.761826018681277,
+      "run_bootstrap_95_ci_mps": [
+        -0.010008672018564674,
+        -0.006735961859827194
+      ],
+      "exact_paired_randomization_p": 0.25,
+      "runs_gel_lower": 3,
+      "minimum_attainable_two_sided_p": 0.25
+    }
+  },
+  "crossing topology": {
+    "direct_mlp": {
+      "runs": 13,
+      "mean_gel_minus_comparator_mps": -0.016848109767122317,
+      "relative_reduction_percent": 4.578412607273372,
+      "run_bootstrap_95_ci_mps": [
+        -0.022513468983960092,
+        -0.012151944224810278
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_gel_lower": 13,
+      "minimum_attainable_two_sided_p": 0.000244140625
+    },
+    "hgb_direct": {
+      "runs": 13,
+      "mean_gel_minus_comparator_mps": -0.044235696301852985,
+      "relative_reduction_percent": 11.188209775458839,
+      "run_bootstrap_95_ci_mps": [
+        -0.05564899680289542,
+        -0.03481595553844789
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_gel_lower": 13,
+      "minimum_attainable_two_sided_p": 0.000244140625
+    },
+    "direct_routed_control": {
+      "runs": 13,
+      "mean_gel_minus_comparator_mps": -0.017020785474225617,
+      "relative_reduction_percent": 4.6231672284143475,
+      "run_bootstrap_95_ci_mps": [
+        -0.022665414886292312,
+        -0.012339395555254451
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_gel_lower": 13,
+      "minimum_attainable_two_sided_p": 0.000244140625
+    },
+    "fixed_blend_gel_ped": {
+      "runs": 13,
+      "mean_gel_minus_comparator_mps": -0.006077957652455023,
+      "relative_reduction_percent": 1.7014603932029828,
+      "run_bootstrap_95_ci_mps": [
+        -0.00808802198008966,
+        -0.004309190723744931
+      ],
+      "exact_paired_randomization_p": 0.000244140625,
+      "runs_gel_lower": 13,
+      "minimum_attainable_two_sided_p": 0.000244140625
+    }
+  }
+}

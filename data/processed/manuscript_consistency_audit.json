@@ -1,28 +1,38 @@
 {
   "status": "pass",
   "author": "Amir Ghorbani",
-  "method": "GEL-Ped: Geometry-Encoded Learning for Pedestrian Forecasting",
+  "method": "GEL-Ped: shift-aware geometry-encoded residual learning",
   "split_sizes": {
     "calibration": 7,
     "held_out_validation": 5,
     "held_out_geometry_stress": 3
   },
-  "neural_parameter_fairness": {
-    "direct_network": 18434,
-    "goal_stable_neural": 18434,
-    "direct_neural_ensemble": 36868,
-    "structured_expert": 18700,
-    "gel_ped_two_expert_total": 37134,
-    "same_observed_fields": true,
-    "future_endpoint_used": false
+  "primary_rmse_mps": {
+    "corridor held-out/direct_mlp": 0.1811797956072402,
+    "corridor held-out/direct_routed_control": 0.1761803651365827,
+    "corridor held-out/gel_ped": 0.1750749682035092,
+    "altered geometry/direct_mlp": 0.1792171261513927,
+    "altered geometry/direct_routed_control": 0.1700636119363302,
+    "altered geometry/gel_ped": 0.1689963236516909,
+    "crossing topology/direct_mlp": 0.367990201240426,
+    "crossing topology/direct_routed_control": 0.3681628769475293,
+    "crossing topology/gel_ped": 0.3511420914733038
   },
-  "external_crossing_rmse_mps": {
-    "direct_network": 0.367990201240426,
-    "goal_stable_neural": 0.3684536087513986,
-    "direct_neural_ensemble": 0.3626316368503754,
-    "gel_ped": 0.3572200491257588
+  "matched_control_crossing_reduction_percent": 4.6231672284143475,
+  "wall_free_crossing_rmse_mps": {
+    "direct_mlp": 0.3635004364860112,
+    "direct_routed_control": 0.3635171771563131,
+    "gel_ped": 0.3480789232923261
   },
-  "data_efficiency_subsets": 127,
-  "data_efficiency_subsets_gel_ped_lower": 127,
+  "five_seed_crossing_mean_rmse_mps": {
+    "direct_mlp": 0.365141137045279,
+    "gel_ped": 0.35439397161197
+  },
+  "autoregressive_displacement_error_m": {
+    "direct_2.0s": 0.7961617953640385,
+    "gel_ped_2.0s": 0.6606230683404131,
+    "direct_3.2s": 1.5283365648935208,
+    "gel_ped_3.2s": 1.223877007905798
+  },
   "manuscript_source": null
 }

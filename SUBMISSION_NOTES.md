@@ -2,32 +2,55 @@
 
 ## Recommended first outlet
 
-Transportation Research Part C: Emerging Technologies is the best first target because the paper now centres on transferable, data-efficient pedestrian forecasting with a physically structured neural model. The journal name is intentionally not mentioned inside the manuscript.
+Transportation Research Part C: Emerging Technologies is the strongest first target. The
+paper now focuses on a controlled, reproducible question in data-efficient operational
+forecasting. The journal name does not appear in the manuscript itself.
 
 ## One-sentence value proposition
 
-GEL-Ped gives a short-horizon crowd predictor a simple geometric starting point---forward progress plus lateral avoidance---and therefore needs less site-specific evidence than direct neural learning when interaction patterns change.
+GEL-Ped learns corrections around observed motion and uses unlabeled disagreement to route
+between boosted and neural residual experts when encounter topology changes.
 
-## Defensible decision rule
+## Claim that the evidence supports
 
-- A direct invariant network remains a reasonable simpler option when representative data from the deployment topology are abundant.
-- Use GEL-Ped when calibration is limited or deployment may contain a new interaction topology.
+The contribution is a shift-aware residual architecture. A direct dual-backbone control
+uses the same learner families, inputs, capacity and router, which isolates the benefit of
+the kinematic anchor and residual target. The earlier tensor model remains a compact
+open-loop fallback but is no longer the main learned branch.
 
-This distinction is important. The manuscript does not claim universal superiority over neural learning. It shows where the structured hybrid produces a tangible and statistically supported benefit.
+## Primary evidence
 
-## Primary evidence to emphasize
-
-- External crossing topology at 0.4 s: 2.92% lower run-relative RMSE than the matched direct network and 3.04% lower than the 2024 goal-stable hybrid; all 13 runs improve and the six-comparison Holm-adjusted p-value is 0.00146.
-- Capacity control: a two-network direct ensemble has almost exactly the same trainable parameter count as GEL-Ped, yet GEL-Ped is 1.49% lower on crossing and improves all 13 runs (exact p = 0.000244; absolute bootstrap interval -0.00828 to -0.00302 m/s).
-- Horizon robustness: crossing reductions from the direct network are 1.15%, 2.92%, 3.11%, and 1.32% at 0.2, 0.4, 0.8, and 1.2 s; every horizon remains significant after correction.
-- Fixed-design estimation: all 127 possible calibration-run subsets improve. With at most 750 forecasts per fitting run, the mean reduction is 14.49% for singleton choices and remains 3.83% with all seven runs.
-- All 21 untouched runs: 14.10% lower error than calibrated Social Force, 7.39% lower than unrestricted linear regression, 2.06% lower than the direct network, and 1.03% lower than the equal-size direct ensemble.
-- Familiar corridors: GEL-Ped and the direct network are nearly tied. The paper therefore claims conditional transfer and data-efficiency value, not universal dominance.
+- Familiar corridors: direct MLP 0.1812 and GEL-Ped 0.1751 m/s RMSE; the five-run design
+  cannot attain a two-sided exact p-value below 0.0625.
+- Altered geometry: RMSE falls from 0.1792 to 0.1690 m/s (5.7%); three runs limit the
+  attainable exact p-value to 0.25.
+- Cross-topology test: GEL-Ped lowers RMSE from 0.3680 to 0.3511 m/s (4.6%), improving all
+  thirteen perpendicular-crossing runs (exact p = 0.000244).
+- Architecture-matched control: the direct boosted/neural router reaches 0.3682 m/s in
+  crossing; GEL-Ped is 4.6% lower with the same routing rule.
+- Five-seed check: crossing RMSE is 0.3544 +/- 0.0027 m/s for GEL-Ped, 0.3651 +/-
+  0.0079 for the direct MLP, and 0.3662 +/- 0.0077 for the routed direct control.
+- Wall confound: wall-free retraining preserves the crossing reduction (0.3635 for the
+  direct MLP, 0.3635 for the direct router, and 0.3481 m/s for GEL-Ped).
+- Low data: GEL-Ped is better than the direct MLP from one through seven calibration runs
+  and better than constant velocity from two runs onward.
+- Autoregressive use: displacement error falls from 0.796 to 0.661 m at 2.0 s and from
+  1.528 to 1.224 m at 3.2 s. The compact geometric prior remains the most stable open-loop
+  fallback. Conflict F1 stays descriptive and does not support a safety claim.
+- Interaction strata: GEL-Ped improves all crossing neighbour-count, occupancy and
+  time-to-contact bins, with the largest reduction in the two-to-three-neighbour bin.
 
 ## Claims to avoid
 
-- Do not describe the tensor visualization as physical spacetime curvature.
-- Do not describe the pooled neural gain as large; it is statistically reliable but modest in magnitude.
-- Do not describe the 0.4 s crossing gain as large in absolute magnitude; emphasize persistence across horizons and centimetre-scale displacement gains at 0.8 and 1.2 s.
-- Do not imply that test runs were used for architecture, blend-weight, epoch, or candidate shrinkage selection. Complete-run calibration selected zero shrinkage, so the candidate gate is absent from the final model.
-- Do not claim the architecture itself can be selected from one run; the 127-subset analysis concerns refitting after the model design is fixed.
+- Do not claim that the diagonal tensor restriction causes the final gain.
+- Do not call the crossing archive naturalistic or multi-site external validation.
+- Do not treat the 0.4 s displacement difference as the sole value case; the multi-step
+  result carries the practical argument.
+- Do not turn the descriptive conflict-detection result into a safety claim.
+- Do not compare scores from long-horizon multimodal models directly with this velocity
+  target; use the protocol-matched raw-neighbour and mechanism baselines for inference.
+
+## Remaining submission action
+
+Before acceptance, archive the exact release on Zenodo and add its DOI to the code
+availability statement. The GitHub repository is suitable for review and reproduction.

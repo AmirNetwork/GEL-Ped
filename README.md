@@ -1,57 +1,63 @@
 # GEL-Ped
 
-**GEL-Ped** stands for **Geometry-Encoded Learning for Pedestrian Forecasting**. This repository, authored by **Amir Ghorbani**, reproduces the code, experiments, numerical results, and figures for *GEL-Ped: Geometry-encoded learning for pedestrian forecasting under limited data and unseen flow topology*.
+**GEL-Ped** is **Geometry-Encoded Learning for Pedestrian Prediction**, authored by
+**Amir Ghorbani**. It is a shift-aware predictor for local crowd motion. Current velocity
+anchors two route-aligned residual learners: gradient boosting for calibration-like flow
+and a neural residual for shifted flow. Their unlabeled disagreement determines the
+deployed mixture.
 
-The method combines two experts:
+This repository reproduces the manuscript:
+*GEL-Ped: Shift-aware geometry-encoded residual learning for short-term pedestrian
+prediction*.
 
-1. a direct invariant neural predictor for flexible interpolation; and
-2. a geometry-guided neural predictor that starts from a route-aligned longitudinal--lateral forecast and learns only its residual error.
+## What the experiments show
 
-The reported GEL-Ped model is their calibration-selected convex blend. Its machine-readable model identifier is `gel_ped`. The tensor representation is a behavioural geometry and visualization device; it is not a claim that relativistic effects govern walking.
+- GEL-Ped lowers 0.4 s velocity RMSE by 3.4% in familiar corridors, 5.7% under altered
+  geometry, and 4.6% in thirteen perpendicular-crossing runs relative to a direct MLP.
+- A direct dual-backbone control uses the same boosted and neural learners and the same
+  disagreement router. GEL-Ped remains 4.6% better in crossing, isolating the value of
+  residual learning around the kinematic anchor.
+- Every crossing run improves; the paired exact test reaches `p = 0.000244` and the
+  run-bootstrap interval excludes zero.
+- In autoregressive crossing evaluation, displacement error is 17.0% lower at 2.0 s and
+  19.9% lower at 3.2 s than the direct MLP.
+- With two to seven complete calibration runs, GEL-Ped beats both the direct MLP and
+  constant velocity in the regime-balanced low-data analysis.
+- Wall-free retraining preserves the crossing advantage, so a missing boundary feature
+  does not explain the result.
 
-## Practical result
-
-At a 0.4 s forecast horizon, all model choices are made from seven complete corridor calibration runs and then frozen. On untouched runs:
-
-- in familiar corridors, GEL-Ped and the direct network are nearly tied (0.1803 versus 0.1812 m/s RMSE); this small difference is not the basis of the paper's claim;
-- on thirteen external 90-degree crossing runs, GEL-Ped improves the direct network by 2.92% (0.3572 versus 0.3680 m/s), a protocol-matched 2024 goal-stable hybrid by 3.04%, and a parameter-matched two-network direct ensemble by 1.49%; all thirteen runs improve in each comparison;
-- across 0.2, 0.4, 0.8, and 1.2 s horizons, crossing reductions from the direct network are 1.15%, 2.92%, 3.11%, and 1.32%, with significance retained after correction across horizons;
-- after architecture selection is fixed, GEL-Ped lowers pooled error for all 127 possible subsets of one to seven fitting runs, including a 14.49% mean reduction for singleton choices; each fitting run is capped at 750 forecasts to make this a genuine low-data test;
-- across all twenty-one untouched runs, it reduces error by 16.77% relative to constant velocity, 14.10% relative to calibrated Social Force, 7.39% relative to unrestricted linear regression, 2.06% relative to the direct network, and 1.03% relative to the equal-size direct ensemble.
-
-The intended decision rule is therefore explicit: a direct network is a reasonable simpler option for well-sampled familiar-scene interpolation; GEL-Ped is the more reliable choice when calibration data are scarce or the deployment topology may change.
+The crossing archive changes encounter topology but shares the controlled research
+infrastructure of the corridor archive. The manuscript calls this a **cross-topology
+test**, not naturalistic or multi-site external validation.
 
 ## Manuscript-to-code map
 
-The implementation mirrors the manuscript without depending on fragile equation numbering:
-
-- forecast samples and local interaction fields: `pedgeom.calibration.build_velocity_samples`;
-- route-aligned longitudinal--lateral response: `pedgeom.calibration.TensorGeometryModel`;
-- geometry-guided residual expert: `pedgeom.benchmarks.TensorResidualRegressor`;
-- matched direct expert: `pedgeom.benchmarks.InvariantRegressor` and `fit_interaction_mlp`;
-- calibration-selected GEL-Ped blend: `pedgeom.benchmarks.GELPedRegressor`;
-- calibrated Social Force reference and run-balanced metrics: `pedgeom.calibration`.
+- sample construction and past-only fields: `pedgeom.calibration.build_velocity_samples`
+- route-aligned inputs and kinematic anchor: `pedgeom.calibration`
+- residual experts and disagreement router: `pedgeom.benchmarks`
+- final complete-run analysis: `experiments/shift_routed_upgrade.py`
+- five-seed sensitivity: `experiments/shift_routed_seed_sensitivity.py`
+- attribution, wall, smoothing, route and strata checks:
+  `experiments/reviewer_revision_analysis.py`
+- autoregressive and conflict evaluation: `experiments/autoregressive_rollout.py`
+- final wall-free refit: `experiments/shift_routed_wall_check.py`
+- complete-subset low-data study: `experiments/shift_routed_data_efficiency.py`
+- publication figures: `experiments/final_publication_figures.py`
 
 ## Repository map
 
-- `src/pedgeom/`: fields, tensor model, neural benchmarks, calibration, metrics, and statistics
-- `experiments/major_revision_analysis.py`: frozen primary analysis
-- `experiments/capacity_matched_neural_ensemble.py`: equal-size two-network control
-- `experiments/data_efficiency_analysis.py`: calibration-data sensitivity
-- `experiments/neural_horizon_sensitivity.py`: frozen cross-horizon neural transfer
-- `experiments/refresh_confirmatory_holm.py`: confirmatory multiplicity update
-- `experiments/publication_figures.py`: experiment-context and real-trajectory visuals
-- `experiments/publication_upgrade_figures.py`: architecture and result visuals
-- `experiments/manuscript_consistency_audit.py`: data and benchmark-fairness audit; it also checks manuscript claims when a manuscript source is present
-- `configs/major_revision.json`: machine-readable experiment configuration
-- `tests/`: analytic, numerical, data, statistical, and regression tests
+- `src/pedgeom/`: models, fields, calibration, metrics and statistics
+- `experiments/`: executable primary, sensitivity and figure analyses
+- `configs/`: frozen numerical settings
+- `tests/`: analytic, data, statistical and regression tests
 - `data/splits.json`: immutable complete-run partition
-- `data/processed/`: run-level results, uncertainty, diagnostics, and fitted values
-- `figures/`: generated publication figures
+- `data/processed/`: generated run-level results and diagnostics
+- `figures/`: publication figures
 
 ## Reproduce
 
-Python 3.11 or newer is required. Download the two CC BY 4.0 trajectory archives described in `data/README.md`, place them in the expected directories, and run:
+Python 3.11 or newer is required. Download the two CC BY 4.0 trajectory archives listed
+in `data/README.md`, place them in the documented directories, and run:
 
 ```powershell
 python -m venv .venv
@@ -59,10 +65,12 @@ python -m venv .venv
 .\run_research.ps1
 ```
 
-The runner executes the tests and lint checks, rebuilds all primary and sensitivity results, regenerates the figures, and writes the machine-readable audit. The submission manuscript is distributed separately from this public code repository.
-
-The frozen stochastic seed is `20260722`. Raw trajectory archives are not redistributed; processed result summaries contain no substitute copy of the source trajectories.
+The main 6,000-forecast-per-run analysis and dedicated 750-forecast-per-run low-data
+analysis are separate by design. All sampling and stochastic fitting use recorded seeds.
+Raw trajectory archives are not redistributed.
 
 ## Licence and citation
 
-Code is provided under the MIT licence. The trajectory archives remain governed by their source CC BY 4.0 terms. Please cite the final article and both dataset DOI records when using this package.
+Code is released under the MIT licence. Dataset terms remain with the source archives.
+See `CITATION.cff` for software citation metadata and cite both dataset DOI records when
+using this package.

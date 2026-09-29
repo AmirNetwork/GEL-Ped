@@ -114,7 +114,7 @@ def experiment_context(project: Path) -> None:
         (0.02, "7 runs", "calibrate", BLUE),
         (0.265, "5 runs", "held-out corridor", TEAL),
         (0.51, "3 runs", "altered geometry", GOLD),
-        (0.755, "13 runs", "external crossing", RED),
+        (0.755, "13 runs", "cross-topology test", RED),
     ]
     for index, (x, count, label, color) in enumerate(boxes):
         box = FancyBboxPatch(

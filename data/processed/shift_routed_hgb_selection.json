@@ -1,0 +1,19 @@
+{
+  "criterion": "lowest mean leave-one-complete-calibration-run-out velocity RMSE",
+  "direct": {
+    "candidate": 1,
+    "max_iter": 200,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 20,
+    "l2_regularization": 1.0,
+    "learning_rate": 0.05
+  },
+  "anchored_residual": {
+    "candidate": 2,
+    "max_iter": 200,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 50,
+    "l2_regularization": 1.0,
+    "learning_rate": 0.05
+  }
+}

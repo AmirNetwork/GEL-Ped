@@ -138,6 +138,7 @@ def subsample_batch(batch: VelocitySamples, maximum_samples: int) -> VelocitySam
         optional(batch.neighbour_count),
         optional(batch.occupancy),
         batch.goal_method,
+        optional(batch.raw_neighbours),
     )
 
 

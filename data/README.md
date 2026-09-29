@@ -19,7 +19,7 @@ The loader reads pedestrian ID, frame, x, y, and height in centimetres and conve
 coordinates to SI units. `data/splits.json` assigns seven complete runs to calibration,
 five complete runs to held-out validation, and three geometry variants to stress testing.
 
-## Perpendicular crossing (external validation only)
+## Perpendicular crossing (cross-topology evaluation only)
 
 - Dataset: *Crossing, 90 degree angle*
 - DOI: https://doi.org/10.34735/ped.2013.4
@@ -30,7 +30,9 @@ five complete runs to held-out validation, and three geometry variants to stress
 
 Only the thirteen two-stream runs whose names begin with `crossing_90_d_` or
 `crossing_90_e_` are used. No crossing run is used for feature design, coefficient
-fitting, range selection, or model selection.
+fitting, range selection, or model selection. Because both archives were collected in
+the same controlled research infrastructure, this is a test of encounter-topology
+transfer, not naturalistic or multi-site external validation.
 
 ## Integrity check
 

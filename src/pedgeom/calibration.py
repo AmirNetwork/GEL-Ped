@@ -34,6 +34,7 @@ class VelocitySamples:
     neighbour_count: np.ndarray | None = None
     occupancy: np.ndarray | None = None
     goal_method: str = "entry"
+    raw_neighbours: np.ndarray | None = None
 
     def select_features(self, names: tuple[str, ...]) -> np.ndarray:
         indices = [FEATURE_NAMES.index(name) for name in names]
@@ -123,6 +124,34 @@ class SocialForceResponseModel:
         return prediction * scale[:, None]
 
 
+@dataclass(frozen=True)
+class AnisotropicSocialForceResponseModel:
+    """Social Force response with forward and closing interaction components."""
+
+    relaxation_time: float
+    desired_speed: float
+    isotropic_acceleration: float
+    forward_acceleration: float
+    closing_acceleration: float
+    wall_acceleration: float
+    horizon_s: float = 0.4
+
+    def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
+        previous = samples.features[:, 0]
+        acceleration = (
+            (self.desired_speed * samples.features[:, 1] - previous)
+            / self.relaxation_time
+            + self.isotropic_acceleration * samples.features[:, 2]
+            + self.forward_acceleration * samples.features[:, 3]
+            + self.closing_acceleration * samples.features[:, 4]
+            + self.wall_acceleration * samples.features[:, 5]
+        )
+        prediction = previous + self.horizon_s * acceleration
+        speed = np.linalg.norm(prediction, axis=1)
+        scale = np.minimum(1.0, speed_cap / np.maximum(speed, 1e-12))
+        return prediction * scale[:, None]
+
+
 def _interaction_features(
     positions: np.ndarray,
     velocities: np.ndarray,
@@ -180,6 +209,7 @@ def build_velocity_samples(
     speed_outlier_threshold: float = 3.0,
     loader=load_julich_trajectory,
     seed: int = 20260722,
+    maximum_neighbours: int = 8,
 ) -> VelocitySamples:
     """Construct manuscript Eqs. (1)-(5) without trajectory or endpoint leakage."""
 
@@ -226,6 +256,7 @@ def build_velocity_samples(
     position_blocks: list[np.ndarray] = []
     neighbour_blocks: list[np.ndarray] = []
     occupancy_blocks: list[np.ndarray] = []
+    raw_neighbour_blocks: list[np.ndarray] = []
     all_by_frame = {frame: group for frame, group in current_all.groupby("frame", sort=False)}
 
     for frame, group in eligible.groupby("frame", sort=True):
@@ -265,6 +296,27 @@ def build_velocity_samples(
         neighbour_blocks.append(neighbour_count[row_indices].astype(float))
         occupancy_blocks.append(np.full(count, len(observed), dtype=float))
 
+        # Preserve a compact raw-neighbour view for a learning baseline.  Each
+        # slot stores world-frame relative position, relative instantaneous
+        # velocity, and a presence flag.  Sorting by distance makes the input
+        # permutation deterministic; rotation to the focal goal frame is done
+        # by the baseline itself.
+        delta = positions[None, :, :] - positions[:, None, :]
+        relative_velocity = velocities[None, :, :] - velocities[:, None, :]
+        distance = np.linalg.norm(delta, axis=2)
+        np.fill_diagonal(distance, np.inf)
+        raw = np.zeros((count, maximum_neighbours, 5), dtype=float)
+        for local_index, scene_index in enumerate(row_indices):
+            ordered = np.argsort(distance[scene_index])
+            ordered = ordered[distance[scene_index, ordered] < neighbour_cutoff]
+            ordered = ordered[:maximum_neighbours]
+            raw[local_index, : len(ordered), :2] = delta[scene_index, ordered]
+            raw[local_index, : len(ordered), 2:4] = relative_velocity[
+                scene_index, ordered
+            ]
+            raw[local_index, : len(ordered), 4] = 1.0
+        raw_neighbour_blocks.append(raw)
+
     features = np.concatenate(feature_blocks)
     targets = np.concatenate(target_blocks)
     pedestrian_ids = np.concatenate(id_blocks)
@@ -272,6 +324,7 @@ def build_velocity_samples(
     sample_positions = np.concatenate(position_blocks)
     neighbour_counts = np.concatenate(neighbour_blocks)
     occupancies = np.concatenate(occupancy_blocks)
+    raw_neighbours = np.concatenate(raw_neighbour_blocks)
     if len(targets) > maximum_samples:
         rng = np.random.default_rng(seed)
         selected = np.sort(rng.choice(len(targets), maximum_samples, replace=False))
@@ -282,6 +335,7 @@ def build_velocity_samples(
         sample_positions = sample_positions[selected]
         neighbour_counts = neighbour_counts[selected]
         occupancies = occupancies[selected]
+        raw_neighbours = raw_neighbours[selected]
     return VelocitySamples(
         source.stem,
         features,
@@ -292,6 +346,7 @@ def build_velocity_samples(
         neighbour_counts,
         occupancies,
         goal_method,
+        raw_neighbours,
     )
 
 
@@ -348,6 +403,36 @@ def fit_social_force_response_model(
         bounds=(
             np.array([0.05, 0.2, 0.0, 0.0]),
             np.array([10.0, 3.0, 5.0, 5.0]),
+        ),
+        x_scale="jac",
+    )
+    return unpack(result.x)
+
+
+def fit_anisotropic_social_force_response_model(
+    batches: list[VelocitySamples], horizon_s: float = 0.4
+) -> AnisotropicSocialForceResponseModel:
+    """Calibrate an angular/closing-aware Social Force response run-wise."""
+
+    def unpack(parameters: np.ndarray) -> AnisotropicSocialForceResponseModel:
+        return AnisotropicSocialForceResponseModel(*parameters, horizon_s=horizon_s)
+
+    def residual(parameters: np.ndarray) -> np.ndarray:
+        model = unpack(parameters)
+        return np.concatenate(
+            [
+                (model.predict(batch, speed_cap=100.0) - batch.target).reshape(-1)
+                / np.sqrt(2.0 * len(batch.target))
+                for batch in batches
+            ]
+        )
+
+    result = least_squares(
+        residual,
+        x0=np.array([0.5, 1.3, 0.5, 0.5, 0.2, 0.5]),
+        bounds=(
+            np.array([0.05, 0.2, 0.0, 0.0, 0.0, 0.0]),
+            np.array([10.0, 3.0, 5.0, 5.0, 5.0, 5.0]),
         ),
         x_scale="jac",
     )

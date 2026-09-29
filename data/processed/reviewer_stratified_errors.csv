@@ -1,0 +1,592 @@
+dataset,run,stratum,level,model,samples,vector_rmse_mps
+corridor held-out,bi_corr_400_a_03,neighbours,2-3,direct_mlp,2,0.3695313589934571
+corridor held-out,bi_corr_400_a_03,neighbours,4+,direct_mlp,5998,0.17163522055707847
+corridor held-out,bi_corr_400_a_03,occupancy,Q1,direct_mlp,415,0.21087082342448907
+corridor held-out,bi_corr_400_a_03,occupancy,Q2,direct_mlp,1232,0.17306464756229797
+corridor held-out,bi_corr_400_a_03,occupancy,Q3,direct_mlp,4353,0.16714545976122772
+corridor held-out,bi_corr_400_a_03,ttc,1-2 s,direct_mlp,696,0.16177169766946264
+corridor held-out,bi_corr_400_a_03,ttc,<1 s,direct_mlp,3526,0.17015900417331703
+corridor held-out,bi_corr_400_a_03,ttc,>=2 s,direct_mlp,438,0.15941260686918077
+corridor held-out,bi_corr_400_a_03,ttc,no predicted contact,direct_mlp,1340,0.1843280944236481
+corridor held-out,bi_corr_400_a_03,neighbours,2-3,tensor_prior,2,0.3426023598120176
+corridor held-out,bi_corr_400_a_03,neighbours,4+,tensor_prior,5998,0.2069604534216133
+corridor held-out,bi_corr_400_a_03,occupancy,Q1,tensor_prior,415,0.24582146971893068
+corridor held-out,bi_corr_400_a_03,occupancy,Q2,tensor_prior,1232,0.20263811875443385
+corridor held-out,bi_corr_400_a_03,occupancy,Q3,tensor_prior,4353,0.20418239067653657
+corridor held-out,bi_corr_400_a_03,ttc,1-2 s,tensor_prior,696,0.19870547015102796
+corridor held-out,bi_corr_400_a_03,ttc,<1 s,tensor_prior,3526,0.20328846559819144
+corridor held-out,bi_corr_400_a_03,ttc,>=2 s,tensor_prior,438,0.20020406047799214
+corridor held-out,bi_corr_400_a_03,ttc,no predicted contact,tensor_prior,1340,0.2225901498185287
+corridor held-out,bi_corr_400_a_03,neighbours,2-3,gel_ped,2,0.3689398076433411
+corridor held-out,bi_corr_400_a_03,neighbours,4+,gel_ped,5998,0.1706016482508518
+corridor held-out,bi_corr_400_a_03,occupancy,Q1,gel_ped,415,0.2099455411941922
+corridor held-out,bi_corr_400_a_03,occupancy,Q2,gel_ped,1232,0.1715202483505676
+corridor held-out,bi_corr_400_a_03,occupancy,Q3,gel_ped,4353,0.16624603451772518
+corridor held-out,bi_corr_400_a_03,ttc,1-2 s,gel_ped,696,0.16165867617649035
+corridor held-out,bi_corr_400_a_03,ttc,<1 s,gel_ped,3526,0.16984969449115447
+corridor held-out,bi_corr_400_a_03,ttc,>=2 s,gel_ped,438,0.157522434718999
+corridor held-out,bi_corr_400_a_03,ttc,no predicted contact,gel_ped,1340,0.18134057591740058
+corridor held-out,bi_corr_400_b_02,neighbours,0-1,direct_mlp,26,0.1594533619050772
+corridor held-out,bi_corr_400_b_02,neighbours,2-3,direct_mlp,39,0.1742612479183219
+corridor held-out,bi_corr_400_b_02,neighbours,4+,direct_mlp,4442,0.19460082642287146
+corridor held-out,bi_corr_400_b_02,occupancy,Q1,direct_mlp,4507,0.1942492557457024
+corridor held-out,bi_corr_400_b_02,ttc,1-2 s,direct_mlp,317,0.19724971460997875
+corridor held-out,bi_corr_400_b_02,ttc,<1 s,direct_mlp,802,0.1998090665551553
+corridor held-out,bi_corr_400_b_02,ttc,>=2 s,direct_mlp,844,0.17651731564141646
+corridor held-out,bi_corr_400_b_02,ttc,no predicted contact,direct_mlp,2544,0.19767865891828668
+corridor held-out,bi_corr_400_b_02,neighbours,0-1,tensor_prior,26,0.152478076088024
+corridor held-out,bi_corr_400_b_02,neighbours,2-3,tensor_prior,39,0.16956042878330926
+corridor held-out,bi_corr_400_b_02,neighbours,4+,tensor_prior,4442,0.21248923815271362
+corridor held-out,bi_corr_400_b_02,occupancy,Q1,tensor_prior,4507,0.21185704293844304
+corridor held-out,bi_corr_400_b_02,ttc,1-2 s,tensor_prior,317,0.21354190114665975
+corridor held-out,bi_corr_400_b_02,ttc,<1 s,tensor_prior,802,0.22035186823586073
+corridor held-out,bi_corr_400_b_02,ttc,>=2 s,tensor_prior,844,0.1875034204844643
+corridor held-out,bi_corr_400_b_02,ttc,no predicted contact,tensor_prior,2544,0.21647933733075644
+corridor held-out,bi_corr_400_b_02,neighbours,0-1,gel_ped,26,0.15447650553767178
+corridor held-out,bi_corr_400_b_02,neighbours,2-3,gel_ped,39,0.16923936003327902
+corridor held-out,bi_corr_400_b_02,neighbours,4+,gel_ped,4442,0.193194661755904
+corridor held-out,bi_corr_400_b_02,occupancy,Q1,gel_ped,4507,0.1927988417374232
+corridor held-out,bi_corr_400_b_02,ttc,1-2 s,gel_ped,317,0.19750009113335196
+corridor held-out,bi_corr_400_b_02,ttc,<1 s,gel_ped,802,0.19912414323406116
+corridor held-out,bi_corr_400_b_02,ttc,>=2 s,gel_ped,844,0.1753408797190996
+corridor held-out,bi_corr_400_b_02,ttc,no predicted contact,gel_ped,2544,0.19568712890728054
+corridor held-out,bi_corr_400_b_04,neighbours,2-3,direct_mlp,3,0.1775101654346054
+corridor held-out,bi_corr_400_b_04,neighbours,4+,direct_mlp,5997,0.18760289072177846
+corridor held-out,bi_corr_400_b_04,occupancy,Q1,direct_mlp,1938,0.19186057749781904
+corridor held-out,bi_corr_400_b_04,occupancy,Q2,direct_mlp,3960,0.1849983983626741
+corridor held-out,bi_corr_400_b_04,occupancy,Q3,direct_mlp,102,0.2050979400954717
+corridor held-out,bi_corr_400_b_04,ttc,1-2 s,direct_mlp,693,0.17779961697941998
+corridor held-out,bi_corr_400_b_04,ttc,<1 s,direct_mlp,3228,0.1886004764662105
+corridor held-out,bi_corr_400_b_04,ttc,>=2 s,direct_mlp,492,0.1753656416165808
+corridor held-out,bi_corr_400_b_04,ttc,no predicted contact,direct_mlp,1587,0.19330226266938202
+corridor held-out,bi_corr_400_b_04,neighbours,2-3,tensor_prior,3,0.17176582163301046
+corridor held-out,bi_corr_400_b_04,neighbours,4+,tensor_prior,5997,0.21728788139644528
+corridor held-out,bi_corr_400_b_04,occupancy,Q1,tensor_prior,1938,0.2183466645500701
+corridor held-out,bi_corr_400_b_04,occupancy,Q2,tensor_prior,3960,0.21655430145465251
+corridor held-out,bi_corr_400_b_04,occupancy,Q3,tensor_prior,102,0.2242440937344934
+corridor held-out,bi_corr_400_b_04,ttc,1-2 s,tensor_prior,693,0.2085646461852399
+corridor held-out,bi_corr_400_b_04,ttc,<1 s,tensor_prior,3228,0.21406727903936723
+corridor held-out,bi_corr_400_b_04,ttc,>=2 s,tensor_prior,492,0.21056258792667673
+corridor held-out,bi_corr_400_b_04,ttc,no predicted contact,tensor_prior,1587,0.2291734580265114
+corridor held-out,bi_corr_400_b_04,neighbours,2-3,gel_ped,3,0.19446545394904197
+corridor held-out,bi_corr_400_b_04,neighbours,4+,gel_ped,5997,0.1859102339453676
+corridor held-out,bi_corr_400_b_04,occupancy,Q1,gel_ped,1938,0.19084578742038313
+corridor held-out,bi_corr_400_b_04,occupancy,Q2,gel_ped,3960,0.1829862291068525
+corridor held-out,bi_corr_400_b_04,occupancy,Q3,gel_ped,102,0.20299022697048874
+corridor held-out,bi_corr_400_b_04,ttc,1-2 s,gel_ped,693,0.17574781894066163
+corridor held-out,bi_corr_400_b_04,ttc,<1 s,gel_ped,3228,0.1872391987378547
+corridor held-out,bi_corr_400_b_04,ttc,>=2 s,gel_ped,492,0.1738335130406775
+corridor held-out,bi_corr_400_b_04,ttc,no predicted contact,gel_ped,1587,0.19108083457270877
+corridor held-out,bi_corr_400_b_06,neighbours,2-3,direct_mlp,1,0.13253474905519702
+corridor held-out,bi_corr_400_b_06,neighbours,4+,direct_mlp,5999,0.18924242438263825
+corridor held-out,bi_corr_400_b_06,occupancy,Q1,direct_mlp,942,0.20391837150470077
+corridor held-out,bi_corr_400_b_06,occupancy,Q2,direct_mlp,1410,0.18912897374984122
+corridor held-out,bi_corr_400_b_06,occupancy,Q3,direct_mlp,3648,0.1852952572826343
+corridor held-out,bi_corr_400_b_06,ttc,1-2 s,direct_mlp,577,0.18794885377610257
+corridor held-out,bi_corr_400_b_06,ttc,<1 s,direct_mlp,3571,0.18601823472604515
+corridor held-out,bi_corr_400_b_06,ttc,>=2 s,direct_mlp,338,0.18553487709573913
+corridor held-out,bi_corr_400_b_06,ttc,no predicted contact,direct_mlp,1514,0.197865011099137
+corridor held-out,bi_corr_400_b_06,neighbours,2-3,tensor_prior,1,0.23523635710931046
+corridor held-out,bi_corr_400_b_06,neighbours,4+,tensor_prior,5999,0.2186247167777978
+corridor held-out,bi_corr_400_b_06,occupancy,Q1,tensor_prior,942,0.22957557880352975
+corridor held-out,bi_corr_400_b_06,occupancy,Q2,tensor_prior,1410,0.21610044614469154
+corridor held-out,bi_corr_400_b_06,occupancy,Q3,tensor_prior,3648,0.21669234156630351
+corridor held-out,bi_corr_400_b_06,ttc,1-2 s,tensor_prior,577,0.21835195528639786
+corridor held-out,bi_corr_400_b_06,ttc,<1 s,tensor_prior,3571,0.21084476507355598
+corridor held-out,bi_corr_400_b_06,ttc,>=2 s,tensor_prior,338,0.21568086943695128
+corridor held-out,bi_corr_400_b_06,ttc,no predicted contact,tensor_prior,1514,0.23667161776830503
+corridor held-out,bi_corr_400_b_06,neighbours,2-3,gel_ped,1,0.12095956834654607
+corridor held-out,bi_corr_400_b_06,neighbours,4+,gel_ped,5999,0.18801231705177132
+corridor held-out,bi_corr_400_b_06,occupancy,Q1,gel_ped,942,0.20284791617544717
+corridor held-out,bi_corr_400_b_06,occupancy,Q2,gel_ped,1410,0.18800870164405553
+corridor held-out,bi_corr_400_b_06,occupancy,Q3,gel_ped,3648,0.18397317748918113
+corridor held-out,bi_corr_400_b_06,ttc,1-2 s,gel_ped,577,0.18588310899114519
+corridor held-out,bi_corr_400_b_06,ttc,<1 s,gel_ped,3571,0.18518361277113105
+corridor held-out,bi_corr_400_b_06,ttc,>=2 s,gel_ped,338,0.1825051478824287
+corridor held-out,bi_corr_400_b_06,ttc,no predicted contact,gel_ped,1514,0.19642766641538598
+corridor held-out,bi_corr_400_b_10,neighbours,0-1,direct_mlp,11,0.2450053182636206
+corridor held-out,bi_corr_400_b_10,neighbours,2-3,direct_mlp,5,0.29526410710337336
+corridor held-out,bi_corr_400_b_10,neighbours,4+,direct_mlp,5984,0.16273416299574647
+corridor held-out,bi_corr_400_b_10,occupancy,Q1,direct_mlp,1841,0.16427695723024066
+corridor held-out,bi_corr_400_b_10,occupancy,Q2,direct_mlp,3167,0.16117538006641732
+corridor held-out,bi_corr_400_b_10,occupancy,Q3,direct_mlp,992,0.16684110509379388
+corridor held-out,bi_corr_400_b_10,ttc,1-2 s,direct_mlp,805,0.15823136926707979
+corridor held-out,bi_corr_400_b_10,ttc,<1 s,direct_mlp,3233,0.16052925085317085
+corridor held-out,bi_corr_400_b_10,ttc,>=2 s,direct_mlp,616,0.16118956380765243
+corridor held-out,bi_corr_400_b_10,ttc,no predicted contact,direct_mlp,1346,0.1725902046618711
+corridor held-out,bi_corr_400_b_10,neighbours,0-1,tensor_prior,11,0.2751099871853337
+corridor held-out,bi_corr_400_b_10,neighbours,2-3,tensor_prior,5,0.4089862009250312
+corridor held-out,bi_corr_400_b_10,neighbours,4+,tensor_prior,5984,0.1973335244219286
+corridor held-out,bi_corr_400_b_10,occupancy,Q1,tensor_prior,1841,0.19868263057049101
+corridor held-out,bi_corr_400_b_10,occupancy,Q2,tensor_prior,3167,0.19725759011882907
+corridor held-out,bi_corr_400_b_10,occupancy,Q3,tensor_prior,992,0.1977345031169885
+corridor held-out,bi_corr_400_b_10,ttc,1-2 s,tensor_prior,805,0.19907573098439055
+corridor held-out,bi_corr_400_b_10,ttc,<1 s,tensor_prior,3233,0.19185834606075716
+corridor held-out,bi_corr_400_b_10,ttc,>=2 s,tensor_prior,616,0.1992593027232092
+corridor held-out,bi_corr_400_b_10,ttc,no predicted contact,tensor_prior,1346,0.20993620214682104
+corridor held-out,bi_corr_400_b_10,neighbours,0-1,gel_ped,11,0.25559493246316245
+corridor held-out,bi_corr_400_b_10,neighbours,2-3,gel_ped,5,0.26389756169001566
+corridor held-out,bi_corr_400_b_10,neighbours,4+,gel_ped,5984,0.16351796221559795
+corridor held-out,bi_corr_400_b_10,occupancy,Q1,gel_ped,1841,0.16405036030892906
+corridor held-out,bi_corr_400_b_10,occupancy,Q2,gel_ped,3167,0.16241239052110268
+corridor held-out,bi_corr_400_b_10,occupancy,Q3,gel_ped,992,0.16795546358675117
+corridor held-out,bi_corr_400_b_10,ttc,1-2 s,gel_ped,805,0.15895530353865897
+corridor held-out,bi_corr_400_b_10,ttc,<1 s,gel_ped,3233,0.1609627616610267
+corridor held-out,bi_corr_400_b_10,ttc,>=2 s,gel_ped,616,0.1618466578707682
+corridor held-out,bi_corr_400_b_10,ttc,no predicted contact,gel_ped,1346,0.17416421066669363
+altered geometry,bi_corr_400_a_04,neighbours,0-1,direct_mlp,1,0.15199533118455308
+altered geometry,bi_corr_400_a_04,neighbours,2-3,direct_mlp,2,0.44025584847888477
+altered geometry,bi_corr_400_a_04,neighbours,4+,direct_mlp,5997,0.17915230157502968
+altered geometry,bi_corr_400_a_04,occupancy,Q1,direct_mlp,1905,0.18974096106555832
+altered geometry,bi_corr_400_a_04,occupancy,Q2,direct_mlp,1395,0.1710548452661045
+altered geometry,bi_corr_400_a_04,occupancy,Q3,direct_mlp,2700,0.17584428555041728
+altered geometry,bi_corr_400_a_04,ttc,1-2 s,direct_mlp,625,0.17684432745098147
+altered geometry,bi_corr_400_a_04,ttc,<1 s,direct_mlp,3632,0.17566146064302154
+altered geometry,bi_corr_400_a_04,ttc,>=2 s,direct_mlp,395,0.17385934197728314
+altered geometry,bi_corr_400_a_04,ttc,no predicted contact,direct_mlp,1348,0.19129695731657387
+altered geometry,bi_corr_400_a_04,neighbours,0-1,tensor_prior,1,0.15313409882753237
+altered geometry,bi_corr_400_a_04,neighbours,2-3,tensor_prior,2,0.329451097917655
+altered geometry,bi_corr_400_a_04,neighbours,4+,tensor_prior,5997,0.21065575248749102
+altered geometry,bi_corr_400_a_04,occupancy,Q1,tensor_prior,1905,0.22563580338442235
+altered geometry,bi_corr_400_a_04,occupancy,Q2,tensor_prior,1395,0.1984290267083845
+altered geometry,bi_corr_400_a_04,occupancy,Q3,tensor_prior,2700,0.20588489921698905
+altered geometry,bi_corr_400_a_04,ttc,1-2 s,tensor_prior,625,0.21092798943214258
+altered geometry,bi_corr_400_a_04,ttc,<1 s,tensor_prior,3632,0.20148850071846414
+altered geometry,bi_corr_400_a_04,ttc,>=2 s,tensor_prior,395,0.21993300001899543
+altered geometry,bi_corr_400_a_04,ttc,no predicted contact,tensor_prior,1348,0.2311096654857505
+altered geometry,bi_corr_400_a_04,neighbours,0-1,gel_ped,1,0.18382911626063425
+altered geometry,bi_corr_400_a_04,neighbours,2-3,gel_ped,2,0.18268384088538311
+altered geometry,bi_corr_400_a_04,neighbours,4+,gel_ped,5997,0.17814583059922195
+altered geometry,bi_corr_400_a_04,occupancy,Q1,gel_ped,1905,0.1878721989652442
+altered geometry,bi_corr_400_a_04,occupancy,Q2,gel_ped,1395,0.17052950235509165
+altered geometry,bi_corr_400_a_04,occupancy,Q3,gel_ped,2700,0.17492338003895241
+altered geometry,bi_corr_400_a_04,ttc,1-2 s,gel_ped,625,0.17434769058072147
+altered geometry,bi_corr_400_a_04,ttc,<1 s,gel_ped,3632,0.17453024484056817
+altered geometry,bi_corr_400_a_04,ttc,>=2 s,gel_ped,395,0.17392438515903724
+altered geometry,bi_corr_400_a_04,ttc,no predicted contact,gel_ped,1348,0.19034654997586656
+altered geometry,bi_corr_400_a_05,neighbours,2-3,direct_mlp,2,0.40637422520377464
+altered geometry,bi_corr_400_a_05,neighbours,4+,direct_mlp,5998,0.1742971961133055
+altered geometry,bi_corr_400_a_05,occupancy,Q1,direct_mlp,2172,0.17774771157367358
+altered geometry,bi_corr_400_a_05,occupancy,Q2,direct_mlp,3811,0.1725807535405509
+altered geometry,bi_corr_400_a_05,occupancy,Q3,direct_mlp,17,0.1565472525737627
+altered geometry,bi_corr_400_a_05,ttc,1-2 s,direct_mlp,617,0.16540413135270976
+altered geometry,bi_corr_400_a_05,ttc,<1 s,direct_mlp,3703,0.17595550401096968
+altered geometry,bi_corr_400_a_05,ttc,>=2 s,direct_mlp,350,0.17061435491849183
+altered geometry,bi_corr_400_a_05,ttc,no predicted contact,direct_mlp,1330,0.17521631823915215
+altered geometry,bi_corr_400_a_05,neighbours,2-3,tensor_prior,2,0.4442677229807448
+altered geometry,bi_corr_400_a_05,neighbours,4+,tensor_prior,5998,0.1988136017790897
+altered geometry,bi_corr_400_a_05,occupancy,Q1,tensor_prior,2172,0.20125905360345783
+altered geometry,bi_corr_400_a_05,occupancy,Q2,tensor_prior,3811,0.19768611105806197
+altered geometry,bi_corr_400_a_05,occupancy,Q3,tensor_prior,17,0.1825251753424808
+altered geometry,bi_corr_400_a_05,ttc,1-2 s,tensor_prior,617,0.19294687172225125
+altered geometry,bi_corr_400_a_05,ttc,<1 s,tensor_prior,3703,0.19785873897668446
+altered geometry,bi_corr_400_a_05,ttc,>=2 s,tensor_prior,350,0.20028403714124673
+altered geometry,bi_corr_400_a_05,ttc,no predicted contact,tensor_prior,1330,0.20428063030920632
+altered geometry,bi_corr_400_a_05,neighbours,2-3,gel_ped,2,0.4129945126052834
+altered geometry,bi_corr_400_a_05,neighbours,4+,gel_ped,5998,0.17301035404791554
+altered geometry,bi_corr_400_a_05,occupancy,Q1,gel_ped,2172,0.17577168660559925
+altered geometry,bi_corr_400_a_05,occupancy,Q2,gel_ped,3811,0.17172720331579647
+altered geometry,bi_corr_400_a_05,occupancy,Q3,gel_ped,17,0.15030445836186113
+altered geometry,bi_corr_400_a_05,ttc,1-2 s,gel_ped,617,0.16412995074509396
+altered geometry,bi_corr_400_a_05,ttc,<1 s,gel_ped,3703,0.1741468605998967
+altered geometry,bi_corr_400_a_05,ttc,>=2 s,gel_ped,350,0.16921587542827196
+altered geometry,bi_corr_400_a_05,ttc,no predicted contact,gel_ped,1330,0.1754314869881149
+altered geometry,bi_corr_400_b_08,neighbours,2-3,direct_mlp,2,0.43473166559034265
+altered geometry,bi_corr_400_b_08,neighbours,4+,direct_mlp,5998,0.183786149669804
+altered geometry,bi_corr_400_b_08,occupancy,Q1,direct_mlp,1993,0.19736852017872475
+altered geometry,bi_corr_400_b_08,occupancy,Q2,direct_mlp,983,0.1815650743082682
+altered geometry,bi_corr_400_b_08,occupancy,Q3,direct_mlp,3024,0.1753049873621848
+altered geometry,bi_corr_400_b_08,ttc,1-2 s,direct_mlp,561,0.1795138394832507
+altered geometry,bi_corr_400_b_08,ttc,<1 s,direct_mlp,3614,0.1823310522827269
+altered geometry,bi_corr_400_b_08,ttc,>=2 s,direct_mlp,333,0.181283610187277
+altered geometry,bi_corr_400_b_08,ttc,no predicted contact,direct_mlp,1492,0.18990352408295685
+altered geometry,bi_corr_400_b_08,neighbours,2-3,tensor_prior,2,0.6652254040500988
+altered geometry,bi_corr_400_b_08,neighbours,4+,tensor_prior,5998,0.20638724561734756
+altered geometry,bi_corr_400_b_08,occupancy,Q1,tensor_prior,1993,0.224787804005705
+altered geometry,bi_corr_400_b_08,occupancy,Q2,tensor_prior,983,0.20913915126963464
+altered geometry,bi_corr_400_b_08,occupancy,Q3,tensor_prior,3024,0.19302743656406385
+altered geometry,bi_corr_400_b_08,ttc,1-2 s,tensor_prior,561,0.20224524895112433
+altered geometry,bi_corr_400_b_08,ttc,<1 s,tensor_prior,3614,0.20191513681919887
+altered geometry,bi_corr_400_b_08,ttc,>=2 s,tensor_prior,333,0.20664587173799556
+altered geometry,bi_corr_400_b_08,ttc,no predicted contact,tensor_prior,1492,0.21947056130419199
+altered geometry,bi_corr_400_b_08,neighbours,2-3,gel_ped,2,0.4536759802331285
+altered geometry,bi_corr_400_b_08,neighbours,4+,gel_ped,5998,0.18088445174650525
+altered geometry,bi_corr_400_b_08,occupancy,Q1,gel_ped,1993,0.19505324629403634
+altered geometry,bi_corr_400_b_08,occupancy,Q2,gel_ped,983,0.1791261045986472
+altered geometry,bi_corr_400_b_08,occupancy,Q3,gel_ped,3024,0.17183975778071484
+altered geometry,bi_corr_400_b_08,ttc,1-2 s,gel_ped,561,0.17560291714162649
+altered geometry,bi_corr_400_b_08,ttc,<1 s,gel_ped,3614,0.17928416106004058
+altered geometry,bi_corr_400_b_08,ttc,>=2 s,gel_ped,333,0.17681057131469238
+altered geometry,bi_corr_400_b_08,ttc,no predicted contact,gel_ped,1492,0.18809712332987932
+crossing topology,crossing_90_d_1,neighbours,0-1,direct_mlp,26,0.35757212888370504
+crossing topology,crossing_90_d_1,neighbours,2-3,direct_mlp,246,0.3809195795761574
+crossing topology,crossing_90_d_1,neighbours,4+,direct_mlp,5728,0.37043153696055137
+crossing topology,crossing_90_d_1,occupancy,Q1,direct_mlp,2061,0.39241414125421464
+crossing topology,crossing_90_d_1,occupancy,Q2,direct_mlp,1733,0.35629340577169427
+crossing topology,crossing_90_d_1,occupancy,Q3,direct_mlp,2206,0.36109883229539025
+crossing topology,crossing_90_d_1,ttc,1-2 s,direct_mlp,631,0.35553650633127
+crossing topology,crossing_90_d_1,ttc,<1 s,direct_mlp,2959,0.3564853706746062
+crossing topology,crossing_90_d_1,ttc,>=2 s,direct_mlp,438,0.3614241074034106
+crossing topology,crossing_90_d_1,ttc,no predicted contact,direct_mlp,1972,0.39776253759830416
+crossing topology,crossing_90_d_1,neighbours,0-1,tensor_prior,26,0.29408775590910124
+crossing topology,crossing_90_d_1,neighbours,2-3,tensor_prior,246,0.25008143261455396
+crossing topology,crossing_90_d_1,neighbours,4+,tensor_prior,5728,0.3492446295659369
+crossing topology,crossing_90_d_1,occupancy,Q1,tensor_prior,2061,0.3261078929165147
+crossing topology,crossing_90_d_1,occupancy,Q2,tensor_prior,1733,0.3525617026092283
+crossing topology,crossing_90_d_1,occupancy,Q3,tensor_prior,2206,0.3573454774261642
+crossing topology,crossing_90_d_1,ttc,1-2 s,tensor_prior,631,0.3428226717427814
+crossing topology,crossing_90_d_1,ttc,<1 s,tensor_prior,2959,0.3502339076646352
+crossing topology,crossing_90_d_1,ttc,>=2 s,tensor_prior,438,0.32270441268169386
+crossing topology,crossing_90_d_1,ttc,no predicted contact,tensor_prior,1972,0.34414384458728176
+crossing topology,crossing_90_d_1,neighbours,0-1,gel_ped,26,0.3185855410537451
+crossing topology,crossing_90_d_1,neighbours,2-3,gel_ped,246,0.310303122093186
+crossing topology,crossing_90_d_1,neighbours,4+,gel_ped,5728,0.3516894610723102
+crossing topology,crossing_90_d_1,occupancy,Q1,gel_ped,2061,0.3519019293587456
+crossing topology,crossing_90_d_1,occupancy,Q2,gel_ped,1733,0.34598916896565374
+crossing topology,crossing_90_d_1,occupancy,Q3,gel_ped,2206,0.351216945724822
+crossing topology,crossing_90_d_1,ttc,1-2 s,gel_ped,631,0.33966944375067765
+crossing topology,crossing_90_d_1,ttc,<1 s,gel_ped,2959,0.34234519190163615
+crossing topology,crossing_90_d_1,ttc,>=2 s,gel_ped,438,0.33740251503433566
+crossing topology,crossing_90_d_1,ttc,no predicted contact,gel_ped,1972,0.3668134441350333
+crossing topology,crossing_90_d_2,neighbours,0-1,direct_mlp,13,0.37006681635682503
+crossing topology,crossing_90_d_2,neighbours,2-3,direct_mlp,179,0.3946473372426649
+crossing topology,crossing_90_d_2,neighbours,4+,direct_mlp,5808,0.38667512905360474
+crossing topology,crossing_90_d_2,occupancy,Q1,direct_mlp,3313,0.4063638520556846
+crossing topology,crossing_90_d_2,occupancy,Q2,direct_mlp,1115,0.378203031934433
+crossing topology,crossing_90_d_2,occupancy,Q3,direct_mlp,1572,0.34901691969620846
+crossing topology,crossing_90_d_2,ttc,1-2 s,direct_mlp,612,0.3629825064457642
+crossing topology,crossing_90_d_2,ttc,<1 s,direct_mlp,2610,0.3717163670129764
+crossing topology,crossing_90_d_2,ttc,>=2 s,direct_mlp,613,0.3589077415991319
+crossing topology,crossing_90_d_2,ttc,no predicted contact,direct_mlp,2165,0.4177513348910224
+crossing topology,crossing_90_d_2,neighbours,0-1,tensor_prior,13,0.3244755298726379
+crossing topology,crossing_90_d_2,neighbours,2-3,tensor_prior,179,0.34477181857574307
+crossing topology,crossing_90_d_2,neighbours,4+,tensor_prior,5808,0.34950400810058596
+crossing topology,crossing_90_d_2,occupancy,Q1,tensor_prior,3313,0.34073779813481314
+crossing topology,crossing_90_d_2,occupancy,Q2,tensor_prior,1115,0.3695574411431665
+crossing topology,crossing_90_d_2,occupancy,Q3,tensor_prior,1572,0.35236895037998966
+crossing topology,crossing_90_d_2,ttc,1-2 s,tensor_prior,612,0.32744472722301765
+crossing topology,crossing_90_d_2,ttc,<1 s,tensor_prior,2610,0.35591242990791083
+crossing topology,crossing_90_d_2,ttc,>=2 s,tensor_prior,613,0.31069517130981905
+crossing topology,crossing_90_d_2,ttc,no predicted contact,tensor_prior,2165,0.357499787657749
+crossing topology,crossing_90_d_2,neighbours,0-1,gel_ped,13,0.33721591213078367
+crossing topology,crossing_90_d_2,neighbours,2-3,gel_ped,179,0.3601977572552903
+crossing topology,crossing_90_d_2,neighbours,4+,gel_ped,5808,0.36188240559157925
+crossing topology,crossing_90_d_2,occupancy,Q1,gel_ped,3313,0.36854107082212406
+crossing topology,crossing_90_d_2,occupancy,Q2,gel_ped,1115,0.37050695083145524
+crossing topology,crossing_90_d_2,occupancy,Q3,gel_ped,1572,0.3405104393064567
+crossing topology,crossing_90_d_2,ttc,1-2 s,gel_ped,612,0.3380880019818849
+crossing topology,crossing_90_d_2,ttc,<1 s,gel_ped,2610,0.3557611261612201
+crossing topology,crossing_90_d_2,ttc,>=2 s,gel_ped,613,0.3293562928365096
+crossing topology,crossing_90_d_2,ttc,no predicted contact,gel_ped,2165,0.38356831013144627
+crossing topology,crossing_90_d_3,neighbours,0-1,direct_mlp,5,0.18515530531733368
+crossing topology,crossing_90_d_3,neighbours,2-3,direct_mlp,97,0.3278257117850331
+crossing topology,crossing_90_d_3,neighbours,4+,direct_mlp,5898,0.365327382384375
+crossing topology,crossing_90_d_3,occupancy,Q1,direct_mlp,6000,0.36463845408124124
+crossing topology,crossing_90_d_3,ttc,1-2 s,direct_mlp,734,0.344690787987169
+crossing topology,crossing_90_d_3,ttc,<1 s,direct_mlp,2067,0.38279755096696694
+crossing topology,crossing_90_d_3,ttc,>=2 s,direct_mlp,843,0.3132593159008913
+crossing topology,crossing_90_d_3,ttc,no predicted contact,direct_mlp,2356,0.37138119287931076
+crossing topology,crossing_90_d_3,neighbours,0-1,tensor_prior,5,0.2019885960188188
+crossing topology,crossing_90_d_3,neighbours,2-3,tensor_prior,97,0.3328551340954323
+crossing topology,crossing_90_d_3,neighbours,4+,tensor_prior,5898,0.3274376615501433
+crossing topology,crossing_90_d_3,occupancy,Q1,tensor_prior,6000,0.32744145367711863
+crossing topology,crossing_90_d_3,ttc,1-2 s,tensor_prior,734,0.30982058499532134
+crossing topology,crossing_90_d_3,ttc,<1 s,tensor_prior,2067,0.3605589797410792
+crossing topology,crossing_90_d_3,ttc,>=2 s,tensor_prior,843,0.2748584131974331
+crossing topology,crossing_90_d_3,ttc,no predicted contact,tensor_prior,2356,0.3194658576803501
+crossing topology,crossing_90_d_3,neighbours,0-1,gel_ped,5,0.1764356692709796
+crossing topology,crossing_90_d_3,neighbours,2-3,gel_ped,97,0.30288509985039513
+crossing topology,crossing_90_d_3,neighbours,4+,gel_ped,5898,0.346474610405429
+crossing topology,crossing_90_d_3,occupancy,Q1,gel_ped,6000,0.3457064619499352
+crossing topology,crossing_90_d_3,ttc,1-2 s,gel_ped,734,0.32965709906452634
+crossing topology,crossing_90_d_3,ttc,<1 s,gel_ped,2067,0.3689003347094356
+crossing topology,crossing_90_d_3,ttc,>=2 s,gel_ped,843,0.29482184475440754
+crossing topology,crossing_90_d_3,ttc,no predicted contact,gel_ped,2356,0.3464254216489893
+crossing topology,crossing_90_d_5,neighbours,0-1,direct_mlp,9,0.29096136299111397
+crossing topology,crossing_90_d_5,neighbours,2-3,direct_mlp,12,0.29459980653040213
+crossing topology,crossing_90_d_5,neighbours,4+,direct_mlp,5979,0.3639009614995212
+crossing topology,crossing_90_d_5,occupancy,Q1,direct_mlp,1605,0.3700095914983282
+crossing topology,crossing_90_d_5,occupancy,Q2,direct_mlp,4395,0.3613368112889619
+crossing topology,crossing_90_d_5,ttc,1-2 s,direct_mlp,666,0.34302875557485674
+crossing topology,crossing_90_d_5,ttc,<1 s,direct_mlp,3005,0.3524875202350166
+crossing topology,crossing_90_d_5,ttc,>=2 s,direct_mlp,500,0.34398410990260586
+crossing topology,crossing_90_d_5,ttc,no predicted contact,direct_mlp,1829,0.39312882717018205
+crossing topology,crossing_90_d_5,neighbours,0-1,tensor_prior,9,0.29709697931195694
+crossing topology,crossing_90_d_5,neighbours,2-3,tensor_prior,12,0.26222328478109447
+crossing topology,crossing_90_d_5,neighbours,4+,tensor_prior,5979,0.35085443554799994
+crossing topology,crossing_90_d_5,occupancy,Q1,tensor_prior,1605,0.3403583182398876
+crossing topology,crossing_90_d_5,occupancy,Q2,tensor_prior,4395,0.3543001535278186
+crossing topology,crossing_90_d_5,ttc,1-2 s,tensor_prior,666,0.3401580156384719
+crossing topology,crossing_90_d_5,ttc,<1 s,tensor_prior,3005,0.34853656803355243
+crossing topology,crossing_90_d_5,ttc,>=2 s,tensor_prior,500,0.33637131143390464
+crossing topology,crossing_90_d_5,ttc,no predicted contact,tensor_prior,1829,0.36145085465250243
+crossing topology,crossing_90_d_5,neighbours,0-1,gel_ped,9,0.28467821763592494
+crossing topology,crossing_90_d_5,neighbours,2-3,gel_ped,12,0.28928514971736974
+crossing topology,crossing_90_d_5,neighbours,4+,gel_ped,5979,0.35307930668720816
+crossing topology,crossing_90_d_5,occupancy,Q1,gel_ped,1605,0.3509002218254357
+crossing topology,crossing_90_d_5,occupancy,Q2,gel_ped,4395,0.353587311422643
+crossing topology,crossing_90_d_5,ttc,1-2 s,gel_ped,666,0.33445967536627175
+crossing topology,crossing_90_d_5,ttc,<1 s,gel_ped,3005,0.34385020457434745
+crossing topology,crossing_90_d_5,ttc,>=2 s,gel_ped,500,0.33598860330735253
+crossing topology,crossing_90_d_5,ttc,no predicted contact,gel_ped,1829,0.3776640063267157
+crossing topology,crossing_90_d_6,neighbours,0-1,direct_mlp,7,0.39203130119214635
+crossing topology,crossing_90_d_6,neighbours,2-3,direct_mlp,3,0.2766252726438795
+crossing topology,crossing_90_d_6,neighbours,4+,direct_mlp,5990,0.3467868120830817
+crossing topology,crossing_90_d_6,occupancy,Q1,direct_mlp,327,0.3166917126653022
+crossing topology,crossing_90_d_6,occupancy,Q2,direct_mlp,1150,0.3686334136811145
+crossing topology,crossing_90_d_6,occupancy,Q3,direct_mlp,4523,0.34315231397782087
+crossing topology,crossing_90_d_6,ttc,1-2 s,direct_mlp,688,0.3358905891149707
+crossing topology,crossing_90_d_6,ttc,<1 s,direct_mlp,3268,0.3325288999578178
+crossing topology,crossing_90_d_6,ttc,>=2 s,direct_mlp,444,0.3354478083789583
+crossing topology,crossing_90_d_6,ttc,no predicted contact,direct_mlp,1600,0.3813836841658599
+crossing topology,crossing_90_d_6,neighbours,0-1,tensor_prior,7,0.5458695088179774
+crossing topology,crossing_90_d_6,neighbours,2-3,tensor_prior,3,0.20564223591092787
+crossing topology,crossing_90_d_6,neighbours,4+,tensor_prior,5990,0.3511457740443556
+crossing topology,crossing_90_d_6,occupancy,Q1,tensor_prior,327,0.3200286803129607
+crossing topology,crossing_90_d_6,occupancy,Q2,tensor_prior,1150,0.358992133992527
+crossing topology,crossing_90_d_6,occupancy,Q3,tensor_prior,4523,0.3515866306439314
+crossing topology,crossing_90_d_6,ttc,1-2 s,tensor_prior,688,0.34604863522687723
+crossing topology,crossing_90_d_6,ttc,<1 s,tensor_prior,3268,0.34515918838449977
+crossing topology,crossing_90_d_6,ttc,>=2 s,tensor_prior,444,0.3385514929494116
+crossing topology,crossing_90_d_6,ttc,no predicted contact,tensor_prior,1600,0.36928078085198995
+crossing topology,crossing_90_d_6,neighbours,0-1,gel_ped,7,0.44680956793015286
+crossing topology,crossing_90_d_6,neighbours,2-3,gel_ped,3,0.2635602018585556
+crossing topology,crossing_90_d_6,neighbours,4+,gel_ped,5990,0.3395592503831985
+crossing topology,crossing_90_d_6,occupancy,Q1,gel_ped,327,0.30073047577085726
+crossing topology,crossing_90_d_6,occupancy,Q2,gel_ped,1150,0.35495959877987393
+crossing topology,crossing_90_d_6,occupancy,Q3,gel_ped,4523,0.33834679804234685
+crossing topology,crossing_90_d_6,ttc,1-2 s,gel_ped,688,0.3303896820109729
+crossing topology,crossing_90_d_6,ttc,<1 s,gel_ped,3268,0.3269780804598147
+crossing topology,crossing_90_d_6,ttc,>=2 s,gel_ped,444,0.32883869200040083
+crossing topology,crossing_90_d_6,ttc,no predicted contact,gel_ped,1600,0.3705962255430584
+crossing topology,crossing_90_d_7,neighbours,0-1,direct_mlp,2,0.1213246397674671
+crossing topology,crossing_90_d_7,neighbours,2-3,direct_mlp,12,0.40182661842789147
+crossing topology,crossing_90_d_7,neighbours,4+,direct_mlp,5986,0.35137062889184284
+crossing topology,crossing_90_d_7,occupancy,Q1,direct_mlp,263,0.3474939984332007
+crossing topology,crossing_90_d_7,occupancy,Q2,direct_mlp,620,0.3690722144936391
+crossing topology,crossing_90_d_7,occupancy,Q3,direct_mlp,5117,0.349430930507608
+crossing topology,crossing_90_d_7,ttc,1-2 s,direct_mlp,603,0.34774567733414186
+crossing topology,crossing_90_d_7,ttc,<1 s,direct_mlp,3568,0.3393184537597837
+crossing topology,crossing_90_d_7,ttc,>=2 s,direct_mlp,342,0.3634693824385538
+crossing topology,crossing_90_d_7,ttc,no predicted contact,direct_mlp,1487,0.37766936045600735
+crossing topology,crossing_90_d_7,neighbours,0-1,tensor_prior,2,0.07634474713353856
+crossing topology,crossing_90_d_7,neighbours,2-3,tensor_prior,12,0.4739707113267293
+crossing topology,crossing_90_d_7,neighbours,4+,tensor_prior,5986,0.3794338733848845
+crossing topology,crossing_90_d_7,occupancy,Q1,tensor_prior,263,0.36782373294778686
+crossing topology,crossing_90_d_7,occupancy,Q2,tensor_prior,620,0.4157512012287251
+crossing topology,crossing_90_d_7,occupancy,Q3,tensor_prior,5117,0.3755689897565281
+crossing topology,crossing_90_d_7,ttc,1-2 s,tensor_prior,603,0.38468631484521965
+crossing topology,crossing_90_d_7,ttc,<1 s,tensor_prior,3568,0.36773383342779414
+crossing topology,crossing_90_d_7,ttc,>=2 s,tensor_prior,342,0.40441517869874444
+crossing topology,crossing_90_d_7,ttc,no predicted contact,tensor_prior,1487,0.39909899790613845
+crossing topology,crossing_90_d_7,neighbours,0-1,gel_ped,2,0.1245553697047282
+crossing topology,crossing_90_d_7,neighbours,2-3,gel_ped,12,0.35948466566649945
+crossing topology,crossing_90_d_7,neighbours,4+,gel_ped,5986,0.3434451286186061
+crossing topology,crossing_90_d_7,occupancy,Q1,gel_ped,263,0.3245577597771584
+crossing topology,crossing_90_d_7,occupancy,Q2,gel_ped,620,0.35541906652284905
+crossing topology,crossing_90_d_7,occupancy,Q3,gel_ped,5117,0.3428928439041023
+crossing topology,crossing_90_d_7,ttc,1-2 s,gel_ped,603,0.3412171741928868
+crossing topology,crossing_90_d_7,ttc,<1 s,gel_ped,3568,0.33389412220485565
+crossing topology,crossing_90_d_7,ttc,>=2 s,gel_ped,342,0.35536922912928615
+crossing topology,crossing_90_d_7,ttc,no predicted contact,gel_ped,1487,0.3635005225015669
+crossing topology,crossing_90_d_8,neighbours,0-1,direct_mlp,2,0.3428790716728012
+crossing topology,crossing_90_d_8,neighbours,2-3,direct_mlp,8,0.3160423334187161
+crossing topology,crossing_90_d_8,neighbours,4+,direct_mlp,5990,0.3566293746383407
+crossing topology,crossing_90_d_8,occupancy,Q1,direct_mlp,143,0.3511539071800409
+crossing topology,crossing_90_d_8,occupancy,Q2,direct_mlp,285,0.3656730386766629
+crossing topology,crossing_90_d_8,occupancy,Q3,direct_mlp,5572,0.3562403731974643
+crossing topology,crossing_90_d_8,ttc,1-2 s,direct_mlp,488,0.32259706385732134
+crossing topology,crossing_90_d_8,ttc,<1 s,direct_mlp,3796,0.3358122901119278
+crossing topology,crossing_90_d_8,ttc,>=2 s,direct_mlp,297,0.35419002784763015
+crossing topology,crossing_90_d_8,ttc,no predicted contact,direct_mlp,1419,0.417001670883851
+crossing topology,crossing_90_d_8,neighbours,0-1,tensor_prior,2,0.7088941007295657
+crossing topology,crossing_90_d_8,neighbours,2-3,tensor_prior,8,0.28861732379411265
+crossing topology,crossing_90_d_8,neighbours,4+,tensor_prior,5990,0.37138002825834715
+crossing topology,crossing_90_d_8,occupancy,Q1,tensor_prior,143,0.34071003660546273
+crossing topology,crossing_90_d_8,occupancy,Q2,tensor_prior,285,0.4348531381188364
+crossing topology,crossing_90_d_8,occupancy,Q3,tensor_prior,5572,0.3686713766067834
+crossing topology,crossing_90_d_8,ttc,1-2 s,tensor_prior,488,0.354486084754575
+crossing topology,crossing_90_d_8,ttc,<1 s,tensor_prior,3796,0.35444710492838943
+crossing topology,crossing_90_d_8,ttc,>=2 s,tensor_prior,297,0.39266730578963416
+crossing topology,crossing_90_d_8,ttc,no predicted contact,tensor_prior,1419,0.41451218102211346
+crossing topology,crossing_90_d_8,neighbours,0-1,gel_ped,2,0.3500723317648338
+crossing topology,crossing_90_d_8,neighbours,2-3,gel_ped,8,0.3008501994313114
+crossing topology,crossing_90_d_8,neighbours,4+,gel_ped,5990,0.3472692046502141
+crossing topology,crossing_90_d_8,occupancy,Q1,gel_ped,143,0.3166782400340143
+crossing topology,crossing_90_d_8,occupancy,Q2,gel_ped,285,0.35642579781920053
+crossing topology,crossing_90_d_8,occupancy,Q3,gel_ped,5572,0.3474839435089207
+crossing topology,crossing_90_d_8,ttc,1-2 s,gel_ped,488,0.3139275839605327
+crossing topology,crossing_90_d_8,ttc,<1 s,gel_ped,3796,0.32741149793234475
+crossing topology,crossing_90_d_8,ttc,>=2 s,gel_ped,297,0.3486459050214343
+crossing topology,crossing_90_d_8,ttc,no predicted contact,gel_ped,1419,0.4045371128355883
+crossing topology,crossing_90_e_1,neighbours,0-1,direct_mlp,36,0.29998678661917416
+crossing topology,crossing_90_e_1,neighbours,2-3,direct_mlp,171,0.2939307369828815
+crossing topology,crossing_90_e_1,neighbours,4+,direct_mlp,5793,0.35420373920707854
+crossing topology,crossing_90_e_1,occupancy,Q1,direct_mlp,2014,0.3642120691755995
+crossing topology,crossing_90_e_1,occupancy,Q2,direct_mlp,2854,0.34676124666471614
+crossing topology,crossing_90_e_1,occupancy,Q3,direct_mlp,1132,0.3446617589415325
+crossing topology,crossing_90_e_1,ttc,1-2 s,direct_mlp,636,0.3472523677389038
+crossing topology,crossing_90_e_1,ttc,<1 s,direct_mlp,2812,0.3328129076666675
+crossing topology,crossing_90_e_1,ttc,>=2 s,direct_mlp,471,0.3430407487792429
+crossing topology,crossing_90_e_1,ttc,no predicted contact,direct_mlp,2081,0.3804558443585183
+crossing topology,crossing_90_e_1,neighbours,0-1,tensor_prior,36,0.2531396658610242
+crossing topology,crossing_90_e_1,neighbours,2-3,tensor_prior,171,0.25159553609343344
+crossing topology,crossing_90_e_1,neighbours,4+,tensor_prior,5793,0.35996054146835377
+crossing topology,crossing_90_e_1,occupancy,Q1,tensor_prior,2014,0.34803575305968026
+crossing topology,crossing_90_e_1,occupancy,Q2,tensor_prior,2854,0.3582295469172738
+crossing topology,crossing_90_e_1,occupancy,Q3,tensor_prior,1132,0.3682839096284347
+crossing topology,crossing_90_e_1,ttc,1-2 s,tensor_prior,636,0.3665170071622145
+crossing topology,crossing_90_e_1,ttc,<1 s,tensor_prior,2812,0.3489946789924207
+crossing topology,crossing_90_e_1,ttc,>=2 s,tensor_prior,471,0.3431238247992005
+crossing topology,crossing_90_e_1,ttc,no predicted contact,tensor_prior,2081,0.36704458126332423
+crossing topology,crossing_90_e_1,neighbours,0-1,gel_ped,36,0.2701390433834948
+crossing topology,crossing_90_e_1,neighbours,2-3,gel_ped,171,0.2743160740496457
+crossing topology,crossing_90_e_1,neighbours,4+,gel_ped,5793,0.3468667661428256
+crossing topology,crossing_90_e_1,occupancy,Q1,gel_ped,2014,0.3488319255647778
+crossing topology,crossing_90_e_1,occupancy,Q2,gel_ped,2854,0.3426902911128089
+crossing topology,crossing_90_e_1,occupancy,Q3,gel_ped,1132,0.3418063828297646
+crossing topology,crossing_90_e_1,ttc,1-2 s,gel_ped,636,0.34230816281433163
+crossing topology,crossing_90_e_1,ttc,<1 s,gel_ped,2812,0.3283646391997713
+crossing topology,crossing_90_e_1,ttc,>=2 s,gel_ped,471,0.3351610333037593
+crossing topology,crossing_90_e_1,ttc,no predicted contact,gel_ped,2081,0.368026074077921
+crossing topology,crossing_90_e_2,neighbours,0-1,direct_mlp,13,0.3330306171195431
+crossing topology,crossing_90_e_2,neighbours,2-3,direct_mlp,50,0.36048628920716114
+crossing topology,crossing_90_e_2,neighbours,4+,direct_mlp,5937,0.3789643872498466
+crossing topology,crossing_90_e_2,occupancy,Q1,direct_mlp,2884,0.40567450123642845
+crossing topology,crossing_90_e_2,occupancy,Q2,direct_mlp,2665,0.35349728624903853
+crossing topology,crossing_90_e_2,occupancy,Q3,direct_mlp,451,0.3425848710354902
+crossing topology,crossing_90_e_2,ttc,1-2 s,direct_mlp,564,0.3637621586079709
+crossing topology,crossing_90_e_2,ttc,<1 s,direct_mlp,3078,0.35539154212272217
+crossing topology,crossing_90_e_2,ttc,>=2 s,direct_mlp,414,0.37549819953859476
+crossing topology,crossing_90_e_2,ttc,no predicted contact,direct_mlp,1944,0.41747510748691974
+crossing topology,crossing_90_e_2,neighbours,0-1,tensor_prior,13,0.2802592265792672
+crossing topology,crossing_90_e_2,neighbours,2-3,tensor_prior,50,0.32417270079573024
+crossing topology,crossing_90_e_2,neighbours,4+,tensor_prior,5937,0.38574810930307596
+crossing topology,crossing_90_e_2,occupancy,Q1,tensor_prior,2884,0.4073227571927815
+crossing topology,crossing_90_e_2,occupancy,Q2,tensor_prior,2665,0.36424840550120974
+crossing topology,crossing_90_e_2,occupancy,Q3,tensor_prior,451,0.3574886306359594
+crossing topology,crossing_90_e_2,ttc,1-2 s,tensor_prior,564,0.3877472494752885
+crossing topology,crossing_90_e_2,ttc,<1 s,tensor_prior,3078,0.3657533929621463
+crossing topology,crossing_90_e_2,ttc,>=2 s,tensor_prior,414,0.3875075923066375
+crossing topology,crossing_90_e_2,ttc,no predicted contact,tensor_prior,1944,0.4126261656330065
+crossing topology,crossing_90_e_2,neighbours,0-1,gel_ped,13,0.3093777956625688
+crossing topology,crossing_90_e_2,neighbours,2-3,gel_ped,50,0.3207224015315679
+crossing topology,crossing_90_e_2,neighbours,4+,gel_ped,5937,0.3722563298406021
+crossing topology,crossing_90_e_2,occupancy,Q1,gel_ped,2884,0.39480837484721615
+crossing topology,crossing_90_e_2,occupancy,Q2,gel_ped,2665,0.3502160875390061
+crossing topology,crossing_90_e_2,occupancy,Q3,gel_ped,451,0.3418370945818298
+crossing topology,crossing_90_e_2,ttc,1-2 s,gel_ped,564,0.3594294970614421
+crossing topology,crossing_90_e_2,ttc,<1 s,gel_ped,3078,0.35173423553740996
+crossing topology,crossing_90_e_2,ttc,>=2 s,gel_ped,414,0.36865090452341687
+crossing topology,crossing_90_e_2,ttc,no predicted contact,gel_ped,1944,0.4051990272463051
+crossing topology,crossing_90_e_3,neighbours,0-1,direct_mlp,1,0.11850578767451844
+crossing topology,crossing_90_e_3,neighbours,2-3,direct_mlp,41,0.33537820997752976
+crossing topology,crossing_90_e_3,neighbours,4+,direct_mlp,5958,0.3872054977772845
+crossing topology,crossing_90_e_3,occupancy,Q1,direct_mlp,4511,0.39373856624789555
+crossing topology,crossing_90_e_3,occupancy,Q2,direct_mlp,1489,0.36516983615038473
+crossing topology,crossing_90_e_3,ttc,1-2 s,direct_mlp,609,0.3492100793205549
+crossing topology,crossing_90_e_3,ttc,<1 s,direct_mlp,2945,0.37335566458421565
+crossing topology,crossing_90_e_3,ttc,>=2 s,direct_mlp,426,0.38731155321008104
+crossing topology,crossing_90_e_3,ttc,no predicted contact,direct_mlp,2020,0.41578394771669974
+crossing topology,crossing_90_e_3,neighbours,0-1,tensor_prior,1,0.12667087552889986
+crossing topology,crossing_90_e_3,neighbours,2-3,tensor_prior,41,0.31907147375017586
+crossing topology,crossing_90_e_3,neighbours,4+,tensor_prior,5958,0.39146897177098544
+crossing topology,crossing_90_e_3,occupancy,Q1,tensor_prior,4511,0.3967333846185383
+crossing topology,crossing_90_e_3,occupancy,Q2,tensor_prior,1489,0.3730529152026749
+crossing topology,crossing_90_e_3,ttc,1-2 s,tensor_prior,609,0.3661703340644159
+crossing topology,crossing_90_e_3,ttc,<1 s,tensor_prior,2945,0.3799863894986216
+crossing topology,crossing_90_e_3,ttc,>=2 s,tensor_prior,426,0.3940745330536973
+crossing topology,crossing_90_e_3,ttc,no predicted contact,tensor_prior,2020,0.41279246280857373
+crossing topology,crossing_90_e_3,neighbours,0-1,gel_ped,1,0.12777080067511704
+crossing topology,crossing_90_e_3,neighbours,2-3,gel_ped,41,0.3212216717675339
+crossing topology,crossing_90_e_3,neighbours,4+,gel_ped,5958,0.3807747818223296
+crossing topology,crossing_90_e_3,occupancy,Q1,gel_ped,4511,0.3865896576900195
+crossing topology,crossing_90_e_3,occupancy,Q2,gel_ped,1489,0.36087898361537524
+crossing topology,crossing_90_e_3,ttc,1-2 s,gel_ped,609,0.3440808272987065
+crossing topology,crossing_90_e_3,ttc,<1 s,gel_ped,2945,0.368431034791368
+crossing topology,crossing_90_e_3,ttc,>=2 s,gel_ped,426,0.3830700133954994
+crossing topology,crossing_90_e_3,ttc,no predicted contact,gel_ped,2020,0.40645931535877916
+crossing topology,crossing_90_e_4,neighbours,0-1,direct_mlp,4,0.3007059822781548
+crossing topology,crossing_90_e_4,neighbours,2-3,direct_mlp,21,0.4139427407101613
+crossing topology,crossing_90_e_4,neighbours,4+,direct_mlp,5975,0.37827955453920414
+crossing topology,crossing_90_e_4,occupancy,Q1,direct_mlp,2046,0.39901739802322067
+crossing topology,crossing_90_e_4,occupancy,Q2,direct_mlp,3954,0.36722086700020146
+crossing topology,crossing_90_e_4,ttc,1-2 s,direct_mlp,498,0.3672156439278168
+crossing topology,crossing_90_e_4,ttc,<1 s,direct_mlp,3296,0.36254744798069066
+crossing topology,crossing_90_e_4,ttc,>=2 s,direct_mlp,379,0.3524114937483543
+crossing topology,crossing_90_e_4,ttc,no predicted contact,direct_mlp,1827,0.41291634193599114
+crossing topology,crossing_90_e_4,neighbours,0-1,tensor_prior,4,0.13412596050234193
+crossing topology,crossing_90_e_4,neighbours,2-3,tensor_prior,21,0.42860818741396994
+crossing topology,crossing_90_e_4,neighbours,4+,tensor_prior,5975,0.3940092450891252
+crossing topology,crossing_90_e_4,occupancy,Q1,tensor_prior,2046,0.40698701538561854
+crossing topology,crossing_90_e_4,occupancy,Q2,tensor_prior,3954,0.38713902161216845
+crossing topology,crossing_90_e_4,ttc,1-2 s,tensor_prior,498,0.3891493507884899
+crossing topology,crossing_90_e_4,ttc,<1 s,tensor_prior,3296,0.38242750298320555
+crossing topology,crossing_90_e_4,ttc,>=2 s,tensor_prior,379,0.3602724955571892
+crossing topology,crossing_90_e_4,ttc,no predicted contact,tensor_prior,1827,0.42167418001933127
+crossing topology,crossing_90_e_4,neighbours,0-1,gel_ped,4,0.3034576564296026
+crossing topology,crossing_90_e_4,neighbours,2-3,gel_ped,21,0.39381399157596725
+crossing topology,crossing_90_e_4,neighbours,4+,gel_ped,5975,0.37255098088263866
+crossing topology,crossing_90_e_4,occupancy,Q1,gel_ped,2046,0.3894301988077286
+crossing topology,crossing_90_e_4,occupancy,Q2,gel_ped,3954,0.3635632816846339
+crossing topology,crossing_90_e_4,ttc,1-2 s,gel_ped,498,0.3627171706464076
+crossing topology,crossing_90_e_4,ttc,<1 s,gel_ped,3296,0.35874910829811346
+crossing topology,crossing_90_e_4,ttc,>=2 s,gel_ped,379,0.3489085959950098
+crossing topology,crossing_90_e_4,ttc,no predicted contact,gel_ped,1827,0.40323363212219765
+crossing topology,crossing_90_e_5,neighbours,0-1,direct_mlp,1,0.29883046787801876
+crossing topology,crossing_90_e_5,neighbours,2-3,direct_mlp,10,0.3757419267379065
+crossing topology,crossing_90_e_5,neighbours,4+,direct_mlp,5989,0.3752104906261754
+crossing topology,crossing_90_e_5,occupancy,Q1,direct_mlp,681,0.42470693290496675
+crossing topology,crossing_90_e_5,occupancy,Q2,direct_mlp,5319,0.3683813518406515
+crossing topology,crossing_90_e_5,ttc,1-2 s,direct_mlp,555,0.3717625509339011
+crossing topology,crossing_90_e_5,ttc,<1 s,direct_mlp,3434,0.35436337926027794
+crossing topology,crossing_90_e_5,ttc,>=2 s,direct_mlp,354,0.38408375153897073
+crossing topology,crossing_90_e_5,ttc,no predicted contact,direct_mlp,1657,0.4143645912216598
+crossing topology,crossing_90_e_5,neighbours,0-1,tensor_prior,1,0.3040256574424424
+crossing topology,crossing_90_e_5,neighbours,2-3,tensor_prior,10,0.40016476268124285
+crossing topology,crossing_90_e_5,neighbours,4+,tensor_prior,5989,0.40499439411788724
+crossing topology,crossing_90_e_5,occupancy,Q1,tensor_prior,681,0.43506883840910715
+crossing topology,crossing_90_e_5,occupancy,Q2,tensor_prior,5319,0.40095516423995475
+crossing topology,crossing_90_e_5,ttc,1-2 s,tensor_prior,555,0.4067484369977187
+crossing topology,crossing_90_e_5,ttc,<1 s,tensor_prior,3434,0.38298251333107675
+crossing topology,crossing_90_e_5,ttc,>=2 s,tensor_prior,354,0.42438170385030705
+crossing topology,crossing_90_e_5,ttc,no predicted contact,tensor_prior,1657,0.4427047836184306
+crossing topology,crossing_90_e_5,neighbours,0-1,gel_ped,1,0.3073116995186228
+crossing topology,crossing_90_e_5,neighbours,2-3,gel_ped,10,0.3717722209543766
+crossing topology,crossing_90_e_5,neighbours,4+,gel_ped,5989,0.3708468680822515
+crossing topology,crossing_90_e_5,occupancy,Q1,gel_ped,681,0.41628099930522977
+crossing topology,crossing_90_e_5,occupancy,Q2,gel_ped,5319,0.36461193771501194
+crossing topology,crossing_90_e_5,ttc,1-2 s,gel_ped,555,0.36878743370872985
+crossing topology,crossing_90_e_5,ttc,<1 s,gel_ped,3434,0.35111969076691124
+crossing topology,crossing_90_e_5,ttc,>=2 s,gel_ped,354,0.3818619798861117
+crossing topology,crossing_90_e_5,ttc,no predicted contact,gel_ped,1657,0.40713704860316674
+crossing topology,crossing_90_e_6,neighbours,0-1,direct_mlp,1,0.465914706658799
+crossing topology,crossing_90_e_6,neighbours,2-3,direct_mlp,14,0.38084016635607365
+crossing topology,crossing_90_e_6,neighbours,4+,direct_mlp,5985,0.371555346120382
+crossing topology,crossing_90_e_6,occupancy,Q1,direct_mlp,322,0.37612576486983895
+crossing topology,crossing_90_e_6,occupancy,Q2,direct_mlp,673,0.4414381209631087
+crossing topology,crossing_90_e_6,occupancy,Q3,direct_mlp,5005,0.36087296797419327
+crossing topology,crossing_90_e_6,ttc,1-2 s,direct_mlp,443,0.3627452872173678
+crossing topology,crossing_90_e_6,ttc,<1 s,direct_mlp,3688,0.34942642620650594
+crossing topology,crossing_90_e_6,ttc,>=2 s,direct_mlp,286,0.39838310393330756
+crossing topology,crossing_90_e_6,ttc,no predicted contact,direct_mlp,1583,0.4164298097234376
+crossing topology,crossing_90_e_6,neighbours,0-1,tensor_prior,1,0.0980052130646853
+crossing topology,crossing_90_e_6,neighbours,2-3,tensor_prior,14,0.3832621571506401
+crossing topology,crossing_90_e_6,neighbours,4+,tensor_prior,5985,0.39499736850909073
+crossing topology,crossing_90_e_6,occupancy,Q1,tensor_prior,322,0.41775863682041225
+crossing topology,crossing_90_e_6,occupancy,Q2,tensor_prior,673,0.4858920246775396
+crossing topology,crossing_90_e_6,occupancy,Q3,tensor_prior,5005,0.3794885325594238
+crossing topology,crossing_90_e_6,ttc,1-2 s,tensor_prior,443,0.40113580233412127
+crossing topology,crossing_90_e_6,ttc,<1 s,tensor_prior,3688,0.3695951099818458
+crossing topology,crossing_90_e_6,ttc,>=2 s,tensor_prior,286,0.44166177276227886
+crossing topology,crossing_90_e_6,ttc,no predicted contact,tensor_prior,1583,0.43895061689948267
+crossing topology,crossing_90_e_6,neighbours,0-1,gel_ped,1,0.43096169131413686
+crossing topology,crossing_90_e_6,neighbours,2-3,gel_ped,14,0.3695501404146845
+crossing topology,crossing_90_e_6,neighbours,4+,gel_ped,5985,0.36308728094886344
+crossing topology,crossing_90_e_6,occupancy,Q1,gel_ped,322,0.361859155214203
+crossing topology,crossing_90_e_6,occupancy,Q2,gel_ped,673,0.426712775476439
+crossing topology,crossing_90_e_6,occupancy,Q3,gel_ped,5005,0.3537747620237929
+crossing topology,crossing_90_e_6,ttc,1-2 s,gel_ped,443,0.3562801933006233
+crossing topology,crossing_90_e_6,ttc,<1 s,gel_ped,3688,0.34351323760293895
+crossing topology,crossing_90_e_6,ttc,>=2 s,gel_ped,286,0.38840519491035436
+crossing topology,crossing_90_e_6,ttc,no predicted contact,gel_ped,1583,0.4025718406068879
