@@ -1,0 +1,9 @@
+{
+  "source_repository": "https://github.com/StanfordASL/Trajectron-plus-plus",
+  "source_commit": "1031c7bd1a444273af378c1ec1dcca907ba59830",
+  "split": "official eth train/test folders",
+  "test_file": "biwi_eth.txt",
+  "history_s": 0.8,
+  "prediction_s": 0.4,
+  "raw_data_redistributed": false
+}

@@ -573,6 +573,94 @@ class DisagreementRoutedRegressor:
         return prediction * cap_scale[:, None]
 
 
+@dataclass
+class CausalBufferRouter:
+    """Causal mixture of two anchored experts.
+
+    The router first averages expert disagreement across all pedestrians observed
+    in one frame and then smooths that statistic over the current and preceding
+    ``buffer_frames - 1`` observation frames.  It therefore needs no future
+    frames, target velocities, run label, or complete-run aggregate at inference.
+    ``threshold`` and ``scale`` are intended to be estimated from out-of-fold
+    calibration predictions.
+    """
+
+    in_support: object
+    transfer: object
+    threshold: float
+    scale: float
+    buffer_frames: int = 5
+    base_weight: float = 1.0
+
+    def sample_scores(self, samples: VelocitySamples) -> np.ndarray:
+        first = self.in_support.predict(samples, speed_cap=100.0)
+        second = self.transfer.predict(samples, speed_cap=100.0)
+        disagreement = np.linalg.norm(first - second, axis=1)
+        frames = np.asarray(samples.frame)
+        unique_frames = np.unique(frames)
+        frame_score = np.array(
+            [float(np.mean(disagreement[frames == frame])) for frame in unique_frames]
+        )
+        causal_score = np.empty_like(frame_score)
+        for index in range(len(unique_frames)):
+            start = max(0, index - self.buffer_frames + 1)
+            causal_score[index] = float(np.mean(frame_score[start : index + 1]))
+        lookup = {frame: causal_score[index] for index, frame in enumerate(unique_frames)}
+        return np.array([lookup[frame] for frame in frames], dtype=float)
+
+    def in_support_weights(self, samples: VelocitySamples) -> np.ndarray:
+        excess = np.maximum(self.sample_scores(samples) - self.threshold, 0.0)
+        return self.base_weight * np.exp(-excess / max(self.scale, 1e-12))
+
+    def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
+        first = self.in_support.predict(samples, speed_cap=100.0)
+        second = self.transfer.predict(samples, speed_cap=100.0)
+        weight = self.in_support_weights(samples)[:, None]
+        prediction = weight * first + (1.0 - weight) * second
+        speed = np.linalg.norm(prediction, axis=1)
+        cap_scale = np.minimum(1.0, speed_cap / np.maximum(speed, 1e-12))
+        return prediction * cap_scale[:, None]
+
+
+@dataclass
+class FixedBlendRegressor:
+    """Diagnostic fixed mixture used for router and oracle ablations."""
+
+    first: object
+    second: object
+    weight: float
+
+    def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
+        first = self.first.predict(samples, speed_cap=100.0)
+        second = self.second.predict(samples, speed_cap=100.0)
+        prediction = self.weight * first + (1.0 - self.weight) * second
+        speed = np.linalg.norm(prediction, axis=1)
+        cap_scale = np.minimum(1.0, speed_cap / np.maximum(speed, 1e-12))
+        return prediction * cap_scale[:, None]
+
+
+@dataclass
+class EnsembleRegressor:
+    """Average independently trained predictors and expose their spread."""
+
+    members: tuple[object, ...]
+
+    def member_predictions(
+        self, samples: VelocitySamples, speed_cap: float = 2.5
+    ) -> np.ndarray:
+        return np.stack(
+            [member.predict(samples, speed_cap=speed_cap) for member in self.members]
+        )
+
+    def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
+        return np.mean(self.member_predictions(samples, speed_cap=speed_cap), axis=0)
+
+    def epistemic_radius(self, samples: VelocitySamples) -> np.ndarray:
+        predictions = self.member_predictions(samples, speed_cap=100.0)
+        centre = np.mean(predictions, axis=0, keepdims=True)
+        return np.sqrt(np.mean(np.sum((predictions - centre) ** 2, axis=2), axis=0))
+
+
 # Backward-compatible import for earlier notebooks and archived experiment scripts.
 BlendedRegressor = GELPedRegressor
 

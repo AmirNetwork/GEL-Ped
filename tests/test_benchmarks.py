@@ -3,6 +3,7 @@ import numpy as np
 
 from pedgeom.benchmarks import (
     AVMRegressor,
+    CausalBufferRouter,
     DisagreementRoutedRegressor,
     GoalStableRegressor,
     InvariantRegressor,
@@ -29,6 +30,17 @@ class _FixedLocalEstimator:
 class _SecondFixedLocalEstimator:
     def predict(self, design: np.ndarray) -> np.ndarray:
         return np.tile(np.array([0.6, -0.1]), (len(design), 1))
+
+
+class _FrameVectorRegressor:
+    def __init__(self, scale: float) -> None:
+        self.scale = scale
+
+    def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
+        prediction = np.column_stack(
+            (self.scale * np.asarray(samples.frame, dtype=float), np.zeros(len(samples.frame)))
+        )
+        return prediction
 
 
 def test_goal_aligned_features_are_rotation_invariant() -> None:
@@ -244,3 +256,36 @@ def test_disagreement_router_is_calibrated_and_rotation_equivariant() -> None:
     assert np.allclose(
         forced_blend.predict(rotated), forced_blend.predict(samples) @ rotation.T
     )
+
+
+def test_causal_buffer_router_is_bounded_and_uses_only_past_frames() -> None:
+    frames = np.repeat(np.arange(6), 2)
+    features = np.zeros((len(frames), len(FEATURE_NAMES), 2))
+    features[:, 1] = [1.0, 0.0]
+    samples = VelocitySamples(
+        "causal",
+        features,
+        np.zeros((len(frames), 2)),
+        np.tile(np.arange(2), 6),
+        frames,
+    )
+    router = CausalBufferRouter(
+        _FrameVectorRegressor(0.0),
+        _FrameVectorRegressor(0.2),
+        threshold=0.25,
+        scale=0.5,
+        buffer_frames=3,
+        base_weight=0.7,
+    )
+    full = router.in_support_weights(samples)
+    truncated_mask = frames <= 3
+    truncated = VelocitySamples(
+        "truncated",
+        features[truncated_mask],
+        np.zeros((truncated_mask.sum(), 2)),
+        np.tile(np.arange(2), 4),
+        frames[truncated_mask],
+    )
+    assert np.allclose(full[truncated_mask], router.in_support_weights(truncated))
+    assert np.all((full >= 0.0) & (full <= 0.7))
+    assert full[-1] < full[0]

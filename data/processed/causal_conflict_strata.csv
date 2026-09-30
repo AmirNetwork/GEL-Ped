@@ -1,0 +1,1009 @@
+dataset,run,stratum,level,model,samples,vector_rmse_mps
+familiar corridor,bi_corr_400_a_03,prospective risk,high,direct MLP,1911,0.1714585058400826
+familiar corridor,bi_corr_400_a_03,prospective risk,low,direct MLP,1950,0.16026876658755632
+familiar corridor,bi_corr_400_a_03,prospective risk,medium,direct MLP,1944,0.15752661560425918
+familiar corridor,bi_corr_400_a_03,prospective risk,no projected conflict,direct MLP,195,0.18949518879484967
+familiar corridor,bi_corr_400_a_03,time to closest approach,1-2 s,direct MLP,791,0.14981677259862666
+familiar corridor,bi_corr_400_a_03,time to closest approach,2-3 s,direct MLP,179,0.15001827867217513
+familiar corridor,bi_corr_400_a_03,time to closest approach,<1 s,direct MLP,4835,0.16568281038961344
+familiar corridor,bi_corr_400_a_03,time to closest approach,none,direct MLP,195,0.18949518879484967
+familiar corridor,bi_corr_400_a_03,closest clearance,0.25-0.75 m,direct MLP,262,0.17895552499359968
+familiar corridor,bi_corr_400_a_03,closest clearance,<0.25 m,direct MLP,5524,0.16222067685286184
+familiar corridor,bi_corr_400_a_03,closest clearance,>=0.75 m,direct MLP,19,0.19860799426733663
+familiar corridor,bi_corr_400_a_03,closest clearance,none,direct MLP,195,0.18949518879484967
+familiar corridor,bi_corr_400_a_03,prospective risk,high,graph interaction network,1911,0.15576005979548754
+familiar corridor,bi_corr_400_a_03,prospective risk,low,graph interaction network,1950,0.1502818939104724
+familiar corridor,bi_corr_400_a_03,prospective risk,medium,graph interaction network,1944,0.14621985678829497
+familiar corridor,bi_corr_400_a_03,prospective risk,no projected conflict,graph interaction network,195,0.1734273405140794
+familiar corridor,bi_corr_400_a_03,time to closest approach,1-2 s,graph interaction network,791,0.1424110192881545
+familiar corridor,bi_corr_400_a_03,time to closest approach,2-3 s,graph interaction network,179,0.14642818282530898
+familiar corridor,bi_corr_400_a_03,time to closest approach,<1 s,graph interaction network,4835,0.1522572256062507
+familiar corridor,bi_corr_400_a_03,time to closest approach,none,graph interaction network,195,0.1734273405140794
+familiar corridor,bi_corr_400_a_03,closest clearance,0.25-0.75 m,graph interaction network,262,0.16885858300196735
+familiar corridor,bi_corr_400_a_03,closest clearance,<0.25 m,graph interaction network,5524,0.14975357887696272
+familiar corridor,bi_corr_400_a_03,closest clearance,>=0.75 m,graph interaction network,19,0.1797626871328247
+familiar corridor,bi_corr_400_a_03,closest clearance,none,graph interaction network,195,0.1734273405140794
+familiar corridor,bi_corr_400_a_03,prospective risk,high,anchored coarse MLP,1911,0.1652128640869678
+familiar corridor,bi_corr_400_a_03,prospective risk,low,anchored coarse MLP,1950,0.15892520867963653
+familiar corridor,bi_corr_400_a_03,prospective risk,medium,anchored coarse MLP,1944,0.1557567984680723
+familiar corridor,bi_corr_400_a_03,prospective risk,no projected conflict,anchored coarse MLP,195,0.190140588238221
+familiar corridor,bi_corr_400_a_03,time to closest approach,1-2 s,anchored coarse MLP,791,0.14825008400218545
+familiar corridor,bi_corr_400_a_03,time to closest approach,2-3 s,anchored coarse MLP,179,0.1485731900477325
+familiar corridor,bi_corr_400_a_03,time to closest approach,<1 s,anchored coarse MLP,4835,0.16222264468037084
+familiar corridor,bi_corr_400_a_03,time to closest approach,none,anchored coarse MLP,195,0.190140588238221
+familiar corridor,bi_corr_400_a_03,closest clearance,0.25-0.75 m,anchored coarse MLP,262,0.17939166000293313
+familiar corridor,bi_corr_400_a_03,closest clearance,<0.25 m,anchored coarse MLP,5524,0.15885881837030888
+familiar corridor,bi_corr_400_a_03,closest clearance,>=0.75 m,anchored coarse MLP,19,0.19719147156531852
+familiar corridor,bi_corr_400_a_03,closest clearance,none,anchored coarse MLP,195,0.190140588238221
+familiar corridor,bi_corr_400_a_03,prospective risk,high,GEL-Ped,1911,0.15416878520502975
+familiar corridor,bi_corr_400_a_03,prospective risk,low,GEL-Ped,1950,0.14785470254787317
+familiar corridor,bi_corr_400_a_03,prospective risk,medium,GEL-Ped,1944,0.1445999509195882
+familiar corridor,bi_corr_400_a_03,prospective risk,no projected conflict,GEL-Ped,195,0.1739558479309092
+familiar corridor,bi_corr_400_a_03,time to closest approach,1-2 s,GEL-Ped,791,0.13990380859852358
+familiar corridor,bi_corr_400_a_03,time to closest approach,2-3 s,GEL-Ped,179,0.14379191533807908
+familiar corridor,bi_corr_400_a_03,time to closest approach,<1 s,GEL-Ped,4835,0.15049982419486152
+familiar corridor,bi_corr_400_a_03,time to closest approach,none,GEL-Ped,195,0.1739558479309092
+familiar corridor,bi_corr_400_a_03,closest clearance,0.25-0.75 m,GEL-Ped,262,0.16768470075678732
+familiar corridor,bi_corr_400_a_03,closest clearance,<0.25 m,GEL-Ped,5524,0.14781806798930777
+familiar corridor,bi_corr_400_a_03,closest clearance,>=0.75 m,GEL-Ped,19,0.18204562859679127
+familiar corridor,bi_corr_400_a_03,closest clearance,none,GEL-Ped,195,0.1739558479309092
+familiar corridor,bi_corr_400_b_02,prospective risk,high,direct MLP,806,0.19472680685764823
+familiar corridor,bi_corr_400_b_02,prospective risk,low,direct MLP,1804,0.18143991821121336
+familiar corridor,bi_corr_400_b_02,prospective risk,medium,direct MLP,1179,0.2023602234094124
+familiar corridor,bi_corr_400_b_02,prospective risk,no projected conflict,direct MLP,200,0.20849783152551832
+familiar corridor,bi_corr_400_b_02,time to closest approach,1-2 s,direct MLP,108,0.18674927546529052
+familiar corridor,bi_corr_400_b_02,time to closest approach,2-3 s,direct MLP,69,0.18454714674395614
+familiar corridor,bi_corr_400_b_02,time to closest approach,<1 s,direct MLP,3612,0.19124957406765614
+familiar corridor,bi_corr_400_b_02,time to closest approach,none,direct MLP,200,0.20849783152551832
+familiar corridor,bi_corr_400_b_02,closest clearance,0.25-0.75 m,direct MLP,1187,0.1827409019077565
+familiar corridor,bi_corr_400_b_02,closest clearance,<0.25 m,direct MLP,2140,0.19842796706733282
+familiar corridor,bi_corr_400_b_02,closest clearance,>=0.75 m,direct MLP,462,0.17612886774242123
+familiar corridor,bi_corr_400_b_02,closest clearance,none,direct MLP,200,0.20849783152551832
+familiar corridor,bi_corr_400_b_02,prospective risk,high,graph interaction network,806,0.1765586851120633
+familiar corridor,bi_corr_400_b_02,prospective risk,low,graph interaction network,1804,0.1638779283881956
+familiar corridor,bi_corr_400_b_02,prospective risk,medium,graph interaction network,1179,0.18092159186057252
+familiar corridor,bi_corr_400_b_02,prospective risk,no projected conflict,graph interaction network,200,0.18543685676751312
+familiar corridor,bi_corr_400_b_02,time to closest approach,1-2 s,graph interaction network,108,0.16581769457728354
+familiar corridor,bi_corr_400_b_02,time to closest approach,2-3 s,graph interaction network,69,0.17283134611647918
+familiar corridor,bi_corr_400_b_02,time to closest approach,<1 s,graph interaction network,3612,0.17222307392363406
+familiar corridor,bi_corr_400_b_02,time to closest approach,none,graph interaction network,200,0.18543685676751312
+familiar corridor,bi_corr_400_b_02,closest clearance,0.25-0.75 m,graph interaction network,1187,0.16459682063943287
+familiar corridor,bi_corr_400_b_02,closest clearance,<0.25 m,graph interaction network,2140,0.17829944987472177
+familiar corridor,bi_corr_400_b_02,closest clearance,>=0.75 m,graph interaction network,462,0.16099616402494984
+familiar corridor,bi_corr_400_b_02,closest clearance,none,graph interaction network,200,0.18543685676751312
+familiar corridor,bi_corr_400_b_02,prospective risk,high,anchored coarse MLP,806,0.19553052739725238
+familiar corridor,bi_corr_400_b_02,prospective risk,low,anchored coarse MLP,1804,0.18552456552388716
+familiar corridor,bi_corr_400_b_02,prospective risk,medium,anchored coarse MLP,1179,0.20368073199957862
+familiar corridor,bi_corr_400_b_02,prospective risk,no projected conflict,anchored coarse MLP,200,0.20729057152534208
+familiar corridor,bi_corr_400_b_02,time to closest approach,1-2 s,anchored coarse MLP,108,0.1927222618329281
+familiar corridor,bi_corr_400_b_02,time to closest approach,2-3 s,anchored coarse MLP,69,0.19079270826085504
+familiar corridor,bi_corr_400_b_02,time to closest approach,<1 s,anchored coarse MLP,3612,0.19353936028969143
+familiar corridor,bi_corr_400_b_02,time to closest approach,none,anchored coarse MLP,200,0.20729057152534208
+familiar corridor,bi_corr_400_b_02,closest clearance,0.25-0.75 m,anchored coarse MLP,1187,0.18505433382389724
+familiar corridor,bi_corr_400_b_02,closest clearance,<0.25 m,anchored coarse MLP,2140,0.20046965145774195
+familiar corridor,bi_corr_400_b_02,closest clearance,>=0.75 m,anchored coarse MLP,462,0.18119401504564567
+familiar corridor,bi_corr_400_b_02,closest clearance,none,anchored coarse MLP,200,0.20729057152534208
+familiar corridor,bi_corr_400_b_02,prospective risk,high,GEL-Ped,806,0.17550201488591413
+familiar corridor,bi_corr_400_b_02,prospective risk,low,GEL-Ped,1804,0.16419805786511557
+familiar corridor,bi_corr_400_b_02,prospective risk,medium,GEL-Ped,1179,0.18176851971964522
+familiar corridor,bi_corr_400_b_02,prospective risk,no projected conflict,GEL-Ped,200,0.18484736355984885
+familiar corridor,bi_corr_400_b_02,time to closest approach,1-2 s,GEL-Ped,108,0.16149606801364477
+familiar corridor,bi_corr_400_b_02,time to closest approach,2-3 s,GEL-Ped,69,0.17429775741473916
+familiar corridor,bi_corr_400_b_02,time to closest approach,<1 s,GEL-Ped,3612,0.17251975332992062
+familiar corridor,bi_corr_400_b_02,time to closest approach,none,GEL-Ped,200,0.18484736355984885
+familiar corridor,bi_corr_400_b_02,closest clearance,0.25-0.75 m,GEL-Ped,1187,0.1647112052506306
+familiar corridor,bi_corr_400_b_02,closest clearance,<0.25 m,GEL-Ped,2140,0.17842194583786544
+familiar corridor,bi_corr_400_b_02,closest clearance,>=0.75 m,GEL-Ped,462,0.16175773601531962
+familiar corridor,bi_corr_400_b_02,closest clearance,none,GEL-Ped,200,0.18484736355984885
+familiar corridor,bi_corr_400_b_04,prospective risk,high,direct MLP,2359,0.20190204959000285
+familiar corridor,bi_corr_400_b_04,prospective risk,low,direct MLP,1595,0.17721163436194928
+familiar corridor,bi_corr_400_b_04,prospective risk,medium,direct MLP,1906,0.18134438876331554
+familiar corridor,bi_corr_400_b_04,prospective risk,no projected conflict,direct MLP,140,0.2098870680163819
+familiar corridor,bi_corr_400_b_04,time to closest approach,1-2 s,direct MLP,495,0.16896989249117572
+familiar corridor,bi_corr_400_b_04,time to closest approach,2-3 s,direct MLP,100,0.1712645166483113
+familiar corridor,bi_corr_400_b_04,time to closest approach,<1 s,direct MLP,5265,0.19089787793577198
+familiar corridor,bi_corr_400_b_04,time to closest approach,none,direct MLP,140,0.2098870680163819
+familiar corridor,bi_corr_400_b_04,closest clearance,0.25-0.75 m,direct MLP,396,0.18135074278989
+familiar corridor,bi_corr_400_b_04,closest clearance,<0.25 m,direct MLP,5423,0.1888407283872177
+familiar corridor,bi_corr_400_b_04,closest clearance,>=0.75 m,direct MLP,41,0.2479489294334162
+familiar corridor,bi_corr_400_b_04,closest clearance,none,direct MLP,140,0.2098870680163819
+familiar corridor,bi_corr_400_b_04,prospective risk,high,graph interaction network,2359,0.18371634559140113
+familiar corridor,bi_corr_400_b_04,prospective risk,low,graph interaction network,1595,0.16860055821175893
+familiar corridor,bi_corr_400_b_04,prospective risk,medium,graph interaction network,1906,0.16735809889513684
+familiar corridor,bi_corr_400_b_04,prospective risk,no projected conflict,graph interaction network,140,0.19755769208857418
+familiar corridor,bi_corr_400_b_04,time to closest approach,1-2 s,graph interaction network,495,0.15553457572483728
+familiar corridor,bi_corr_400_b_04,time to closest approach,2-3 s,graph interaction network,100,0.16301100981823444
+familiar corridor,bi_corr_400_b_04,time to closest approach,<1 s,graph interaction network,5265,0.17633646290299107
+familiar corridor,bi_corr_400_b_04,time to closest approach,none,graph interaction network,140,0.19755769208857418
+familiar corridor,bi_corr_400_b_04,closest clearance,0.25-0.75 m,graph interaction network,396,0.1691858568912111
+familiar corridor,bi_corr_400_b_04,closest clearance,<0.25 m,graph interaction network,5423,0.17390898518305253
+familiar corridor,bi_corr_400_b_04,closest clearance,>=0.75 m,graph interaction network,41,0.27025400839189484
+familiar corridor,bi_corr_400_b_04,closest clearance,none,graph interaction network,140,0.19755769208857418
+familiar corridor,bi_corr_400_b_04,prospective risk,high,anchored coarse MLP,2359,0.20066598868344493
+familiar corridor,bi_corr_400_b_04,prospective risk,low,anchored coarse MLP,1595,0.18038136600988283
+familiar corridor,bi_corr_400_b_04,prospective risk,medium,anchored coarse MLP,1906,0.18302313009952162
+familiar corridor,bi_corr_400_b_04,prospective risk,no projected conflict,anchored coarse MLP,140,0.21718555995483085
+familiar corridor,bi_corr_400_b_04,time to closest approach,1-2 s,anchored coarse MLP,495,0.17164366991400865
+familiar corridor,bi_corr_400_b_04,time to closest approach,2-3 s,anchored coarse MLP,100,0.17629040965165743
+familiar corridor,bi_corr_400_b_04,time to closest approach,<1 s,anchored coarse MLP,5265,0.19148123483466975
+familiar corridor,bi_corr_400_b_04,time to closest approach,none,anchored coarse MLP,140,0.21718555995483085
+familiar corridor,bi_corr_400_b_04,closest clearance,0.25-0.75 m,anchored coarse MLP,396,0.186798897743456
+familiar corridor,bi_corr_400_b_04,closest clearance,<0.25 m,anchored coarse MLP,5423,0.18927120103345843
+familiar corridor,bi_corr_400_b_04,closest clearance,>=0.75 m,anchored coarse MLP,41,0.25392455474894865
+familiar corridor,bi_corr_400_b_04,closest clearance,none,anchored coarse MLP,140,0.21718555995483085
+familiar corridor,bi_corr_400_b_04,prospective risk,high,GEL-Ped,2359,0.18284958171571053
+familiar corridor,bi_corr_400_b_04,prospective risk,low,GEL-Ped,1595,0.16398019553407747
+familiar corridor,bi_corr_400_b_04,prospective risk,medium,GEL-Ped,1906,0.16569577728766607
+familiar corridor,bi_corr_400_b_04,prospective risk,no projected conflict,GEL-Ped,140,0.1971602214313861
+familiar corridor,bi_corr_400_b_04,time to closest approach,1-2 s,GEL-Ped,495,0.15567201231507144
+familiar corridor,bi_corr_400_b_04,time to closest approach,2-3 s,GEL-Ped,100,0.16256145332769542
+familiar corridor,bi_corr_400_b_04,time to closest approach,<1 s,GEL-Ped,5265,0.17402587657990057
+familiar corridor,bi_corr_400_b_04,time to closest approach,none,GEL-Ped,140,0.1971602214313861
+familiar corridor,bi_corr_400_b_04,closest clearance,0.25-0.75 m,GEL-Ped,396,0.1659039736718179
+familiar corridor,bi_corr_400_b_04,closest clearance,<0.25 m,GEL-Ped,5423,0.17253301222952122
+familiar corridor,bi_corr_400_b_04,closest clearance,>=0.75 m,GEL-Ped,41,0.20715425392534884
+familiar corridor,bi_corr_400_b_04,closest clearance,none,GEL-Ped,140,0.1971602214313861
+familiar corridor,bi_corr_400_b_06,prospective risk,high,direct MLP,2506,0.18499785335122967
+familiar corridor,bi_corr_400_b_06,prospective risk,low,direct MLP,1410,0.175741944090301
+familiar corridor,bi_corr_400_b_06,prospective risk,medium,direct MLP,1972,0.1775247945939926
+familiar corridor,bi_corr_400_b_06,prospective risk,no projected conflict,direct MLP,112,0.19714075436855266
+familiar corridor,bi_corr_400_b_06,time to closest approach,1-2 s,direct MLP,536,0.16735240495620918
+familiar corridor,bi_corr_400_b_06,time to closest approach,2-3 s,direct MLP,104,0.1608215445082786
+familiar corridor,bi_corr_400_b_06,time to closest approach,<1 s,direct MLP,5248,0.18196099425060897
+familiar corridor,bi_corr_400_b_06,time to closest approach,none,direct MLP,112,0.19714075436855266
+familiar corridor,bi_corr_400_b_06,closest clearance,0.25-0.75 m,direct MLP,207,0.19122377212485517
+familiar corridor,bi_corr_400_b_06,closest clearance,<0.25 m,direct MLP,5664,0.17957425627336718
+familiar corridor,bi_corr_400_b_06,closest clearance,>=0.75 m,direct MLP,17,0.27072115248064305
+familiar corridor,bi_corr_400_b_06,closest clearance,none,direct MLP,112,0.19714075436855266
+familiar corridor,bi_corr_400_b_06,prospective risk,high,graph interaction network,2506,0.17055451267631647
+familiar corridor,bi_corr_400_b_06,prospective risk,low,graph interaction network,1410,0.16568007912011512
+familiar corridor,bi_corr_400_b_06,prospective risk,medium,graph interaction network,1972,0.16710482303439747
+familiar corridor,bi_corr_400_b_06,prospective risk,no projected conflict,graph interaction network,112,0.18470986814100818
+familiar corridor,bi_corr_400_b_06,time to closest approach,1-2 s,graph interaction network,536,0.15636655293780463
+familiar corridor,bi_corr_400_b_06,time to closest approach,2-3 s,graph interaction network,104,0.16025559455703392
+familiar corridor,bi_corr_400_b_06,time to closest approach,<1 s,graph interaction network,5248,0.16956430181481197
+familiar corridor,bi_corr_400_b_06,time to closest approach,none,graph interaction network,112,0.18470986814100818
+familiar corridor,bi_corr_400_b_06,closest clearance,0.25-0.75 m,graph interaction network,207,0.18112807031330408
+familiar corridor,bi_corr_400_b_06,closest clearance,<0.25 m,graph interaction network,5664,0.16764642723190043
+familiar corridor,bi_corr_400_b_06,closest clearance,>=0.75 m,graph interaction network,17,0.2010949574264494
+familiar corridor,bi_corr_400_b_06,closest clearance,none,graph interaction network,112,0.18470986814100818
+familiar corridor,bi_corr_400_b_06,prospective risk,high,anchored coarse MLP,2506,0.18373118936359825
+familiar corridor,bi_corr_400_b_06,prospective risk,low,anchored coarse MLP,1410,0.17758023370652792
+familiar corridor,bi_corr_400_b_06,prospective risk,medium,anchored coarse MLP,1972,0.17712893801055962
+familiar corridor,bi_corr_400_b_06,prospective risk,no projected conflict,anchored coarse MLP,112,0.19557738345593292
+familiar corridor,bi_corr_400_b_06,time to closest approach,1-2 s,anchored coarse MLP,536,0.16562917024451856
+familiar corridor,bi_corr_400_b_06,time to closest approach,2-3 s,anchored coarse MLP,104,0.1642361974588542
+familiar corridor,bi_corr_400_b_06,time to closest approach,<1 s,anchored coarse MLP,5248,0.181783217140454
+familiar corridor,bi_corr_400_b_06,time to closest approach,none,anchored coarse MLP,112,0.19557738345593292
+familiar corridor,bi_corr_400_b_06,closest clearance,0.25-0.75 m,anchored coarse MLP,207,0.19667315356107867
+familiar corridor,bi_corr_400_b_06,closest clearance,<0.25 m,anchored coarse MLP,5664,0.17909060611700173
+familiar corridor,bi_corr_400_b_06,closest clearance,>=0.75 m,anchored coarse MLP,17,0.27218175181034765
+familiar corridor,bi_corr_400_b_06,closest clearance,none,anchored coarse MLP,112,0.19557738345593292
+familiar corridor,bi_corr_400_b_06,prospective risk,high,GEL-Ped,2506,0.16843977544108998
+familiar corridor,bi_corr_400_b_06,prospective risk,low,GEL-Ped,1410,0.16416660638668504
+familiar corridor,bi_corr_400_b_06,prospective risk,medium,GEL-Ped,1972,0.16570976505237228
+familiar corridor,bi_corr_400_b_06,prospective risk,no projected conflict,GEL-Ped,112,0.18630427141343558
+familiar corridor,bi_corr_400_b_06,time to closest approach,1-2 s,GEL-Ped,536,0.15642203520382372
+familiar corridor,bi_corr_400_b_06,time to closest approach,2-3 s,GEL-Ped,104,0.16188687443920732
+familiar corridor,bi_corr_400_b_06,time to closest approach,<1 s,GEL-Ped,5248,0.16759759130573137
+familiar corridor,bi_corr_400_b_06,time to closest approach,none,GEL-Ped,112,0.18630427141343558
+familiar corridor,bi_corr_400_b_06,closest clearance,0.25-0.75 m,GEL-Ped,207,0.17652885448406822
+familiar corridor,bi_corr_400_b_06,closest clearance,<0.25 m,GEL-Ped,5664,0.16598463057469548
+familiar corridor,bi_corr_400_b_06,closest clearance,>=0.75 m,GEL-Ped,17,0.2103568027718539
+familiar corridor,bi_corr_400_b_06,closest clearance,none,GEL-Ped,112,0.18630427141343558
+familiar corridor,bi_corr_400_b_10,prospective risk,high,direct MLP,1450,0.15577033925905612
+familiar corridor,bi_corr_400_b_10,prospective risk,low,direct MLP,2273,0.14730751405758322
+familiar corridor,bi_corr_400_b_10,prospective risk,medium,direct MLP,2031,0.1494876051441835
+familiar corridor,bi_corr_400_b_10,prospective risk,no projected conflict,direct MLP,246,0.14514008512924148
+familiar corridor,bi_corr_400_b_10,time to closest approach,1-2 s,direct MLP,849,0.14325556044088422
+familiar corridor,bi_corr_400_b_10,time to closest approach,2-3 s,direct MLP,193,0.14048590530841237
+familiar corridor,bi_corr_400_b_10,time to closest approach,<1 s,direct MLP,4712,0.1518559257392581
+familiar corridor,bi_corr_400_b_10,time to closest approach,none,direct MLP,246,0.14514008512924148
+familiar corridor,bi_corr_400_b_10,closest clearance,0.25-0.75 m,direct MLP,366,0.1559259744561565
+familiar corridor,bi_corr_400_b_10,closest clearance,<0.25 m,direct MLP,5354,0.14968082186005877
+familiar corridor,bi_corr_400_b_10,closest clearance,>=0.75 m,direct MLP,34,0.17496003962063666
+familiar corridor,bi_corr_400_b_10,closest clearance,none,direct MLP,246,0.14514008512924148
+familiar corridor,bi_corr_400_b_10,prospective risk,high,graph interaction network,1450,0.14558994379569487
+familiar corridor,bi_corr_400_b_10,prospective risk,low,graph interaction network,2273,0.14206281660877706
+familiar corridor,bi_corr_400_b_10,prospective risk,medium,graph interaction network,2031,0.14462641902078135
+familiar corridor,bi_corr_400_b_10,prospective risk,no projected conflict,graph interaction network,246,0.1453470137320368
+familiar corridor,bi_corr_400_b_10,time to closest approach,1-2 s,graph interaction network,849,0.13971403312713238
+familiar corridor,bi_corr_400_b_10,time to closest approach,2-3 s,graph interaction network,193,0.14326415986880378
+familiar corridor,bi_corr_400_b_10,time to closest approach,<1 s,graph interaction network,4712,0.1446238308611677
+familiar corridor,bi_corr_400_b_10,time to closest approach,none,graph interaction network,246,0.1453470137320368
+familiar corridor,bi_corr_400_b_10,closest clearance,0.25-0.75 m,graph interaction network,366,0.15790260694123376
+familiar corridor,bi_corr_400_b_10,closest clearance,<0.25 m,graph interaction network,5354,0.14272718561378497
+familiar corridor,bi_corr_400_b_10,closest clearance,>=0.75 m,graph interaction network,34,0.162518562940632
+familiar corridor,bi_corr_400_b_10,closest clearance,none,graph interaction network,246,0.1453470137320368
+familiar corridor,bi_corr_400_b_10,prospective risk,high,anchored coarse MLP,1450,0.15338616467462865
+familiar corridor,bi_corr_400_b_10,prospective risk,low,anchored coarse MLP,2273,0.1482855146233227
+familiar corridor,bi_corr_400_b_10,prospective risk,medium,anchored coarse MLP,2031,0.14823833343841775
+familiar corridor,bi_corr_400_b_10,prospective risk,no projected conflict,anchored coarse MLP,246,0.14797356821516278
+familiar corridor,bi_corr_400_b_10,time to closest approach,1-2 s,anchored coarse MLP,849,0.14396338522833665
+familiar corridor,bi_corr_400_b_10,time to closest approach,2-3 s,anchored coarse MLP,193,0.140153823120143
+familiar corridor,bi_corr_400_b_10,time to closest approach,<1 s,anchored coarse MLP,4712,0.1509295416461623
+familiar corridor,bi_corr_400_b_10,time to closest approach,none,anchored coarse MLP,246,0.14797356821516278
+familiar corridor,bi_corr_400_b_10,closest clearance,0.25-0.75 m,anchored coarse MLP,366,0.15669142698780486
+familiar corridor,bi_corr_400_b_10,closest clearance,<0.25 m,anchored coarse MLP,5354,0.14889911435311476
+familiar corridor,bi_corr_400_b_10,closest clearance,>=0.75 m,anchored coarse MLP,34,0.17453706535250624
+familiar corridor,bi_corr_400_b_10,closest clearance,none,anchored coarse MLP,246,0.14797356821516278
+familiar corridor,bi_corr_400_b_10,prospective risk,high,GEL-Ped,1450,0.14446979084322728
+familiar corridor,bi_corr_400_b_10,prospective risk,low,GEL-Ped,2273,0.13953565193923573
+familiar corridor,bi_corr_400_b_10,prospective risk,medium,GEL-Ped,2031,0.1420088567811697
+familiar corridor,bi_corr_400_b_10,prospective risk,no projected conflict,GEL-Ped,246,0.14390271343957117
+familiar corridor,bi_corr_400_b_10,time to closest approach,1-2 s,GEL-Ped,849,0.13768272356891573
+familiar corridor,bi_corr_400_b_10,time to closest approach,2-3 s,GEL-Ped,193,0.13774237395697042
+familiar corridor,bi_corr_400_b_10,time to closest approach,<1 s,GEL-Ped,4712,0.14252883745796768
+familiar corridor,bi_corr_400_b_10,time to closest approach,none,GEL-Ped,246,0.14390271343957117
+familiar corridor,bi_corr_400_b_10,closest clearance,0.25-0.75 m,GEL-Ped,366,0.1516054420439806
+familiar corridor,bi_corr_400_b_10,closest clearance,<0.25 m,GEL-Ped,5354,0.14080635358893773
+familiar corridor,bi_corr_400_b_10,closest clearance,>=0.75 m,GEL-Ped,34,0.16402429948691002
+familiar corridor,bi_corr_400_b_10,closest clearance,none,GEL-Ped,246,0.14390271343957117
+altered geometry,bi_corr_400_a_04,prospective risk,high,direct MLP,1764,0.17540358537550466
+altered geometry,bi_corr_400_a_04,prospective risk,low,direct MLP,2162,0.1649432813733731
+altered geometry,bi_corr_400_a_04,prospective risk,medium,direct MLP,1903,0.16818379218735252
+altered geometry,bi_corr_400_a_04,prospective risk,no projected conflict,direct MLP,171,0.1846203167729163
+altered geometry,bi_corr_400_a_04,time to closest approach,1-2 s,direct MLP,825,0.15873253947527194
+altered geometry,bi_corr_400_a_04,time to closest approach,2-3 s,direct MLP,169,0.16041796062577662
+altered geometry,bi_corr_400_a_04,time to closest approach,<1 s,direct MLP,4835,0.17124403827253906
+altered geometry,bi_corr_400_a_04,time to closest approach,none,direct MLP,171,0.1846203167729163
+altered geometry,bi_corr_400_a_04,closest clearance,0.25-0.75 m,direct MLP,221,0.20069170151584936
+altered geometry,bi_corr_400_a_04,closest clearance,<0.25 m,direct MLP,5594,0.16728288554763326
+altered geometry,bi_corr_400_a_04,closest clearance,>=0.75 m,direct MLP,14,0.324972291298491
+altered geometry,bi_corr_400_a_04,closest clearance,none,direct MLP,171,0.1846203167729163
+altered geometry,bi_corr_400_a_04,prospective risk,high,graph interaction network,1764,0.15964763594926545
+altered geometry,bi_corr_400_a_04,prospective risk,low,graph interaction network,2162,0.15435555571295448
+altered geometry,bi_corr_400_a_04,prospective risk,medium,graph interaction network,1903,0.15526780474993285
+altered geometry,bi_corr_400_a_04,prospective risk,no projected conflict,graph interaction network,171,0.16954849481320577
+altered geometry,bi_corr_400_a_04,time to closest approach,1-2 s,graph interaction network,825,0.14839103511065965
+altered geometry,bi_corr_400_a_04,time to closest approach,2-3 s,graph interaction network,169,0.15368199826109516
+altered geometry,bi_corr_400_a_04,time to closest approach,<1 s,graph interaction network,4835,0.15766559532701988
+altered geometry,bi_corr_400_a_04,time to closest approach,none,graph interaction network,171,0.16954849481320577
+altered geometry,bi_corr_400_a_04,closest clearance,0.25-0.75 m,graph interaction network,221,0.18881873470560684
+altered geometry,bi_corr_400_a_04,closest clearance,<0.25 m,graph interaction network,5594,0.15435321087824425
+altered geometry,bi_corr_400_a_04,closest clearance,>=0.75 m,graph interaction network,14,0.291874427297966
+altered geometry,bi_corr_400_a_04,closest clearance,none,graph interaction network,171,0.16954849481320577
+altered geometry,bi_corr_400_a_04,prospective risk,high,anchored coarse MLP,1764,0.17036807960567735
+altered geometry,bi_corr_400_a_04,prospective risk,low,anchored coarse MLP,2162,0.16244456561376472
+altered geometry,bi_corr_400_a_04,prospective risk,medium,anchored coarse MLP,1903,0.16410625403533535
+altered geometry,bi_corr_400_a_04,prospective risk,no projected conflict,anchored coarse MLP,171,0.1859041115725155
+altered geometry,bi_corr_400_a_04,time to closest approach,1-2 s,anchored coarse MLP,825,0.1557559684994195
+altered geometry,bi_corr_400_a_04,time to closest approach,2-3 s,anchored coarse MLP,169,0.15835203212127086
+altered geometry,bi_corr_400_a_04,time to closest approach,<1 s,anchored coarse MLP,4835,0.16725116623380146
+altered geometry,bi_corr_400_a_04,time to closest approach,none,anchored coarse MLP,171,0.1859041115725155
+altered geometry,bi_corr_400_a_04,closest clearance,0.25-0.75 m,anchored coarse MLP,221,0.20245074313788214
+altered geometry,bi_corr_400_a_04,closest clearance,<0.25 m,anchored coarse MLP,5594,0.16317054067113185
+altered geometry,bi_corr_400_a_04,closest clearance,>=0.75 m,anchored coarse MLP,14,0.32790143579991826
+altered geometry,bi_corr_400_a_04,closest clearance,none,anchored coarse MLP,171,0.1859041115725155
+altered geometry,bi_corr_400_a_04,prospective risk,high,GEL-Ped,1764,0.15764567095363732
+altered geometry,bi_corr_400_a_04,prospective risk,low,GEL-Ped,2162,0.153379194887753
+altered geometry,bi_corr_400_a_04,prospective risk,medium,GEL-Ped,1903,0.15340525658515058
+altered geometry,bi_corr_400_a_04,prospective risk,no projected conflict,GEL-Ped,171,0.17119565290661476
+altered geometry,bi_corr_400_a_04,time to closest approach,1-2 s,GEL-Ped,825,0.1468022577762554
+altered geometry,bi_corr_400_a_04,time to closest approach,2-3 s,GEL-Ped,169,0.15315080256984648
+altered geometry,bi_corr_400_a_04,time to closest approach,<1 s,GEL-Ped,4835,0.1560505638595058
+altered geometry,bi_corr_400_a_04,time to closest approach,none,GEL-Ped,171,0.17119565290661476
+altered geometry,bi_corr_400_a_04,closest clearance,0.25-0.75 m,GEL-Ped,221,0.1877440277486824
+altered geometry,bi_corr_400_a_04,closest clearance,<0.25 m,GEL-Ped,5594,0.15265806476920485
+altered geometry,bi_corr_400_a_04,closest clearance,>=0.75 m,GEL-Ped,14,0.30812931476479166
+altered geometry,bi_corr_400_a_04,closest clearance,none,GEL-Ped,171,0.17119565290661476
+altered geometry,bi_corr_400_a_05,prospective risk,high,direct MLP,1964,0.1648010045139514
+altered geometry,bi_corr_400_a_05,prospective risk,low,direct MLP,1928,0.1625516623946819
+altered geometry,bi_corr_400_a_05,prospective risk,medium,direct MLP,1986,0.1583776350075366
+altered geometry,bi_corr_400_a_05,prospective risk,no projected conflict,direct MLP,122,0.19471284704574934
+altered geometry,bi_corr_400_a_05,time to closest approach,1-2 s,direct MLP,675,0.15299192435727443
+altered geometry,bi_corr_400_a_05,time to closest approach,2-3 s,direct MLP,153,0.15941890717227974
+altered geometry,bi_corr_400_a_05,time to closest approach,<1 s,direct MLP,5050,0.16314520358077164
+altered geometry,bi_corr_400_a_05,time to closest approach,none,direct MLP,122,0.19471284704574934
+altered geometry,bi_corr_400_a_05,closest clearance,0.25-0.75 m,direct MLP,184,0.17736534454024155
+altered geometry,bi_corr_400_a_05,closest clearance,<0.25 m,direct MLP,5682,0.1614670743074135
+altered geometry,bi_corr_400_a_05,closest clearance,>=0.75 m,direct MLP,12,0.12011566274623758
+altered geometry,bi_corr_400_a_05,closest clearance,none,direct MLP,122,0.19471284704574934
+altered geometry,bi_corr_400_a_05,prospective risk,high,graph interaction network,1964,0.15126579078644142
+altered geometry,bi_corr_400_a_05,prospective risk,low,graph interaction network,1928,0.1527573487551065
+altered geometry,bi_corr_400_a_05,prospective risk,medium,graph interaction network,1986,0.14906985598773542
+altered geometry,bi_corr_400_a_05,prospective risk,no projected conflict,graph interaction network,122,0.1647240247820927
+altered geometry,bi_corr_400_a_05,time to closest approach,1-2 s,graph interaction network,675,0.14411952113428955
+altered geometry,bi_corr_400_a_05,time to closest approach,2-3 s,graph interaction network,153,0.15375602678680866
+altered geometry,bi_corr_400_a_05,time to closest approach,<1 s,graph interaction network,5050,0.15183621550453977
+altered geometry,bi_corr_400_a_05,time to closest approach,none,graph interaction network,122,0.1647240247820927
+altered geometry,bi_corr_400_a_05,closest clearance,0.25-0.75 m,graph interaction network,184,0.1646731707805383
+altered geometry,bi_corr_400_a_05,closest clearance,<0.25 m,graph interaction network,5682,0.15061990020202135
+altered geometry,bi_corr_400_a_05,closest clearance,>=0.75 m,graph interaction network,12,0.11816593162941566
+altered geometry,bi_corr_400_a_05,closest clearance,none,graph interaction network,122,0.1647240247820927
+altered geometry,bi_corr_400_a_05,prospective risk,high,anchored coarse MLP,1964,0.1604615682641843
+altered geometry,bi_corr_400_a_05,prospective risk,low,anchored coarse MLP,1928,0.16103830836811625
+altered geometry,bi_corr_400_a_05,prospective risk,medium,anchored coarse MLP,1986,0.1562487080657399
+altered geometry,bi_corr_400_a_05,prospective risk,no projected conflict,anchored coarse MLP,122,0.1953188670342993
+altered geometry,bi_corr_400_a_05,time to closest approach,1-2 s,anchored coarse MLP,675,0.15099880890928624
+altered geometry,bi_corr_400_a_05,time to closest approach,2-3 s,anchored coarse MLP,153,0.15842073449225968
+altered geometry,bi_corr_400_a_05,time to closest approach,<1 s,anchored coarse MLP,5050,0.16033604036425117
+altered geometry,bi_corr_400_a_05,time to closest approach,none,anchored coarse MLP,122,0.1953188670342993
+altered geometry,bi_corr_400_a_05,closest clearance,0.25-0.75 m,anchored coarse MLP,184,0.17679447187744302
+altered geometry,bi_corr_400_a_05,closest clearance,<0.25 m,anchored coarse MLP,5682,0.15872561519408976
+altered geometry,bi_corr_400_a_05,closest clearance,>=0.75 m,anchored coarse MLP,12,0.11234526004300956
+altered geometry,bi_corr_400_a_05,closest clearance,none,anchored coarse MLP,122,0.1953188670342993
+altered geometry,bi_corr_400_a_05,prospective risk,high,GEL-Ped,1964,0.14887537762751676
+altered geometry,bi_corr_400_a_05,prospective risk,low,GEL-Ped,1928,0.15155513576262788
+altered geometry,bi_corr_400_a_05,prospective risk,medium,GEL-Ped,1986,0.1471450098462177
+altered geometry,bi_corr_400_a_05,prospective risk,no projected conflict,GEL-Ped,122,0.16907429594249684
+altered geometry,bi_corr_400_a_05,time to closest approach,1-2 s,GEL-Ped,675,0.14252563415686198
+altered geometry,bi_corr_400_a_05,time to closest approach,2-3 s,GEL-Ped,153,0.15528312415686518
+altered geometry,bi_corr_400_a_05,time to closest approach,<1 s,GEL-Ped,5050,0.14986018440389348
+altered geometry,bi_corr_400_a_05,time to closest approach,none,GEL-Ped,122,0.16907429594249684
+altered geometry,bi_corr_400_a_05,closest clearance,0.25-0.75 m,GEL-Ped,184,0.1651677318555119
+altered geometry,bi_corr_400_a_05,closest clearance,<0.25 m,GEL-Ped,5682,0.1486839277291255
+altered geometry,bi_corr_400_a_05,closest clearance,>=0.75 m,GEL-Ped,12,0.12353810151468742
+altered geometry,bi_corr_400_a_05,closest clearance,none,GEL-Ped,122,0.16907429594249684
+altered geometry,bi_corr_400_b_08,prospective risk,high,direct MLP,2137,0.18043218857254342
+altered geometry,bi_corr_400_b_08,prospective risk,low,direct MLP,1776,0.16696283618967175
+altered geometry,bi_corr_400_b_08,prospective risk,medium,direct MLP,1976,0.16595918388967107
+altered geometry,bi_corr_400_b_08,prospective risk,no projected conflict,direct MLP,111,0.18037470819126136
+altered geometry,bi_corr_400_b_08,time to closest approach,1-2 s,direct MLP,665,0.16018705563241986
+altered geometry,bi_corr_400_b_08,time to closest approach,2-3 s,direct MLP,117,0.1488868954239281
+altered geometry,bi_corr_400_b_08,time to closest approach,<1 s,direct MLP,5107,0.1735647688152515
+altered geometry,bi_corr_400_b_08,time to closest approach,none,direct MLP,111,0.18037470819126136
+altered geometry,bi_corr_400_b_08,closest clearance,0.25-0.75 m,direct MLP,153,0.18209517145614187
+altered geometry,bi_corr_400_b_08,closest clearance,<0.25 m,direct MLP,5728,0.17129593949246352
+altered geometry,bi_corr_400_b_08,closest clearance,>=0.75 m,direct MLP,8,0.21166981127178677
+altered geometry,bi_corr_400_b_08,closest clearance,none,direct MLP,111,0.18037470819126136
+altered geometry,bi_corr_400_b_08,prospective risk,high,graph interaction network,2137,0.16479731169614736
+altered geometry,bi_corr_400_b_08,prospective risk,low,graph interaction network,1776,0.15688314384814922
+altered geometry,bi_corr_400_b_08,prospective risk,medium,graph interaction network,1976,0.15661720624545616
+altered geometry,bi_corr_400_b_08,prospective risk,no projected conflict,graph interaction network,111,0.17637720112468855
+altered geometry,bi_corr_400_b_08,time to closest approach,1-2 s,graph interaction network,665,0.15041781985753105
+altered geometry,bi_corr_400_b_08,time to closest approach,2-3 s,graph interaction network,117,0.1462470931104833
+altered geometry,bi_corr_400_b_08,time to closest approach,<1 s,graph interaction network,5107,0.16117669216179162
+altered geometry,bi_corr_400_b_08,time to closest approach,none,graph interaction network,111,0.17637720112468855
+altered geometry,bi_corr_400_b_08,closest clearance,0.25-0.75 m,graph interaction network,153,0.17973535813252486
+altered geometry,bi_corr_400_b_08,closest clearance,<0.25 m,graph interaction network,5728,0.1591059786728843
+altered geometry,bi_corr_400_b_08,closest clearance,>=0.75 m,graph interaction network,8,0.18451063889507607
+altered geometry,bi_corr_400_b_08,closest clearance,none,graph interaction network,111,0.17637720112468855
+altered geometry,bi_corr_400_b_08,prospective risk,high,anchored coarse MLP,2137,0.1765972636001064
+altered geometry,bi_corr_400_b_08,prospective risk,low,anchored coarse MLP,1776,0.16634585877231853
+altered geometry,bi_corr_400_b_08,prospective risk,medium,anchored coarse MLP,1976,0.16732562466882472
+altered geometry,bi_corr_400_b_08,prospective risk,no projected conflict,anchored coarse MLP,111,0.181612302762074
+altered geometry,bi_corr_400_b_08,time to closest approach,1-2 s,anchored coarse MLP,665,0.15863826628518535
+altered geometry,bi_corr_400_b_08,time to closest approach,2-3 s,anchored coarse MLP,117,0.14829523491763166
+altered geometry,bi_corr_400_b_08,time to closest approach,<1 s,anchored coarse MLP,5107,0.17240888246750102
+altered geometry,bi_corr_400_b_08,time to closest approach,none,anchored coarse MLP,111,0.181612302762074
+altered geometry,bi_corr_400_b_08,closest clearance,0.25-0.75 m,anchored coarse MLP,153,0.18404700121562245
+altered geometry,bi_corr_400_b_08,closest clearance,<0.25 m,anchored coarse MLP,5728,0.17000270051679137
+altered geometry,bi_corr_400_b_08,closest clearance,>=0.75 m,anchored coarse MLP,8,0.21967439475261247
+altered geometry,bi_corr_400_b_08,closest clearance,none,anchored coarse MLP,111,0.181612302762074
+altered geometry,bi_corr_400_b_08,prospective risk,high,GEL-Ped,2137,0.1625134167736174
+altered geometry,bi_corr_400_b_08,prospective risk,low,GEL-Ped,1776,0.15382960793216863
+altered geometry,bi_corr_400_b_08,prospective risk,medium,GEL-Ped,1976,0.15346248967646836
+altered geometry,bi_corr_400_b_08,prospective risk,no projected conflict,GEL-Ped,111,0.17382339289811477
+altered geometry,bi_corr_400_b_08,time to closest approach,1-2 s,GEL-Ped,665,0.1485120857528021
+altered geometry,bi_corr_400_b_08,time to closest approach,2-3 s,GEL-Ped,117,0.14157470351359222
+altered geometry,bi_corr_400_b_08,time to closest approach,<1 s,GEL-Ped,5107,0.15830879974365247
+altered geometry,bi_corr_400_b_08,time to closest approach,none,GEL-Ped,111,0.17382339289811477
+altered geometry,bi_corr_400_b_08,closest clearance,0.25-0.75 m,GEL-Ped,153,0.17187694805960566
+altered geometry,bi_corr_400_b_08,closest clearance,<0.25 m,GEL-Ped,5728,0.15648125475472077
+altered geometry,bi_corr_400_b_08,closest clearance,>=0.75 m,GEL-Ped,8,0.167447862031014
+altered geometry,bi_corr_400_b_08,closest clearance,none,GEL-Ped,111,0.17382339289811477
+crossing topology,crossing_90_d_1,prospective risk,high,direct MLP,1765,0.35811806317541384
+crossing topology,crossing_90_d_1,prospective risk,low,direct MLP,2078,0.3738557948858073
+crossing topology,crossing_90_d_1,prospective risk,medium,direct MLP,1856,0.3554947965746573
+crossing topology,crossing_90_d_1,prospective risk,no projected conflict,direct MLP,301,0.4048383792811128
+crossing topology,crossing_90_d_1,time to closest approach,1-2 s,direct MLP,604,0.3328934157377058
+crossing topology,crossing_90_d_1,time to closest approach,2-3 s,direct MLP,139,0.3442683443518371
+crossing topology,crossing_90_d_1,time to closest approach,<1 s,direct MLP,4956,0.36711671495700826
+crossing topology,crossing_90_d_1,time to closest approach,none,direct MLP,301,0.4048383792811128
+crossing topology,crossing_90_d_1,closest clearance,0.25-0.75 m,direct MLP,568,0.41027882154202394
+crossing topology,crossing_90_d_1,closest clearance,<0.25 m,direct MLP,4833,0.35340996812448777
+crossing topology,crossing_90_d_1,closest clearance,>=0.75 m,direct MLP,298,0.4181539862294011
+crossing topology,crossing_90_d_1,closest clearance,none,direct MLP,301,0.4048383792811128
+crossing topology,crossing_90_d_1,prospective risk,high,graph interaction network,1765,0.4029570089315664
+crossing topology,crossing_90_d_1,prospective risk,low,graph interaction network,2078,0.3932522948184466
+crossing topology,crossing_90_d_1,prospective risk,medium,graph interaction network,1856,0.3806576620038228
+crossing topology,crossing_90_d_1,prospective risk,no projected conflict,graph interaction network,301,0.36820154399720567
+crossing topology,crossing_90_d_1,time to closest approach,1-2 s,graph interaction network,604,0.32319818183251564
+crossing topology,crossing_90_d_1,time to closest approach,2-3 s,graph interaction network,139,0.30132873791406845
+crossing topology,crossing_90_d_1,time to closest approach,<1 s,graph interaction network,4956,0.4020653158458522
+crossing topology,crossing_90_d_1,time to closest approach,none,graph interaction network,301,0.36820154399720567
+crossing topology,crossing_90_d_1,closest clearance,0.25-0.75 m,graph interaction network,568,0.38842635040452517
+crossing topology,crossing_90_d_1,closest clearance,<0.25 m,graph interaction network,4833,0.38712430607421583
+crossing topology,crossing_90_d_1,closest clearance,>=0.75 m,graph interaction network,298,0.47376532572587793
+crossing topology,crossing_90_d_1,closest clearance,none,graph interaction network,301,0.36820154399720567
+crossing topology,crossing_90_d_1,prospective risk,high,anchored coarse MLP,1765,0.3543061303801505
+crossing topology,crossing_90_d_1,prospective risk,low,anchored coarse MLP,2078,0.34994793393778995
+crossing topology,crossing_90_d_1,prospective risk,medium,anchored coarse MLP,1856,0.3497206804449202
+crossing topology,crossing_90_d_1,prospective risk,no projected conflict,anchored coarse MLP,301,0.3547204212623821
+crossing topology,crossing_90_d_1,time to closest approach,1-2 s,anchored coarse MLP,604,0.3214961773572264
+crossing topology,crossing_90_d_1,time to closest approach,2-3 s,anchored coarse MLP,139,0.3000999378050565
+crossing topology,crossing_90_d_1,time to closest approach,<1 s,anchored coarse MLP,4956,0.35599736688313505
+crossing topology,crossing_90_d_1,time to closest approach,none,anchored coarse MLP,301,0.3547204212623821
+crossing topology,crossing_90_d_1,closest clearance,0.25-0.75 m,anchored coarse MLP,568,0.3880619612974305
+crossing topology,crossing_90_d_1,closest clearance,<0.25 m,anchored coarse MLP,4833,0.3472702175292543
+crossing topology,crossing_90_d_1,closest clearance,>=0.75 m,anchored coarse MLP,298,0.34105188373257794
+crossing topology,crossing_90_d_1,closest clearance,none,anchored coarse MLP,301,0.3547204212623821
+crossing topology,crossing_90_d_1,prospective risk,high,GEL-Ped,1765,0.3450411430401651
+crossing topology,crossing_90_d_1,prospective risk,low,GEL-Ped,2078,0.33330772078391346
+crossing topology,crossing_90_d_1,prospective risk,medium,GEL-Ped,1856,0.3399299737642766
+crossing topology,crossing_90_d_1,prospective risk,no projected conflict,GEL-Ped,301,0.3383267756696821
+crossing topology,crossing_90_d_1,time to closest approach,1-2 s,GEL-Ped,604,0.3112125871526917
+crossing topology,crossing_90_d_1,time to closest approach,2-3 s,GEL-Ped,139,0.2810204700991985
+crossing topology,crossing_90_d_1,time to closest approach,<1 s,GEL-Ped,4956,0.3438527722609214
+crossing topology,crossing_90_d_1,time to closest approach,none,GEL-Ped,301,0.3383267756696821
+crossing topology,crossing_90_d_1,closest clearance,0.25-0.75 m,GEL-Ped,568,0.3685584630285699
+crossing topology,crossing_90_d_1,closest clearance,<0.25 m,GEL-Ped,4833,0.33629206753184954
+crossing topology,crossing_90_d_1,closest clearance,>=0.75 m,GEL-Ped,298,0.32624592913191564
+crossing topology,crossing_90_d_1,closest clearance,none,GEL-Ped,301,0.3383267756696821
+crossing topology,crossing_90_d_2,prospective risk,high,direct MLP,1665,0.38195943047956
+crossing topology,crossing_90_d_2,prospective risk,low,direct MLP,2343,0.395918761192533
+crossing topology,crossing_90_d_2,prospective risk,medium,direct MLP,1628,0.39178840418043404
+crossing topology,crossing_90_d_2,prospective risk,no projected conflict,direct MLP,364,0.3901373053414117
+crossing topology,crossing_90_d_2,time to closest approach,1-2 s,direct MLP,606,0.35408664367643944
+crossing topology,crossing_90_d_2,time to closest approach,2-3 s,direct MLP,161,0.36751387844437894
+crossing topology,crossing_90_d_2,time to closest approach,<1 s,direct MLP,4869,0.3956924638318657
+crossing topology,crossing_90_d_2,time to closest approach,none,direct MLP,364,0.3901373053414117
+crossing topology,crossing_90_d_2,closest clearance,0.25-0.75 m,direct MLP,723,0.42243176648116204
+crossing topology,crossing_90_d_2,closest clearance,<0.25 m,direct MLP,4514,0.3815867076450765
+crossing topology,crossing_90_d_2,closest clearance,>=0.75 m,direct MLP,399,0.430018006799478
+crossing topology,crossing_90_d_2,closest clearance,none,direct MLP,364,0.3901373053414117
+crossing topology,crossing_90_d_2,prospective risk,high,graph interaction network,1665,0.37966668460875885
+crossing topology,crossing_90_d_2,prospective risk,low,graph interaction network,2343,0.36915654672265097
+crossing topology,crossing_90_d_2,prospective risk,medium,graph interaction network,1628,0.3765884995059648
+crossing topology,crossing_90_d_2,prospective risk,no projected conflict,graph interaction network,364,0.36332924858974963
+crossing topology,crossing_90_d_2,time to closest approach,1-2 s,graph interaction network,606,0.32845662015142135
+crossing topology,crossing_90_d_2,time to closest approach,2-3 s,graph interaction network,161,0.3437660899854997
+crossing topology,crossing_90_d_2,time to closest approach,<1 s,graph interaction network,4869,0.380727378309517
+crossing topology,crossing_90_d_2,time to closest approach,none,graph interaction network,364,0.36332924858974963
+crossing topology,crossing_90_d_2,closest clearance,0.25-0.75 m,graph interaction network,723,0.4040590892545785
+crossing topology,crossing_90_d_2,closest clearance,<0.25 m,graph interaction network,4514,0.36731364977129505
+crossing topology,crossing_90_d_2,closest clearance,>=0.75 m,graph interaction network,399,0.3977255397798787
+crossing topology,crossing_90_d_2,closest clearance,none,graph interaction network,364,0.36332924858974963
+crossing topology,crossing_90_d_2,prospective risk,high,anchored coarse MLP,1665,0.37664674893920325
+crossing topology,crossing_90_d_2,prospective risk,low,anchored coarse MLP,2343,0.3621407887240283
+crossing topology,crossing_90_d_2,prospective risk,medium,anchored coarse MLP,1628,0.37534516125867445
+crossing topology,crossing_90_d_2,prospective risk,no projected conflict,anchored coarse MLP,364,0.3476253690445912
+crossing topology,crossing_90_d_2,time to closest approach,1-2 s,anchored coarse MLP,606,0.32535930982031414
+crossing topology,crossing_90_d_2,time to closest approach,2-3 s,anchored coarse MLP,161,0.3380164758427173
+crossing topology,crossing_90_d_2,time to closest approach,<1 s,anchored coarse MLP,4869,0.376526857782672
+crossing topology,crossing_90_d_2,time to closest approach,none,anchored coarse MLP,364,0.3476253690445912
+crossing topology,crossing_90_d_2,closest clearance,0.25-0.75 m,anchored coarse MLP,723,0.38656142150126477
+crossing topology,crossing_90_d_2,closest clearance,<0.25 m,anchored coarse MLP,4514,0.3672139438869166
+crossing topology,crossing_90_d_2,closest clearance,>=0.75 m,anchored coarse MLP,399,0.3749777341419578
+crossing topology,crossing_90_d_2,closest clearance,none,anchored coarse MLP,364,0.3476253690445912
+crossing topology,crossing_90_d_2,prospective risk,high,GEL-Ped,1665,0.3747264456111124
+crossing topology,crossing_90_d_2,prospective risk,low,GEL-Ped,2343,0.34452974004831854
+crossing topology,crossing_90_d_2,prospective risk,medium,GEL-Ped,1628,0.3654314370298993
+crossing topology,crossing_90_d_2,prospective risk,no projected conflict,GEL-Ped,364,0.3356768648210552
+crossing topology,crossing_90_d_2,time to closest approach,1-2 s,GEL-Ped,606,0.30826889581733596
+crossing topology,crossing_90_d_2,time to closest approach,2-3 s,GEL-Ped,161,0.3209567226953488
+crossing topology,crossing_90_d_2,time to closest approach,<1 s,GEL-Ped,4869,0.36681652484897065
+crossing topology,crossing_90_d_2,time to closest approach,none,GEL-Ped,364,0.3356768648210552
+crossing topology,crossing_90_d_2,closest clearance,0.25-0.75 m,GEL-Ped,723,0.3735431062782006
+crossing topology,crossing_90_d_2,closest clearance,<0.25 m,GEL-Ped,4514,0.35803869802818744
+crossing topology,crossing_90_d_2,closest clearance,>=0.75 m,GEL-Ped,399,0.35320779169948224
+crossing topology,crossing_90_d_2,closest clearance,none,GEL-Ped,364,0.3356768648210552
+crossing topology,crossing_90_d_3,prospective risk,high,direct MLP,1309,0.4305759447481353
+crossing topology,crossing_90_d_3,prospective risk,low,direct MLP,2900,0.34008123224469466
+crossing topology,crossing_90_d_3,prospective risk,medium,direct MLP,1500,0.3874649308209658
+crossing topology,crossing_90_d_3,prospective risk,no projected conflict,direct MLP,291,0.34801718879519317
+crossing topology,crossing_90_d_3,time to closest approach,1-2 s,direct MLP,694,0.30525682606382737
+crossing topology,crossing_90_d_3,time to closest approach,2-3 s,direct MLP,223,0.3006654267202473
+crossing topology,crossing_90_d_3,time to closest approach,<1 s,direct MLP,4792,0.3872038862514599
+crossing topology,crossing_90_d_3,time to closest approach,none,direct MLP,291,0.34801718879519317
+crossing topology,crossing_90_d_3,closest clearance,0.25-0.75 m,direct MLP,945,0.37069776946737487
+crossing topology,crossing_90_d_3,closest clearance,<0.25 m,direct MLP,4214,0.3807662111135674
+crossing topology,crossing_90_d_3,closest clearance,>=0.75 m,direct MLP,550,0.336991593348601
+crossing topology,crossing_90_d_3,closest clearance,none,direct MLP,291,0.34801718879519317
+crossing topology,crossing_90_d_3,prospective risk,high,graph interaction network,1309,0.42581641226828304
+crossing topology,crossing_90_d_3,prospective risk,low,graph interaction network,2900,0.336295537938159
+crossing topology,crossing_90_d_3,prospective risk,medium,graph interaction network,1500,0.3845546133976466
+crossing topology,crossing_90_d_3,prospective risk,no projected conflict,graph interaction network,291,0.3559504646950025
+crossing topology,crossing_90_d_3,time to closest approach,1-2 s,graph interaction network,694,0.3018483869332147
+crossing topology,crossing_90_d_3,time to closest approach,2-3 s,graph interaction network,223,0.286842417814753
+crossing topology,crossing_90_d_3,time to closest approach,<1 s,graph interaction network,4792,0.3837162298704015
+crossing topology,crossing_90_d_3,time to closest approach,none,graph interaction network,291,0.3559504646950025
+crossing topology,crossing_90_d_3,closest clearance,0.25-0.75 m,graph interaction network,945,0.3638018340199158
+crossing topology,crossing_90_d_3,closest clearance,<0.25 m,graph interaction network,4214,0.37760280284863335
+crossing topology,crossing_90_d_3,closest clearance,>=0.75 m,graph interaction network,550,0.3336423477475643
+crossing topology,crossing_90_d_3,closest clearance,none,graph interaction network,291,0.3559504646950025
+crossing topology,crossing_90_d_3,prospective risk,high,anchored coarse MLP,1309,0.4227665903892146
+crossing topology,crossing_90_d_3,prospective risk,low,anchored coarse MLP,2900,0.3267102809843152
+crossing topology,crossing_90_d_3,prospective risk,medium,anchored coarse MLP,1500,0.37832600615786877
+crossing topology,crossing_90_d_3,prospective risk,no projected conflict,anchored coarse MLP,291,0.3295682575381655
+crossing topology,crossing_90_d_3,time to closest approach,1-2 s,anchored coarse MLP,694,0.29463836490509787
+crossing topology,crossing_90_d_3,time to closest approach,2-3 s,anchored coarse MLP,223,0.281741315095386
+crossing topology,crossing_90_d_3,time to closest approach,<1 s,anchored coarse MLP,4792,0.37677007584184863
+crossing topology,crossing_90_d_3,time to closest approach,none,anchored coarse MLP,291,0.3295682575381655
+crossing topology,crossing_90_d_3,closest clearance,0.25-0.75 m,anchored coarse MLP,945,0.3542435102882381
+crossing topology,crossing_90_d_3,closest clearance,<0.25 m,anchored coarse MLP,4214,0.3719614783701913
+crossing topology,crossing_90_d_3,closest clearance,>=0.75 m,anchored coarse MLP,550,0.32075013307363354
+crossing topology,crossing_90_d_3,closest clearance,none,anchored coarse MLP,291,0.3295682575381655
+crossing topology,crossing_90_d_3,prospective risk,high,GEL-Ped,1309,0.41954222810886865
+crossing topology,crossing_90_d_3,prospective risk,low,GEL-Ped,2900,0.313174329519061
+crossing topology,crossing_90_d_3,prospective risk,medium,GEL-Ped,1500,0.37324011509985716
+crossing topology,crossing_90_d_3,prospective risk,no projected conflict,GEL-Ped,291,0.32007818657088083
+crossing topology,crossing_90_d_3,time to closest approach,1-2 s,GEL-Ped,694,0.2857747186747861
+crossing topology,crossing_90_d_3,time to closest approach,2-3 s,GEL-Ped,223,0.26821715924607975
+crossing topology,crossing_90_d_3,time to closest approach,<1 s,GEL-Ped,4792,0.36860114323728504
+crossing topology,crossing_90_d_3,time to closest approach,none,GEL-Ped,291,0.32007818657088083
+crossing topology,crossing_90_d_3,closest clearance,0.25-0.75 m,GEL-Ped,945,0.34243140863497395
+crossing topology,crossing_90_d_3,closest clearance,<0.25 m,GEL-Ped,4214,0.36462248757330057
+crossing topology,crossing_90_d_3,closest clearance,>=0.75 m,GEL-Ped,550,0.30964501315526793
+crossing topology,crossing_90_d_3,closest clearance,none,GEL-Ped,291,0.32007818657088083
+crossing topology,crossing_90_d_5,prospective risk,high,direct MLP,1921,0.36032747947770494
+crossing topology,crossing_90_d_5,prospective risk,low,direct MLP,2005,0.34745423993761576
+crossing topology,crossing_90_d_5,prospective risk,medium,direct MLP,1876,0.35476002193887546
+crossing topology,crossing_90_d_5,prospective risk,no projected conflict,direct MLP,198,0.35161798358360224
+crossing topology,crossing_90_d_5,time to closest approach,1-2 s,direct MLP,528,0.3125628457817808
+crossing topology,crossing_90_d_5,time to closest approach,2-3 s,direct MLP,142,0.3255093382648431
+crossing topology,crossing_90_d_5,time to closest approach,<1 s,direct MLP,5132,0.3588708791846252
+crossing topology,crossing_90_d_5,time to closest approach,none,direct MLP,198,0.35161798358360224
+crossing topology,crossing_90_d_5,closest clearance,0.25-0.75 m,direct MLP,617,0.3672910968023088
+crossing topology,crossing_90_d_5,closest clearance,<0.25 m,direct MLP,4982,0.35231267942089955
+crossing topology,crossing_90_d_5,closest clearance,>=0.75 m,direct MLP,203,0.3575281534465404
+crossing topology,crossing_90_d_5,closest clearance,none,direct MLP,198,0.35161798358360224
+crossing topology,crossing_90_d_5,prospective risk,high,graph interaction network,1921,0.39224015432411347
+crossing topology,crossing_90_d_5,prospective risk,low,graph interaction network,2005,0.36279184240406287
+crossing topology,crossing_90_d_5,prospective risk,medium,graph interaction network,1876,0.37009930824732884
+crossing topology,crossing_90_d_5,prospective risk,no projected conflict,graph interaction network,198,0.35814077362215474
+crossing topology,crossing_90_d_5,time to closest approach,1-2 s,graph interaction network,528,0.3094814516662175
+crossing topology,crossing_90_d_5,time to closest approach,2-3 s,graph interaction network,142,0.31089372516702785
+crossing topology,crossing_90_d_5,time to closest approach,<1 s,graph interaction network,5132,0.38282250811924085
+crossing topology,crossing_90_d_5,time to closest approach,none,graph interaction network,198,0.35814077362215474
+crossing topology,crossing_90_d_5,closest clearance,0.25-0.75 m,graph interaction network,617,0.40514944501419675
+crossing topology,crossing_90_d_5,closest clearance,<0.25 m,graph interaction network,4982,0.3725780473935366
+crossing topology,crossing_90_d_5,closest clearance,>=0.75 m,graph interaction network,203,0.3406389353173289
+crossing topology,crossing_90_d_5,closest clearance,none,graph interaction network,198,0.35814077362215474
+crossing topology,crossing_90_d_5,prospective risk,high,anchored coarse MLP,1921,0.36354995595773215
+crossing topology,crossing_90_d_5,prospective risk,low,anchored coarse MLP,2005,0.35128022088878746
+crossing topology,crossing_90_d_5,prospective risk,medium,anchored coarse MLP,1876,0.3609703615708168
+crossing topology,crossing_90_d_5,prospective risk,no projected conflict,anchored coarse MLP,198,0.3638807435911313
+crossing topology,crossing_90_d_5,time to closest approach,1-2 s,anchored coarse MLP,528,0.3149205680634943
+crossing topology,crossing_90_d_5,time to closest approach,2-3 s,anchored coarse MLP,142,0.32908205746447006
+crossing topology,crossing_90_d_5,time to closest approach,<1 s,anchored coarse MLP,5132,0.3634746638646469
+crossing topology,crossing_90_d_5,time to closest approach,none,anchored coarse MLP,198,0.3638807435911313
+crossing topology,crossing_90_d_5,closest clearance,0.25-0.75 m,anchored coarse MLP,617,0.3735655325040832
+crossing topology,crossing_90_d_5,closest clearance,<0.25 m,anchored coarse MLP,4982,0.3570219331263722
+crossing topology,crossing_90_d_5,closest clearance,>=0.75 m,anchored coarse MLP,203,0.3482427294321474
+crossing topology,crossing_90_d_5,closest clearance,none,anchored coarse MLP,198,0.3638807435911313
+crossing topology,crossing_90_d_5,prospective risk,high,GEL-Ped,1921,0.36093472127986365
+crossing topology,crossing_90_d_5,prospective risk,low,GEL-Ped,2005,0.3327038306301613
+crossing topology,crossing_90_d_5,prospective risk,medium,GEL-Ped,1876,0.3497534828417134
+crossing topology,crossing_90_d_5,prospective risk,no projected conflict,GEL-Ped,198,0.3355233126220653
+crossing topology,crossing_90_d_5,time to closest approach,1-2 s,GEL-Ped,528,0.30188646316932616
+crossing topology,crossing_90_d_5,time to closest approach,2-3 s,GEL-Ped,142,0.3000199378512909
+crossing topology,crossing_90_d_5,time to closest approach,<1 s,GEL-Ped,5132,0.3533544919952908
+crossing topology,crossing_90_d_5,time to closest approach,none,GEL-Ped,198,0.3355233126220653
+crossing topology,crossing_90_d_5,closest clearance,0.25-0.75 m,GEL-Ped,617,0.35729855241543385
+crossing topology,crossing_90_d_5,closest clearance,<0.25 m,GEL-Ped,4982,0.3475409187838474
+crossing topology,crossing_90_d_5,closest clearance,>=0.75 m,GEL-Ped,203,0.32287727678955236
+crossing topology,crossing_90_d_5,closest clearance,none,GEL-Ped,198,0.3355233126220653
+crossing topology,crossing_90_d_6,prospective risk,high,direct MLP,1948,0.34333365546833755
+crossing topology,crossing_90_d_6,prospective risk,low,direct MLP,1780,0.32827054821566115
+crossing topology,crossing_90_d_6,prospective risk,medium,direct MLP,2089,0.3268203598590596
+crossing topology,crossing_90_d_6,prospective risk,no projected conflict,direct MLP,183,0.40310736583343804
+crossing topology,crossing_90_d_6,time to closest approach,1-2 s,direct MLP,591,0.29826926756278505
+crossing topology,crossing_90_d_6,time to closest approach,2-3 s,direct MLP,116,0.29977744469942863
+crossing topology,crossing_90_d_6,time to closest approach,<1 s,direct MLP,5110,0.33735724980980863
+crossing topology,crossing_90_d_6,time to closest approach,none,direct MLP,183,0.40310736583343804
+crossing topology,crossing_90_d_6,closest clearance,0.25-0.75 m,direct MLP,423,0.3564226710731259
+crossing topology,crossing_90_d_6,closest clearance,<0.25 m,direct MLP,5269,0.33042777889794567
+crossing topology,crossing_90_d_6,closest clearance,>=0.75 m,direct MLP,125,0.3527247610448267
+crossing topology,crossing_90_d_6,closest clearance,none,direct MLP,183,0.40310736583343804
+crossing topology,crossing_90_d_6,prospective risk,high,graph interaction network,1948,0.3451290085490401
+crossing topology,crossing_90_d_6,prospective risk,low,graph interaction network,1780,0.3265029459670125
+crossing topology,crossing_90_d_6,prospective risk,medium,graph interaction network,2089,0.3273734295266842
+crossing topology,crossing_90_d_6,prospective risk,no projected conflict,graph interaction network,183,0.42579198331980367
+crossing topology,crossing_90_d_6,time to closest approach,1-2 s,graph interaction network,591,0.2982402906071494
+crossing topology,crossing_90_d_6,time to closest approach,2-3 s,graph interaction network,116,0.3034323092940464
+crossing topology,crossing_90_d_6,time to closest approach,<1 s,graph interaction network,5110,0.3376060031176524
+crossing topology,crossing_90_d_6,time to closest approach,none,graph interaction network,183,0.42579198331980367
+crossing topology,crossing_90_d_6,closest clearance,0.25-0.75 m,graph interaction network,423,0.3539731750164555
+crossing topology,crossing_90_d_6,closest clearance,<0.25 m,graph interaction network,5269,0.33103028104082116
+crossing topology,crossing_90_d_6,closest clearance,>=0.75 m,graph interaction network,125,0.34976046063712946
+crossing topology,crossing_90_d_6,closest clearance,none,graph interaction network,183,0.42579198331980367
+crossing topology,crossing_90_d_6,prospective risk,high,anchored coarse MLP,1948,0.35043562587041255
+crossing topology,crossing_90_d_6,prospective risk,low,anchored coarse MLP,1780,0.3326496101957488
+crossing topology,crossing_90_d_6,prospective risk,medium,anchored coarse MLP,2089,0.33466807900516715
+crossing topology,crossing_90_d_6,prospective risk,no projected conflict,anchored coarse MLP,183,0.41415992436557697
+crossing topology,crossing_90_d_6,time to closest approach,1-2 s,anchored coarse MLP,591,0.30619924034285595
+crossing topology,crossing_90_d_6,time to closest approach,2-3 s,anchored coarse MLP,116,0.30906147485379964
+crossing topology,crossing_90_d_6,time to closest approach,<1 s,anchored coarse MLP,5110,0.34370895437118126
+crossing topology,crossing_90_d_6,time to closest approach,none,anchored coarse MLP,183,0.41415992436557697
+crossing topology,crossing_90_d_6,closest clearance,0.25-0.75 m,anchored coarse MLP,423,0.3625719416285339
+crossing topology,crossing_90_d_6,closest clearance,<0.25 m,anchored coarse MLP,5269,0.337424371662969
+crossing topology,crossing_90_d_6,closest clearance,>=0.75 m,anchored coarse MLP,125,0.34240728886634464
+crossing topology,crossing_90_d_6,closest clearance,none,anchored coarse MLP,183,0.41415992436557697
+crossing topology,crossing_90_d_6,prospective risk,high,GEL-Ped,1948,0.3432053401849106
+crossing topology,crossing_90_d_6,prospective risk,low,GEL-Ped,1780,0.31938182617437766
+crossing topology,crossing_90_d_6,prospective risk,medium,GEL-Ped,2089,0.3229670387350682
+crossing topology,crossing_90_d_6,prospective risk,no projected conflict,GEL-Ped,183,0.41012636848255635
+crossing topology,crossing_90_d_6,time to closest approach,1-2 s,GEL-Ped,591,0.29215412078295
+crossing topology,crossing_90_d_6,time to closest approach,2-3 s,GEL-Ped,116,0.29600506147023864
+crossing topology,crossing_90_d_6,time to closest approach,<1 s,GEL-Ped,5110,0.33349068803316756
+crossing topology,crossing_90_d_6,time to closest approach,none,GEL-Ped,183,0.41012636848255635
+crossing topology,crossing_90_d_6,closest clearance,0.25-0.75 m,GEL-Ped,423,0.34581258755258487
+crossing topology,crossing_90_d_6,closest clearance,<0.25 m,GEL-Ped,5269,0.3271870030037173
+crossing topology,crossing_90_d_6,closest clearance,>=0.75 m,GEL-Ped,125,0.33803534484083003
+crossing topology,crossing_90_d_6,closest clearance,none,GEL-Ped,183,0.41012636848255635
+crossing topology,crossing_90_d_7,prospective risk,high,direct MLP,2126,0.32432820344664637
+crossing topology,crossing_90_d_7,prospective risk,low,direct MLP,1610,0.33817084097974315
+crossing topology,crossing_90_d_7,prospective risk,medium,direct MLP,2096,0.3126819514096107
+crossing topology,crossing_90_d_7,prospective risk,no projected conflict,direct MLP,168,0.36787334568499525
+crossing topology,crossing_90_d_7,time to closest approach,1-2 s,direct MLP,584,0.29695156808770373
+crossing topology,crossing_90_d_7,time to closest approach,2-3 s,direct MLP,107,0.3424425499171406
+crossing topology,crossing_90_d_7,time to closest approach,<1 s,direct MLP,5141,0.3266754393570498
+crossing topology,crossing_90_d_7,time to closest approach,none,direct MLP,168,0.36787334568499525
+crossing topology,crossing_90_d_7,closest clearance,0.25-0.75 m,direct MLP,356,0.40682867260840405
+crossing topology,crossing_90_d_7,closest clearance,<0.25 m,direct MLP,5397,0.31704125085563756
+crossing topology,crossing_90_d_7,closest clearance,>=0.75 m,direct MLP,79,0.37777507170124236
+crossing topology,crossing_90_d_7,closest clearance,none,direct MLP,168,0.36787334568499525
+crossing topology,crossing_90_d_7,prospective risk,high,graph interaction network,2126,0.3228295391320984
+crossing topology,crossing_90_d_7,prospective risk,low,graph interaction network,1610,0.33030914193945915
+crossing topology,crossing_90_d_7,prospective risk,medium,graph interaction network,2096,0.3131476580464933
+crossing topology,crossing_90_d_7,prospective risk,no projected conflict,graph interaction network,168,0.3557838516349157
+crossing topology,crossing_90_d_7,time to closest approach,1-2 s,graph interaction network,584,0.2875409830661297
+crossing topology,crossing_90_d_7,time to closest approach,2-3 s,graph interaction network,107,0.3305058121956767
+crossing topology,crossing_90_d_7,time to closest approach,<1 s,graph interaction network,5141,0.3249319662740235
+crossing topology,crossing_90_d_7,time to closest approach,none,graph interaction network,168,0.3557838516349157
+crossing topology,crossing_90_d_7,closest clearance,0.25-0.75 m,graph interaction network,356,0.3857272837502101
+crossing topology,crossing_90_d_7,closest clearance,<0.25 m,graph interaction network,5397,0.31591534281684036
+crossing topology,crossing_90_d_7,closest clearance,>=0.75 m,graph interaction network,79,0.37588882585555206
+crossing topology,crossing_90_d_7,closest clearance,none,graph interaction network,168,0.3557838516349157
+crossing topology,crossing_90_d_7,prospective risk,high,anchored coarse MLP,2126,0.32767550507471144
+crossing topology,crossing_90_d_7,prospective risk,low,anchored coarse MLP,1610,0.34117530493632925
+crossing topology,crossing_90_d_7,prospective risk,medium,anchored coarse MLP,2096,0.3187751033566994
+crossing topology,crossing_90_d_7,prospective risk,no projected conflict,anchored coarse MLP,168,0.37388426460040725
+crossing topology,crossing_90_d_7,time to closest approach,1-2 s,anchored coarse MLP,584,0.3002074097403306
+crossing topology,crossing_90_d_7,time to closest approach,2-3 s,anchored coarse MLP,107,0.3468768262481555
+crossing topology,crossing_90_d_7,time to closest approach,<1 s,anchored coarse MLP,5141,0.330972436478183
+crossing topology,crossing_90_d_7,time to closest approach,none,anchored coarse MLP,168,0.37388426460040725
+crossing topology,crossing_90_d_7,closest clearance,0.25-0.75 m,anchored coarse MLP,356,0.404171396206784
+crossing topology,crossing_90_d_7,closest clearance,<0.25 m,anchored coarse MLP,5397,0.32192922947378977
+crossing topology,crossing_90_d_7,closest clearance,>=0.75 m,anchored coarse MLP,79,0.3761195589224189
+crossing topology,crossing_90_d_7,closest clearance,none,anchored coarse MLP,168,0.37388426460040725
+crossing topology,crossing_90_d_7,prospective risk,high,GEL-Ped,2126,0.3225836252178675
+crossing topology,crossing_90_d_7,prospective risk,low,GEL-Ped,1610,0.324731632251041
+crossing topology,crossing_90_d_7,prospective risk,medium,GEL-Ped,2096,0.31174487768726433
+crossing topology,crossing_90_d_7,prospective risk,no projected conflict,GEL-Ped,168,0.3492376587648961
+crossing topology,crossing_90_d_7,time to closest approach,1-2 s,GEL-Ped,584,0.2847051780018888
+crossing topology,crossing_90_d_7,time to closest approach,2-3 s,GEL-Ped,107,0.3290742284789637
+crossing topology,crossing_90_d_7,time to closest approach,<1 s,GEL-Ped,5141,0.32282750011403116
+crossing topology,crossing_90_d_7,time to closest approach,none,GEL-Ped,168,0.3492376587648961
+crossing topology,crossing_90_d_7,closest clearance,0.25-0.75 m,GEL-Ped,356,0.3806281444335647
+crossing topology,crossing_90_d_7,closest clearance,<0.25 m,GEL-Ped,5397,0.3141564732692625
+crossing topology,crossing_90_d_7,closest clearance,>=0.75 m,GEL-Ped,79,0.36417770104166297
+crossing topology,crossing_90_d_7,closest clearance,none,GEL-Ped,168,0.3492376587648961
+crossing topology,crossing_90_d_8,prospective risk,high,direct MLP,2400,0.3243322217074623
+crossing topology,crossing_90_d_8,prospective risk,low,direct MLP,1398,0.35442049170594636
+crossing topology,crossing_90_d_8,prospective risk,medium,direct MLP,2055,0.32329761937743734
+crossing topology,crossing_90_d_8,prospective risk,no projected conflict,direct MLP,147,0.39876983759798856
+crossing topology,crossing_90_d_8,time to closest approach,1-2 s,direct MLP,477,0.28801017166122295
+crossing topology,crossing_90_d_8,time to closest approach,2-3 s,direct MLP,90,0.2959545108503214
+crossing topology,crossing_90_d_8,time to closest approach,<1 s,direct MLP,5286,0.33561707942085334
+crossing topology,crossing_90_d_8,time to closest approach,none,direct MLP,147,0.39876983759798856
+crossing topology,crossing_90_d_8,closest clearance,0.25-0.75 m,direct MLP,267,0.4404345221869408
+crossing topology,crossing_90_d_8,closest clearance,<0.25 m,direct MLP,5536,0.32461011731744355
+crossing topology,crossing_90_d_8,closest clearance,>=0.75 m,direct MLP,50,0.39313329793375695
+crossing topology,crossing_90_d_8,closest clearance,none,direct MLP,147,0.39876983759798856
+crossing topology,crossing_90_d_8,prospective risk,high,graph interaction network,2400,0.3207309506518467
+crossing topology,crossing_90_d_8,prospective risk,low,graph interaction network,1398,0.3521127958811926
+crossing topology,crossing_90_d_8,prospective risk,medium,graph interaction network,2055,0.31985735633369533
+crossing topology,crossing_90_d_8,prospective risk,no projected conflict,graph interaction network,147,0.41326008882837395
+crossing topology,crossing_90_d_8,time to closest approach,1-2 s,graph interaction network,477,0.2942211426717325
+crossing topology,crossing_90_d_8,time to closest approach,2-3 s,graph interaction network,90,0.30662190740812656
+crossing topology,crossing_90_d_8,time to closest approach,<1 s,graph interaction network,5286,0.3314467227058685
+crossing topology,crossing_90_d_8,time to closest approach,none,graph interaction network,147,0.41326008882837395
+crossing topology,crossing_90_d_8,closest clearance,0.25-0.75 m,graph interaction network,267,0.4301131477273983
+crossing topology,crossing_90_d_8,closest clearance,<0.25 m,graph interaction network,5536,0.3218028126199147
+crossing topology,crossing_90_d_8,closest clearance,>=0.75 m,graph interaction network,50,0.39423768430150047
+crossing topology,crossing_90_d_8,closest clearance,none,graph interaction network,147,0.41326008882837395
+crossing topology,crossing_90_d_8,prospective risk,high,anchored coarse MLP,2400,0.3275065095809812
+crossing topology,crossing_90_d_8,prospective risk,low,anchored coarse MLP,1398,0.35407063248958276
+crossing topology,crossing_90_d_8,prospective risk,medium,anchored coarse MLP,2055,0.3281190310246114
+crossing topology,crossing_90_d_8,prospective risk,no projected conflict,anchored coarse MLP,147,0.3961764170441762
+crossing topology,crossing_90_d_8,time to closest approach,1-2 s,anchored coarse MLP,477,0.2931865487066315
+crossing topology,crossing_90_d_8,time to closest approach,2-3 s,anchored coarse MLP,90,0.3036345291316843
+crossing topology,crossing_90_d_8,time to closest approach,<1 s,anchored coarse MLP,5286,0.3382067910601865
+crossing topology,crossing_90_d_8,time to closest approach,none,anchored coarse MLP,147,0.3961764170441762
+crossing topology,crossing_90_d_8,closest clearance,0.25-0.75 m,anchored coarse MLP,267,0.43722353828079574
+crossing topology,crossing_90_d_8,closest clearance,<0.25 m,anchored coarse MLP,5536,0.3277600034687366
+crossing topology,crossing_90_d_8,closest clearance,>=0.75 m,anchored coarse MLP,50,0.4044221333175958
+crossing topology,crossing_90_d_8,closest clearance,none,anchored coarse MLP,147,0.3961764170441762
+crossing topology,crossing_90_d_8,prospective risk,high,GEL-Ped,2400,0.318878711287606
+crossing topology,crossing_90_d_8,prospective risk,low,GEL-Ped,1398,0.3424558221699332
+crossing topology,crossing_90_d_8,prospective risk,medium,GEL-Ped,2055,0.3170998352701816
+crossing topology,crossing_90_d_8,prospective risk,no projected conflict,GEL-Ped,147,0.3789924920970354
+crossing topology,crossing_90_d_8,time to closest approach,1-2 s,GEL-Ped,477,0.2816544484585508
+crossing topology,crossing_90_d_8,time to closest approach,2-3 s,GEL-Ped,90,0.291161235869253
+crossing topology,crossing_90_d_8,time to closest approach,<1 s,GEL-Ped,5286,0.3281351475378533
+crossing topology,crossing_90_d_8,time to closest approach,none,GEL-Ped,147,0.3789924920970354
+crossing topology,crossing_90_d_8,closest clearance,0.25-0.75 m,GEL-Ped,267,0.42309561874061824
+crossing topology,crossing_90_d_8,closest clearance,<0.25 m,GEL-Ped,5536,0.3179580326667458
+crossing topology,crossing_90_d_8,closest clearance,>=0.75 m,GEL-Ped,50,0.37834336192550083
+crossing topology,crossing_90_d_8,closest clearance,none,GEL-Ped,147,0.3789924920970354
+crossing topology,crossing_90_e_1,prospective risk,high,direct MLP,1626,0.3444345629118073
+crossing topology,crossing_90_e_1,prospective risk,low,direct MLP,2128,0.34123529480284287
+crossing topology,crossing_90_e_1,prospective risk,medium,direct MLP,1982,0.32795593648223653
+crossing topology,crossing_90_e_1,prospective risk,no projected conflict,direct MLP,264,0.3802207564045397
+crossing topology,crossing_90_e_1,time to closest approach,1-2 s,direct MLP,610,0.3229048725441409
+crossing topology,crossing_90_e_1,time to closest approach,2-3 s,direct MLP,131,0.330788856564132
+crossing topology,crossing_90_e_1,time to closest approach,<1 s,direct MLP,4995,0.33955902533020826
+crossing topology,crossing_90_e_1,time to closest approach,none,direct MLP,264,0.3802207564045397
+crossing topology,crossing_90_e_1,closest clearance,0.25-0.75 m,direct MLP,595,0.3662180305058563
+crossing topology,crossing_90_e_1,closest clearance,<0.25 m,direct MLP,4878,0.3327312597067669
+crossing topology,crossing_90_e_1,closest clearance,>=0.75 m,direct MLP,263,0.35965720009045676
+crossing topology,crossing_90_e_1,closest clearance,none,direct MLP,264,0.3802207564045397
+crossing topology,crossing_90_e_1,prospective risk,high,graph interaction network,1626,0.34579106000250603
+crossing topology,crossing_90_e_1,prospective risk,low,graph interaction network,2128,0.3395511550756973
+crossing topology,crossing_90_e_1,prospective risk,medium,graph interaction network,1982,0.32705316042591215
+crossing topology,crossing_90_e_1,prospective risk,no projected conflict,graph interaction network,264,0.37723728767901255
+crossing topology,crossing_90_e_1,time to closest approach,1-2 s,graph interaction network,610,0.324289749644861
+crossing topology,crossing_90_e_1,time to closest approach,2-3 s,graph interaction network,131,0.32414055267101366
+crossing topology,crossing_90_e_1,time to closest approach,<1 s,graph interaction network,4995,0.3389494988031579
+crossing topology,crossing_90_e_1,time to closest approach,none,graph interaction network,264,0.37723728767901255
+crossing topology,crossing_90_e_1,closest clearance,0.25-0.75 m,graph interaction network,595,0.3561950039328629
+crossing topology,crossing_90_e_1,closest clearance,<0.25 m,graph interaction network,4878,0.33222480032146295
+crossing topology,crossing_90_e_1,closest clearance,>=0.75 m,graph interaction network,263,0.379520981403729
+crossing topology,crossing_90_e_1,closest clearance,none,graph interaction network,264,0.37723728767901255
+crossing topology,crossing_90_e_1,prospective risk,high,anchored coarse MLP,1626,0.3440006081103747
+crossing topology,crossing_90_e_1,prospective risk,low,anchored coarse MLP,2128,0.34073114129653664
+crossing topology,crossing_90_e_1,prospective risk,medium,anchored coarse MLP,1982,0.3287831313506025
+crossing topology,crossing_90_e_1,prospective risk,no projected conflict,anchored coarse MLP,264,0.3745194633398356
+crossing topology,crossing_90_e_1,time to closest approach,1-2 s,anchored coarse MLP,610,0.31988816393275815
+crossing topology,crossing_90_e_1,time to closest approach,2-3 s,anchored coarse MLP,131,0.3330061829389174
+crossing topology,crossing_90_e_1,time to closest approach,<1 s,anchored coarse MLP,4995,0.33980932177337464
+crossing topology,crossing_90_e_1,time to closest approach,none,anchored coarse MLP,264,0.3745194633398356
+crossing topology,crossing_90_e_1,closest clearance,0.25-0.75 m,anchored coarse MLP,595,0.36409894154888195
+crossing topology,crossing_90_e_1,closest clearance,<0.25 m,anchored coarse MLP,4878,0.3331096943231094
+crossing topology,crossing_90_e_1,closest clearance,>=0.75 m,anchored coarse MLP,263,0.3572758993958288
+crossing topology,crossing_90_e_1,closest clearance,none,anchored coarse MLP,264,0.3745194633398356
+crossing topology,crossing_90_e_1,prospective risk,high,GEL-Ped,1626,0.34280497800259946
+crossing topology,crossing_90_e_1,prospective risk,low,GEL-Ped,2128,0.3247032035351916
+crossing topology,crossing_90_e_1,prospective risk,medium,GEL-Ped,1982,0.3210345525954135
+crossing topology,crossing_90_e_1,prospective risk,no projected conflict,GEL-Ped,264,0.3532302266238018
+crossing topology,crossing_90_e_1,time to closest approach,1-2 s,GEL-Ped,610,0.3135843148149108
+crossing topology,crossing_90_e_1,time to closest approach,2-3 s,GEL-Ped,131,0.31416905171304965
+crossing topology,crossing_90_e_1,time to closest approach,<1 s,GEL-Ped,4995,0.3308605815398912
+crossing topology,crossing_90_e_1,time to closest approach,none,GEL-Ped,264,0.3532302266238018
+crossing topology,crossing_90_e_1,closest clearance,0.25-0.75 m,GEL-Ped,595,0.34353852104222815
+crossing topology,crossing_90_e_1,closest clearance,<0.25 m,GEL-Ped,4878,0.32629692842879865
+crossing topology,crossing_90_e_1,closest clearance,>=0.75 m,GEL-Ped,263,0.33847358609066275
+crossing topology,crossing_90_e_1,closest clearance,none,GEL-Ped,264,0.3532302266238018
+crossing topology,crossing_90_e_2,prospective risk,high,direct MLP,1949,0.3635836528097577
+crossing topology,crossing_90_e_2,prospective risk,low,direct MLP,1843,0.3940872449926786
+crossing topology,crossing_90_e_2,prospective risk,medium,direct MLP,1914,0.37028870979349254
+crossing topology,crossing_90_e_2,prospective risk,no projected conflict,direct MLP,294,0.4577410305588634
+crossing topology,crossing_90_e_2,time to closest approach,1-2 s,direct MLP,485,0.34715343983820307
+crossing topology,crossing_90_e_2,time to closest approach,2-3 s,direct MLP,124,0.36153839795412096
+crossing topology,crossing_90_e_2,time to closest approach,<1 s,direct MLP,5097,0.3788732552352613
+crossing topology,crossing_90_e_2,time to closest approach,none,direct MLP,294,0.4577410305588634
+crossing topology,crossing_90_e_2,closest clearance,0.25-0.75 m,direct MLP,554,0.4580978691874196
+crossing topology,crossing_90_e_2,closest clearance,<0.25 m,direct MLP,4935,0.3645604829688129
+crossing topology,crossing_90_e_2,closest clearance,>=0.75 m,direct MLP,217,0.3967887743274437
+crossing topology,crossing_90_e_2,closest clearance,none,direct MLP,294,0.4577410305588634
+crossing topology,crossing_90_e_2,prospective risk,high,graph interaction network,1949,0.3653683433942581
+crossing topology,crossing_90_e_2,prospective risk,low,graph interaction network,1843,0.38883528617132185
+crossing topology,crossing_90_e_2,prospective risk,medium,graph interaction network,1914,0.36441630393882896
+crossing topology,crossing_90_e_2,prospective risk,no projected conflict,graph interaction network,294,0.4406755545920144
+crossing topology,crossing_90_e_2,time to closest approach,1-2 s,graph interaction network,485,0.3369492893056304
+crossing topology,crossing_90_e_2,time to closest approach,2-3 s,graph interaction network,124,0.3530011152008348
+crossing topology,crossing_90_e_2,time to closest approach,<1 s,graph interaction network,5097,0.3764944929233447
+crossing topology,crossing_90_e_2,time to closest approach,none,graph interaction network,294,0.4406755545920144
+crossing topology,crossing_90_e_2,closest clearance,0.25-0.75 m,graph interaction network,554,0.4492860810562833
+crossing topology,crossing_90_e_2,closest clearance,<0.25 m,graph interaction network,4935,0.36138838926007805
+crossing topology,crossing_90_e_2,closest clearance,>=0.75 m,graph interaction network,217,0.4110121549084546
+crossing topology,crossing_90_e_2,closest clearance,none,graph interaction network,294,0.4406755545920144
+crossing topology,crossing_90_e_2,prospective risk,high,anchored coarse MLP,1949,0.36211277783006207
+crossing topology,crossing_90_e_2,prospective risk,low,anchored coarse MLP,1843,0.39354015631422773
+crossing topology,crossing_90_e_2,prospective risk,medium,anchored coarse MLP,1914,0.3708759085621899
+crossing topology,crossing_90_e_2,prospective risk,no projected conflict,anchored coarse MLP,294,0.4665173043598333
+crossing topology,crossing_90_e_2,time to closest approach,1-2 s,anchored coarse MLP,485,0.3411146251670375
+crossing topology,crossing_90_e_2,time to closest approach,2-3 s,anchored coarse MLP,124,0.36373922500045497
+crossing topology,crossing_90_e_2,time to closest approach,<1 s,anchored coarse MLP,5097,0.37881534349161905
+crossing topology,crossing_90_e_2,time to closest approach,none,anchored coarse MLP,294,0.4665173043598333
+crossing topology,crossing_90_e_2,closest clearance,0.25-0.75 m,anchored coarse MLP,554,0.4614157763828153
+crossing topology,crossing_90_e_2,closest clearance,<0.25 m,anchored coarse MLP,4935,0.3641595936677638
+crossing topology,crossing_90_e_2,closest clearance,>=0.75 m,anchored coarse MLP,217,0.38325999908237346
+crossing topology,crossing_90_e_2,closest clearance,none,anchored coarse MLP,294,0.4665173043598333
+crossing topology,crossing_90_e_2,prospective risk,high,GEL-Ped,1949,0.36539196968565535
+crossing topology,crossing_90_e_2,prospective risk,low,GEL-Ped,1843,0.37028002097649293
+crossing topology,crossing_90_e_2,prospective risk,medium,GEL-Ped,1914,0.3635969860749714
+crossing topology,crossing_90_e_2,prospective risk,no projected conflict,GEL-Ped,294,0.4258324074128698
+crossing topology,crossing_90_e_2,time to closest approach,1-2 s,GEL-Ped,485,0.32619960646011603
+crossing topology,crossing_90_e_2,time to closest approach,2-3 s,GEL-Ped,124,0.33356253247278533
+crossing topology,crossing_90_e_2,time to closest approach,<1 s,GEL-Ped,5097,0.37072978897190517
+crossing topology,crossing_90_e_2,time to closest approach,none,GEL-Ped,294,0.4258324074128698
+crossing topology,crossing_90_e_2,closest clearance,0.25-0.75 m,GEL-Ped,554,0.4296024421443999
+crossing topology,crossing_90_e_2,closest clearance,<0.25 m,GEL-Ped,4935,0.3589754298993909
+crossing topology,crossing_90_e_2,closest clearance,>=0.75 m,GEL-Ped,217,0.3576188228167817
+crossing topology,crossing_90_e_2,closest clearance,none,GEL-Ped,294,0.4258324074128698
+crossing topology,crossing_90_e_3,prospective risk,high,direct MLP,1904,0.39075169806370136
+crossing topology,crossing_90_e_3,prospective risk,low,direct MLP,1930,0.3906155877353104
+crossing topology,crossing_90_e_3,prospective risk,medium,direct MLP,1888,0.3909015429693094
+crossing topology,crossing_90_e_3,prospective risk,no projected conflict,direct MLP,278,0.4188743061159122
+crossing topology,crossing_90_e_3,time to closest approach,1-2 s,direct MLP,510,0.33710352434743673
+crossing topology,crossing_90_e_3,time to closest approach,2-3 s,direct MLP,116,0.3699437346588121
+crossing topology,crossing_90_e_3,time to closest approach,<1 s,direct MLP,5096,0.39617948469068387
+crossing topology,crossing_90_e_3,time to closest approach,none,direct MLP,278,0.4188743061159122
+crossing topology,crossing_90_e_3,closest clearance,0.25-0.75 m,direct MLP,593,0.4271006197668356
+crossing topology,crossing_90_e_3,closest clearance,<0.25 m,direct MLP,4906,0.38490592772373494
+crossing topology,crossing_90_e_3,closest clearance,>=0.75 m,direct MLP,223,0.4164858021994279
+crossing topology,crossing_90_e_3,closest clearance,none,direct MLP,278,0.4188743061159122
+crossing topology,crossing_90_e_3,prospective risk,high,graph interaction network,1904,0.38939149779021953
+crossing topology,crossing_90_e_3,prospective risk,low,graph interaction network,1930,0.38353718027531863
+crossing topology,crossing_90_e_3,prospective risk,medium,graph interaction network,1888,0.3858445703198379
+crossing topology,crossing_90_e_3,prospective risk,no projected conflict,graph interaction network,278,0.4197059066412973
+crossing topology,crossing_90_e_3,time to closest approach,1-2 s,graph interaction network,510,0.34094871896479906
+crossing topology,crossing_90_e_3,time to closest approach,2-3 s,graph interaction network,116,0.3599736326365279
+crossing topology,crossing_90_e_3,time to closest approach,<1 s,graph interaction network,5096,0.3910701029406511
+crossing topology,crossing_90_e_3,time to closest approach,none,graph interaction network,278,0.4197059066412973
+crossing topology,crossing_90_e_3,closest clearance,0.25-0.75 m,graph interaction network,593,0.4111380169136003
+crossing topology,crossing_90_e_3,closest clearance,<0.25 m,graph interaction network,4906,0.3822337118428483
+crossing topology,crossing_90_e_3,closest clearance,>=0.75 m,graph interaction network,223,0.4054615479422825
+crossing topology,crossing_90_e_3,closest clearance,none,graph interaction network,278,0.4197059066412973
+crossing topology,crossing_90_e_3,prospective risk,high,anchored coarse MLP,1904,0.39256889154451147
+crossing topology,crossing_90_e_3,prospective risk,low,anchored coarse MLP,1930,0.40482419729578667
+crossing topology,crossing_90_e_3,prospective risk,medium,anchored coarse MLP,1888,0.3971708291276784
+crossing topology,crossing_90_e_3,prospective risk,no projected conflict,anchored coarse MLP,278,0.4346075320576129
+crossing topology,crossing_90_e_3,time to closest approach,1-2 s,anchored coarse MLP,510,0.3478864124279358
+crossing topology,crossing_90_e_3,time to closest approach,2-3 s,anchored coarse MLP,116,0.3903760925164956
+crossing topology,crossing_90_e_3,time to closest approach,<1 s,anchored coarse MLP,5096,0.403122894246021
+crossing topology,crossing_90_e_3,time to closest approach,none,anchored coarse MLP,278,0.4346075320576129
+crossing topology,crossing_90_e_3,closest clearance,0.25-0.75 m,anchored coarse MLP,593,0.4445207678185264
+crossing topology,crossing_90_e_3,closest clearance,<0.25 m,anchored coarse MLP,4906,0.39040432312348555
+crossing topology,crossing_90_e_3,closest clearance,>=0.75 m,anchored coarse MLP,223,0.4371474624946333
+crossing topology,crossing_90_e_3,closest clearance,none,anchored coarse MLP,278,0.4346075320576129
+crossing topology,crossing_90_e_3,prospective risk,high,GEL-Ped,1904,0.3913851112534447
+crossing topology,crossing_90_e_3,prospective risk,low,GEL-Ped,1930,0.37392372611214064
+crossing topology,crossing_90_e_3,prospective risk,medium,GEL-Ped,1888,0.3863102165278338
+crossing topology,crossing_90_e_3,prospective risk,no projected conflict,GEL-Ped,278,0.40281518735739935
+crossing topology,crossing_90_e_3,time to closest approach,1-2 s,GEL-Ped,510,0.3296262627097396
+crossing topology,crossing_90_e_3,time to closest approach,2-3 s,GEL-Ped,116,0.3381643768869658
+crossing topology,crossing_90_e_3,time to closest approach,<1 s,GEL-Ped,5096,0.3898707675871338
+crossing topology,crossing_90_e_3,time to closest approach,none,GEL-Ped,278,0.40281518735739935
+crossing topology,crossing_90_e_3,closest clearance,0.25-0.75 m,GEL-Ped,593,0.40848291510801943
+crossing topology,crossing_90_e_3,closest clearance,<0.25 m,GEL-Ped,4906,0.38066860190439256
+crossing topology,crossing_90_e_3,closest clearance,>=0.75 m,GEL-Ped,223,0.3869971054458096
+crossing topology,crossing_90_e_3,closest clearance,none,GEL-Ped,278,0.40281518735739935
+crossing topology,crossing_90_e_4,prospective risk,high,direct MLP,1970,0.35212550737560994
+crossing topology,crossing_90_e_4,prospective risk,low,direct MLP,1745,0.38473350138716905
+crossing topology,crossing_90_e_4,prospective risk,medium,direct MLP,1993,0.36067219393551997
+crossing topology,crossing_90_e_4,prospective risk,no projected conflict,direct MLP,292,0.44296586797752946
+crossing topology,crossing_90_e_4,time to closest approach,1-2 s,direct MLP,509,0.33094120356921375
+crossing topology,crossing_90_e_4,time to closest approach,2-3 s,direct MLP,131,0.3590450877149254
+crossing topology,crossing_90_e_4,time to closest approach,<1 s,direct MLP,5068,0.3687645288965015
+crossing topology,crossing_90_e_4,time to closest approach,none,direct MLP,292,0.44296586797752946
+crossing topology,crossing_90_e_4,closest clearance,0.25-0.75 m,direct MLP,459,0.4030487964589373
+crossing topology,crossing_90_e_4,closest clearance,<0.25 m,direct MLP,5090,0.3555600342968461
+crossing topology,crossing_90_e_4,closest clearance,>=0.75 m,direct MLP,159,0.5246225106205328
+crossing topology,crossing_90_e_4,closest clearance,none,direct MLP,292,0.44296586797752946
+crossing topology,crossing_90_e_4,prospective risk,high,graph interaction network,1970,0.3493085626467362
+crossing topology,crossing_90_e_4,prospective risk,low,graph interaction network,1745,0.3739843685147864
+crossing topology,crossing_90_e_4,prospective risk,medium,graph interaction network,1993,0.3577011239848241
+crossing topology,crossing_90_e_4,prospective risk,no projected conflict,graph interaction network,292,0.42742565710467384
+crossing topology,crossing_90_e_4,time to closest approach,1-2 s,graph interaction network,509,0.32397911414937547
+crossing topology,crossing_90_e_4,time to closest approach,2-3 s,graph interaction network,131,0.3432068549664922
+crossing topology,crossing_90_e_4,time to closest approach,<1 s,graph interaction network,5068,0.3637543467818088
+crossing topology,crossing_90_e_4,time to closest approach,none,graph interaction network,292,0.42742565710467384
+crossing topology,crossing_90_e_4,closest clearance,0.25-0.75 m,graph interaction network,459,0.40166138457379874
+crossing topology,crossing_90_e_4,closest clearance,<0.25 m,graph interaction network,5090,0.35195110921917294
+crossing topology,crossing_90_e_4,closest clearance,>=0.75 m,graph interaction network,159,0.4684559025501724
+crossing topology,crossing_90_e_4,closest clearance,none,graph interaction network,292,0.42742565710467384
+crossing topology,crossing_90_e_4,prospective risk,high,anchored coarse MLP,1970,0.35499142560507935
+crossing topology,crossing_90_e_4,prospective risk,low,anchored coarse MLP,1745,0.3911728630090709
+crossing topology,crossing_90_e_4,prospective risk,medium,anchored coarse MLP,1993,0.36318269929413416
+crossing topology,crossing_90_e_4,prospective risk,no projected conflict,anchored coarse MLP,292,0.45084114695787747
+crossing topology,crossing_90_e_4,time to closest approach,1-2 s,anchored coarse MLP,509,0.33762649872608935
+crossing topology,crossing_90_e_4,time to closest approach,2-3 s,anchored coarse MLP,131,0.3726185256598742
+crossing topology,crossing_90_e_4,time to closest approach,<1 s,anchored coarse MLP,5068,0.3721617629074817
+crossing topology,crossing_90_e_4,time to closest approach,none,anchored coarse MLP,292,0.45084114695787747
+crossing topology,crossing_90_e_4,closest clearance,0.25-0.75 m,anchored coarse MLP,459,0.41384949826111245
+crossing topology,crossing_90_e_4,closest clearance,<0.25 m,anchored coarse MLP,5090,0.35863359727107674
+crossing topology,crossing_90_e_4,closest clearance,>=0.75 m,anchored coarse MLP,159,0.5312326317176845
+crossing topology,crossing_90_e_4,closest clearance,none,anchored coarse MLP,292,0.45084114695787747
+crossing topology,crossing_90_e_4,prospective risk,high,GEL-Ped,1970,0.3504437607194617
+crossing topology,crossing_90_e_4,prospective risk,low,GEL-Ped,1745,0.3630584274514141
+crossing topology,crossing_90_e_4,prospective risk,medium,GEL-Ped,1993,0.35740928692210333
+crossing topology,crossing_90_e_4,prospective risk,no projected conflict,GEL-Ped,292,0.4086467853369448
+crossing topology,crossing_90_e_4,time to closest approach,1-2 s,GEL-Ped,509,0.32263990118392055
+crossing topology,crossing_90_e_4,time to closest approach,2-3 s,GEL-Ped,131,0.3320658350619496
+crossing topology,crossing_90_e_4,time to closest approach,<1 s,GEL-Ped,5068,0.3606280912718154
+crossing topology,crossing_90_e_4,time to closest approach,none,GEL-Ped,292,0.4086467853369448
+crossing topology,crossing_90_e_4,closest clearance,0.25-0.75 m,GEL-Ped,459,0.3815951626769102
+crossing topology,crossing_90_e_4,closest clearance,<0.25 m,GEL-Ped,5090,0.3502308324933284
+crossing topology,crossing_90_e_4,closest clearance,>=0.75 m,GEL-Ped,159,0.4715284927751809
+crossing topology,crossing_90_e_4,closest clearance,none,GEL-Ped,292,0.4086467853369448
+crossing topology,crossing_90_e_5,prospective risk,high,direct MLP,2049,0.3466485207576841
+crossing topology,crossing_90_e_5,prospective risk,low,direct MLP,1682,0.35540857017139027
+crossing topology,crossing_90_e_5,prospective risk,medium,direct MLP,2052,0.342221845965192
+crossing topology,crossing_90_e_5,prospective risk,no projected conflict,direct MLP,217,0.42321216381927895
+crossing topology,crossing_90_e_5,time to closest approach,1-2 s,direct MLP,563,0.3298250489372256
+crossing topology,crossing_90_e_5,time to closest approach,2-3 s,direct MLP,129,0.3177026647144794
+crossing topology,crossing_90_e_5,time to closest approach,<1 s,direct MLP,5091,0.3503053148574795
+crossing topology,crossing_90_e_5,time to closest approach,none,direct MLP,217,0.42321216381927895
+crossing topology,crossing_90_e_5,closest clearance,0.25-0.75 m,direct MLP,397,0.3900094093941939
+crossing topology,crossing_90_e_5,closest clearance,<0.25 m,direct MLP,5228,0.34359054685793883
+crossing topology,crossing_90_e_5,closest clearance,>=0.75 m,direct MLP,158,0.36825792338282104
+crossing topology,crossing_90_e_5,closest clearance,none,direct MLP,217,0.42321216381927895
+crossing topology,crossing_90_e_5,prospective risk,high,graph interaction network,2049,0.3440121340245619
+crossing topology,crossing_90_e_5,prospective risk,low,graph interaction network,1682,0.34586902338329845
+crossing topology,crossing_90_e_5,prospective risk,medium,graph interaction network,2052,0.3367993041447146
+crossing topology,crossing_90_e_5,prospective risk,no projected conflict,graph interaction network,217,0.3988783230553683
+crossing topology,crossing_90_e_5,time to closest approach,1-2 s,graph interaction network,563,0.3271117133640866
+crossing topology,crossing_90_e_5,time to closest approach,2-3 s,graph interaction network,129,0.3102498670221977
+crossing topology,crossing_90_e_5,time to closest approach,<1 s,graph interaction network,5091,0.3443869009114821
+crossing topology,crossing_90_e_5,time to closest approach,none,graph interaction network,217,0.3988783230553683
+crossing topology,crossing_90_e_5,closest clearance,0.25-0.75 m,graph interaction network,397,0.37021637328295337
+crossing topology,crossing_90_e_5,closest clearance,<0.25 m,graph interaction network,5228,0.33943160106278947
+crossing topology,crossing_90_e_5,closest clearance,>=0.75 m,graph interaction network,158,0.35322086735854513
+crossing topology,crossing_90_e_5,closest clearance,none,graph interaction network,217,0.3988783230553683
+crossing topology,crossing_90_e_5,prospective risk,high,anchored coarse MLP,2049,0.34785595808290193
+crossing topology,crossing_90_e_5,prospective risk,low,anchored coarse MLP,1682,0.36157321071857135
+crossing topology,crossing_90_e_5,prospective risk,medium,anchored coarse MLP,2052,0.3463700710630109
+crossing topology,crossing_90_e_5,prospective risk,no projected conflict,anchored coarse MLP,217,0.4428452161715327
+crossing topology,crossing_90_e_5,time to closest approach,1-2 s,anchored coarse MLP,563,0.3338593227249379
+crossing topology,crossing_90_e_5,time to closest approach,2-3 s,anchored coarse MLP,129,0.3297132238930806
+crossing topology,crossing_90_e_5,time to closest approach,<1 s,anchored coarse MLP,5091,0.3537934516835212
+crossing topology,crossing_90_e_5,time to closest approach,none,anchored coarse MLP,217,0.4428452161715327
+crossing topology,crossing_90_e_5,closest clearance,0.25-0.75 m,anchored coarse MLP,397,0.401658281541167
+crossing topology,crossing_90_e_5,closest clearance,<0.25 m,anchored coarse MLP,5228,0.3464156149655025
+crossing topology,crossing_90_e_5,closest clearance,>=0.75 m,anchored coarse MLP,158,0.3781098643316774
+crossing topology,crossing_90_e_5,closest clearance,none,anchored coarse MLP,217,0.4428452161715327
+crossing topology,crossing_90_e_5,prospective risk,high,GEL-Ped,2049,0.34441962089095024
+crossing topology,crossing_90_e_5,prospective risk,low,GEL-Ped,1682,0.33764758602092965
+crossing topology,crossing_90_e_5,prospective risk,medium,GEL-Ped,2052,0.3376292188711374
+crossing topology,crossing_90_e_5,prospective risk,no projected conflict,GEL-Ped,217,0.4020325487716096
+crossing topology,crossing_90_e_5,time to closest approach,1-2 s,GEL-Ped,563,0.318440481204335
+crossing topology,crossing_90_e_5,time to closest approach,2-3 s,GEL-Ped,129,0.3059492494929907
+crossing topology,crossing_90_e_5,time to closest approach,<1 s,GEL-Ped,5091,0.34317696039346024
+crossing topology,crossing_90_e_5,time to closest approach,none,GEL-Ped,217,0.4020325487716096
+crossing topology,crossing_90_e_5,closest clearance,0.25-0.75 m,GEL-Ped,397,0.36636481772420443
+crossing topology,crossing_90_e_5,closest clearance,<0.25 m,GEL-Ped,5228,0.3379952473751892
+crossing topology,crossing_90_e_5,closest clearance,>=0.75 m,GEL-Ped,158,0.33937286337989575
+crossing topology,crossing_90_e_5,closest clearance,none,GEL-Ped,217,0.4020325487716096
+crossing topology,crossing_90_e_6,prospective risk,high,direct MLP,2304,0.3360113557716716
+crossing topology,crossing_90_e_6,prospective risk,low,direct MLP,1495,0.37871335074167084
+crossing topology,crossing_90_e_6,prospective risk,medium,direct MLP,2007,0.34173157624015854
+crossing topology,crossing_90_e_6,prospective risk,no projected conflict,direct MLP,194,0.4422179090388404
+crossing topology,crossing_90_e_6,time to closest approach,1-2 s,direct MLP,453,0.34035066058758684
+crossing topology,crossing_90_e_6,time to closest approach,2-3 s,direct MLP,92,0.3374624041283608
+crossing topology,crossing_90_e_6,time to closest approach,<1 s,direct MLP,5261,0.3504077621487543
+crossing topology,crossing_90_e_6,time to closest approach,none,direct MLP,194,0.4422179090388404
+crossing topology,crossing_90_e_6,closest clearance,0.25-0.75 m,direct MLP,374,0.4470383407114623
+crossing topology,crossing_90_e_6,closest clearance,<0.25 m,direct MLP,5330,0.3398791048330103
+crossing topology,crossing_90_e_6,closest clearance,>=0.75 m,direct MLP,102,0.4255983397417081
+crossing topology,crossing_90_e_6,closest clearance,none,direct MLP,194,0.4422179090388404
+crossing topology,crossing_90_e_6,prospective risk,high,graph interaction network,2304,0.3290557090635895
+crossing topology,crossing_90_e_6,prospective risk,low,graph interaction network,1495,0.3656449410108897
+crossing topology,crossing_90_e_6,prospective risk,medium,graph interaction network,2007,0.33529361912138156
+crossing topology,crossing_90_e_6,prospective risk,no projected conflict,graph interaction network,194,0.42721063570906614
+crossing topology,crossing_90_e_6,time to closest approach,1-2 s,graph interaction network,453,0.3339494059787288
+crossing topology,crossing_90_e_6,time to closest approach,2-3 s,graph interaction network,92,0.3351499836704951
+crossing topology,crossing_90_e_6,time to closest approach,<1 s,graph interaction network,5261,0.34165998206722764
+crossing topology,crossing_90_e_6,time to closest approach,none,graph interaction network,194,0.42721063570906614
+crossing topology,crossing_90_e_6,closest clearance,0.25-0.75 m,graph interaction network,374,0.4256049271812512
+crossing topology,crossing_90_e_6,closest clearance,<0.25 m,graph interaction network,5330,0.33251030580271385
+crossing topology,crossing_90_e_6,closest clearance,>=0.75 m,graph interaction network,102,0.4192736615530531
+crossing topology,crossing_90_e_6,closest clearance,none,graph interaction network,194,0.42721063570906614
+crossing topology,crossing_90_e_6,prospective risk,high,anchored coarse MLP,2304,0.33408989100323744
+crossing topology,crossing_90_e_6,prospective risk,low,anchored coarse MLP,1495,0.37742878454234546
+crossing topology,crossing_90_e_6,prospective risk,medium,anchored coarse MLP,2007,0.3395724502428854
+crossing topology,crossing_90_e_6,prospective risk,no projected conflict,anchored coarse MLP,194,0.4386478598221997
+crossing topology,crossing_90_e_6,time to closest approach,1-2 s,anchored coarse MLP,453,0.33582761167105135
+crossing topology,crossing_90_e_6,time to closest approach,2-3 s,anchored coarse MLP,92,0.32789498843446213
+crossing topology,crossing_90_e_6,time to closest approach,<1 s,anchored coarse MLP,5261,0.34894009798756614
+crossing topology,crossing_90_e_6,time to closest approach,none,anchored coarse MLP,194,0.4386478598221997
+crossing topology,crossing_90_e_6,closest clearance,0.25-0.75 m,anchored coarse MLP,374,0.4408607878207554
+crossing topology,crossing_90_e_6,closest clearance,<0.25 m,anchored coarse MLP,5330,0.3385602799230373
+crossing topology,crossing_90_e_6,closest clearance,>=0.75 m,anchored coarse MLP,102,0.4192081462634519
+crossing topology,crossing_90_e_6,closest clearance,none,anchored coarse MLP,194,0.4386478598221997
+crossing topology,crossing_90_e_6,prospective risk,high,GEL-Ped,2304,0.32814733340823
+crossing topology,crossing_90_e_6,prospective risk,low,GEL-Ped,1495,0.3553991663607365
+crossing topology,crossing_90_e_6,prospective risk,medium,GEL-Ped,2007,0.33120199487746643
+crossing topology,crossing_90_e_6,prospective risk,no projected conflict,GEL-Ped,194,0.4127719906184479
+crossing topology,crossing_90_e_6,time to closest approach,1-2 s,GEL-Ped,453,0.326198839639727
+crossing topology,crossing_90_e_6,time to closest approach,2-3 s,GEL-Ped,92,0.31294487257634623
+crossing topology,crossing_90_e_6,time to closest approach,<1 s,GEL-Ped,5261,0.33767241570322215
+crossing topology,crossing_90_e_6,time to closest approach,none,GEL-Ped,194,0.4127719906184479
+crossing topology,crossing_90_e_6,closest clearance,0.25-0.75 m,GEL-Ped,374,0.41310591315538975
+crossing topology,crossing_90_e_6,closest clearance,<0.25 m,GEL-Ped,5330,0.32934637756505136
+crossing topology,crossing_90_e_6,closest clearance,>=0.75 m,GEL-Ped,102,0.38500662519664286
+crossing topology,crossing_90_e_6,closest clearance,none,GEL-Ped,194,0.4127719906184479

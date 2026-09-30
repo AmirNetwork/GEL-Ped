@@ -1,0 +1,85 @@
+dataset,run,model,margin_m,true_conflicts,false_alarm_rate,miss_rate
+familiar corridor,bi_corr_400_a_03,constant velocity,0.8,5989,0.18181818181818182,0.0008348639171814994
+familiar corridor,bi_corr_400_a_03,direct MLP,0.8,5989,0.09090909090909091,0.0005009183503088997
+familiar corridor,bi_corr_400_a_03,graph interaction network,0.8,5989,0.09090909090909091,0.0006678911337451996
+familiar corridor,bi_corr_400_a_03,GEL-Ped,0.8,5989,0.09090909090909091,0.0006678911337451996
+familiar corridor,bi_corr_400_b_02,constant velocity,0.8,2940,0.08293612964728313,0.03333333333333333
+familiar corridor,bi_corr_400_b_02,direct MLP,0.8,2940,0.08579599618684461,0.027210884353741496
+familiar corridor,bi_corr_400_b_02,graph interaction network,0.8,2940,0.0667302192564347,0.026530612244897958
+familiar corridor,bi_corr_400_b_02,GEL-Ped,0.8,2940,0.07054337464251668,0.027891156462585033
+familiar corridor,bi_corr_400_b_04,constant velocity,0.8,5935,0.09230769230769231,0.0008424599831508003
+familiar corridor,bi_corr_400_b_04,direct MLP,0.8,5935,0.1076923076923077,0.0006739679865206403
+familiar corridor,bi_corr_400_b_04,graph interaction network,0.8,5935,0.09230769230769231,0.0010109519797809603
+familiar corridor,bi_corr_400_b_04,GEL-Ped,0.8,5935,0.09230769230769231,0.0008424599831508003
+familiar corridor,bi_corr_400_b_06,constant velocity,0.8,5974,0.07692307692307693,0.001171744224974891
+familiar corridor,bi_corr_400_b_06,direct MLP,0.8,5974,0.07692307692307693,0.0008369601606963508
+familiar corridor,bi_corr_400_b_06,graph interaction network,0.8,5974,0.038461538461538464,0.001004352192835621
+familiar corridor,bi_corr_400_b_06,GEL-Ped,0.8,5974,0.038461538461538464,0.0006695681285570807
+familiar corridor,bi_corr_400_b_10,constant velocity,0.8,5982,0.1111111111111111,0.0006686726847208291
+familiar corridor,bi_corr_400_b_10,direct MLP,0.8,5982,0.1111111111111111,0.0005015045135406219
+familiar corridor,bi_corr_400_b_10,graph interaction network,0.8,5982,0.05555555555555555,0.00033433634236041456
+familiar corridor,bi_corr_400_b_10,GEL-Ped,0.8,5982,0.05555555555555555,0.00033433634236041456
+altered geometry,bi_corr_400_a_04,constant velocity,0.8,5992,0.25,0.00016688918558077436
+altered geometry,bi_corr_400_a_04,direct MLP,0.8,5992,0.25,0.00016688918558077436
+altered geometry,bi_corr_400_a_04,graph interaction network,0.8,5992,0.5,0.00016688918558077436
+altered geometry,bi_corr_400_a_04,GEL-Ped,0.8,5992,0.375,0.0003337783711615487
+altered geometry,bi_corr_400_a_05,constant velocity,0.8,5992,0.125,0.0003337783711615487
+altered geometry,bi_corr_400_a_05,direct MLP,0.8,5992,0.125,0.00016688918558077436
+altered geometry,bi_corr_400_a_05,graph interaction network,0.8,5992,0.125,0.0
+altered geometry,bi_corr_400_a_05,GEL-Ped,0.8,5992,0.125,0.0
+altered geometry,bi_corr_400_b_08,constant velocity,0.8,5983,0.058823529411764705,0.0006685609226140733
+altered geometry,bi_corr_400_b_08,direct MLP,0.8,5983,0.11764705882352941,0.0005014206919605549
+altered geometry,bi_corr_400_b_08,graph interaction network,0.8,5983,0.17647058823529413,0.0005014206919605549
+altered geometry,bi_corr_400_b_08,GEL-Ped,0.8,5983,0.11764705882352941,0.0005014206919605549
+crossing topology,crossing_90_d_1,constant velocity,0.8,5476,0.09732824427480916,0.009678597516435355
+crossing topology,crossing_90_d_1,direct MLP,0.8,5476,0.13549618320610687,0.012235208181154127
+crossing topology,crossing_90_d_1,graph interaction network,0.8,5476,0.11450381679389313,0.010409057706355003
+crossing topology,crossing_90_d_1,GEL-Ped,0.8,5476,0.1049618320610687,0.01004382761139518
+crossing topology,crossing_90_d_2,constant velocity,0.8,5178,0.12895377128953772,0.019119351100811123
+crossing topology,crossing_90_d_2,direct MLP,0.8,5178,0.15936739659367397,0.020084974893781384
+crossing topology,crossing_90_d_2,graph interaction network,0.8,5178,0.13990267639902676,0.01892622634221707
+crossing topology,crossing_90_d_2,GEL-Ped,0.8,5178,0.12652068126520682,0.01738122827346466
+crossing topology,crossing_90_d_3,constant velocity,0.8,5134,0.12702078521939955,0.028827425009738995
+crossing topology,crossing_90_d_3,direct MLP,0.8,5134,0.12702078521939955,0.031164783794312426
+crossing topology,crossing_90_d_3,graph interaction network,0.8,5134,0.1235565819861432,0.02999610440202571
+crossing topology,crossing_90_d_3,GEL-Ped,0.8,5134,0.12933025404157045,0.028632645111024542
+crossing topology,crossing_90_d_5,constant velocity,0.8,5673,0.13149847094801223,0.013573065397496916
+crossing topology,crossing_90_d_5,direct MLP,0.8,5673,0.14984709480122324,0.01463070685704213
+crossing topology,crossing_90_d_5,graph interaction network,0.8,5673,0.13761467889908258,0.013925612550678654
+crossing topology,crossing_90_d_5,GEL-Ped,0.8,5673,0.13761467889908258,0.013573065397496916
+crossing topology,crossing_90_d_6,constant velocity,0.8,5823,0.1016949152542373,0.0072127769191138585
+crossing topology,crossing_90_d_6,direct MLP,0.8,5823,0.11299435028248588,0.00789970805426756
+crossing topology,crossing_90_d_6,graph interaction network,0.8,5823,0.1016949152542373,0.008414906405632836
+crossing topology,crossing_90_d_6,GEL-Ped,0.8,5823,0.10734463276836158,0.007384509702902284
+crossing topology,crossing_90_d_7,constant velocity,0.8,5859,0.16312056737588654,0.005973715651135006
+crossing topology,crossing_90_d_7,direct MLP,0.8,5859,0.2127659574468085,0.006656426011264721
+crossing topology,crossing_90_d_7,graph interaction network,0.8,5859,0.1702127659574468,0.007168458781362007
+crossing topology,crossing_90_d_7,GEL-Ped,0.8,5859,0.1702127659574468,0.006656426011264721
+crossing topology,crossing_90_d_8,constant velocity,0.8,5915,0.10588235294117647,0.003212172442941674
+crossing topology,crossing_90_d_8,direct MLP,0.8,5915,0.1411764705882353,0.002874049027895182
+crossing topology,crossing_90_d_8,graph interaction network,0.8,5915,0.10588235294117647,0.002704987320371936
+crossing topology,crossing_90_d_8,GEL-Ped,0.8,5915,0.08235294117647059,0.00253592561284869
+crossing topology,crossing_90_e_1,constant velocity,0.8,5508,0.10569105691056911,0.01252723311546841
+crossing topology,crossing_90_e_1,direct MLP,0.8,5508,0.11788617886178862,0.013435003631082063
+crossing topology,crossing_90_e_1,graph interaction network,0.8,5508,0.11382113821138211,0.012345679012345678
+crossing topology,crossing_90_e_1,GEL-Ped,0.8,5508,0.10975609756097561,0.011437908496732025
+crossing topology,crossing_90_e_2,constant velocity,0.8,5559,0.11791383219954649,0.012232415902140673
+crossing topology,crossing_90_e_2,direct MLP,0.8,5559,0.10657596371882086,0.012951969778737183
+crossing topology,crossing_90_e_2,graph interaction network,0.8,5559,0.10204081632653061,0.012772081309588056
+crossing topology,crossing_90_e_2,GEL-Ped,0.8,5559,0.11337868480725624,0.010793308148947653
+crossing topology,crossing_90_e_3,constant velocity,0.8,5627,0.0938337801608579,0.01119601919317576
+crossing topology,crossing_90_e_3,direct MLP,0.8,5627,0.11528150134048257,0.011729162964279368
+crossing topology,crossing_90_e_3,graph interaction network,0.8,5627,0.08042895442359249,0.011551448373911498
+crossing topology,crossing_90_e_3,GEL-Ped,0.8,5627,0.0938337801608579,0.010840590012440022
+crossing topology,crossing_90_e_4,constant velocity,0.8,5739,0.07662835249042145,0.008015333681826102
+crossing topology,crossing_90_e_4,direct MLP,0.8,5739,0.0842911877394636,0.009409304756926294
+crossing topology,crossing_90_e_4,graph interaction network,0.8,5739,0.06896551724137931,0.007666840913051054
+crossing topology,crossing_90_e_4,GEL-Ped,0.8,5739,0.06513409961685823,0.007841087297438577
+crossing topology,crossing_90_e_5,constant velocity,0.8,5763,0.10548523206751055,0.007287870900572618
+crossing topology,crossing_90_e_5,direct MLP,0.8,5763,0.10970464135021098,0.007287870900572618
+crossing topology,crossing_90_e_5,graph interaction network,0.8,5763,0.10126582278481013,0.007287870900572618
+crossing topology,crossing_90_e_5,GEL-Ped,0.8,5763,0.10970464135021098,0.00659378795766094
+crossing topology,crossing_90_e_6,constant velocity,0.8,5797,0.11822660098522167,0.004485078488873555
+crossing topology,crossing_90_e_6,direct MLP,0.8,5797,0.10344827586206896,0.004485078488873555
+crossing topology,crossing_90_e_6,graph interaction network,0.8,5797,0.08866995073891626,0.005175090564084871
+crossing topology,crossing_90_e_6,GEL-Ped,0.8,5797,0.09852216748768473,0.004830084526479214

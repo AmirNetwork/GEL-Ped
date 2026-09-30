@@ -1,0 +1,22 @@
+{
+  "anchored": {
+    "calibration": "leave-one-complete-run-out",
+    "buffer_frames": 5,
+    "buffer_seconds": 2.0,
+    "threshold_rule": "finite-sample 90% upper conformal quantile",
+    "threshold_mps": 0.07029309534061738,
+    "scale_mps": 0.013434345231950834,
+    "nominal_in_support_weight": 0.7000000000000001,
+    "oof_90_radial_error_mps": 0.2500870702072995
+  },
+  "direct": {
+    "calibration": "leave-one-complete-run-out",
+    "buffer_frames": 5,
+    "buffer_seconds": 2.0,
+    "threshold_rule": "finite-sample 90% upper conformal quantile",
+    "threshold_mps": 0.07145884561861217,
+    "scale_mps": 0.015421002489661315,
+    "nominal_in_support_weight": 0.7000000000000001,
+    "oof_90_radial_error_mps": 0.25242953130492285
+  }
+}

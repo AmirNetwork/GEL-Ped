@@ -198,6 +198,7 @@ def build_velocity_samples(
     source: str | Path,
     interaction_range: float = 0.35,
     horizon_frames: int = 10,
+    history_frames: int | None = None,
     frame_stride: int = 10,
     maximum_samples: int = 6000,
     radius: float = 0.25,
@@ -214,11 +215,12 @@ def build_velocity_samples(
     """Construct manuscript Eqs. (1)-(5) without trajectory or endpoint leakage."""
 
     source = Path(source)
+    history_frames = horizon_frames if history_frames is None else history_frames
     data = add_motion_features(loader(source))
     data = add_prediction_goal_directions(
         data,
         method=goal_method,
-        history_frames=horizon_frames,
+        history_frames=history_frames,
         cardinal_routes=cardinal_routes,
     )
     current_all = data[
@@ -226,7 +228,7 @@ def build_velocity_samples(
     ].copy()
     current = current_all[data["goal_valid"].to_numpy()].copy()
     previous = current[["pedestrian_id", "frame", "x_m", "y_m"]].copy()
-    previous["frame"] += horizon_frames
+    previous["frame"] += history_frames
     previous = previous.rename(columns={"x_m": "previous_x", "y_m": "previous_y"})
     future = current[["pedestrian_id", "frame", "x_m", "y_m"]].copy()
     future["frame"] -= horizon_frames
@@ -234,11 +236,20 @@ def build_velocity_samples(
     eligible = current.merge(previous, on=["pedestrian_id", "frame"], how="inner").merge(
         future, on=["pedestrian_id", "frame"], how="inner"
     )
-    dt = horizon_frames / 25.0
-    eligible["previous_vx"] = (eligible["x_m"] - eligible["previous_x"]) / dt
-    eligible["previous_vy"] = (eligible["y_m"] - eligible["previous_y"]) / dt
-    eligible["target_vx"] = (eligible["future_x"] - eligible["x_m"]) / dt
-    eligible["target_vy"] = (eligible["future_y"] - eligible["y_m"]) / dt
+    history_dt = history_frames / 25.0
+    prediction_dt = horizon_frames / 25.0
+    eligible["previous_vx"] = (
+        eligible["x_m"] - eligible["previous_x"]
+    ) / history_dt
+    eligible["previous_vy"] = (
+        eligible["y_m"] - eligible["previous_y"]
+    ) / history_dt
+    eligible["target_vx"] = (
+        eligible["future_x"] - eligible["x_m"]
+    ) / prediction_dt
+    eligible["target_vy"] = (
+        eligible["future_y"] - eligible["y_m"]
+    ) / prediction_dt
 
     first_frame = int(eligible["frame"].min())
     eligible = eligible[(eligible["frame"] - first_frame) % frame_stride == 0]

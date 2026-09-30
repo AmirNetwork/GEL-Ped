@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gel-ped"
 version = "0.1.0"
-description = "GEL-Ped: geometry-encoded learning for pedestrian forecasting"
+description = "GEL-Ped: geometry-guarded expert learning for pedestrian forecasting"
 authors = [{ name = "Amir Ghorbani" }]
 readme = "README.md"
 license = "MIT"
@@ -20,6 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.3", "ruff>=0.9"]
+graph = ["torch>=2.2"]
 
 [project.urls]
 Repository = "https://github.com/AmirNetwork/GEL-Ped"

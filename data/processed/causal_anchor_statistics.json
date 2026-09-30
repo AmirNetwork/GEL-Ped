@@ -1,0 +1,188 @@
+{
+  "familiar corridor": {
+    "constant velocity": {
+      "runs": 5,
+      "mean_difference_mps": -0.07388887274631735,
+      "relative_reduction_percent": 31.49794162789242,
+      "bootstrap_95_ci_mps": [
+        -0.09248353854128702,
+        -0.05042690940276286
+      ],
+      "exact_p": 0.0625,
+      "runs_lower": 5,
+      "holm_adjusted_p_across_reported_tests": 0.625
+    },
+    "direct MLP": {
+      "runs": 5,
+      "mean_difference_mps": -0.01566996861618647,
+      "relative_reduction_percent": 8.885001591250886,
+      "bootstrap_95_ci_mps": [
+        -0.017662444621592756,
+        -0.013312331890730117
+      ],
+      "exact_p": 0.0625,
+      "runs_lower": 5,
+      "holm_adjusted_p_across_reported_tests": 0.625
+    },
+    "graph interaction network": {
+      "runs": 5,
+      "mean_difference_mps": -0.001536832194498039,
+      "relative_reduction_percent": 0.9473102454440029,
+      "bootstrap_95_ci_mps": [
+        -0.0019686944916333937,
+        -0.0010387621780533762
+      ],
+      "exact_p": 0.0625,
+      "runs_lower": 5,
+      "holm_adjusted_p_across_reported_tests": 0.625
+    },
+    "anchored coarse MLP": {
+      "runs": 5,
+      "mean_difference_mps": -0.014652597537264389,
+      "relative_reduction_percent": 8.35634803474791,
+      "bootstrap_95_ci_mps": [
+        -0.01783082210807747,
+        -0.011906065048548076
+      ],
+      "exact_p": 0.0625,
+      "runs_lower": 5,
+      "holm_adjusted_p_across_reported_tests": 0.625
+    },
+    "matched direct control": {
+      "runs": 5,
+      "mean_difference_mps": -0.002016030849131922,
+      "relative_reduction_percent": 1.2390305906545758,
+      "bootstrap_95_ci_mps": [
+        -0.0025646975376545033,
+        -0.0014673641606093412
+      ],
+      "exact_p": 0.0625,
+      "runs_lower": 5,
+      "holm_adjusted_p_across_reported_tests": 0.625
+    }
+  },
+  "altered geometry": {
+    "constant velocity": {
+      "runs": 3,
+      "mean_difference_mps": -0.07596801438946305,
+      "relative_reduction_percent": 33.00748524116574,
+      "bootstrap_95_ci_mps": [
+        -0.08342483421244777,
+        -0.06763771438688779
+      ],
+      "exact_p": 0.25,
+      "runs_lower": 3,
+      "holm_adjusted_p_across_reported_tests": 1.0
+    },
+    "direct MLP": {
+      "runs": 3,
+      "mean_difference_mps": -0.015256011494890179,
+      "relative_reduction_percent": 9.003683153914865,
+      "bootstrap_95_ci_mps": [
+        -0.015552261031023917,
+        -0.014870032362754276
+      ],
+      "exact_p": 0.25,
+      "runs_lower": 3,
+      "holm_adjusted_p_across_reported_tests": 1.0
+    },
+    "graph interaction network": {
+      "runs": 3,
+      "mean_difference_mps": -0.0019188485057620348,
+      "relative_reduction_percent": 1.2292058428042811,
+      "bootstrap_95_ci_mps": [
+        -0.002876538257476108,
+        -0.001427974689986955
+      ],
+      "exact_p": 0.25,
+      "runs_lower": 3,
+      "holm_adjusted_p_across_reported_tests": 1.0
+    },
+    "anchored coarse MLP": {
+      "runs": 3,
+      "mean_difference_mps": -0.013369062676236424,
+      "relative_reduction_percent": 7.978912504616811,
+      "bootstrap_95_ci_mps": [
+        -0.01360385193957045,
+        -0.013094400027540726
+      ],
+      "exact_p": 0.25,
+      "runs_lower": 3,
+      "holm_adjusted_p_across_reported_tests": 1.0
+    },
+    "matched direct control": {
+      "runs": 3,
+      "mean_difference_mps": -0.00250557035181607,
+      "relative_reduction_percent": 1.599047213768053,
+      "bootstrap_95_ci_mps": [
+        -0.0031668029692107635,
+        -0.0017988900723890366
+      ],
+      "exact_p": 0.25,
+      "runs_lower": 3,
+      "holm_adjusted_p_across_reported_tests": 1.0
+    }
+  },
+  "crossing topology": {
+    "constant velocity": {
+      "runs": 13,
+      "mean_difference_mps": -0.028870582478347378,
+      "relative_reduction_percent": 7.708338066126567,
+      "bootstrap_95_ci_mps": [
+        -0.03727628199607386,
+        -0.020025461837558333
+      ],
+      "exact_p": 0.00048828125,
+      "runs_lower": 12,
+      "holm_adjusted_p_across_reported_tests": 0.00537109375
+    },
+    "direct MLP": {
+      "runs": 13,
+      "mean_difference_mps": -0.018296816750922894,
+      "relative_reduction_percent": 5.027104993160706,
+      "bootstrap_95_ci_mps": [
+        -0.023734093233607534,
+        -0.013774558812607963
+      ],
+      "exact_p": 0.000244140625,
+      "runs_lower": 13,
+      "holm_adjusted_p_across_reported_tests": 0.003662109375
+    },
+    "graph interaction network": {
+      "runs": 13,
+      "mean_difference_mps": -0.017576396503568074,
+      "relative_reduction_percent": 4.838745077213079,
+      "bootstrap_95_ci_mps": [
+        -0.03826509924905008,
+        -0.005402019349536867
+      ],
+      "exact_p": 0.000244140625,
+      "runs_lower": 13,
+      "holm_adjusted_p_across_reported_tests": 0.003662109375
+    },
+    "anchored coarse MLP": {
+      "runs": 13,
+      "mean_difference_mps": -0.006565085323900129,
+      "relative_reduction_percent": 1.8638549427074023,
+      "bootstrap_95_ci_mps": [
+        -0.007185295878347164,
+        -0.005997552048536755
+      ],
+      "exact_p": 0.000244140625,
+      "runs_lower": 13,
+      "holm_adjusted_p_across_reported_tests": 0.003662109375
+    },
+    "matched direct control": {
+      "runs": 13,
+      "mean_difference_mps": -0.030628600118216324,
+      "relative_reduction_percent": 8.139516630377063,
+      "bootstrap_95_ci_mps": [
+        -0.0471276921516286,
+        -0.017126775730095255
+      ],
+      "exact_p": 0.000244140625,
+      "runs_lower": 13,
+      "holm_adjusted_p_across_reported_tests": 0.003662109375
+    }
+  }
+}

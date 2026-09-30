@@ -1,0 +1,4 @@
+dataset,weight,mean_rmse_mps
+altered geometry,0.6000000000000001,0.15380576526270068
+crossing topology,0.25,0.3462054235694611
+familiar corridor,0.65,0.16074344580960984

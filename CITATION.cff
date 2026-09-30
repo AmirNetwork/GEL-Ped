@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 message: "If you use GEL-Ped, please cite the accompanying article and this software."
-title: "GEL-Ped: Shift-Aware Geometry-Encoded Residual Learning for Pedestrian Forecasting"
+title: "GEL-Ped: Geometry-Guarded Expert Learning for Reliable Short-Term Crowd Prediction under Flow Shift"
 type: software
 authors:
   - family-names: Ghorbani
     given-names: Amir
 repository-code: "https://github.com/AmirNetwork/GEL-Ped"
 license: MIT
-version: 0.2.0
-date-released: 2026-09-29
+version: 0.3.0
+date-released: 2026-10-01

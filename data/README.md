@@ -45,3 +45,11 @@ Get-FileHash data\raw\2013crossing90\trajectories_txt.zip -Algorithm SHA256
 
 The processed CSV and JSON files in `data/processed/` are generated outputs, not an
 alternative copy of the raw trajectories.
+
+## ETH pedestrian trajectories (external scope audit)
+
+The external audit uses the public ETH walking-pedestrians sequence distributed with
+the Social GAN benchmark. Its source URL, retrieval time, file checksum, split rule,
+and sample count are recorded in `data/processed/external_eth_provenance.json`.
+This dataset is evaluated only after GEL-Ped's specification is frozen; it is not used
+to tune either expert or the causal guard.

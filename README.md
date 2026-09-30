@@ -1,76 +1,77 @@
 # GEL-Ped
 
-**GEL-Ped** is **Geometry-Encoded Learning for Pedestrian Prediction**, authored by
-**Amir Ghorbani**. It is an anticipatory, shift-aware predictor for local crowd motion.
-Relative motion is projected to closest approach and summarized by time, clearance,
-passing side and encounter heading. Current velocity anchors two route-aligned residual
-learners; their unlabeled disagreement determines the deployed mixture.
+**GEL-Ped** is **Geometry-guarded Expert Learning for Pedestrian Prediction**,
+authored by **Amir Ghorbani**. It predicts 0.4-s pedestrian velocity from a
+0.8-s observed history.
 
-This repository reproduces the manuscript:
-*GEL-Ped: Anticipatory geometry-encoded learning for short-term pedestrian prediction
-under flow shift*.
+The model combines:
 
-## What the experiments show
+1. a permutation-invariant graph network that learns interaction corrections;
+2. a prospective-geometry expert built from closest-approach time, clearance,
+   closing speed and passing side; and
+3. a cross-fitted causal guard that reduces graph weight when the experts
+   disagree beyond their calibration envelope.
 
-- GEL-Ped lowers 0.4 s velocity RMSE by 6.1% in familiar corridors, 7.4% under altered
-  geometry, and 4.7% in thirteen perpendicular-crossing runs relative to a direct MLP.
-- A matched direct control uses the same prospective state, boosted and neural learners,
-  and disagreement router. GEL-Ped remains 5.0% better in crossing, isolating the value
-  of residual learning around the kinematic anchor.
-- Every crossing run improves; the paired exact test reaches `p = 0.000244` and the
-  run-bootstrap interval excludes zero.
-- In autoregressive crossing evaluation, displacement error is 16.3% lower at 2.0 s and
-  18.5% lower at 3.2 s than the direct MLP.
-- With two to seven complete calibration runs, GEL-Ped beats both the direct MLP and
-  constant velocity in the regime-balanced low-data analysis.
-- Wall-free retraining preserves the crossing advantage, so a missing boundary feature
-  does not explain the result.
+Both experts learn corrections around observed velocity. The router uses the
+current and four preceding sampled frames only; it does not use a future target,
+test-regime label, or complete-run aggregate.
 
-The crossing archive changes encounter topology but shares the controlled research
-infrastructure of the corridor archive. The manuscript calls this a **cross-topology
-test**, not naturalistic or multi-site external validation.
+## Main evidence
+
+- Five-seed mean RMSE is 0.1607, 0.1542, and 0.3457 m/s in familiar,
+  altered-geometry, and perpendicular-crossing tests.
+- In crossing, GEL-Ped is 4.84% below the matched graph interaction network and
+  8.14% below a direct expert system with the same branches and router. All 13
+  complete runs improve; Holm-adjusted p = 0.003662.
+- Mean graph weight is about 0.69 in both corridor tests and 0.40 in crossing.
+  Buffer disagreement correlates with graph-minus-geometry error in crossing
+  (Spearman rho = 0.389, 694 buffers).
+- The graph network's crossing seed SD is 0.0195 m/s; GEL-Ped's is 0.0008 m/s.
+- On the naturalistic biwi_eth hold-out, the graph network is slightly better
+  (0.4101 versus 0.4137 m/s). This is a documented scope boundary.
 
 ## Manuscript-to-code map
 
-- sample construction and past-only fields: `pedgeom.calibration.build_velocity_samples`
-- route-aligned inputs and neighbour records: `pedgeom.calibration`
-- closest-approach state, residual experts and router: `pedgeom.benchmarks`
-- final complete-run analysis: `experiments/anticipatory_residual_upgrade.py`
-- five-seed sensitivity: `experiments/prospective_seed_sensitivity.py`
-- attribution, wall, smoothing, route and strata checks:
-  `experiments/reviewer_revision_analysis.py`
-- autoregressive and conflict evaluation: `experiments/autoregressive_rollout.py`
-- final wall-free refit: `experiments/shift_routed_wall_check.py`
-- complete-subset low-data study: `experiments/shift_routed_data_efficiency.py`
-- publication figures: `experiments/final_publication_figures.py`
+- sample construction and past-only route estimation:
+  src/pedgeom/calibration.py and src/pedgeom/datasets.py
+- closest-approach state, causal router and physical baselines:
+  src/pedgeom/benchmarks.py
+- graph interaction expert: src/pedgeom/graph_baseline.py
+- official ETH/UCY adapter: src/pedgeom/external.py
+- primary five-seed analysis, ablations, conflict strata, collision screening,
+  uncertainty and sensitivity: experiments/causal_anchor_revision.py
+- coordinate-noise audit: experiments/measurement_noise_audit.py
+- publication figures: experiments/causal_revision_figures.py
+- immutable split: data/splits.json
+- generated outputs: data/processed/causal_* and data/processed/external_eth_*
 
-## Repository map
+## Installation
 
-- `src/pedgeom/`: models, fields, calibration, metrics and statistics
-- `experiments/`: executable primary, sensitivity and figure analyses
-- `configs/`: frozen numerical settings
-- `tests/`: analytic, data, statistical and regression tests
-- `data/splits.json`: immutable complete-run partition
-- `data/processed/`: generated run-level results and diagnostics
-- `figures/`: publication figures
+Python 3.11 or newer is required.
 
-## Reproduce
+    python -m venv .venv
+    .\.venv\Scripts\python -m pip install -e ".[dev]"
+    .\.venv\Scripts\python -m pip install -r requirements-graph.txt
 
-Python 3.11 or newer is required. Download the two CC BY 4.0 trajectory archives listed
-in `data/README.md`, place them in the documented directories, and run:
+The last command installs the CPU build of PyTorch used by the graph model.
 
-```powershell
-python -m venv .venv
-.venv\Scripts\python -m pip install -e ".[dev]"
-.\run_research.ps1
-```
+## Reproduce the revised experiment
 
-The main 6,000-forecast-per-run analysis and dedicated 750-forecast-per-run low-data
-analysis are separate by design. All sampling and stochastic fitting use recorded seeds.
-Raw trajectory archives are not redistributed.
+Download the two CC BY 4.0 Juelich archives documented in data/README.md and
+place their extracted trajectories in the stated directories. The naturalistic
+ETH evaluation reads the official four-column files distributed by
+Trajectron++; raw data are not redistributed.
+
+    .\.venv\Scripts\python experiments\causal_anchor_revision.py --seeds 5 --calibration-graph-epochs 25 --graph-epochs 25
+    .\.venv\Scripts\python experiments\measurement_noise_audit.py
+    .\.venv\Scripts\python experiments\causal_revision_figures.py
+
+All primary settings are frozen in the scripts and calibration JSON. Stochastic
+training uses recorded seeds and gives equal aggregate loss weight to each
+complete calibration run.
 
 ## Licence and citation
 
-Code is released under the MIT licence. Dataset terms remain with the source archives.
-See `CITATION.cff` for software citation metadata and cite both dataset DOI records when
-using this package.
+Code is released under the MIT licence. Dataset terms remain with their source
+archives. See CITATION.cff and cite both Juelich dataset DOI records when using
+the controlled experiments.
