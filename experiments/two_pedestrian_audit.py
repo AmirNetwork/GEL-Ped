@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Compare the paper update, corrected ODE, and anisotropic pilot."""
 
 from __future__ import annotations

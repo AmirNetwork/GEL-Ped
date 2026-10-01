@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Validate the canonical reconstruction against the manuscript's Table 2."""
 
 from __future__ import annotations

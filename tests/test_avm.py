@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 import numpy as np
 
 from pedgeom.avm import avm_speed, desired_avm_direction

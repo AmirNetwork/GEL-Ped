@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 import numpy as np
 
 from pedgeom.visualization import (

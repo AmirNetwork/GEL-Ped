@@ -1,0 +1,467 @@
+\documentclass[preprint,11pt,authoryear]{elsarticle}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array}
+\usepackage{microtype}
+\usepackage{lineno}
+\usepackage[a4paper,left=1.45cm,right=1.45cm,top=1.55cm,bottom=1.55cm]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\modulolinenumbers[5]
+\graphicspath{{figures/}}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setcounter{topnumber}{4}
+\renewcommand{\topfraction}{0.93}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.82}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\appref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
+
+\begin{document}
+\begin{frontmatter}
+\title{GEL-Ped: Instability-aware guarded ensemble learning for short-horizon crowd prediction under flow shift}
+\author[melb]{Amir Ghorbani\corref{cor1}}
+\cortext[cor1]{Corresponding author}
+\ead{ghorbania@student.unimelb.edu.au}
+\affiliation[melb]{organization={Transport Engineering Group, Department of Infrastructure Engineering, The University of Melbourne},addressline={Grattan Street},city={Parkville},state={VIC},postcode={3010},country={Australia}}
+\begin{abstract}
+Short-horizon pedestrian prediction sits inside a fast safety loop: a robot, automated vehicle, or station-monitoring system must update its next action while a crowd is still moving. Neural interaction models are accurate when the deployment flow resembles training, but a rare unstable correction can be costly when streams cross, merge, or enter through a new layout. This paper presents GEL-Ped (Guarded Ensemble Learning for Pedestrians), a causal predictor that turns neural self-disagreement into an action. Five compact graph learners predict corrections around observed velocity. Their local, past-only spread is compared with an envelope estimated from complete training runs; only when that envelope is exceeded does the model move toward a bounded behavioural fallback. The graph weight is exactly one in supported conditions. Tests use complete physical runs, additional corridor and bottleneck configurations, all five ETH/UCY leave-one-scene-out tasks, and recursive rollouts. In crossing flow, GEL-Ped reduces mean error by 2.3\% relative to the graph ensemble and improves all 13 runs, although the median gain is only 0.6\% and one unstable run explains much of the mean. On the five clean naturalistic tests, its scene-macro error changes by only $-0.2$\% and is not significant. The practical value is therefore not universal accuracy: GEL-Ped preserves the strong neural model in support while limiting its instability tail under a detectable shift.
+\end{abstract}
+\begin{keyword}
+pedestrian prediction \sep crowd dynamics \sep graph neural network \sep deep ensemble \sep distribution shift \sep uncertainty-aware transport systems
+\end{keyword}
+\end{frontmatter}
+\linenumbers
+
+\section{Introduction}
+\label{sec:introduction}
+A short pedestrian forecast is useful only if it changes a decision in time. A delivery robot can reject a motion that enters a pedestrian's safety envelope; an automated vehicle can slow before a crossing conflict develops; and a station operator can flag a local interaction before it propagates into a dense stream. These systems update several times per second. Their immediate problem is therefore different from destination prediction: from motion already observed, estimate the velocity that is plausible over the next few tenths of a second.
+
+For an isolated pedestrian, recent velocity is a strong predictor \citep{schoeller2020}. Crowds make the same horizon harder. A person who is not close now may be moving toward the same future space, and people respond through coupled changes in speed, direction, and passing side \citep{moussaid2011,karamouzas2014}. Learned graph models can represent these interactions, but their accuracy does not tell an operator when a new flow pattern has made the learned correction unreliable. This matters when a model fitted to bidirectional corridor flow encounters a perpendicular stream, a bottleneck, or an unseen naturalistic scene.
+
+Two established ideas offer part of the answer. Behavioural models encode persistence, personal space, forward attention, and closing motion in variables that remain meaningful across layouts \citep{helbing1995,korbmacher2022}. Deep ensembles expose initialization-sensitive predictions through member spread \citep{lakshminarayanan2017}. Yet neither idea alone gives a deployment rule. A fixed behavioural model sacrifices accuracy in ordinary flow, while an ensemble mean can still be pulled by one divergent member.
+
+GEL-Ped joins the two ideas with a deliberately small mechanism. Five graph residual learners share the same causal observations. Their mean is the default forecast. Their per-pedestrian spread is averaged over at most five past observations and compared with a leave-one-complete-run-out calibration envelope. Inside the envelope, the graph weight is exactly one. Outside it, the weight decays smoothly and the forecast moves toward a bounded gradient-boosted residual model built from current behavioural fields. Thus GEL-Ped does not ask whether a named test scene is ``out of distribution.'' It asks whether the neural family agrees locally enough to use its correction without intervention.
+
+This fills a specific gap between three literatures. Hybrid predictors inject physical knowledge or residual structure into a network, but generally keep the combination fixed at deployment \citep{bahari2021,yue2022,korbmacher2024hybrid}. Transfer and adaptation methods reduce domain differences, but normally require target-domain training or adaptation data \citep{xu2022tgnn,messaoud2025}. Mixtures of experts learn a gate from labelled examples \citep{jacobs1991}; that gate can itself extrapolate under a new flow. GEL-Ped instead uses an observable property of the deployed predictor---ensemble instability---to decide when a stable fallback should matter.
+
+The paper makes three contributions. First, it introduces a local guard whose weight reaches one in support and whose threshold and scale are estimated without frame leakage. Second, it combines that guard with a residual formulation and a compact behavioural fallback, producing a useful operating point between an accurate graph model and a stable tree model. Third, it tests the mechanism rather than only the mean score: five graph seeds, robust aggregation, coarse and constant-velocity fallbacks, learned and Mahalanobis gates, threshold sensitivity, per-run effects, collision counts, five ETH/UCY scenes, and rollouts to 3.2~s are all reported. The evidence is intentionally scoped: the method controls a neural failure mode; it is not a state-of-the-art long-horizon trajectory generator.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.99\textwidth]{experimental_context_referee2.pdf}
+\caption{Empirical settings and chronology. The controlled photographs show the bidirectional corridor and perpendicular crossing. Crossing observations informed development and are treated as a stress test, not pristine confirmation. The final mechanism was then evaluated under the five official ETH/UCY leave-one-scene-out tasks, which were not used to choose it. Photographs: Juelich Pedestrian Dynamics Data Archive, CC BY 4.0; DOIs 10.34735/ped.2013.5 and 10.34735/ped.2013.4.}
+\label{fig:experiments}
+\end{figure}
+
+\section{Related work and research gap}
+\label{sec:related}
+\subsection{Knowledge-based and learned pedestrian prediction}
+Social-force, collision-prediction, and velocity-obstacle models express how present motion and future encounter geometry may influence a pedestrian \citep{helbing1995,zanlungo2011,karamouzas2014,vandenberg2008}. They remain interpretable and data efficient, but one response law rarely fits every density and facility. Neural studies on the Juelich geometries likewise show that facility type changes pedestrian speed prediction \citep{tordeux2020}. Broader empirical work stresses that route structure, density, participant composition, and experimental purpose limit transportability \citep{haghani2018,haghani2020,haghani2023,haghani2024trc}.
+
+Learned trajectory predictors use recurrent pooling, graph convolutions, attention, and multimodal decoders to represent social interaction \citep{alahi2016,gupta2018,mohamed2020,salzmann2020}. Recent work studies domain transfer, higher-order relations, and density-aware prediction \citep{xu2022tgnn,kim2024,korbmacher2024density}. Most standard ETH/UCY models observe 3.2~s and predict 4.8~s. Directly importing their published ADE values would not be a fair comparison with the 0.8-s-history/0.4-s-response task here. We therefore use a protocol-matched graph network and report a complete calibration-only capacity and epoch sweep. The study asks whether a guard improves that fixed predictor, not whether it replaces long-horizon multimodal forecasting.
+
+\subsection{Hybrid models, uncertainty, and deployment shift}
+Hybrid models can add residual corrections to known dynamics, constrain learned outputs, or combine structured and data-driven components \citep{bahari2021,yue2022,pouw2024,wang2024dynamics,sang2024}. These approaches motivate the common velocity anchor used here. Deep ensembles provide a simple uncertainty signal and often react to distribution shift \citep{lakshminarayanan2017}. Mahalanobis distance is a standard alternative score, while classical mixtures of experts learn how to allocate examples among predictors \citep{jacobs1991}.
+
+The unresolved step is operational: what should the predictor do when its uncertainty signal rises? A warning alone does not produce a trajectory, and a fixed hybrid cannot preserve full neural weight when conditions are supported. GEL-Ped closes this narrow gap by mapping locally calibrated ensemble spread to shrinkage toward a bounded, behaviour-aligned residual. The fallback is not claimed to be a complete model of human intent; it is a stable response when neural corrections disagree.
+
+\section{GEL-Ped method}
+\label{sec:method}
+\subsection{Task and causal representation}
+For pedestrian $i$ at time $t$, the model observes positions up to $t$ and predicts mean velocity over $\Delta=0.4$~s. The anchor is the displacement over the preceding $H_o=0.8$~s,
+\begin{equation}
+\label{eq:anchor}
+\mathbf b_i(t)=\frac{\mathbf x_i(t)-\mathbf x_i(t-H_o)}{H_o},
+\qquad
+\mathbf v_i^+(t)=\frac{\mathbf x_i(t+\Delta)-\mathbf x_i(t)}{\Delta}.
+\end{equation}
+A past-only route unit vector $\mathbf e_i$ defines the forward axis and $\boldsymbol\ell_i=(-e_{iy},e_{ix})$ the lateral axis. The primary Juelich encoding infers the entrance route from the first observed 0.8~s; the naturalistic encoding uses recent displacement. A complete ablation applies the latter rule to Juelich data.
+
+At most eight neighbours within 3~m are retained. For relative position $\mathbf r_{ij}=\mathbf x_j-\mathbf x_i$, distance $d_{ij}=\|\mathbf r_{ij}\|$, and relative velocity $\mathbf u_{ij}=\mathbf b_j-\mathbf b_i$, the shared current-state representation contains the fields in \tabref{tab:features}. With body radius $R=0.25$~m and decay length $\lambda=0.8$~m, $m_{ij}=\exp[-(d_{ij}-2R)/\lambda]$. The isotropic field sums $-m_{ij}\mathbf r_{ij}/d_{ij}$; the forward field multiplies each term by $[\max(\mathbf r_{ij}^{\mathsf T}\mathbf e_i/d_{ij},0)]^2$; and the closing field additionally multiplies by clipped approach speed $\min\{[-\mathbf u_{ij}^{\mathsf T}\mathbf r_{ij}/d_{ij}]_+,3\}$. Division uses $d_{ij}\vee10^{-8}$ in code. Wall inputs are set to zero in the primary cross-layout analysis.
+
+\begin{table}[!htbp]
+\centering
+\caption{Causal inputs. Each vector field is projected onto $(\mathbf e_i,\boldsymbol\ell_i)$, giving twelve focal scalars including the zeroed wall pair. The graph additionally receives one seven-value record for each retained neighbour.}
+\label{tab:features}
+\small
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.20\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}X}
+\toprule
+Input block & Variables & Behavioural role \\
+\midrule
+Kinematics & observed velocity $\mathbf b_i$; route vector $\mathbf e_i$ & persistence and intended direction from past motion \\
+Current interaction fields & isotropic, forward-weighted, and closing-weighted repulsion vectors & personal space, visual anisotropy, and approaching neighbours \\
+Boundary channel & wall vector, fixed to zero in the primary analysis & prevents a layout-specific wall cue from defining transfer \\
+Neighbour records & local $\mathbf r_{ij}$, local $\mathbf u_{ij}$, distance, closing speed, presence & individual messages for the graph expert; padded slots are masked \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Graph ensemble and behavioural fallback}
+Each graph member applies a shared two-layer rectified edge encoder to the seven neighbour variables, attention-pools the unordered messages, and joins them with the twelve focal scalars. Its two-output head predicts forward and lateral corrections around the anchor,
+\begin{equation}
+\label{eq:graph}
+\widehat{\mathbf v}^{G,m}_i
+=\mathbf b_i+R^{m}_{i,\parallel}\mathbf e_i+R^{m}_{i,\perp}\boldsymbol\ell_i,
+\qquad m=1,\ldots,M,quad M=5.
+\end{equation}
+The graph mean is $\bar{\mathbf v}^{G}_i=M^{-1}\sum_m\widehat{\mathbf v}^{G,m}_i$. Each member has 13,395 parameters. Training minimizes run-balanced squared error with AdamW (learning rate $10^{-3}$, weight decay $10^{-3}$, gradient-norm cap 5). Width 48 and 25 epochs minimize mean leave-one-run-out calibration RMSE in a six-candidate capacity/epoch sweep; wider or longer models do not improve calibration (\appref{app:controls}).
+
+The fallback uses the same anchor and the route-aligned focal state, but no individual message passing and no future encounter projection. A histogram-gradient-boosting regressor predicts the two residual components,
+\begin{equation}
+\label{eq:fallback}
+\widehat{\mathbf v}^{C}_i
+=\mathbf b_i+C_{i,\parallel}\mathbf e_i+C_{i,\perp}\boldsymbol\ell_i.
+\end{equation}
+It uses 200 boosting iterations, at most 31 leaves, minimum leaf size 50, learning rate 0.05, and $L_2$ regularization 1.0. The choice is practical: tree leaves produce bounded local corrections under covariate shift, while the behavioural fields retain persistence, forward attention, and closing motion. A prospective closest-approach encoder is retained only as a mechanism control; it is not part of the primary model.
+
+\subsection{Local instability guard}
+The instantaneous ensemble spread for agent $i$ is
+\begin{equation}
+\label{eq:spread}
+e_i(t)=\left[\frac{1}{M}\sum_{m=1}^{M}
+\left\|\widehat{\mathbf v}^{G,m}_i(t)-\bar{\mathbf v}^{G}_i(t)\right\|_2^2\right]^{1/2}.
+\end{equation}
+This is not averaged across the scene. A past-only local score $E_i(t)$ averages the available values for the same pedestrian over the present and four preceding forecast origins. The maximum memory is 2.0~s; a new pedestrian starts with its available history.
+
+Every calibration score is out of fold. The graph members and fallback are fitted on six complete calibration runs and evaluated on the seventh, repeated seven times. Let $\tau$ be the finite-sample 90th percentile of these out-of-fold $E_i$ values and $S$ their interquartile range. The deployed graph weight is
+\begin{equation}
+\label{eq:guard}
+g_i(t)=\exp\left[-\frac{(E_i(t)-\tau)_+}{S}\right],
+\qquad
+\widehat{\mathbf v}_i(t)=g_i(t)\bar{\mathbf v}^{G}_i(t)+(1-g_i(t))\widehat{\mathbf v}^{C}_i(t).
+\end{equation}
+Calibration gives $\tau=0.03791$~m/s and $S=0.01176$~m/s. Thus $g_i=1$ throughout the calibration envelope: the fallback has no mandatory weight and the guard cannot improve an ordinary prediction merely by fixed ensembling. \figref{fig:architecture} summarizes the calculation.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.99\textwidth]{gel_ped_instability_architecture.pdf}
+\caption{GEL-Ped. Five anchored graph learners provide the default mean and a local instability score. Leave-one-complete-run-out calibration fixes the score envelope. Only an exceedance moves the forecast toward the bounded behavioural fallback. All signals available at inference are past or present observations.}
+\label{fig:architecture}
+\end{figure}
+
+\section{Experimental design}
+\label{sec:experiments}
+\subsection{Data, partition, and chronology}
+The original controlled archive contains 25-Hz bidirectional-corridor and right-angle-crossing trajectories \citep{boltes2013,boltes2020}. Seven complete corridor runs span entrance widths and occupancies for fitting and cross-fitting. Five test runs retain the 22-m corridor and 5-m exit; three a priori ``altered'' runs change corridor length and/or exit arrangement. The immutable per-run table in \appref{app:runs} reports participants, duration, geometry, nominal mean density, and forecast count.
+
+Crossing data were inspected during earlier model development. The decisions informed by them were removal of layout-specific wall fields, use of an anchored residual, examination of a structured fallback, and the decision to guard neural corrections. Crossing is therefore a development-informed stress test. The post-review Tordeux/Juelich archive adds eight unidirectional-corridor and four bottleneck runs recorded at 16~Hz (DOI \href{https://doi.org/10.5281/zenodo.1054017}{10.5281/zenodo.1054017}); these data were not used to fit numerical parameters, although their availability informed the final mechanism comparison. They are reported descriptively rather than as pristine confirmation.
+
+The clean external test is the standard five-scene ETH/UCY leave-one-scene-out protocol distributed with Trajectron++ \citep{pellegrini2009,salzmann2020}. For each of ETH, HOTEL, UNIV, ZARA1, and ZARA2, the other scenes fit the experts, the supplied validation data calibrate $\tau$ and $S$, and the held scene is used once for testing. At 2.5~Hz, the 0.8-s history contains two intervals and the 0.4-s target one interval. The mechanism, fallback type, window length in observations, quantile, and scale rule were fixed before any of these five outcomes were inspected.
+
+The controlled primary benchmark samples at most 6,000 forecasts per run. It removes observations whose future mean speed exceeds 3~m/s as an offline tracking/running quality screen; this selection does use the future label and is not available online. We therefore report a fully inclusive all-speed evaluation separately. The deployed predictor itself never receives future position, a regime label, or a test error.
+
+\subsection{Comparators and selection discipline}
+The main comparators are constant velocity; one graph member; the five-member graph mean; a coordinate-wise median of the same members; and the anchored coarse boosted model. Additional controls replace the fallback with constant velocity, drive a prospective fallback by ensemble spread, use graph--fallback disagreement, fit a supervised mixture-of-experts gate, or gate by Mahalanobis distance in the invariant input state. These controls share samples, horizons, and complete-run splits. They are reported in \appref{app:controls}; no test winner is promoted to the primary model.
+
+The graph architecture is selected only on the seven calibration runs. Six width/epoch settings from 6,019 to 51,939 parameters are evaluated by leave-one-complete-run-out RMSE. This supports the training budget without calling the in-house graph the strongest model in the wider literature. Published 3.2-s/4.8-s ETH/UCY results are not numerically mixed with this 0.8-s/0.4-s response task.
+
+\subsection{Endpoints and inference}
+The primary endpoint is vector RMSE in m/s, first computed within each complete run and then averaged over runs. Displacement MAE and angular/speed components are secondary. The fifteen predeclared comparisons are GEL-Ped against the graph mean, coordinate median, and coarse HGB in five Juelich regimes. Exact paired sign-flip tests operate on complete-run differences and Holm correction covers all fifteen tests. We do not form bootstrap intervals from three or five clusters; ranges and per-run values are shown instead.
+
+The 0.8-m collision screen compares whether constant extrapolation under the predicted velocity enters another pedestrian's margin against the same calculation under observed future velocity. Event counts and run-level rates are reported. Recursive rollouts feed each model its own predicted state at 0.4-s increments while replaying the observed neighbour field, up to 3.2~s. This is a compounding-error audit, not a closed-loop simulator.
+
+\section{Results}
+\label{sec:results}
+\subsection{Where the guard helps---and where it does not}
+\tabref{tab:controlled} gives the three original regimes. The graph ensemble already improves on a single initialization. GEL-Ped is effectively unchanged in familiar and altered corridors. In crossing, it changes RMSE from 0.3543 to 0.3463~m/s, a 2.3\% mean reduction. The coarse HGB is marginally lower at 0.3455~m/s; the $0.0007$~m/s difference from GEL-Ped is not significant. The contribution is therefore not that the guard beats every component in every regime. It preserves graph accuracy where the coarse model is 5--7\% worse, while approaching the coarse model when graph members become unstable.
+
+\begin{table}[!htbp]
+\centering
+\caption{Complete-run vector RMSE (m/s): mean [minimum, maximum] across physical runs. Bold marks the lowest mean in a column; ranges are descriptive, not confidence intervals.}
+\label{tab:controlled}
+\small
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth}*{3}{>{\centering\arraybackslash}X}}
+\toprule
+Model & Familiar (5) & Altered (3) & Crossing (13) \\
+\midrule
+Constant velocity & 0.2346 [0.2020, 0.2469] & 0.2302 [0.2255, 0.2328] & 0.3745 [0.3514, 0.3996] \\
+Single graph network & 0.1624 [0.1439, 0.1750] & 0.1560 [0.1513, 0.1600] & 0.3580 [0.3225, 0.3911] \\
+Five-member graph ensemble & 0.1596 [0.1400, 0.1727] & \textbf{0.1530 [0.1479, 0.1572]} & 0.3543 [0.3183, 0.3899] \\
+Coordinate-median ensemble & 0.1600 [0.1407, 0.1730] & 0.1536 [0.1486, 0.1580] & 0.3520 [0.3186, 0.3854] \\
+Anchored coarse HGB & 0.1710 [0.1477, 0.1904] & 0.1611 [0.1557, 0.1651] & \textbf{0.3455 [0.3213, 0.3849]} \\
+GEL-Ped & \textbf{0.1595 [0.1400, 0.1720]} & 0.1531 [0.1480, 0.1574] & 0.3463 [0.3180, 0.3851] \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The additional configurations in \tabref{tab:additional} reinforce that trade-off. Relative to the graph ensemble, GEL-Ped changes mean RMSE by $+0.0002$~m/s in bottlenecks and $-0.0003$~m/s in unidirectional flow. Relative to coarse HGB, it is better by 0.0159 and 0.0206~m/s. Thus replacing the graph globally with a bounded tree would solve one crossing average at the cost of materially worse predictions in four other controlled regimes.
+
+\begin{table}[!htbp]
+\centering
+\caption{Additional Juelich configurations not used for fitting: complete-run mean RMSE (m/s). The native 16-Hz data use 0.8125~s of history and a 0.375-s target.}
+\label{tab:additional}
+\small
+\begin{tabularx}{0.84\textwidth}{>{\raggedright\arraybackslash}X>{\centering\arraybackslash}p{0.24\textwidth}>{\centering\arraybackslash}p{0.24\textwidth}}
+\toprule
+Model & Bottleneck (4) & Unidirectional (8) \\
+\midrule
+Constant velocity & 0.2636 & 0.2594 \\
+Graph ensemble & \textbf{0.2470} & 0.2396 \\
+Coordinate-median ensemble & 0.2480 & 0.2402 \\
+Coarse HGB & 0.2631 & 0.2599 \\
+GEL-Ped & 0.2472 & \textbf{0.2393} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{The crossing mean, its outlier, and the mechanism}
+All 13 crossing differences favour GEL-Ped, and the exact test against the graph remains significant after the complete 15-test Holm correction ($p_{\mathrm{adj}}=0.0037$). The distribution matters more than the headline: the mean difference is $-0.0080$~m/s, the median is $-0.0022$~m/s, and leave-one-run-out means range from $-0.0087$ to $-0.0045$~m/s. Removing run \texttt{d\_1} leaves a 1.3\% mean reduction. Full per-run values are in \tabref{tab:crossing-runs}; all fifteen tests appear in \tabref{tab:holm}.
+
+Run \texttt{d\_1} diagnoses the intended failure mode. Four graph members have RMSE between 0.3519 and 0.4176~m/s, but the third reaches 0.8396~m/s. Their prediction mean gives 0.3899~m/s and the robust coordinate median 0.3593~m/s. GEL-Ped detects the local spread and reaches 0.3396~m/s, close to the coarse fallback at 0.3366~m/s. Across crossing, the highest instability stratum ($>2$ calibration IQR, 2,875 forecasts) has graph RMSE 0.5654~m/s and GEL-Ped RMSE 0.4665~m/s. The benefit is therefore concentrated in a small neural tail rather than distributed evenly across all pedestrians.
+
+\figref{fig:evidence} makes both facts visible: the run-level mean is outlier-sensitive, while the instability strata show a mechanism that cannot be explained by simple coordinate-median aggregation alone.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.99\textwidth]{referee2_evidence.pdf}
+\caption{Final evidence. (A) Run means and complete-run ranges; CV denotes constant velocity. (B) Crossing paired differences, with mean and median shown separately. (C) Sample RMSE by calibration-normalized instability; $n$ is the number of forecasts in each bin. (D) Recursive displacement error; lines are complete-run means and shaded regions are complete-run ranges, not confidence intervals.}
+\label{fig:evidence}
+\end{figure}
+
+\subsection{Naturalistic leave-one-scene-out tests}
+\tabref{tab:ethucy} reports all five standard scenes. GEL-Ped is slightly worse than the graph on ETH, ZARA1, and ZARA2, nearly equal on HOTEL, and better on UNIV. The scene-macro RMSE is 0.2262 versus 0.2267~m/s, a 0.2\% descriptive reduction; GEL-Ped wins two of five scenes and the exact paired $p$ value is 0.9375. This is the cleanest external result and does not support a broad accuracy claim.
+
+The realized mean graph weights are 0.699 (ETH), 0.994 (HOTEL), 0.898 (UNIV), 0.999 (ZARA1), and 0.986 (ZARA2). For each held scene, $\tau$ and $S$ are recalibrated on the supplied validation split of the other scenes; no Juelich threshold is transferred. The result shows that the guard can remain mostly inactive under naturalistic leave-one-scene-out transfer, but the lower ETH weight does not reliably imply that the fallback is superior.
+
+\begin{table}[!htbp]
+\centering
+\caption{ETH/UCY leave-one-scene-out vector RMSE (m/s), reconstructed as the same 0.8-s-history/0.4-s-target task. Macro averages weight the five scenes equally.}
+\label{tab:ethucy}
+\small
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.25\textwidth}*{6}{>{\centering\arraybackslash}X}}
+\toprule
+Model & ETH & HOTEL & UNIV & ZARA1 & ZARA2 & Macro \\
+\midrule
+Graph ensemble & \textbf{0.4111} & 0.2433 & 0.1807 & \textbf{0.1389} & \textbf{0.1594} & 0.2267 \\
+Coarse HGB & 0.4173 & 0.2461 & \textbf{0.1743} & 0.1413 & 0.1614 & 0.2281 \\
+GEL-Ped & 0.4137 & \textbf{0.2432} & 0.1756 & 0.1390 & 0.1596 & \textbf{0.2262} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Operational and sensitivity audits}
+The crossing collision screen contains 73,051 true conflict events and 4,949 non-conflict events. GEL-Ped records 72,265 true positives, 547 false positives, 786 misses, and 4,402 true negatives. The graph ensemble records 72,243, 556, 808, and 4,393. Miss rate therefore changes from 1.106\% to 1.076\% (2.7\% relative), while false-alarm rate changes from 11.23\% to 11.05\%. Run-level miss-rate differences range from $-0.212$ to $+0.018$ percentage points. The previously similar rounded false-alarm values were coincidental, not threshold matching.
+
+Frozen crossing sensitivity is not knife-edge. Across threshold quantiles 0.80, 0.90, and 0.95 and scale multipliers 0.5, 1, and 2, mean RMSE lies between 0.3452 and 0.3478~m/s. A five-observation, future-label oracle reaches 0.3413~m/s, leaving only 0.0050~m/s mean headroom. Ensemble spread correlates with speed in crossing (mean within-run Spearman $\rho=0.433$), but much less in other regimes; occupancy and neighbour-count correlations do not reproduce the error-tail pattern. These are clustered descriptive correlations, not 78,000 independent tests.
+
+The all-speed audit removes the future-label exclusion. Crossing RMSE becomes 0.3615 for GEL-Ped and 0.3667~m/s for the graph; GEL-Ped wins 11 of 13 runs, with mean and median differences of $-0.0052$ and $-0.0019$~m/s. With the ETH-style prior-velocity route axis on Juelich, absolute errors rise, but the crossing comparison remains 0.3727 versus 0.3868~m/s. The guard mechanism is therefore not an artefact of route labels, although the entrance route improves absolute accuracy.
+
+Recursive rollouts amplify the difference: complete-run mean displacement errors for graph/GEL-Ped are 0.259/0.249~m at 0.8~s, 0.646/0.589~m at 1.6~s, and 1.900/1.559~m at 3.2~s. This is a 4.1\%, 8.8\%, and 17.9\% reduction relative to the graph. However, coarse HGB and constant velocity reach 1.273 and 1.317~m at 3.2~s, both below GEL-Ped. Recursively applying a one-step response model is therefore not a substitute for a dedicated long-horizon predictor; the audit only shows that the guard limits compounding neural error.
+
+\section{Discussion}
+\label{sec:discussion}
+\subsection{Why not use the neural ensemble alone?}
+In supported flow, there is almost no reason not to. Mean $g$ is 0.977 in familiar corridors, 0.960 under altered geometry, 0.995 in bottlenecks, and 0.955 in unidirectional flow. GEL-Ped is consequently within $0.0003$~m/s of the graph ensemble in these regimes. The practical reason for the guard is narrower: a graph member can produce a rare, very large correction under a changed interaction pattern, and simple averaging or coordinate medians do not always remove it. GEL-Ped converts the same-family spread into a bounded correction without imposing a permanent fallback weight.
+
+The comparison with coarse HGB is equally important. Coarse HGB slightly wins the crossing mean, so the paper does not present geometry as the cause of that gain. But choosing HGB globally increases error by 5--8\% in the other controlled regimes. GEL-Ped supplies an operating point close to the better expert without using future error. A graph--coarse disagreement guard is even lower in crossing (0.3443~m/s) but degrades on the additional configurations and was not selected after viewing test results. The ensemble-spread rule has the clearest pre-deployment interpretation and the smallest in-support intervention.
+
+\subsection{Transportation use and limits}
+For a mobile robot or automated vehicle, $g_i$ can be exposed alongside the forecast: a low value can enlarge a collision margin, slow a planner, or request sensor/model review. For stations and terminals, the same local signal can identify a region where a calibrated pedestrian predictor is no longer behaving consistently. These uses do not require the fallback to be a complete theory of crowd motion; they require a stable response while the primary network is suspect.
+
+Several limits remain. Crossing influenced development, and the extra Juelich configurations are descriptive. The five ETH/UCY scenes provide cleaner external evidence, but they show no significant mean advantage. The output is unimodal, lacks explicit destinations, groups, gaze, and visual context, and the collision screen replays neighbours rather than modelling reciprocal response. A calibration-residual disk is cross-conformal-like rather than ordinary split conformal because folds overlap and samples within runs are dependent. Its nominal 90\% coverage falls to 35.9--52.2\% across crossing instability strata; empirical guard-conditional radii improve stratified coverage but do not restore a finite-sample guarantee under shift. GEL-Ped should therefore emit a shift flag or trigger site recalibration, not claim a valid 90\% interval after topology change.
+
+\section{Conclusion}
+\label{sec:conclusion}
+GEL-Ped turns one observable neural failure signal into a simple deployment action. A graph ensemble remains fully responsible while its members agree within a complete-run calibration envelope. When local spread rises, its prediction is smoothly limited by a bounded behavioural residual. This design is easier to audit than a gate trained to recognize named regimes and less restrictive than assigning a fixed weight to a hand-crafted model.
+
+The results support a precise value proposition. The method does not materially improve ordinary in-support averages, and a coarse boosted model is marginally best in perpendicular crossing. GEL-Ped is useful because that coarse model is substantially worse elsewhere, while the guarded ensemble preserves graph accuracy and suppresses its small but consequential instability tail. The mean crossing gain is significant but outlier-sensitive; the clean ETH/UCY macro gain is negligible and non-significant. For publication and deployment, the method should therefore be understood as a transparent neural safeguard for short-horizon crowd response, not as a universal trajectory-prediction replacement.
+
+\section*{Data availability}
+The bidirectional-corridor trajectories are available at \href{https://doi.org/10.34735/ped.2013.5}{DOI 10.34735/ped.2013.5}; the perpendicular-crossing trajectories at \href{https://doi.org/10.34735/ped.2013.4}{DOI 10.34735/ped.2013.4}; and the additional Juelich/Tordeux configurations at \href{https://doi.org/10.5281/zenodo.1054017}{DOI 10.5281/zenodo.1054017}. ETH/UCY files follow the Trajectron++ repository at commit \texttt{1031c7bd\allowbreak{}1a444273\allowbreak{}af378c1e\allowbreak{}c1dcca90\allowbreak{}7ba59830}. Raw files are not redistributed.
+
+\section*{Code availability}
+Source code, immutable run partitions, calibration records, complete-run outputs, tests, and figure scripts are available at \url{https://github.com/AmirNetwork/GEL-Ped}. Every source file identifies Amir Ghorbani as author. A permanent archive DOI will be added to the accepted release.
+
+\section*{Ethics statement}
+This study reuses publicly available, de-identified pedestrian trajectories and does not access participant identities.
+
+\section*{Declaration of competing interest}
+The author declares no known competing financial interests or personal relationships that could have influenced the work reported in this paper.
+
+\section*{Acknowledgements}
+The author thanks the creators and maintainers of the Juelich Pedestrian Dynamics Data Archive, the Tordeux experimental archive, and the ETH/UCY benchmarks for making empirical pedestrian data reusable.
+
+\appendix
+\counterwithin{table}{section}
+
+\section{Run partition and selection record}
+\label{app:runs}
+\tabref{tab:run-partition} documents the full 7/5/3 corridor partition. Calibration runs were selected to span the available entrance widths and low-to-high occupancy. Familiar tests retain the 22-m corridor and 5-m exit. ``Altered'' is defined before modelling as a changed corridor length and/or exit arrangement. Nominal mean density divides mean frame occupancy by the documented 4-m corridor width and corridor length; it is a global facility statistic, not a Voronoi local density.
+
+\begin{table}[!htbp]
+\centering
+\caption{Complete-run partition and physical descriptors. A dash in exit width denotes the open terminal arrangement recorded as zero in the archive metadata.}
+\label{tab:run-partition}
+\scriptsize
+\renewcommand{\arraystretch}{1.04}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrrr}
+\toprule
+Run & Role & Ped. & Duration (s) & Entrance (m) & Length (m) & Exit (m) & Nominal density & Forecasts \\
+\midrule
+\texttt{a\_01} & calibration & 377 & 93.0 & 1.8 & 22 & 5.0 & 0.69 & 6000 \\
+\texttt{a\_02} & calibration & 521 & 142.3 & 3.0 & 22 & 5.0 & 1.10 & 6000 \\
+\texttt{b\_01} & calibration & 141 & 76.1 & 0.6 & 22 & 5.0 & 0.16 & 1924 \\
+\texttt{b\_03} & calibration & 480 & 129.8 & 1.2 & 22 & 5.0 & 0.42 & 6000 \\
+\texttt{b\_05} & calibration & 643 & 172.6 & 2.4 & 22 & 5.0 & 1.07 & 6000 \\
+\texttt{b\_07} & calibration & 606 & 162.9 & 4.0 & 22 & 5.0 & 1.34 & 6000 \\
+\texttt{b\_09} & calibration & 483 & 119.3 & 2.4 & 22 & 5.0 & 0.65 & 6000 \\
+\midrule
+\texttt{a\_03} & familiar & 541 & 140.7 & 4.0 & 22 & 5.0 & 1.22 & 6000 \\
+\texttt{b\_02} & familiar & 259 & 93.2 & 0.9 & 22 & 5.0 & 0.26 & 3989 \\
+\texttt{b\_04} & familiar & 743 & 189.8 & 1.8 & 22 & 5.0 & 0.97 & 6000 \\
+\texttt{b\_06} & familiar & 830 & 248.8 & 3.0 & 22 & 5.0 & 1.29 & 6000 \\
+\texttt{b\_10} & familiar & 736 & 207.7 & 4.0 & 22 & 5.0 & 1.02 & 6000 \\
+\midrule
+\texttt{a\_04} & altered & 544 & 163.0 & 4.0 & 17 & 2.5 & 1.76 & 6000 \\
+\texttt{a\_05} & altered & 559 & 169.8 & 4.0 & 12 & -- & 2.36 & 6000 \\
+\texttt{b\_08} & altered & 703 & 230.2 & 4.0 & 12 & -- & 2.81 & 6000 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{Crossing runs and complete Holm family}
+\label{app:statistics}
+\begin{table}[!htbp]
+\centering
+\caption{Crossing complete-run RMSE (m/s), graph-member seed SD, and realized mean graph weight.}
+\label{tab:crossing-runs}
+\small
+\renewcommand{\arraystretch}{1.04}
+\begin{tabular}{lrrrrrr}
+\toprule
+Run & Graph mean & Median ensemble & Coarse HGB & GEL-Ped & GEL--Graph & Seed SD / $\bar g$ \\
+\midrule
+\texttt{d\_1} & 0.3899 & 0.3593 & 0.3366 & 0.3396 & $-0.0503$ & 0.2071 / 0.812 \\
+\texttt{d\_2} & 0.3689 & 0.3701 & 0.3559 & 0.3582 & $-0.0106$ & 0.0024 / 0.712 \\
+\texttt{d\_3} & 0.3676 & 0.3681 & 0.3489 & 0.3571 & $-0.0104$ & 0.0028 / 0.728 \\
+\texttt{d\_5} & 0.3630 & 0.3601 & 0.3464 & 0.3494 & $-0.0136$ & 0.0211 / 0.856 \\
+\texttt{d\_6} & 0.3338 & 0.3339 & 0.3304 & 0.3324 & $-0.0014$ & 0.0020 / 0.927 \\
+\texttt{d\_7} & 0.3183 & 0.3186 & 0.3213 & 0.3180 & $-0.0003$ & 0.0025 / 0.926 \\
+\texttt{d\_8} & 0.3266 & 0.3273 & 0.3266 & 0.3244 & $-0.0022$ & 0.0010 / 0.900 \\
+\texttt{e\_1} & 0.3352 & 0.3355 & 0.3281 & 0.3301 & $-0.0051$ & 0.0030 / 0.866 \\
+\texttt{e\_2} & 0.3732 & 0.3736 & 0.3687 & 0.3676 & $-0.0056$ & 0.0024 / 0.814 \\
+\texttt{e\_3} & 0.3855 & 0.3854 & 0.3849 & 0.3851 & $-0.0004$ & 0.0027 / 0.868 \\
+\texttt{e\_4} & 0.3614 & 0.3613 & 0.3614 & 0.3593 & $-0.0021$ & 0.0024 / 0.911 \\
+\texttt{e\_5} & 0.3416 & 0.3416 & 0.3442 & 0.3414 & $-0.0002$ & 0.0024 / 0.926 \\
+\texttt{e\_6} & 0.3408 & 0.3409 & 0.3386 & 0.3389 & $-0.0018$ & 0.0021 / 0.884 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{All fifteen predeclared paired tests. Differences are GEL-Ped minus comparator in m/s; negative favours GEL-Ped.}
+\label{tab:holm}
+\scriptsize
+\renewcommand{\arraystretch}{1.03}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\centering\arraybackslash}p{0.07\textwidth}>{\centering\arraybackslash}p{0.10\textwidth}>{\centering\arraybackslash}p{0.10\textwidth}>{\centering\arraybackslash}p{0.09\textwidth}>{\centering\arraybackslash}X}
+\toprule
+Regime & Comparator & Wins/$n$ & Mean diff. & Median diff. & Exact $p$ & Holm $p$ \\
+\midrule
+Familiar & Graph mean & 2/5 & $-0.00010$ & $0.00004$ & 0.8750 & 1.0000 \\
+Familiar & Median ensemble & 4/5 & $-0.00050$ & $-0.00061$ & 0.1875 & 1.0000 \\
+Familiar & Coarse HGB & 5/5 & $-0.01148$ & $-0.00945$ & 0.0625 & 0.6875 \\
+Altered & Graph mean & 1/3 & $0.00008$ & $0.00002$ & 0.5000 & 1.0000 \\
+Altered & Median ensemble & 3/3 & $-0.00055$ & $-0.00053$ & 0.2500 & 1.0000 \\
+Altered & Coarse HGB & 3/3 & $-0.00800$ & $-0.00774$ & 0.2500 & 1.0000 \\
+Crossing & Graph mean & 13/13 & $-0.00801$ & $-0.00224$ & 0.00024 & 0.00366 \\
+Crossing & Median ensemble & 13/13 & $-0.00572$ & $-0.00293$ & 0.00024 & 0.00366 \\
+Crossing & Coarse HGB & 5/13 & $0.00074$ & $0.00027$ & 0.4458 & 1.0000 \\
+Unidirectional & Graph mean & 3/8 & $-0.00029$ & $0.00007$ & 0.3359 & 1.0000 \\
+Unidirectional & Median ensemble & 8/8 & $-0.00093$ & $-0.00089$ & 0.00781 & 0.1016 \\
+Unidirectional & Coarse HGB & 8/8 & $-0.02059$ & $-0.02163$ & 0.00781 & 0.1016 \\
+Bottleneck & Graph mean & 0/4 & $0.00020$ & $0.00016$ & 0.1250 & 1.0000 \\
+Bottleneck & Median ensemble & 4/4 & $-0.00082$ & $-0.00092$ & 0.1250 & 1.0000 \\
+Bottleneck & Coarse HGB & 4/4 & $-0.01585$ & $-0.01719$ & 0.1250 & 1.0000 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Guard controls, capacity, and uncertainty}
+\label{app:controls}
+\begin{table}[!htbp]
+\centering
+\caption{Guard and OOD controls: mean RMSE (m/s). ETH/UCY is the equal-scene macro average. These variants were not selected on test performance.}
+\label{tab:controls}
+\small
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X*{4}{>{\centering\arraybackslash}p{0.15\textwidth}}}
+\toprule
+Model & Crossing & Bottleneck & Unidirectional & ETH/UCY \\
+\midrule
+Graph ensemble & 0.3543 & \textbf{0.2470} & 0.2396 & 0.2267 \\
+Graph--coarse disagreement guard & \textbf{0.3443} & 0.2486 & 0.2419 & 0.2264 \\
+Graph--CV disagreement guard & 0.3526 & \textbf{0.2470} & 0.2396 & 0.2273 \\
+Prospective fallback, spread guard & 0.3456 & 0.2489 & 0.2418 & 0.2256 \\
+Learned mixture-of-experts gate & 0.3469 & 0.2515 & 0.2451 & 0.2255 \\
+Mahalanobis OOD guard & 0.3481 & 0.2488 & 0.2418 & \textbf{0.2252} \\
+GEL-Ped & 0.3463 & 0.2472 & \textbf{0.2393} & 0.2262 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The Mahalanobis and learned gates slightly lower the external macro mean, but neither was the prespecified primary mechanism. The graph--coarse disagreement guard is the crossing winner yet intervenes more on non-crossing data. GEL-Ped is retained because its signal is internal to the neural family, its in-support weight is exactly one, and its intervention is directly attributable to ensemble instability.
+
+\begin{table}[!htbp]
+\centering
+\caption{Calibration-only graph capacity/epoch sweep. RMSE averages seven leave-one-complete-run-out folds.}
+\label{tab:capacity}
+\small
+\begin{tabular}{rrrr}
+\toprule
+Width & Epochs & Parameters & Calibration RMSE (m/s) \\
+\midrule
+32 & 25 & 6,019 & 0.16453 \\
+48 & 25 & 13,395 & \textbf{0.16398} \\
+48 & 45 & 13,395 & 0.16560 \\
+48 & 75 & 13,395 & 0.16638 \\
+96 & 45 & 51,939 & 0.16560 \\
+96 & 75 & 51,939 & 0.16810 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The residual uncertainty audit is empirical. A global 90\% radial quantile calibrated from overlapping leave-one-run-out residuals is cross-conformal-like; dependent frames and overlapping fits prevent an ordinary split-conformal guarantee. Mondrian radii estimated by guard stratum are 0.244, 0.290, 0.339, and 0.364~m/s from inside to $>2$ IQR. Crossing coverages are 50.7\%, 51.8\%, 59.7\%, and 56.9\%, respectively, compared with global-radius coverage of 52.2\%, 42.5\%, 41.0\%, and 35.9\%. Conditional calibration helps the tail but does not repair topology-shift coverage.
+
+\section{Encoding and label-filter sensitivities}
+\label{app:sensitivity}
+\begin{table}[!htbp]
+\centering
+\caption{Frozen encoding audits: mean complete-run RMSE (m/s). The all-speed audit removes the future-label filter; the prior-velocity axis replaces the entrance route with recent displacement and is independently cross-fitted.}
+\label{tab:encoding}
+\small
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}p{0.19\textwidth}*{3}{>{\centering\arraybackslash}X}}
+\toprule
+Encoding & Regime & Graph ensemble & Coarse HGB & GEL-Ped \\
+\midrule
+Primary entry axis & Familiar & 0.1596 & 0.1710 & 0.1595 \\
+ & Altered & 0.1530 & 0.1611 & 0.1531 \\
+ & Crossing & 0.3543 & 0.3455 & 0.3463 \\
+\midrule
+Prior-velocity axis & Familiar & 0.1730 & 0.1916 & 0.1735 \\
+ & Altered & 0.1678 & 0.1816 & 0.1683 \\
+ & Crossing & 0.3868 & 0.3652 & 0.3727 \\
+\midrule
+All observed speeds & Familiar & 0.1596 & 0.1710 & 0.1595 \\
+ & Altered & 0.1530 & 0.1611 & 0.1531 \\
+ & Crossing & 0.3667 & 0.3606 & 0.3615 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{references}
+\end{document}

@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Create transparent raw and rescaled spacetime-style field visualisations."""
 
 from __future__ import annotations
@@ -118,4 +119,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

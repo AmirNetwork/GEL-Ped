@@ -1,0 +1,27 @@
+run,model,vector_rmse_mps,mean_graph_weight,buffers
+crossing_90_d_1,label-using five-frame buffer oracle,0.3343211141928333,0.19,60
+crossing_90_d_1,GEL-Ped instability guard,0.33962641277257855,0.8122500088873382,60
+crossing_90_d_2,label-using five-frame buffer oracle,0.3530077957448772,0.24473684210526317,57
+crossing_90_d_2,GEL-Ped instability guard,0.35822630545035444,0.7117757426211919,57
+crossing_90_d_3,label-using five-frame buffer oracle,0.3479186307012216,0.14210526315789476,57
+crossing_90_d_3,GEL-Ped instability guard,0.3571410516187075,0.7281736186461373,57
+crossing_90_d_5,label-using five-frame buffer oracle,0.3433089976107611,0.3727272727272727,44
+crossing_90_d_5,GEL-Ped instability guard,0.3493928437483768,0.8556942038678652,44
+crossing_90_d_6,label-using five-frame buffer oracle,0.3281931713009207,0.37317073170731707,41
+crossing_90_d_6,GEL-Ped instability guard,0.33235248033755116,0.9267312226085427,41
+crossing_90_d_7,label-using five-frame buffer oracle,0.3160169113736563,0.6190476190476192,42
+crossing_90_d_7,GEL-Ped instability guard,0.3179622324517717,0.9254797334698953,42
+crossing_90_d_8,label-using five-frame buffer oracle,0.3217498594917903,0.5460526315789475,38
+crossing_90_d_8,GEL-Ped instability guard,0.3244054652819476,0.9004007758353281,38
+crossing_90_e_1,label-using five-frame buffer oracle,0.32465039463914747,0.3268115942028985,69
+crossing_90_e_1,GEL-Ped instability guard,0.33011821140090586,0.8661088929652281,69
+crossing_90_e_2,label-using five-frame buffer oracle,0.36291848280835404,0.35234375,64
+crossing_90_e_2,GEL-Ped instability guard,0.3675954469929933,0.8139711920352878,64
+crossing_90_e_3,label-using five-frame buffer oracle,0.3781555011997188,0.5,58
+crossing_90_e_3,GEL-Ped instability guard,0.38510059748457404,0.8679873743313729,58
+crossing_90_e_4,label-using five-frame buffer oracle,0.3548997421420901,0.5152542372881357,59
+crossing_90_e_4,GEL-Ped instability guard,0.35929112232023214,0.9112112143762282,59
+crossing_90_e_5,label-using five-frame buffer oracle,0.3375479539526666,0.5526785714285715,56
+crossing_90_e_5,GEL-Ped instability guard,0.34135475031646195,0.9260545710796435,56
+crossing_90_e_6,label-using five-frame buffer oracle,0.33426844751557117,0.4336734693877551,49
+crossing_90_e_6,GEL-Ped instability guard,0.3389153642717894,0.8838655086043818,49

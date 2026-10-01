@@ -1,0 +1,15 @@
+{
+  "clusters": "five held-out ETH/UCY scenes",
+  "scene_differences_mps": {
+    "ETH": 0.00267740810437167,
+    "HOTEL": -4.644311598769879e-05,
+    "UNIV": -0.005123660952456199,
+    "ZARA1": 7.226494313608556e-05,
+    "ZARA2": 0.00020461084820841413
+  },
+  "macro_mean_difference_mps": -0.00044316403454554564,
+  "macro_median_difference_mps": 7.226494313608556e-05,
+  "wins": 2,
+  "exact_two_sided_p": 0.9375,
+  "minimum_attainable_two_sided_p": 0.0625
+}

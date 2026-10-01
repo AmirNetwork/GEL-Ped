@@ -1,0 +1,298 @@
+dataset,run,model,mean_graph_weight,q10_graph_weight,q90_graph_weight
+familiar corridor,bi_corr_400_a_03,global disagreement guard,0.7994694617267346,0.8,0.8
+familiar corridor,bi_corr_400_a_03,local geometry guard,0.7764100730244846,0.8,0.8
+familiar corridor,bi_corr_400_a_03,local coarse-HGB guard,0.880704106183843,0.9,0.9
+familiar corridor,bi_corr_400_a_03,local CV guard,0.9568218307655005,0.8484753884400853,1.0
+familiar corridor,bi_corr_400_a_03,graph-ensemble-dispersion guard,0.7789355120412101,0.8,0.8
+familiar corridor,bi_corr_400_a_03,Mahalanobis OOD guard,0.7774085155875676,0.8,0.8
+familiar corridor,bi_corr_400_a_03,learned mixture-of-experts gate,0.5486996093777872,0.5324062083106684,0.5717057991442951
+familiar corridor,bi_corr_400_a_03,GEL-Ped reliability guard,0.7627919422416635,0.7466425837706375,0.8
+familiar corridor,bi_corr_400_a_03,GEL-Ped instability guard,0.9736693900515128,1.0,1.0
+familiar corridor,bi_corr_400_b_02,global disagreement guard,0.7890227476732325,0.8,0.8
+familiar corridor,bi_corr_400_b_02,local geometry guard,0.7523306029463911,0.6523052370260449,0.8
+familiar corridor,bi_corr_400_b_02,local coarse-HGB guard,0.8333333614640294,0.5780023314806634,0.9
+familiar corridor,bi_corr_400_b_02,local CV guard,0.9988973010103936,1.0,1.0
+familiar corridor,bi_corr_400_b_02,graph-ensemble-dispersion guard,0.7777774162761351,0.8,0.8
+familiar corridor,bi_corr_400_b_02,Mahalanobis OOD guard,0.792792949919037,0.8,0.8
+familiar corridor,bi_corr_400_b_02,learned mixture-of-experts gate,0.5508745594760457,0.5319870508415447,0.5790517962246765
+familiar corridor,bi_corr_400_b_02,GEL-Ped reliability guard,0.7407296328822852,0.535056278012055,0.8
+familiar corridor,bi_corr_400_b_02,GEL-Ped instability guard,0.9722217703451687,1.0,1.0
+familiar corridor,bi_corr_400_b_04,global disagreement guard,0.7974908087172121,0.8,0.8
+familiar corridor,bi_corr_400_b_04,local geometry guard,0.7622916006050552,0.7635134251802991,0.8
+familiar corridor,bi_corr_400_b_04,local coarse-HGB guard,0.8591983136306766,0.8975213254966682,0.9
+familiar corridor,bi_corr_400_b_04,local CV guard,0.9394628160623779,0.7330704678390395,1.0
+familiar corridor,bi_corr_400_b_04,graph-ensemble-dispersion guard,0.7843649574546068,0.8,0.8
+familiar corridor,bi_corr_400_b_04,Mahalanobis OOD guard,0.7749992073979323,0.8,0.8
+familiar corridor,bi_corr_400_b_04,learned mixture-of-experts gate,0.5512902765829094,0.5257058934093088,0.581929594916738
+familiar corridor,bi_corr_400_b_04,GEL-Ped reliability guard,0.7540926533231219,0.6520945851864965,0.8
+familiar corridor,bi_corr_400_b_04,GEL-Ped instability guard,0.9804561968182586,1.0,1.0
+familiar corridor,bi_corr_400_b_06,global disagreement guard,0.7953558255471144,0.8,0.8
+familiar corridor,bi_corr_400_b_06,local geometry guard,0.7626139385117519,0.7206910983651419,0.8
+familiar corridor,bi_corr_400_b_06,local coarse-HGB guard,0.8786328145140238,0.9,0.9
+familiar corridor,bi_corr_400_b_06,local CV guard,0.9629478250206791,0.938218121498775,1.0
+familiar corridor,bi_corr_400_b_06,graph-ensemble-dispersion guard,0.7764321796462681,0.8,0.8
+familiar corridor,bi_corr_400_b_06,Mahalanobis OOD guard,0.7619064867627657,0.6902361337533222,0.8
+familiar corridor,bi_corr_400_b_06,learned mixture-of-experts gate,0.5491523816099366,0.5230924008437063,0.5797827901485778
+familiar corridor,bi_corr_400_b_06,GEL-Ped reliability guard,0.7476205088389595,0.5923835896119716,0.8
+familiar corridor,bi_corr_400_b_06,GEL-Ped instability guard,0.9705402245578353,1.0,1.0
+familiar corridor,bi_corr_400_b_10,global disagreement guard,0.7981768676033423,0.8,0.8
+familiar corridor,bi_corr_400_b_10,local geometry guard,0.7783135849486174,0.8,0.8
+familiar corridor,bi_corr_400_b_10,local coarse-HGB guard,0.886208004735794,0.9,0.9
+familiar corridor,bi_corr_400_b_10,local CV guard,0.9398229386494585,0.7349569026501014,1.0
+familiar corridor,bi_corr_400_b_10,graph-ensemble-dispersion guard,0.7899880801610125,0.8,0.8
+familiar corridor,bi_corr_400_b_10,Mahalanobis OOD guard,0.7889961254011957,0.8,0.8
+familiar corridor,bi_corr_400_b_10,learned mixture-of-experts gate,0.5501660632990214,0.5352638104856343,0.5717993397674618
+familiar corridor,bi_corr_400_b_10,GEL-Ped reliability guard,0.7724363995037113,0.8,0.8
+familiar corridor,bi_corr_400_b_10,GEL-Ped instability guard,0.9874851002012656,1.0,1.0
+altered geometry,bi_corr_400_a_04,global disagreement guard,0.7956121001711202,0.8,0.8
+altered geometry,bi_corr_400_a_04,local geometry guard,0.7721871533602447,0.8,0.8
+altered geometry,bi_corr_400_a_04,local coarse-HGB guard,0.8833790694599674,0.9,0.9
+altered geometry,bi_corr_400_a_04,local CV guard,0.9681597099013662,0.998891419036222,1.0
+altered geometry,bi_corr_400_a_04,graph-ensemble-dispersion guard,0.7738251912138477,0.8,0.8
+altered geometry,bi_corr_400_a_04,Mahalanobis OOD guard,0.7610809838150913,0.6714895534113308,0.8
+altered geometry,bi_corr_400_a_04,learned mixture-of-experts gate,0.5463791151828915,0.5248089224120922,0.570665164419818
+altered geometry,bi_corr_400_a_04,GEL-Ped reliability guard,0.7538217118774853,0.6237413202548944,0.8
+altered geometry,bi_corr_400_a_04,GEL-Ped instability guard,0.9672814890173098,1.0,1.0
+altered geometry,bi_corr_400_a_05,global disagreement guard,0.7987659030108607,0.8,0.8
+altered geometry,bi_corr_400_a_05,local geometry guard,0.7749208591385165,0.8,0.8
+altered geometry,bi_corr_400_a_05,local coarse-HGB guard,0.8833727520692148,0.9,0.9
+altered geometry,bi_corr_400_a_05,local CV guard,0.9581125909560636,0.8671058652736615,1.0
+altered geometry,bi_corr_400_a_05,graph-ensemble-dispersion guard,0.7810962595846382,0.8,0.8
+altered geometry,bi_corr_400_a_05,Mahalanobis OOD guard,0.7761543224042072,0.8,0.8
+altered geometry,bi_corr_400_a_05,learned mixture-of-experts gate,0.5485681446168078,0.5317232427074756,0.5719723156762592
+altered geometry,bi_corr_400_a_05,GEL-Ped reliability guard,0.7619742842286734,0.7132161986659161,0.8
+altered geometry,bi_corr_400_a_05,GEL-Ped instability guard,0.9763703244807979,1.0,1.0
+altered geometry,bi_corr_400_b_08,global disagreement guard,0.7999213606381123,0.8,0.8
+altered geometry,bi_corr_400_b_08,local geometry guard,0.7534677147412916,0.6227519466880137,0.8
+altered geometry,bi_corr_400_b_08,local coarse-HGB guard,0.8799608157999007,0.9,0.9
+altered geometry,bi_corr_400_b_08,local CV guard,0.9682606278004511,1.0,1.0
+altered geometry,bi_corr_400_b_08,graph-ensemble-dispersion guard,0.749619766332826,0.6072188485307699,0.8
+altered geometry,bi_corr_400_b_08,Mahalanobis OOD guard,0.7125528891112802,0.40951562065096964,0.8
+altered geometry,bi_corr_400_b_08,learned mixture-of-experts gate,0.5424426965346301,0.5140092066155126,0.570665164419818
+altered geometry,bi_corr_400_b_08,GEL-Ped reliability guard,0.7196178013802149,0.4349969475102175,0.8
+altered geometry,bi_corr_400_b_08,GEL-Ped instability guard,0.9370247079160327,0.7590235606634623,1.0
+crossing topology,crossing_90_d_1,global disagreement guard,0.6529312256822726,0.16997255912279233,0.8
+crossing topology,crossing_90_d_1,local geometry guard,0.6242450198292037,0.094609640057768,0.8
+crossing topology,crossing_90_d_1,local coarse-HGB guard,0.7211149260832872,0.10465154519049023,0.9
+crossing topology,crossing_90_d_1,local CV guard,0.9372676756369815,0.750831548901665,1.0
+crossing topology,crossing_90_d_1,graph-ensemble-dispersion guard,0.6498000071098705,0.17406193412281581,0.8
+crossing topology,crossing_90_d_1,Mahalanobis OOD guard,0.6833996651262852,0.31878502368882095,0.8
+crossing topology,crossing_90_d_1,learned mixture-of-experts gate,0.5417947418091015,0.504433402804849,0.5821430006813682
+crossing topology,crossing_90_d_1,GEL-Ped reliability guard,0.5683585326451963,0.06012868015934384,0.8
+crossing topology,crossing_90_d_1,GEL-Ped instability guard,0.8122500088873382,0.21757741765351973,1.0
+crossing topology,crossing_90_d_2,global disagreement guard,0.5794539496208244,0.18695848003801271,0.8
+crossing topology,crossing_90_d_2,local geometry guard,0.585794145886599,0.07657745600566711,0.8
+crossing topology,crossing_90_d_2,local coarse-HGB guard,0.6320476930020293,0.05694193419983132,0.9
+crossing topology,crossing_90_d_2,local CV guard,0.960152020718873,0.9108129569132785,1.0
+crossing topology,crossing_90_d_2,graph-ensemble-dispersion guard,0.5694205940969536,0.11339005910131013,0.8
+crossing topology,crossing_90_d_2,Mahalanobis OOD guard,0.6237598480457613,0.24139581346326378,0.8
+crossing topology,crossing_90_d_2,learned mixture-of-experts gate,0.5340034314352172,0.4998209335991558,0.5745674777436608
+crossing topology,crossing_90_d_2,GEL-Ped reliability guard,0.48446554007268744,0.04683852397080326,0.8
+crossing topology,crossing_90_d_2,GEL-Ped instability guard,0.7117757426211919,0.14173757387663766,1.0
+crossing topology,crossing_90_d_3,global disagreement guard,0.5206849368401446,0.2902331629362844,0.8
+crossing topology,crossing_90_d_3,local geometry guard,0.5560083531629233,0.06548763603437235,0.8
+crossing topology,crossing_90_d_3,local coarse-HGB guard,0.5834820127429998,0.053984192154415245,0.9
+crossing topology,crossing_90_d_3,local CV guard,0.9832383923016842,1.0,1.0
+crossing topology,crossing_90_d_3,graph-ensemble-dispersion guard,0.5825388949169099,0.1856997982361967,0.8
+crossing topology,crossing_90_d_3,Mahalanobis OOD guard,0.6857585025383264,0.35285927025317726,0.8
+crossing topology,crossing_90_d_3,learned mixture-of-experts gate,0.5329631287823501,0.5013673909061871,0.568000879764638
+crossing topology,crossing_90_d_3,GEL-Ped reliability guard,0.46912354958500624,0.055930125244462205,0.8
+crossing topology,crossing_90_d_3,GEL-Ped instability guard,0.7281736186461373,0.2321247477952459,1.0
+crossing topology,crossing_90_d_5,global disagreement guard,0.7302698477143461,0.5455431340320457,0.8
+crossing topology,crossing_90_d_5,local geometry guard,0.6480072408835199,0.18954518906004247,0.8
+crossing topology,crossing_90_d_5,local coarse-HGB guard,0.7234304312971903,0.1908118779969331,0.9
+crossing topology,crossing_90_d_5,local CV guard,0.9723148480211911,1.0,1.0
+crossing topology,crossing_90_d_5,graph-ensemble-dispersion guard,0.684555363094292,0.3330313440186134,0.8
+crossing topology,crossing_90_d_5,Mahalanobis OOD guard,0.7349642531221542,0.5022007461427554,0.8
+crossing topology,crossing_90_d_5,learned mixture-of-experts gate,0.5481369708006013,0.5122001455055372,0.5870671931853677
+crossing topology,crossing_90_d_5,GEL-Ped reliability guard,0.593123884420125,0.14375171403951864,0.8
+crossing topology,crossing_90_d_5,GEL-Ped instability guard,0.8556942038678652,0.4162891800232667,1.0
+crossing topology,crossing_90_d_6,global disagreement guard,0.7798436607948138,0.8,0.8
+crossing topology,crossing_90_d_6,local geometry guard,0.7108146337626701,0.3648230115394228,0.8
+crossing topology,crossing_90_d_6,local coarse-HGB guard,0.8144863191743955,0.4675279814095195,0.9
+crossing topology,crossing_90_d_6,local CV guard,0.9370890113027769,0.7165827427031619,1.0
+crossing topology,crossing_90_d_6,graph-ensemble-dispersion guard,0.741384978086834,0.5536359663185314,0.8
+crossing topology,crossing_90_d_6,Mahalanobis OOD guard,0.7393982775871468,0.5182796899460438,0.8
+crossing topology,crossing_90_d_6,learned mixture-of-experts gate,0.5475908340662756,0.5170017581713848,0.5862921426782355
+crossing topology,crossing_90_d_6,GEL-Ped reliability guard,0.6806851992627999,0.28589706729325454,0.8
+crossing topology,crossing_90_d_6,GEL-Ped instability guard,0.9267312226085427,0.6920449578981642,1.0
+crossing topology,crossing_90_d_7,global disagreement guard,0.7829458282816254,0.8,0.8
+crossing topology,crossing_90_d_7,local geometry guard,0.7164996852173148,0.39311138067673673,0.8
+crossing topology,crossing_90_d_7,local coarse-HGB guard,0.8351340146116412,0.6352201011922312,0.9
+crossing topology,crossing_90_d_7,local CV guard,0.9184644935845078,0.6177535865150826,1.0
+crossing topology,crossing_90_d_7,graph-ensemble-dispersion guard,0.7403837867759163,0.5420896819829053,0.8
+crossing topology,crossing_90_d_7,Mahalanobis OOD guard,0.7222976666635422,0.43624493536730413,0.8
+crossing topology,crossing_90_d_7,learned mixture-of-experts gate,0.540982063864384,0.5099716157209456,0.5792903347303956
+crossing topology,crossing_90_d_7,GEL-Ped reliability guard,0.6874740510337586,0.3172685020009609,0.8
+crossing topology,crossing_90_d_7,GEL-Ped instability guard,0.9254797334698953,0.6776121024786317,1.0
+crossing topology,crossing_90_d_8,global disagreement guard,0.7625959151352956,0.679969629205627,0.8
+crossing topology,crossing_90_d_8,local geometry guard,0.7132591292868389,0.3720146646786052,0.8
+crossing topology,crossing_90_d_8,local coarse-HGB guard,0.8306548886467584,0.5894787393838197,0.9
+crossing topology,crossing_90_d_8,local CV guard,0.918574454008414,0.6219713715768608,1.0
+crossing topology,crossing_90_d_8,graph-ensemble-dispersion guard,0.7203206206682625,0.4238024151432548,0.8
+crossing topology,crossing_90_d_8,Mahalanobis OOD guard,0.690751406523691,0.3240977521725727,0.8
+crossing topology,crossing_90_d_8,learned mixture-of-experts gate,0.535464210288636,0.5032100866988012,0.5713245130070794
+crossing topology,crossing_90_d_8,GEL-Ped reliability guard,0.6737219655484856,0.24639860741281394,0.8
+crossing topology,crossing_90_d_8,GEL-Ped instability guard,0.9004007758353281,0.5297530189290685,1.0
+crossing topology,crossing_90_e_1,global disagreement guard,0.6798399020486443,0.1994014702072747,0.8
+crossing topology,crossing_90_e_1,local geometry guard,0.6460479534019673,0.13198067960981866,0.8
+crossing topology,crossing_90_e_1,local coarse-HGB guard,0.7266651618180243,0.14371889314640998,0.9
+crossing topology,crossing_90_e_1,local CV guard,0.920984059456675,0.6348160549094116,1.0
+crossing topology,crossing_90_e_1,graph-ensemble-dispersion guard,0.6928871143721824,0.3009566455294142,0.8
+crossing topology,crossing_90_e_1,Mahalanobis OOD guard,0.7384212445270842,0.5157573639142428,0.8
+crossing topology,crossing_90_e_1,learned mixture-of-experts gate,0.5466975729960939,0.5070425778555129,0.585579721647781
+crossing topology,crossing_90_e_1,GEL-Ped reliability guard,0.6053138430407845,0.09625543020130577,0.8
+crossing topology,crossing_90_e_1,GEL-Ped instability guard,0.8661088929652281,0.37619580691176774,1.0
+crossing topology,crossing_90_e_2,global disagreement guard,0.5896276828740011,0.14011999269274708,0.8
+crossing topology,crossing_90_e_2,local geometry guard,0.6091593487422123,0.08354308460218066,0.8
+crossing topology,crossing_90_e_2,local coarse-HGB guard,0.6868935359803848,0.09834840834454331,0.9
+crossing topology,crossing_90_e_2,local CV guard,0.9015805868584463,0.5524521221601749,1.0
+crossing topology,crossing_90_e_2,graph-ensemble-dispersion guard,0.6511769536282302,0.20575048954401295,0.8
+crossing topology,crossing_90_e_2,Mahalanobis OOD guard,0.7129971886404254,0.4037214175247346,0.8
+crossing topology,crossing_90_e_2,learned mixture-of-experts gate,0.5435759357206945,0.5070425778555129,0.5830617036653695
+crossing topology,crossing_90_e_2,GEL-Ped reliability guard,0.5510790390673712,0.061583361588523074,0.8
+crossing topology,crossing_90_e_2,GEL-Ped instability guard,0.8139711920352878,0.25718811193001617,1.0
+crossing topology,crossing_90_e_3,global disagreement guard,0.5639366793847186,0.20287188933448072,0.8
+crossing topology,crossing_90_e_3,local geometry guard,0.6160053853492843,0.09391512846307395,0.8
+crossing topology,crossing_90_e_3,local coarse-HGB guard,0.6965260782645682,0.1243349201460315,0.9
+crossing topology,crossing_90_e_3,local CV guard,0.9099297836578247,0.568532584816783,1.0
+crossing topology,crossing_90_e_3,graph-ensemble-dispersion guard,0.6943898994650981,0.3323541406804189,0.8
+crossing topology,crossing_90_e_3,Mahalanobis OOD guard,0.7414263807989891,0.5413633959760114,0.8
+crossing topology,crossing_90_e_3,learned mixture-of-experts gate,0.5505903129357471,0.5147752590098943,0.5870636908483169
+crossing topology,crossing_90_e_3,GEL-Ped reliability guard,0.580501180819836,0.08242588574993687,0.8
+crossing topology,crossing_90_e_3,GEL-Ped instability guard,0.8679873743313729,0.4154426758505236,1.0
+crossing topology,crossing_90_e_4,global disagreement guard,0.6534673600776065,0.3004607688092551,0.8
+crossing topology,crossing_90_e_4,local geometry guard,0.6554002296093533,0.14795444462925816,0.8
+crossing topology,crossing_90_e_4,local coarse-HGB guard,0.7527519614686629,0.21502115474455583,0.9
+crossing topology,crossing_90_e_4,local CV guard,0.8605052793524582,0.43842595595414763,1.0
+crossing topology,crossing_90_e_4,graph-ensemble-dispersion guard,0.7289689715009825,0.4687781048565389,0.8
+crossing topology,crossing_90_e_4,Mahalanobis OOD guard,0.7373375562562006,0.52718732089305,0.8
+crossing topology,crossing_90_e_4,learned mixture-of-experts gate,0.549308518646925,0.5129547782012562,0.5867739794793337
+crossing topology,crossing_90_e_4,GEL-Ped reliability guard,0.6310415956401104,0.12643409065349706,0.8
+crossing topology,crossing_90_e_4,GEL-Ped instability guard,0.9112112143762282,0.5859726310706737,1.0
+crossing topology,crossing_90_e_5,global disagreement guard,0.7294002394197623,0.4660264490033048,0.8
+crossing topology,crossing_90_e_5,local geometry guard,0.675629924292273,0.20812056234390422,0.8
+crossing topology,crossing_90_e_5,local coarse-HGB guard,0.7881584738845707,0.3168913014872804,0.9
+crossing topology,crossing_90_e_5,local CV guard,0.8604103754522433,0.4379926417523348,1.0
+crossing topology,crossing_90_e_5,graph-ensemble-dispersion guard,0.7408436568637149,0.5412830143088161,0.8
+crossing topology,crossing_90_e_5,Mahalanobis OOD guard,0.7400198316288753,0.542401884615437,0.8
+crossing topology,crossing_90_e_5,learned mixture-of-experts gate,0.5488182618078822,0.5128311011137765,0.5874821459669299
+crossing topology,crossing_90_e_5,GEL-Ped reliability guard,0.6564168273127876,0.18072284448801207,0.8
+crossing topology,crossing_90_e_5,GEL-Ped instability guard,0.9260545710796435,0.6766037678860201,1.0
+crossing topology,crossing_90_e_6,global disagreement guard,0.748680667631681,0.5996444497876635,0.8
+crossing topology,crossing_90_e_6,local geometry guard,0.6815063427229279,0.23910219923922454,0.8
+crossing topology,crossing_90_e_6,local coarse-HGB guard,0.7924418201236452,0.3472407935649268,0.9
+crossing topology,crossing_90_e_6,local CV guard,0.9093180713060158,0.5823300705627747,1.0
+crossing topology,crossing_90_e_6,graph-ensemble-dispersion guard,0.7070924068835056,0.36556789122988925,0.8
+crossing topology,crossing_90_e_6,Mahalanobis OOD guard,0.6962471633836935,0.3414799726522494,0.8
+crossing topology,crossing_90_e_6,learned mixture-of-experts gate,0.5447454450258471,0.5130469783848337,0.5833393762881416
+crossing topology,crossing_90_e_6,GEL-Ped reliability guard,0.6395705997122595,0.17211814892905067,0.8
+crossing topology,crossing_90_e_6,GEL-Ped instability guard,0.8838655086043818,0.45695986403736155,1.0
+untouched unidirectional corridor,ug-180-015,global disagreement guard,0.7643403321989348,0.6404668471156825,0.8
+untouched unidirectional corridor,ug-180-015,local geometry guard,0.6888999841782669,0.29848202648346744,0.8
+untouched unidirectional corridor,ug-180-015,local coarse-HGB guard,0.8029099202291975,0.44517079367325557,0.9
+untouched unidirectional corridor,ug-180-015,local CV guard,0.9999902552291889,1.0,1.0
+untouched unidirectional corridor,ug-180-015,graph-ensemble-dispersion guard,0.7170993496698491,0.4137781354643591,0.8
+untouched unidirectional corridor,ug-180-015,Mahalanobis OOD guard,0.8,0.8,0.8
+untouched unidirectional corridor,ug-180-015,learned mixture-of-experts gate,0.5455938798819393,0.48160349184285667,0.5844055642389233
+untouched unidirectional corridor,ug-180-015,GEL-Ped reliability guard,0.6324464753037313,0.23214797912868557,0.8
+untouched unidirectional corridor,ug-180-015,GEL-Ped instability guard,0.8963741870873115,0.5172226693304488,1.0
+untouched unidirectional corridor,ug-180-030,global disagreement guard,0.7860901653726485,0.8,0.8
+untouched unidirectional corridor,ug-180-030,local geometry guard,0.7159847760795773,0.3878552285394654,0.8
+untouched unidirectional corridor,ug-180-030,local coarse-HGB guard,0.8282827888405289,0.5397389136313884,0.9
+untouched unidirectional corridor,ug-180-030,local CV guard,1.0,1.0,1.0
+untouched unidirectional corridor,ug-180-030,graph-ensemble-dispersion guard,0.703211870771944,0.3778987268376903,0.8
+untouched unidirectional corridor,ug-180-030,Mahalanobis OOD guard,0.7999999999999999,0.8,0.8
+untouched unidirectional corridor,ug-180-030,learned mixture-of-experts gate,0.5434758145396426,0.482667256205065,0.5847585495006968
+untouched unidirectional corridor,ug-180-030,GEL-Ped reliability guard,0.6424919087835985,0.24418630699757954,0.8
+untouched unidirectional corridor,ug-180-030,GEL-Ped instability guard,0.87901483846493,0.47237340854711285,1.0
+untouched unidirectional corridor,ug-180-060,global disagreement guard,0.7991209790314248,0.8,0.8
+untouched unidirectional corridor,ug-180-060,local geometry guard,0.7469934969232085,0.5739276399201735,0.8
+untouched unidirectional corridor,ug-180-060,local coarse-HGB guard,0.8159470373949179,0.5227089756082922,0.9
+untouched unidirectional corridor,ug-180-060,local CV guard,1.0,1.0,1.0
+untouched unidirectional corridor,ug-180-060,graph-ensemble-dispersion guard,0.7686268201022797,0.8,0.8
+untouched unidirectional corridor,ug-180-060,Mahalanobis OOD guard,0.7998344203470013,0.8,0.8
+untouched unidirectional corridor,ug-180-060,learned mixture-of-experts gate,0.5679217944297372,0.5473355727031529,0.5919246327857969
+untouched unidirectional corridor,ug-180-060,GEL-Ped reliability guard,0.7237546542970408,0.4528860774270324,0.8
+untouched unidirectional corridor,ug-180-060,GEL-Ped instability guard,0.9607835251278496,1.0,1.0
+untouched unidirectional corridor,ug-180-085,global disagreement guard,0.7984093659739769,0.8,0.8
+untouched unidirectional corridor,ug-180-085,local geometry guard,0.7522401512240464,0.6131932370604887,0.8
+untouched unidirectional corridor,ug-180-085,local coarse-HGB guard,0.790097303715018,0.42693132705100645,0.9
+untouched unidirectional corridor,ug-180-085,local CV guard,1.0,1.0,1.0
+untouched unidirectional corridor,ug-180-085,graph-ensemble-dispersion guard,0.7755244376750368,0.8,0.8
+untouched unidirectional corridor,ug-180-085,Mahalanobis OOD guard,0.8000000000000002,0.8,0.8
+untouched unidirectional corridor,ug-180-085,learned mixture-of-experts gate,0.5674012098570043,0.5450142946205145,0.5924725723913855
+untouched unidirectional corridor,ug-180-085,GEL-Ped reliability guard,0.7338088775151698,0.4917614037911556,0.8
+untouched unidirectional corridor,ug-180-085,GEL-Ped instability guard,0.9694055470937959,1.0,1.0
+untouched unidirectional corridor,ug-180-095,global disagreement guard,0.7944186712800035,0.8,0.8
+untouched unidirectional corridor,ug-180-095,local geometry guard,0.7651912051567432,0.7476999640961088,0.8
+untouched unidirectional corridor,ug-180-095,local coarse-HGB guard,0.8466044277905405,0.6988932085484649,0.9
+untouched unidirectional corridor,ug-180-095,local CV guard,1.0,1.0,1.0
+untouched unidirectional corridor,ug-180-095,graph-ensemble-dispersion guard,0.7943144314570226,0.8,0.8
+untouched unidirectional corridor,ug-180-095,Mahalanobis OOD guard,0.798129041630115,0.8,0.8
+untouched unidirectional corridor,ug-180-095,learned mixture-of-experts gate,0.5587244738090816,0.5365048932375942,0.5876008874614193
+untouched unidirectional corridor,ug-180-095,GEL-Ped reliability guard,0.7604702206735917,0.6845065989237971,0.8
+untouched unidirectional corridor,ug-180-095,GEL-Ped instability guard,0.9928930393212781,1.0,1.0
+untouched unidirectional corridor,ug-180-110,global disagreement guard,0.7873288707812313,0.8,0.8
+untouched unidirectional corridor,ug-180-110,local geometry guard,0.741203763233458,0.5427908009558775,0.8
+untouched unidirectional corridor,ug-180-110,local coarse-HGB guard,0.8094526327534021,0.4931894459120128,0.9
+untouched unidirectional corridor,ug-180-110,local CV guard,1.0,1.0,1.0
+untouched unidirectional corridor,ug-180-110,graph-ensemble-dispersion guard,0.7801880717028207,0.8,0.8
+untouched unidirectional corridor,ug-180-110,Mahalanobis OOD guard,0.7993038111069227,0.8,0.8
+untouched unidirectional corridor,ug-180-110,learned mixture-of-experts gate,0.565639239530221,0.5431790491089278,0.5933308667487792
+untouched unidirectional corridor,ug-180-110,GEL-Ped reliability guard,0.7283797211789783,0.4623545311856653,0.8
+untouched unidirectional corridor,ug-180-110,GEL-Ped instability guard,0.9752350896285258,1.0,1.0
+untouched unidirectional corridor,ug-180-140,global disagreement guard,0.794199572912849,0.8,0.8
+untouched unidirectional corridor,ug-180-140,local geometry guard,0.7616171564100062,0.6952408807451852,0.8
+untouched unidirectional corridor,ug-180-140,local coarse-HGB guard,0.8682655721631654,0.8995301708671727,0.9
+untouched unidirectional corridor,ug-180-140,local CV guard,0.9999379774228486,1.0,1.0
+untouched unidirectional corridor,ug-180-140,graph-ensemble-dispersion guard,0.7934217288882128,0.8,0.8
+untouched unidirectional corridor,ug-180-140,Mahalanobis OOD guard,0.7882495992402311,0.8,0.8
+untouched unidirectional corridor,ug-180-140,learned mixture-of-experts gate,0.5534219021892323,0.5216247034749464,0.5846711055406257
+untouched unidirectional corridor,ug-180-140,GEL-Ped reliability guard,0.7568064491316934,0.6407005471084394,0.8
+untouched unidirectional corridor,ug-180-140,GEL-Ped instability guard,0.9917771611102657,1.0,1.0
+untouched unidirectional corridor,ug-180-230,global disagreement guard,0.7966495067687069,0.8,0.8
+untouched unidirectional corridor,ug-180-230,local geometry guard,0.7570664068464664,0.6683013444766924,0.8
+untouched unidirectional corridor,ug-180-230,local coarse-HGB guard,0.8575216704922763,0.7924177606158791,0.9
+untouched unidirectional corridor,ug-180-230,local CV guard,1.0,1.0,1.0
+untouched unidirectional corridor,ug-180-230,graph-ensemble-dispersion guard,0.7820329346715608,0.8,0.8
+untouched unidirectional corridor,ug-180-230,Mahalanobis OOD guard,0.7730265130467951,0.7691256401136987,0.8
+untouched unidirectional corridor,ug-180-230,learned mixture-of-experts gate,0.5545267630901181,0.5213876125515463,0.5876008874614193
+untouched unidirectional corridor,ug-180-230,GEL-Ped reliability guard,0.7458050657147464,0.5632910475279299,0.8
+untouched unidirectional corridor,ug-180-230,GEL-Ped instability guard,0.9775411683394507,1.0,1.0
+untouched bottleneck,uo-180-070,global disagreement guard,0.7997613209827548,0.8,0.8
+untouched bottleneck,uo-180-070,local geometry guard,0.7856964866173183,0.8,0.8
+untouched bottleneck,uo-180-070,local coarse-HGB guard,0.8850240909893752,0.9,0.9
+untouched bottleneck,uo-180-070,local CV guard,1.0,1.0,1.0
+untouched bottleneck,uo-180-070,graph-ensemble-dispersion guard,0.797958705062397,0.8,0.8
+untouched bottleneck,uo-180-070,Mahalanobis OOD guard,0.7946925462575222,0.8,0.8
+untouched bottleneck,uo-180-070,learned mixture-of-experts gate,0.5529559299415756,0.530397151832383,0.5787467652931562
+untouched bottleneck,uo-180-070,GEL-Ped reliability guard,0.7840608161774466,0.8,0.8
+untouched bottleneck,uo-180-070,GEL-Ped instability guard,0.997448381327996,1.0,1.0
+untouched bottleneck,uo-180-095,global disagreement guard,0.799885241476499,0.8,0.8
+untouched bottleneck,uo-180-095,local geometry guard,0.7806368995592798,0.8,0.8
+untouched bottleneck,uo-180-095,local coarse-HGB guard,0.8637556786998933,0.7979853593215687,0.9
+untouched bottleneck,uo-180-095,local CV guard,1.0,1.0,1.0
+untouched bottleneck,uo-180-095,graph-ensemble-dispersion guard,0.7965193480106607,0.8,0.8
+untouched bottleneck,uo-180-095,Mahalanobis OOD guard,0.798332239656886,0.8,0.8
+untouched bottleneck,uo-180-095,learned mixture-of-experts gate,0.5567398450115727,0.5398831882445375,0.5840737173594002
+untouched bottleneck,uo-180-095,GEL-Ped reliability guard,0.7783602753411494,0.8,0.8
+untouched bottleneck,uo-180-095,GEL-Ped instability guard,0.9956491850133257,1.0,1.0
+untouched bottleneck,uo-180-120,global disagreement guard,0.7995110249332052,0.8,0.8
+untouched bottleneck,uo-180-120,local geometry guard,0.7825483053970705,0.8,0.8
+untouched bottleneck,uo-180-120,local coarse-HGB guard,0.853149321532632,0.7158284974716496,0.9
+untouched bottleneck,uo-180-120,local CV guard,1.0,1.0,1.0
+untouched bottleneck,uo-180-120,graph-ensemble-dispersion guard,0.7923891729906595,0.8,0.8
+untouched bottleneck,uo-180-120,Mahalanobis OOD guard,0.7998431422954636,0.8,0.8
+untouched bottleneck,uo-180-120,learned mixture-of-experts gate,0.5580611781951188,0.5405861640563789,0.5841386542470666
+untouched bottleneck,uo-180-120,GEL-Ped reliability guard,0.7767603065194094,0.8,0.8
+untouched bottleneck,uo-180-120,GEL-Ped instability guard,0.9904864662383243,1.0,1.0
+untouched bottleneck,uo-180-180,global disagreement guard,0.7999519251796733,0.8,0.8
+untouched bottleneck,uo-180-180,local geometry guard,0.7849923157466998,0.8,0.8
+untouched bottleneck,uo-180-180,local coarse-HGB guard,0.8647759583920623,0.814303637363908,0.9
+untouched bottleneck,uo-180-180,local CV guard,1.0,1.0,1.0
+untouched bottleneck,uo-180-180,graph-ensemble-dispersion guard,0.7955206256608744,0.8,0.8
+untouched bottleneck,uo-180-180,Mahalanobis OOD guard,0.799658963521193,0.8,0.8
+untouched bottleneck,uo-180-180,learned mixture-of-experts gate,0.556852413936663,0.5394795645134737,0.5819212772823816
+untouched bottleneck,uo-180-180,GEL-Ped reliability guard,0.7811945793641455,0.8,0.8
+untouched bottleneck,uo-180-180,GEL-Ped instability guard,0.9944007820760928,1.0,1.0

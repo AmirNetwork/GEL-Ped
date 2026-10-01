@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Final evaluation on altered-length and altered-exit corridor runs."""
 
 from __future__ import annotations
@@ -9,7 +10,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from pedgeom.calibration import FittedVelocityModel, build_velocity_samples, velocity_metrics
+from pedgeom.calibration import (
+    DirectionSpeedModel,
+    FittedVelocityModel,
+    build_velocity_samples,
+    fit_tensor_geometry_model,
+    velocity_metrics,
+)
 
 
 def main() -> None:
@@ -20,11 +27,29 @@ def main() -> None:
     splits = json.loads((project / "data" / "splits.json").read_text(encoding="utf-8"))
     interaction_range = parameters["interaction_range_m"]
 
-    models = {
-        name: FittedVelocityModel(tuple(coefficients), np.array(list(coefficients.values())))
-        for name, coefficients in parameters["models"].items()
-        if name in {"persistence", "isotropic_social_force", "anisotropic_geometry"}
-    }
+    models = {}
+    for name in [
+        "persistence",
+        "isotropic_social_force",
+        "anisotropic_geometry",
+        "decoupled_geometry",
+    ]:
+        coefficients = parameters["models"][name]
+        if name == "decoupled_geometry":
+            field = coefficients["field"]
+            models[name] = DirectionSpeedModel(
+                FittedVelocityModel(tuple(field), np.array(list(field.values()))),
+                np.array(coefficients["speed"]),
+            )
+        else:
+            models[name] = FittedVelocityModel(
+                tuple(coefficients), np.array(list(coefficients.values()))
+            )
+    training = [
+        build_velocity_samples(raw / f"{run}.txt", interaction_range)
+        for run in splits["calibration"]
+    ]
+    models["tensor_geometry"] = fit_tensor_geometry_model(training)
     rows = []
     batches = []
     for run in splits["held_out_geometry_stress"]:
@@ -46,7 +71,7 @@ def main() -> None:
 
     pivot = results.pivot(index="run", columns="model", values="vector_rmse_mps")
     improvement = 100.0 * (
-        pivot["persistence"] - pivot["anisotropic_geometry"]
+        pivot["persistence"] - pivot["tensor_geometry"]
     ) / pivot["persistence"]
     rng = np.random.default_rng(20260722)
     bootstrap = np.mean(rng.choice(improvement.to_numpy(), size=(100_000, len(improvement))), axis=1)
@@ -68,6 +93,8 @@ def main() -> None:
             ("persistence", "#94a3b8", "o"),
             ("isotropic_social_force", "#2563eb", "s"),
             ("anisotropic_geometry", "#dc2626", "D"),
+            ("decoupled_geometry", "#059669", "^"),
+            ("tensor_geometry", "#0891b2", "P"),
         ]
     ):
         axis.plot(

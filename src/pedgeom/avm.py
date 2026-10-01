@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Anticipation Velocity Model baseline following Xu, Chraibi, and Seyfried."""
 
 from __future__ import annotations
@@ -103,4 +104,3 @@ def avm_speed(
         return parameters.desired_speed
     headway = max(minimum_distance - 2.0 * parameters.radius, 0.0)
     return min(parameters.desired_speed, headway / parameters.time_gap)
-

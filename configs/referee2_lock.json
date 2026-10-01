@@ -1,0 +1,49 @@
+{
+  "locked_at": "2026-10-01T07:02:00+10:00",
+  "purpose": "Mechanism-corrected specification fixed before inspecting any ETH/UCY outcome",
+  "development_informed_by": [
+    "the original perpendicular-crossing archive",
+    "the post-review Juelich/Tordeux unidirectional and bottleneck audit"
+  ],
+  "calibration_runs": "The seven complete bidirectional-corridor runs already assigned to calibration",
+  "primary_model": "local_graph_ensemble_instability_guard",
+  "graph_members": 5,
+  "graph_epochs_crossfit": 25,
+  "graph_epochs_final": 25,
+  "graph_selection": "Width 48 and 25 epochs minimized mean leave-one-complete-run-out calibration RMSE in a six-candidate capacity/epoch sweep",
+  "fallback_expert": "anchored coarse HGB with no prospective-geometry features",
+  "guard_scope": "per pedestrian with a causal five-observation rolling mean",
+  "guard_signals": [
+    "within-graph-ensemble predictive dispersion"
+  ],
+  "signal_combination": "one-sided exponential shrinkage only above the calibration envelope",
+  "threshold_rule": "finite-sample 90% upper quantile of out-of-fold calibration scores",
+  "scale_rule": "out-of-fold interquartile range",
+  "nominal_graph_weight_rule": "one in support; the guard never alters a graph prediction below threshold",
+  "primary_tests_not_used_for_selection": [
+    "ETH",
+    "HOTEL",
+    "UNIV",
+    "ZARA1",
+    "ZARA2"
+  ],
+  "mandatory_controls": [
+    "constant velocity",
+    "anchored coarse HGB",
+    "single graph network",
+    "five-member graph ensemble",
+    "local graph-coarse-HGB guard",
+    "local graph-CV guard",
+    "graph-ensemble-dispersion guard",
+    "classical learned mixture-of-experts gate",
+    "Mahalanobis OOD gate"
+  ],
+  "reporting": [
+    "complete-run values",
+    "median run effect",
+    "leave-one-run-out mean-effect range",
+    "per-run seed variability",
+    "all predeclared Holm-family tests",
+    "no cluster bootstrap intervals when fewer than ten runs are available"
+  ]
+}

@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Small explicit integrators used to expose timestep effects."""
 
 from collections.abc import Callable
@@ -15,4 +16,3 @@ def rk4_step(state: FloatArray, step: float, derivative: Derivative) -> FloatArr
     k3 = derivative(state + 0.5 * step * k2)
     k4 = derivative(state + step * k3)
     return state + (step / 6.0) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
-

@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Test whether anisotropic geometry produces bidirectional lane segregation."""
 
 from __future__ import annotations

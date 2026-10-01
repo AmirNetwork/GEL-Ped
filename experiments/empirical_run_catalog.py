@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Summarize every run in the Jülich bidirectional-corridor archive."""
 
 from __future__ import annotations

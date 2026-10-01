@@ -1,0 +1,29 @@
+{
+  "geometry": {
+    "nominal_weight": 0.8,
+    "disagreement_threshold": 0.0733245776673167,
+    "disagreement_scale": 0.023517687025119347,
+    "epistemic_threshold": 0.0379094276064437,
+    "epistemic_scale": 0.011755091984053698,
+    "mahalanobis_threshold": 4.537718029877949,
+    "mahalanobis_scale": 1.534427577334411
+  },
+  "coarse": {
+    "nominal_weight": 0.9,
+    "disagreement_threshold": 0.0871677348306968,
+    "disagreement_scale": 0.028811376792550955,
+    "epistemic_threshold": 0.0379094276064437,
+    "epistemic_scale": 0.011755091984053698,
+    "mahalanobis_threshold": 4.537718029877949,
+    "mahalanobis_scale": 1.534427577334411
+  },
+  "cv": {
+    "nominal_weight": 1.0,
+    "disagreement_threshold": 0.2221341639107118,
+    "disagreement_scale": 0.07681784313850744,
+    "epistemic_threshold": 0.0379094276064437,
+    "epistemic_scale": 0.011755091984053698,
+    "mahalanobis_threshold": 4.537718029877949,
+    "mahalanobis_scale": 1.534427577334411
+  }
+}

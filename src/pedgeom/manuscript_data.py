@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Digitised simulation results reported in manuscript Table 2."""
 
 import numpy as np
@@ -48,4 +49,3 @@ def manuscript_errors(result):
     position_rmse = float(np.sqrt(np.mean((predicted_positions - OBSERVED_POSITIONS) ** 2)))
     speed_rmse = float(np.sqrt(np.mean((predicted_speeds - OBSERVED_SPEEDS) ** 2)))
     return position_rmse, speed_rmse
-

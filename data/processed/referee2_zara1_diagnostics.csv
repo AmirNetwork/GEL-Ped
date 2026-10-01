@@ -1,0 +1,8 @@
+dataset,run,diagnostic,stratum,samples,graph_sse,guard_sse,median_sse,mean_score,mean_neighbour_count,mean_occupancy,mean_speed_mps,rho
+ZARA1,crowds_zara01,epistemic stratum,inside,4599,87.29149782945248,87.29149782945248,87.53088738641573,0.01870296436411466,2.290280495759948,7.395520765383779,1.0876330057961332,
+ZARA1,crowds_zara01,epistemic stratum,0--1 IQR,7,1.631679625570744,1.7187430615845485,1.6830979438213847,0.04157261435621327,1.8571428571428572,8.428571428571429,0.9614336949027195,
+ZARA1,crowds_zara01,epistemic stratum,1--2 IQR,1,0.0028629851152988614,0.008332023867528267,0.0014226218966011878,0.04869954090339576,2.0,7.0,1.0149192549661292,
+ZARA1,crowds_zara01,run-level Spearman correlation,neighbour_count,4607,,,,,,,,0.3130752971812311
+ZARA1,crowds_zara01,run-level Spearman correlation,occupancy,4607,,,,,,,,0.0910910715709948
+ZARA1,crowds_zara01,run-level Spearman correlation,speed_mps,4607,,,,,,,,0.1064295016887088
+ZARA1,crowds_zara01,run-level Spearman correlation,graph_minus_guard_squared_error,4607,,,,,,,,8.508975932335548e-09

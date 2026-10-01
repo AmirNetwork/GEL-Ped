@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Calibrate on frozen runs and evaluate once on untouched Juelich runs."""
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ import pandas as pd
 from pedgeom.calibration import (
     FittedVelocityModel,
     build_velocity_samples,
+    fit_direction_speed_model,
     fit_velocity_model,
     velocity_metrics,
 )
@@ -68,6 +70,12 @@ def main() -> None:
     for name, features in MODEL_FEATURES.items():
         fitted[name] = fit_velocity_model(calibration, features)
         print(name, dict(zip(features, fitted[name].coefficients, strict=True)), flush=True)
+    fitted["decoupled_geometry"] = fit_direction_speed_model(calibration)
+    print(
+        "decoupled speed coefficients",
+        fitted["decoupled_geometry"].speed_coefficients,
+        flush=True,
+    )
 
     rows = []
     validation_batches = [batch(run, selected_range) for run in splits["held_out_validation"]]
@@ -86,16 +94,29 @@ def main() -> None:
         "horizon_s": 0.4,
         "calibration_runs": calibration_runs,
         "held_out_validation_runs": splits["held_out_validation"],
-        "models": {
-            name: dict(zip(model.names, model.coefficients.tolist(), strict=True))
-            for name, model in fitted.items()
-        },
+        "models": {},
     }
+    for name, model in fitted.items():
+        if name == "decoupled_geometry":
+            parameters["models"][name] = {
+                "field": dict(
+                    zip(
+                        model.field_model.names,
+                        model.field_model.coefficients.tolist(),
+                        strict=True,
+                    )
+                ),
+                "speed": model.speed_coefficients.tolist(),
+            }
+        else:
+            parameters["models"][name] = dict(
+                zip(model.names, model.coefficients.tolist(), strict=True)
+            )
     (output_dir / "fitted_velocity_models.json").write_text(
         json.dumps(parameters, indent=2), encoding="utf-8"
     )
 
-    order = list(MODEL_FEATURES)
+    order = [*MODEL_FEATURES, "decoupled_geometry"]
     aggregate = results.groupby("model", sort=False).agg(
         mean_vector_rmse=("vector_rmse_mps", "mean"),
         sem_vector_rmse=("vector_rmse_mps", "sem"),
@@ -109,8 +130,8 @@ def main() -> None:
     pivot = results.pivot(index="run", columns="model", values="vector_rmse_mps")
     improvements = {}
     rng = np.random.default_rng(20260722)
-    for baseline in ["persistence", "isotropic_social_force"]:
-        values = 100.0 * (pivot[baseline] - pivot["anisotropic_geometry"]) / pivot[baseline]
+    for baseline in ["persistence", "isotropic_social_force", "anisotropic_geometry"]:
+        values = 100.0 * (pivot[baseline] - pivot["decoupled_geometry"]) / pivot[baseline]
         bootstrap = np.mean(rng.choice(values.to_numpy(), size=(100_000, len(values))), axis=1)
         improvements[baseline] = {
             "per_run_percent": values.to_dict(),
@@ -130,7 +151,7 @@ def main() -> None:
         x,
         aggregate["mean_vector_rmse"],
         yerr=aggregate["sem_vector_rmse"],
-        color=["#94a3b8", "#cbd5e1", "#60a5fa", "#2563eb", "#dc2626"],
+        color=["#94a3b8", "#cbd5e1", "#60a5fa", "#2563eb", "#dc2626", "#059669"],
         capsize=3,
     )
     axes[0].set(ylabel="held-out vector RMSE (m/s)", xticks=x, xticklabels=labels)
@@ -140,6 +161,7 @@ def main() -> None:
         ("persistence", "#94a3b8"),
         ("isotropic_social_force", "#60a5fa"),
         ("anisotropic_geometry", "#dc2626"),
+        ("decoupled_geometry", "#059669"),
     ]:
         subset = results[results["model"] == model_name]
         axes[1].plot(

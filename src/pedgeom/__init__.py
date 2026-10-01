@@ -1,4 +1,8 @@
-"""Geometric pedestrian dynamics research code."""
+# Author: Amir Ghorbani
+"""GEL-Ped geometry-encoded pedestrian forecasting package."""
+
+from .benchmarks import GELPedRegressor, GoalStableRegressor, TensorResidualRegressor
+from .calibration import TensorGeometryModel, VelocitySamples
 
 from .models import (
     AVMParameters,
@@ -17,6 +21,11 @@ from .simulation import (
 )
 
 __all__ = [
+    "GELPedRegressor",
+    "GoalStableRegressor",
+    "TensorGeometryModel",
+    "TensorResidualRegressor",
+    "VelocitySamples",
     "AnisotropicParameters",
     "AVMParameters",
     "LegacyParameters",

@@ -1,0 +1,23 @@
+\documentclass[10pt]{letter}
+\usepackage[T1]{fontenc}
+\usepackage[margin=24mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\signature{Amir Ghorbani\\Transport Engineering Group\\The University of Melbourne}
+\address{Transport Engineering Group\\Department of Infrastructure Engineering\\The University of Melbourne\\Parkville, VIC 3010, Australia}
+\begin{document}
+\begin{letter}{Editor-in-Chief\\Transportation Research Part C: Emerging Technologies}
+\opening{Dear Editor-in-Chief,}
+
+Please consider the manuscript ``GEL-Ped: Instability-aware guarded ensemble learning for short-horizon crowd prediction under flow shift'' for publication in \emph{Transportation Research Part C: Emerging Technologies}.
+
+Short-horizon pedestrian forecasts support frequent replanning by mobile robots and automated vehicles, as well as local monitoring in crowded stations and terminals. The paper studies a narrow deployment problem: an interaction model trained on one flow can make a rare unstable correction when the encounter topology changes. GEL-Ped turns an observable property of the deployed predictor---local disagreement among independently initialized graph learners---into a conservative action. The graph ensemble remains fully responsible while its spread lies inside a leave-one-complete-run-out calibration envelope. Only an exceedance moves the forecast toward a bounded behavioural residual model.
+
+The evaluation is organized by complete physical runs and deliberately separates a development-informed crossing stress test from cleaner external evidence. In perpendicular crossing, GEL-Ped improves all thirteen runs relative to the graph mean, with a 2.3\% mean RMSE reduction and Holm-adjusted exact $p=0.0037$. The median gain is smaller, and the manuscript diagnoses the influential unstable run rather than hiding it. A geometry-free coarse boosted model is marginally lower in crossing but 5--8\% worse in the four other controlled regimes; GEL-Ped preserves graph accuracy there. On all five ETH/UCY leave-one-scene-out tests, the scene-macro change is negligible and non-significant. The paper therefore makes no universal accuracy claim.
+
+The revision includes a five-member graph ensemble and robust median baseline; coarse, constant-velocity, learned-gate, Mahalanobis, and prospective-geometry controls; all fifteen predeclared Holm-adjusted tests; complete per-run values; collision-event counts; frozen threshold sensitivity; route-axis and future-label-filter audits; and recursive error analysis to 3.2~s. Code, immutable partitions, calibration records, processed complete-run outputs, tests, and figure scripts are available at \href{https://github.com/AmirNetwork/GEL-Ped}{github.com/AmirNetwork/GEL-Ped}.
+
+The manuscript is original, is not under consideration elsewhere, and all submission statements will be confirmed by the author. Thank you for your consideration.
+
+\closing{Sincerely,}
+\end{letter}
+\end{document}

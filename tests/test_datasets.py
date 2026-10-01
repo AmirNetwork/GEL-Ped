@@ -1,8 +1,15 @@
+# Author: Amir Ghorbani
 from pathlib import Path
 
 import numpy as np
 
-from pedgeom.datasets import add_motion_features, lane_order_parameter, load_julich_trajectory
+from pedgeom.datasets import (
+    add_entry_goal_directions,
+    add_motion_features,
+    add_prior_velocity_goal_directions,
+    lane_order_parameter,
+    load_julich_trajectory,
+)
 
 
 def test_loader_and_motion_features(tmp_path: Path):
@@ -46,3 +53,37 @@ def test_lane_order_is_one_for_separated_directions():
     )
     assert order["lane_order"].iat[0] == 1.0
 
+
+def test_entry_goal_uses_only_initial_history() -> None:
+    import pandas as pd
+
+    data = pd.DataFrame(
+        {
+            "pedestrian_id": [1, 1, 1, 1],
+            "frame": [0, 10, 20, 30],
+            "x_m": [0.0, 1.0, 1.0, -4.0],
+            "y_m": [0.0, 0.1, 3.0, 5.0],
+        }
+    )
+    result = add_entry_goal_directions(data, history_frames=10)
+    assert not bool(result.loc[result["frame"] == 0, "goal_valid"].iat[0])
+    assert np.allclose(result.loc[result["frame"] >= 10, ["goal_x", "goal_y"]], [1.0, 0.0])
+
+
+def test_prior_velocity_goal_is_continuous_and_past_only() -> None:
+    import pandas as pd
+
+    data = pd.DataFrame(
+        {
+            "pedestrian_id": [1, 1, 1],
+            "frame": [0, 10, 20],
+            "x_m": [0.0, 0.3, 0.6],
+            "y_m": [0.0, 0.4, 0.8],
+        }
+    )
+    result = add_prior_velocity_goal_directions(data, history_frames=10)
+    assert not bool(result.loc[result["frame"] == 0, "goal_valid"].iat[0])
+    np.testing.assert_allclose(
+        result.loc[result["frame"] >= 10, ["goal_x", "goal_y"]],
+        np.tile([0.6, 0.8], (2, 1)),
+    )

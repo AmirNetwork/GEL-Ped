@@ -1,0 +1,781 @@
+run,start_frame,model,pairs,true_positive,false_positive,false_negative,true_negative
+crossing_90_d_1,97,constant velocity,6,0,1,1,4
+crossing_90_d_1,97,five-member graph ensemble,6,1,1,0,4
+crossing_90_d_1,97,coordinate-median graph ensemble,6,1,1,0,4
+crossing_90_d_1,97,anchored coarse HGB,6,1,1,0,4
+crossing_90_d_1,97,GEL-Ped instability guard,6,1,1,0,4
+crossing_90_d_1,137,constant velocity,10,0,0,0,10
+crossing_90_d_1,137,five-member graph ensemble,10,0,0,0,10
+crossing_90_d_1,137,coordinate-median graph ensemble,10,0,0,0,10
+crossing_90_d_1,137,anchored coarse HGB,10,0,0,0,10
+crossing_90_d_1,137,GEL-Ped instability guard,10,0,1,0,9
+crossing_90_d_1,177,constant velocity,15,0,1,0,14
+crossing_90_d_1,177,five-member graph ensemble,15,0,0,0,15
+crossing_90_d_1,177,coordinate-median graph ensemble,15,0,0,0,15
+crossing_90_d_1,177,anchored coarse HGB,15,0,1,0,14
+crossing_90_d_1,177,GEL-Ped instability guard,15,0,1,0,14
+crossing_90_d_1,217,constant velocity,10,0,2,0,8
+crossing_90_d_1,217,five-member graph ensemble,10,0,1,0,9
+crossing_90_d_1,217,coordinate-median graph ensemble,10,0,1,0,9
+crossing_90_d_1,217,anchored coarse HGB,10,0,1,0,9
+crossing_90_d_1,217,GEL-Ped instability guard,10,0,1,0,9
+crossing_90_d_1,263,constant velocity,6,0,1,0,5
+crossing_90_d_1,263,five-member graph ensemble,6,0,0,0,6
+crossing_90_d_1,263,coordinate-median graph ensemble,6,0,1,0,5
+crossing_90_d_1,263,anchored coarse HGB,6,0,1,0,5
+crossing_90_d_1,263,GEL-Ped instability guard,6,0,0,0,6
+crossing_90_d_1,330,constant velocity,6,0,2,0,4
+crossing_90_d_1,330,five-member graph ensemble,6,0,0,0,6
+crossing_90_d_1,330,coordinate-median graph ensemble,6,0,0,0,6
+crossing_90_d_1,330,anchored coarse HGB,6,0,2,0,4
+crossing_90_d_1,330,GEL-Ped instability guard,6,0,1,0,5
+crossing_90_d_1,370,constant velocity,10,0,1,0,9
+crossing_90_d_1,370,five-member graph ensemble,10,0,1,0,9
+crossing_90_d_1,370,coordinate-median graph ensemble,10,0,0,0,10
+crossing_90_d_1,370,anchored coarse HGB,10,0,0,0,10
+crossing_90_d_1,370,GEL-Ped instability guard,10,0,0,0,10
+crossing_90_d_1,410,constant velocity,21,0,5,0,16
+crossing_90_d_1,410,five-member graph ensemble,21,0,3,0,18
+crossing_90_d_1,410,coordinate-median graph ensemble,21,0,3,0,18
+crossing_90_d_1,410,anchored coarse HGB,21,0,4,0,17
+crossing_90_d_1,410,GEL-Ped instability guard,21,0,3,0,18
+crossing_90_d_1,450,constant velocity,28,0,1,0,27
+crossing_90_d_1,450,five-member graph ensemble,28,0,1,0,27
+crossing_90_d_1,450,coordinate-median graph ensemble,28,0,1,0,27
+crossing_90_d_1,450,anchored coarse HGB,28,0,0,0,28
+crossing_90_d_1,450,GEL-Ped instability guard,28,0,1,0,27
+crossing_90_d_1,490,constant velocity,21,0,6,0,15
+crossing_90_d_1,490,five-member graph ensemble,21,0,5,0,16
+crossing_90_d_1,490,coordinate-median graph ensemble,21,0,8,0,13
+crossing_90_d_1,490,anchored coarse HGB,21,0,6,0,15
+crossing_90_d_1,490,GEL-Ped instability guard,21,0,8,0,13
+crossing_90_d_1,530,constant velocity,28,1,4,2,21
+crossing_90_d_1,530,five-member graph ensemble,28,1,5,2,20
+crossing_90_d_1,530,coordinate-median graph ensemble,28,2,5,1,20
+crossing_90_d_1,530,anchored coarse HGB,28,1,4,2,21
+crossing_90_d_1,530,GEL-Ped instability guard,28,1,5,2,20
+crossing_90_d_1,570,constant velocity,6,0,2,0,4
+crossing_90_d_1,570,five-member graph ensemble,6,0,1,0,5
+crossing_90_d_1,570,coordinate-median graph ensemble,6,0,1,0,5
+crossing_90_d_1,570,anchored coarse HGB,6,0,2,0,4
+crossing_90_d_1,570,GEL-Ped instability guard,6,0,1,0,5
+crossing_90_d_2,88,constant velocity,6,0,0,1,5
+crossing_90_d_2,88,five-member graph ensemble,6,1,0,0,5
+crossing_90_d_2,88,coordinate-median graph ensemble,6,1,0,0,5
+crossing_90_d_2,88,anchored coarse HGB,6,0,0,1,5
+crossing_90_d_2,88,GEL-Ped instability guard,6,0,0,1,5
+crossing_90_d_2,128,constant velocity,36,1,5,0,30
+crossing_90_d_2,128,five-member graph ensemble,36,1,2,0,33
+crossing_90_d_2,128,coordinate-median graph ensemble,36,1,2,0,33
+crossing_90_d_2,128,anchored coarse HGB,36,1,1,0,34
+crossing_90_d_2,128,GEL-Ped instability guard,36,1,4,0,31
+crossing_90_d_2,168,constant velocity,66,0,8,1,57
+crossing_90_d_2,168,five-member graph ensemble,66,0,9,1,56
+crossing_90_d_2,168,coordinate-median graph ensemble,66,0,10,1,55
+crossing_90_d_2,168,anchored coarse HGB,66,1,8,0,57
+crossing_90_d_2,168,GEL-Ped instability guard,66,0,7,1,58
+crossing_90_d_2,208,constant velocity,120,1,9,1,109
+crossing_90_d_2,208,five-member graph ensemble,120,0,11,2,107
+crossing_90_d_2,208,coordinate-median graph ensemble,120,0,12,2,106
+crossing_90_d_2,208,anchored coarse HGB,120,1,7,1,111
+crossing_90_d_2,208,GEL-Ped instability guard,120,1,11,1,107
+crossing_90_d_2,248,constant velocity,171,2,13,3,153
+crossing_90_d_2,248,five-member graph ensemble,171,1,13,4,153
+crossing_90_d_2,248,coordinate-median graph ensemble,171,1,14,4,152
+crossing_90_d_2,248,anchored coarse HGB,171,1,9,4,157
+crossing_90_d_2,248,GEL-Ped instability guard,171,1,12,4,154
+crossing_90_d_2,288,constant velocity,91,1,7,2,81
+crossing_90_d_2,288,five-member graph ensemble,91,0,6,3,82
+crossing_90_d_2,288,coordinate-median graph ensemble,91,0,6,3,82
+crossing_90_d_2,288,anchored coarse HGB,91,1,7,2,81
+crossing_90_d_2,288,GEL-Ped instability guard,91,0,7,3,81
+crossing_90_d_2,328,constant velocity,91,0,10,0,81
+crossing_90_d_2,328,five-member graph ensemble,91,0,9,0,82
+crossing_90_d_2,328,coordinate-median graph ensemble,91,0,9,0,82
+crossing_90_d_2,328,anchored coarse HGB,91,0,9,0,82
+crossing_90_d_2,328,GEL-Ped instability guard,91,0,10,0,81
+crossing_90_d_2,368,constant velocity,91,0,12,2,77
+crossing_90_d_2,368,five-member graph ensemble,91,1,11,1,78
+crossing_90_d_2,368,coordinate-median graph ensemble,91,1,11,1,78
+crossing_90_d_2,368,anchored coarse HGB,91,0,10,2,79
+crossing_90_d_2,368,GEL-Ped instability guard,91,1,8,1,81
+crossing_90_d_2,408,constant velocity,91,2,6,1,82
+crossing_90_d_2,408,five-member graph ensemble,91,2,6,1,82
+crossing_90_d_2,408,coordinate-median graph ensemble,91,2,6,1,82
+crossing_90_d_2,408,anchored coarse HGB,91,2,6,1,82
+crossing_90_d_2,408,GEL-Ped instability guard,91,2,7,1,81
+crossing_90_d_2,448,constant velocity,78,0,8,2,68
+crossing_90_d_2,448,five-member graph ensemble,78,0,8,2,68
+crossing_90_d_2,448,coordinate-median graph ensemble,78,0,7,2,69
+crossing_90_d_2,448,anchored coarse HGB,78,0,8,2,68
+crossing_90_d_2,448,GEL-Ped instability guard,78,1,6,1,70
+crossing_90_d_2,488,constant velocity,66,1,6,0,59
+crossing_90_d_2,488,five-member graph ensemble,66,1,7,0,58
+crossing_90_d_2,488,coordinate-median graph ensemble,66,1,5,0,60
+crossing_90_d_2,488,anchored coarse HGB,66,1,5,0,60
+crossing_90_d_2,488,GEL-Ped instability guard,66,1,4,0,61
+crossing_90_d_2,528,constant velocity,78,0,6,1,71
+crossing_90_d_2,528,five-member graph ensemble,78,0,4,1,73
+crossing_90_d_2,528,coordinate-median graph ensemble,78,0,6,1,71
+crossing_90_d_2,528,anchored coarse HGB,78,0,5,1,72
+crossing_90_d_2,528,GEL-Ped instability guard,78,0,5,1,72
+crossing_90_d_3,95,constant velocity,15,1,2,0,12
+crossing_90_d_3,95,five-member graph ensemble,15,0,4,1,10
+crossing_90_d_3,95,coordinate-median graph ensemble,15,0,4,1,10
+crossing_90_d_3,95,anchored coarse HGB,15,1,3,0,11
+crossing_90_d_3,95,GEL-Ped instability guard,15,1,3,0,11
+crossing_90_d_3,135,constant velocity,66,0,5,3,58
+crossing_90_d_3,135,five-member graph ensemble,66,0,7,3,56
+crossing_90_d_3,135,coordinate-median graph ensemble,66,0,7,3,56
+crossing_90_d_3,135,anchored coarse HGB,66,0,7,3,56
+crossing_90_d_3,135,GEL-Ped instability guard,66,0,7,3,56
+crossing_90_d_3,175,constant velocity,105,3,7,6,89
+crossing_90_d_3,175,five-member graph ensemble,105,4,7,5,89
+crossing_90_d_3,175,coordinate-median graph ensemble,105,4,7,5,89
+crossing_90_d_3,175,anchored coarse HGB,105,3,7,6,89
+crossing_90_d_3,175,GEL-Ped instability guard,105,3,5,6,91
+crossing_90_d_3,215,constant velocity,91,1,7,1,82
+crossing_90_d_3,215,five-member graph ensemble,91,1,9,1,80
+crossing_90_d_3,215,coordinate-median graph ensemble,91,1,9,1,80
+crossing_90_d_3,215,anchored coarse HGB,91,1,8,1,81
+crossing_90_d_3,215,GEL-Ped instability guard,91,1,9,1,80
+crossing_90_d_3,255,constant velocity,45,1,5,1,38
+crossing_90_d_3,255,five-member graph ensemble,45,1,10,1,33
+crossing_90_d_3,255,coordinate-median graph ensemble,45,1,10,1,33
+crossing_90_d_3,255,anchored coarse HGB,45,1,8,1,35
+crossing_90_d_3,255,GEL-Ped instability guard,45,1,8,1,35
+crossing_90_d_3,295,constant velocity,153,2,13,3,135
+crossing_90_d_3,295,five-member graph ensemble,153,3,9,2,139
+crossing_90_d_3,295,coordinate-median graph ensemble,153,3,10,2,138
+crossing_90_d_3,295,anchored coarse HGB,153,2,11,3,137
+crossing_90_d_3,295,GEL-Ped instability guard,153,2,11,3,137
+crossing_90_d_3,335,constant velocity,171,1,17,5,148
+crossing_90_d_3,335,five-member graph ensemble,171,2,14,4,151
+crossing_90_d_3,335,coordinate-median graph ensemble,171,2,14,4,151
+crossing_90_d_3,335,anchored coarse HGB,171,1,16,5,149
+crossing_90_d_3,335,GEL-Ped instability guard,171,2,17,4,148
+crossing_90_d_3,375,constant velocity,231,3,26,6,196
+crossing_90_d_3,375,five-member graph ensemble,231,4,24,5,198
+crossing_90_d_3,375,coordinate-median graph ensemble,231,4,24,5,198
+crossing_90_d_3,375,anchored coarse HGB,231,3,20,6,202
+crossing_90_d_3,375,GEL-Ped instability guard,231,3,23,6,199
+crossing_90_d_3,415,constant velocity,231,4,18,5,204
+crossing_90_d_3,415,five-member graph ensemble,231,6,18,3,204
+crossing_90_d_3,415,coordinate-median graph ensemble,231,5,20,4,202
+crossing_90_d_3,415,anchored coarse HGB,231,6,17,3,205
+crossing_90_d_3,415,GEL-Ped instability guard,231,5,16,4,206
+crossing_90_d_3,455,constant velocity,253,5,26,6,216
+crossing_90_d_3,455,five-member graph ensemble,253,5,29,6,213
+crossing_90_d_3,455,coordinate-median graph ensemble,253,5,30,6,212
+crossing_90_d_3,455,anchored coarse HGB,253,6,29,5,213
+crossing_90_d_3,455,GEL-Ped instability guard,253,5,30,6,212
+crossing_90_d_3,495,constant velocity,276,7,35,6,228
+crossing_90_d_3,495,five-member graph ensemble,276,6,27,7,236
+crossing_90_d_3,495,coordinate-median graph ensemble,276,6,27,7,236
+crossing_90_d_3,495,anchored coarse HGB,276,6,27,7,236
+crossing_90_d_3,495,GEL-Ped instability guard,276,7,25,6,238
+crossing_90_d_3,535,constant velocity,276,5,39,10,222
+crossing_90_d_3,535,five-member graph ensemble,276,4,30,11,231
+crossing_90_d_3,535,coordinate-median graph ensemble,276,4,29,11,232
+crossing_90_d_3,535,anchored coarse HGB,276,3,30,12,231
+crossing_90_d_3,535,GEL-Ped instability guard,276,3,26,12,235
+crossing_90_d_5,73,constant velocity,6,0,2,0,4
+crossing_90_d_5,73,five-member graph ensemble,6,0,3,0,3
+crossing_90_d_5,73,coordinate-median graph ensemble,6,0,3,0,3
+crossing_90_d_5,73,anchored coarse HGB,6,0,3,0,3
+crossing_90_d_5,73,GEL-Ped instability guard,6,0,4,0,2
+crossing_90_d_5,113,constant velocity,120,0,14,4,102
+crossing_90_d_5,113,five-member graph ensemble,120,1,14,3,102
+crossing_90_d_5,113,coordinate-median graph ensemble,120,1,13,3,103
+crossing_90_d_5,113,anchored coarse HGB,120,0,15,4,101
+crossing_90_d_5,113,GEL-Ped instability guard,120,1,9,3,107
+crossing_90_d_5,153,constant velocity,171,2,11,6,152
+crossing_90_d_5,153,five-member graph ensemble,171,6,7,2,156
+crossing_90_d_5,153,coordinate-median graph ensemble,171,6,10,2,153
+crossing_90_d_5,153,anchored coarse HGB,171,5,11,3,152
+crossing_90_d_5,153,GEL-Ped instability guard,171,4,10,4,153
+crossing_90_d_5,193,constant velocity,171,3,15,6,147
+crossing_90_d_5,193,five-member graph ensemble,171,3,16,6,146
+crossing_90_d_5,193,coordinate-median graph ensemble,171,3,17,6,145
+crossing_90_d_5,193,anchored coarse HGB,171,3,14,6,148
+crossing_90_d_5,193,GEL-Ped instability guard,171,3,16,6,146
+crossing_90_d_5,233,constant velocity,325,7,32,4,282
+crossing_90_d_5,233,five-member graph ensemble,325,4,26,7,288
+crossing_90_d_5,233,coordinate-median graph ensemble,325,4,27,7,287
+crossing_90_d_5,233,anchored coarse HGB,325,5,27,6,287
+crossing_90_d_5,233,GEL-Ped instability guard,325,5,29,6,285
+crossing_90_d_5,273,constant velocity,351,6,44,7,294
+crossing_90_d_5,273,five-member graph ensemble,351,8,32,5,306
+crossing_90_d_5,273,coordinate-median graph ensemble,351,8,32,5,306
+crossing_90_d_5,273,anchored coarse HGB,351,9,33,4,305
+crossing_90_d_5,273,GEL-Ped instability guard,351,9,37,4,301
+crossing_90_d_5,313,constant velocity,528,10,68,13,437
+crossing_90_d_5,313,five-member graph ensemble,528,8,51,15,454
+crossing_90_d_5,313,coordinate-median graph ensemble,528,8,47,15,458
+crossing_90_d_5,313,anchored coarse HGB,528,10,38,13,467
+crossing_90_d_5,313,GEL-Ped instability guard,528,8,40,15,465
+crossing_90_d_5,353,constant velocity,561,15,55,8,483
+crossing_90_d_5,353,five-member graph ensemble,561,15,45,8,493
+crossing_90_d_5,353,coordinate-median graph ensemble,561,15,43,8,495
+crossing_90_d_5,353,anchored coarse HGB,561,18,49,5,489
+crossing_90_d_5,353,GEL-Ped instability guard,561,15,46,8,492
+crossing_90_d_5,393,constant velocity,820,15,56,14,735
+crossing_90_d_5,393,five-member graph ensemble,820,12,46,17,745
+crossing_90_d_5,393,coordinate-median graph ensemble,820,11,49,18,742
+crossing_90_d_5,393,anchored coarse HGB,820,14,41,15,750
+crossing_90_d_5,393,GEL-Ped instability guard,820,13,46,16,745
+crossing_90_d_5,433,constant velocity,595,14,47,18,516
+crossing_90_d_5,433,five-member graph ensemble,595,18,43,14,520
+crossing_90_d_5,433,coordinate-median graph ensemble,595,18,41,14,522
+crossing_90_d_5,433,anchored coarse HGB,595,18,38,14,525
+crossing_90_d_5,433,GEL-Ped instability guard,595,19,42,13,521
+crossing_90_d_5,473,constant velocity,496,18,31,5,442
+crossing_90_d_5,473,five-member graph ensemble,496,17,31,6,442
+crossing_90_d_5,473,coordinate-median graph ensemble,496,17,32,6,441
+crossing_90_d_5,473,anchored coarse HGB,496,17,23,6,450
+crossing_90_d_5,473,GEL-Ped instability guard,496,18,33,5,440
+crossing_90_d_5,513,constant velocity,703,14,55,8,626
+crossing_90_d_5,513,five-member graph ensemble,703,13,31,9,650
+crossing_90_d_5,513,coordinate-median graph ensemble,703,13,35,9,646
+crossing_90_d_5,513,anchored coarse HGB,703,12,39,10,642
+crossing_90_d_5,513,GEL-Ped instability guard,703,13,30,9,651
+crossing_90_d_6,69,constant velocity,6,0,0,0,6
+crossing_90_d_6,69,five-member graph ensemble,6,0,0,0,6
+crossing_90_d_6,69,coordinate-median graph ensemble,6,0,0,0,6
+crossing_90_d_6,69,anchored coarse HGB,6,0,0,0,6
+crossing_90_d_6,69,GEL-Ped instability guard,6,0,0,0,6
+crossing_90_d_6,109,constant velocity,300,6,25,6,263
+crossing_90_d_6,109,five-member graph ensemble,300,6,20,6,268
+crossing_90_d_6,109,coordinate-median graph ensemble,300,6,18,6,270
+crossing_90_d_6,109,anchored coarse HGB,300,6,22,6,266
+crossing_90_d_6,109,GEL-Ped instability guard,300,6,20,6,268
+crossing_90_d_6,149,constant velocity,528,10,43,10,465
+crossing_90_d_6,149,five-member graph ensemble,528,8,37,12,471
+crossing_90_d_6,149,coordinate-median graph ensemble,528,9,33,11,475
+crossing_90_d_6,149,anchored coarse HGB,528,10,36,10,472
+crossing_90_d_6,149,GEL-Ped instability guard,528,9,36,11,472
+crossing_90_d_6,189,constant velocity,903,15,79,9,800
+crossing_90_d_6,189,five-member graph ensemble,903,12,68,12,811
+crossing_90_d_6,189,coordinate-median graph ensemble,903,12,66,12,813
+crossing_90_d_6,189,anchored coarse HGB,903,14,80,10,799
+crossing_90_d_6,189,GEL-Ped instability guard,903,13,82,11,797
+crossing_90_d_6,229,constant velocity,1275,22,117,22,1114
+crossing_90_d_6,229,five-member graph ensemble,1275,25,54,19,1177
+crossing_90_d_6,229,coordinate-median graph ensemble,1275,25,58,19,1173
+crossing_90_d_6,229,anchored coarse HGB,1275,24,76,20,1155
+crossing_90_d_6,229,GEL-Ped instability guard,1275,23,62,21,1169
+crossing_90_d_6,269,constant velocity,1275,28,72,30,1145
+crossing_90_d_6,269,five-member graph ensemble,1275,27,44,31,1173
+crossing_90_d_6,269,coordinate-median graph ensemble,1275,28,44,30,1173
+crossing_90_d_6,269,anchored coarse HGB,1275,30,48,28,1169
+crossing_90_d_6,269,GEL-Ped instability guard,1275,28,42,30,1175
+crossing_90_d_6,309,constant velocity,1711,32,111,21,1547
+crossing_90_d_6,309,five-member graph ensemble,1711,35,63,18,1595
+crossing_90_d_6,309,coordinate-median graph ensemble,1711,35,59,18,1599
+crossing_90_d_6,309,anchored coarse HGB,1711,34,79,19,1579
+crossing_90_d_6,309,GEL-Ped instability guard,1711,33,69,20,1589
+crossing_90_d_6,349,constant velocity,1711,22,124,26,1539
+crossing_90_d_6,349,five-member graph ensemble,1711,25,49,23,1614
+crossing_90_d_6,349,coordinate-median graph ensemble,1711,25,51,23,1612
+crossing_90_d_6,349,anchored coarse HGB,1711,23,68,25,1595
+crossing_90_d_6,349,GEL-Ped instability guard,1711,25,53,23,1610
+crossing_90_d_6,389,constant velocity,1891,30,155,32,1674
+crossing_90_d_6,389,five-member graph ensemble,1891,24,62,38,1767
+crossing_90_d_6,389,coordinate-median graph ensemble,1891,26,62,36,1767
+crossing_90_d_6,389,anchored coarse HGB,1891,27,78,35,1751
+crossing_90_d_6,389,GEL-Ped instability guard,1891,27,61,35,1768
+crossing_90_d_6,429,constant velocity,2211,42,150,29,1990
+crossing_90_d_6,429,five-member graph ensemble,2211,34,39,37,2101
+crossing_90_d_6,429,coordinate-median graph ensemble,2211,34,40,37,2100
+crossing_90_d_6,429,anchored coarse HGB,2211,32,54,39,2086
+crossing_90_d_6,429,GEL-Ped instability guard,2211,33,39,38,2101
+crossing_90_d_6,469,constant velocity,2415,44,154,30,2187
+crossing_90_d_6,469,five-member graph ensemble,2415,39,72,35,2269
+crossing_90_d_6,469,coordinate-median graph ensemble,2415,38,70,36,2271
+crossing_90_d_6,469,anchored coarse HGB,2415,40,80,34,2261
+crossing_90_d_6,469,GEL-Ped instability guard,2415,38,69,36,2272
+crossing_90_d_6,509,constant velocity,3160,47,152,35,2926
+crossing_90_d_6,509,five-member graph ensemble,3160,46,58,36,3020
+crossing_90_d_6,509,coordinate-median graph ensemble,3160,47,61,35,3017
+crossing_90_d_6,509,anchored coarse HGB,3160,45,69,37,3009
+crossing_90_d_6,509,GEL-Ped instability guard,3160,47,53,35,3025
+crossing_90_d_7,59,constant velocity,6,0,1,0,5
+crossing_90_d_7,59,five-member graph ensemble,6,0,2,0,4
+crossing_90_d_7,59,coordinate-median graph ensemble,6,0,1,0,5
+crossing_90_d_7,59,anchored coarse HGB,6,0,1,0,5
+crossing_90_d_7,59,GEL-Ped instability guard,6,0,1,0,5
+crossing_90_d_7,99,constant velocity,210,6,12,5,187
+crossing_90_d_7,99,five-member graph ensemble,210,5,13,6,186
+crossing_90_d_7,99,coordinate-median graph ensemble,210,4,14,7,185
+crossing_90_d_7,99,anchored coarse HGB,210,4,16,7,183
+crossing_90_d_7,99,GEL-Ped instability guard,210,5,17,6,182
+crossing_90_d_7,139,constant velocity,630,6,63,15,546
+crossing_90_d_7,139,five-member graph ensemble,630,10,62,11,547
+crossing_90_d_7,139,coordinate-median graph ensemble,630,8,62,13,547
+crossing_90_d_7,139,anchored coarse HGB,630,5,56,16,553
+crossing_90_d_7,139,GEL-Ped instability guard,630,8,58,13,551
+crossing_90_d_7,179,constant velocity,1378,16,111,24,1227
+crossing_90_d_7,179,five-member graph ensemble,1378,18,78,22,1260
+crossing_90_d_7,179,coordinate-median graph ensemble,1378,19,73,21,1265
+crossing_90_d_7,179,anchored coarse HGB,1378,19,83,21,1255
+crossing_90_d_7,179,GEL-Ped instability guard,1378,17,82,23,1256
+crossing_90_d_7,219,constant velocity,2016,40,192,33,1751
+crossing_90_d_7,219,five-member graph ensemble,2016,38,102,35,1841
+crossing_90_d_7,219,coordinate-median graph ensemble,2016,39,104,34,1839
+crossing_90_d_7,219,anchored coarse HGB,2016,42,121,31,1822
+crossing_90_d_7,219,GEL-Ped instability guard,2016,39,103,34,1840
+crossing_90_d_7,259,constant velocity,2775,54,246,54,2421
+crossing_90_d_7,259,five-member graph ensemble,2775,52,97,56,2570
+crossing_90_d_7,259,coordinate-median graph ensemble,2775,53,97,55,2570
+crossing_90_d_7,259,anchored coarse HGB,2775,49,141,59,2526
+crossing_90_d_7,259,GEL-Ped instability guard,2775,51,105,57,2562
+crossing_90_d_7,299,constant velocity,3741,65,227,48,3401
+crossing_90_d_7,299,five-member graph ensemble,3741,64,74,49,3554
+crossing_90_d_7,299,coordinate-median graph ensemble,3741,64,73,49,3555
+crossing_90_d_7,299,anchored coarse HGB,3741,57,100,56,3528
+crossing_90_d_7,299,GEL-Ped instability guard,3741,62,78,51,3550
+crossing_90_d_7,339,constant velocity,3655,55,204,45,3351
+crossing_90_d_7,339,five-member graph ensemble,3655,54,85,46,3470
+crossing_90_d_7,339,coordinate-median graph ensemble,3655,54,83,46,3472
+crossing_90_d_7,339,anchored coarse HGB,3655,55,92,45,3463
+crossing_90_d_7,339,GEL-Ped instability guard,3655,53,91,47,3464
+crossing_90_d_7,379,constant velocity,4656,63,172,57,4364
+crossing_90_d_7,379,five-member graph ensemble,4656,65,57,55,4479
+crossing_90_d_7,379,coordinate-median graph ensemble,4656,66,59,54,4477
+crossing_90_d_7,379,anchored coarse HGB,4656,69,92,51,4444
+crossing_90_d_7,379,GEL-Ped instability guard,4656,65,62,55,4474
+crossing_90_d_7,419,constant velocity,5151,71,179,67,4834
+crossing_90_d_7,419,five-member graph ensemble,5151,78,58,60,4955
+crossing_90_d_7,419,coordinate-median graph ensemble,5151,80,63,58,4950
+crossing_90_d_7,419,anchored coarse HGB,5151,80,67,58,4946
+crossing_90_d_7,419,GEL-Ped instability guard,5151,78,57,60,4956
+crossing_90_d_7,459,constant velocity,6105,100,192,76,5737
+crossing_90_d_7,459,five-member graph ensemble,6105,98,73,78,5856
+crossing_90_d_7,459,coordinate-median graph ensemble,6105,98,72,78,5857
+crossing_90_d_7,459,anchored coarse HGB,6105,97,79,79,5850
+crossing_90_d_7,459,GEL-Ped instability guard,6105,97,73,79,5856
+crossing_90_d_7,499,constant velocity,6786,111,182,104,6389
+crossing_90_d_7,499,five-member graph ensemble,6786,111,86,104,6485
+crossing_90_d_7,499,coordinate-median graph ensemble,6786,111,88,104,6483
+crossing_90_d_7,499,anchored coarse HGB,6786,113,87,102,6484
+crossing_90_d_7,499,GEL-Ped instability guard,6786,113,83,102,6488
+crossing_90_d_8,67,constant velocity,10,0,1,0,9
+crossing_90_d_8,67,five-member graph ensemble,10,0,3,0,7
+crossing_90_d_8,67,coordinate-median graph ensemble,10,0,2,0,8
+crossing_90_d_8,67,anchored coarse HGB,10,0,1,0,9
+crossing_90_d_8,67,GEL-Ped instability guard,10,0,1,0,9
+crossing_90_d_8,107,constant velocity,465,11,39,20,395
+crossing_90_d_8,107,five-member graph ensemble,465,11,37,20,397
+crossing_90_d_8,107,coordinate-median graph ensemble,465,11,40,20,394
+crossing_90_d_8,107,anchored coarse HGB,465,9,44,22,390
+crossing_90_d_8,107,GEL-Ped instability guard,465,9,42,22,392
+crossing_90_d_8,147,constant velocity,1540,29,73,61,1377
+crossing_90_d_8,147,five-member graph ensemble,1540,40,61,50,1389
+crossing_90_d_8,147,coordinate-median graph ensemble,1540,38,60,52,1390
+crossing_90_d_8,147,anchored coarse HGB,1540,31,55,59,1395
+crossing_90_d_8,147,GEL-Ped instability guard,1540,35,57,55,1393
+crossing_90_d_8,187,constant velocity,3081,71,182,76,2752
+crossing_90_d_8,187,five-member graph ensemble,3081,84,101,63,2833
+crossing_90_d_8,187,coordinate-median graph ensemble,3081,83,100,64,2834
+crossing_90_d_8,187,anchored coarse HGB,3081,77,142,70,2792
+crossing_90_d_8,187,GEL-Ped instability guard,3081,83,123,64,2811
+crossing_90_d_8,227,constant velocity,4095,96,366,87,3546
+crossing_90_d_8,227,five-member graph ensemble,4095,84,133,99,3779
+crossing_90_d_8,227,coordinate-median graph ensemble,4095,85,132,98,3780
+crossing_90_d_8,227,anchored coarse HGB,4095,86,206,97,3706
+crossing_90_d_8,227,GEL-Ped instability guard,4095,81,149,102,3763
+crossing_90_d_8,267,constant velocity,4950,124,343,104,4379
+crossing_90_d_8,267,five-member graph ensemble,4950,123,87,105,4635
+crossing_90_d_8,267,coordinate-median graph ensemble,4950,123,92,105,4630
+crossing_90_d_8,267,anchored coarse HGB,4950,117,132,111,4590
+crossing_90_d_8,267,GEL-Ped instability guard,4950,123,108,105,4614
+crossing_90_d_8,307,constant velocity,6903,157,272,124,6350
+crossing_90_d_8,307,five-member graph ensemble,6903,140,75,141,6547
+crossing_90_d_8,307,coordinate-median graph ensemble,6903,140,74,141,6548
+crossing_90_d_8,307,anchored coarse HGB,6903,146,87,135,6535
+crossing_90_d_8,307,GEL-Ped instability guard,6903,143,70,138,6552
+crossing_90_d_8,347,constant velocity,9316,154,265,133,8764
+crossing_90_d_8,347,five-member graph ensemble,9316,163,59,124,8970
+crossing_90_d_8,347,coordinate-median graph ensemble,9316,163,61,124,8968
+crossing_90_d_8,347,anchored coarse HGB,9316,165,76,122,8953
+crossing_90_d_8,347,GEL-Ped instability guard,9316,161,59,126,8970
+crossing_90_d_8,387,constant velocity,10011,136,210,134,9531
+crossing_90_d_8,387,five-member graph ensemble,10011,140,87,130,9654
+crossing_90_d_8,387,coordinate-median graph ensemble,10011,139,89,131,9652
+crossing_90_d_8,387,anchored coarse HGB,10011,138,98,132,9643
+crossing_90_d_8,387,GEL-Ped instability guard,10011,136,90,134,9651
+crossing_90_d_8,427,constant velocity,10296,141,224,114,9817
+crossing_90_d_8,427,five-member graph ensemble,10296,137,74,118,9967
+crossing_90_d_8,427,coordinate-median graph ensemble,10296,139,73,116,9968
+crossing_90_d_8,427,anchored coarse HGB,10296,138,91,117,9950
+crossing_90_d_8,427,GEL-Ped instability guard,10296,140,73,115,9968
+crossing_90_d_8,467,constant velocity,11026,145,232,134,10515
+crossing_90_d_8,467,five-member graph ensemble,11026,150,86,129,10661
+crossing_90_d_8,467,coordinate-median graph ensemble,11026,151,90,128,10657
+crossing_90_d_8,467,anchored coarse HGB,11026,145,91,134,10656
+crossing_90_d_8,467,GEL-Ped instability guard,11026,150,91,129,10656
+crossing_90_d_8,507,constant velocity,9591,150,197,115,9129
+crossing_90_d_8,507,five-member graph ensemble,9591,148,79,117,9247
+crossing_90_d_8,507,coordinate-median graph ensemble,9591,147,76,118,9250
+crossing_90_d_8,507,anchored coarse HGB,9591,152,87,113,9239
+crossing_90_d_8,507,GEL-Ped instability guard,9591,147,71,118,9255
+crossing_90_e_1,121,constant velocity,6,0,0,0,6
+crossing_90_e_1,121,five-member graph ensemble,6,0,1,0,5
+crossing_90_e_1,121,coordinate-median graph ensemble,6,0,1,0,5
+crossing_90_e_1,121,anchored coarse HGB,6,0,1,0,5
+crossing_90_e_1,121,GEL-Ped instability guard,6,0,1,0,5
+crossing_90_e_1,161,constant velocity,28,0,4,0,24
+crossing_90_e_1,161,five-member graph ensemble,28,0,3,0,25
+crossing_90_e_1,161,coordinate-median graph ensemble,28,0,3,0,25
+crossing_90_e_1,161,anchored coarse HGB,28,0,4,0,24
+crossing_90_e_1,161,GEL-Ped instability guard,28,0,4,0,24
+crossing_90_e_1,201,constant velocity,36,0,5,0,31
+crossing_90_e_1,201,five-member graph ensemble,36,0,6,0,30
+crossing_90_e_1,201,coordinate-median graph ensemble,36,0,5,0,31
+crossing_90_e_1,201,anchored coarse HGB,36,0,7,0,29
+crossing_90_e_1,201,GEL-Ped instability guard,36,0,6,0,30
+crossing_90_e_1,241,constant velocity,21,1,2,0,18
+crossing_90_e_1,241,five-member graph ensemble,21,0,2,1,18
+crossing_90_e_1,241,coordinate-median graph ensemble,21,0,1,1,19
+crossing_90_e_1,241,anchored coarse HGB,21,1,2,0,18
+crossing_90_e_1,241,GEL-Ped instability guard,21,0,2,1,18
+crossing_90_e_1,281,constant velocity,36,2,8,0,26
+crossing_90_e_1,281,five-member graph ensemble,36,2,5,0,29
+crossing_90_e_1,281,coordinate-median graph ensemble,36,2,3,0,31
+crossing_90_e_1,281,anchored coarse HGB,36,1,7,1,27
+crossing_90_e_1,281,GEL-Ped instability guard,36,1,4,1,30
+crossing_90_e_1,321,constant velocity,36,1,7,2,26
+crossing_90_e_1,321,five-member graph ensemble,36,1,4,2,29
+crossing_90_e_1,321,coordinate-median graph ensemble,36,1,4,2,29
+crossing_90_e_1,321,anchored coarse HGB,36,1,5,2,28
+crossing_90_e_1,321,GEL-Ped instability guard,36,1,5,2,28
+crossing_90_e_1,361,constant velocity,55,0,6,2,47
+crossing_90_e_1,361,five-member graph ensemble,55,0,5,2,48
+crossing_90_e_1,361,coordinate-median graph ensemble,55,0,5,2,48
+crossing_90_e_1,361,anchored coarse HGB,55,0,7,2,46
+crossing_90_e_1,361,GEL-Ped instability guard,55,0,5,2,48
+crossing_90_e_1,401,constant velocity,28,0,3,0,25
+crossing_90_e_1,401,five-member graph ensemble,28,0,1,0,27
+crossing_90_e_1,401,coordinate-median graph ensemble,28,0,1,0,27
+crossing_90_e_1,401,anchored coarse HGB,28,0,4,0,24
+crossing_90_e_1,401,GEL-Ped instability guard,28,0,4,0,24
+crossing_90_e_1,441,constant velocity,36,0,3,2,31
+crossing_90_e_1,441,five-member graph ensemble,36,0,3,2,31
+crossing_90_e_1,441,coordinate-median graph ensemble,36,0,4,2,30
+crossing_90_e_1,441,anchored coarse HGB,36,0,3,2,31
+crossing_90_e_1,441,GEL-Ped instability guard,36,0,3,2,31
+crossing_90_e_1,481,constant velocity,55,2,8,1,44
+crossing_90_e_1,481,five-member graph ensemble,55,2,10,1,42
+crossing_90_e_1,481,coordinate-median graph ensemble,55,2,9,1,43
+crossing_90_e_1,481,anchored coarse HGB,55,2,8,1,44
+crossing_90_e_1,481,GEL-Ped instability guard,55,2,7,1,45
+crossing_90_e_1,521,constant velocity,21,0,3,0,18
+crossing_90_e_1,521,five-member graph ensemble,21,0,2,0,19
+crossing_90_e_1,521,coordinate-median graph ensemble,21,0,2,0,19
+crossing_90_e_1,521,anchored coarse HGB,21,0,2,0,19
+crossing_90_e_1,521,GEL-Ped instability guard,21,0,2,0,19
+crossing_90_e_1,561,constant velocity,28,0,3,0,25
+crossing_90_e_1,561,five-member graph ensemble,28,0,1,0,27
+crossing_90_e_1,561,coordinate-median graph ensemble,28,0,1,0,27
+crossing_90_e_1,561,anchored coarse HGB,28,0,3,0,25
+crossing_90_e_1,561,GEL-Ped instability guard,28,0,2,0,26
+crossing_90_e_2,96,constant velocity,6,0,0,0,6
+crossing_90_e_2,96,five-member graph ensemble,6,0,0,0,6
+crossing_90_e_2,96,coordinate-median graph ensemble,6,0,0,0,6
+crossing_90_e_2,96,anchored coarse HGB,6,0,0,0,6
+crossing_90_e_2,96,GEL-Ped instability guard,6,0,0,0,6
+crossing_90_e_2,145,constant velocity,10,1,0,0,9
+crossing_90_e_2,145,five-member graph ensemble,10,1,0,0,9
+crossing_90_e_2,145,coordinate-median graph ensemble,10,1,0,0,9
+crossing_90_e_2,145,anchored coarse HGB,10,1,1,0,8
+crossing_90_e_2,145,GEL-Ped instability guard,10,1,0,0,9
+crossing_90_e_2,186,constant velocity,6,0,0,0,6
+crossing_90_e_2,186,five-member graph ensemble,6,0,1,0,5
+crossing_90_e_2,186,coordinate-median graph ensemble,6,0,1,0,5
+crossing_90_e_2,186,anchored coarse HGB,6,0,2,0,4
+crossing_90_e_2,186,GEL-Ped instability guard,6,0,1,0,5
+crossing_90_e_2,231,constant velocity,6,0,2,0,4
+crossing_90_e_2,231,five-member graph ensemble,6,0,1,0,5
+crossing_90_e_2,231,coordinate-median graph ensemble,6,0,2,0,4
+crossing_90_e_2,231,anchored coarse HGB,6,0,2,0,4
+crossing_90_e_2,231,GEL-Ped instability guard,6,0,1,0,5
+crossing_90_e_2,271,constant velocity,15,0,1,0,14
+crossing_90_e_2,271,five-member graph ensemble,15,0,3,0,12
+crossing_90_e_2,271,coordinate-median graph ensemble,15,0,2,0,13
+crossing_90_e_2,271,anchored coarse HGB,15,0,2,0,13
+crossing_90_e_2,271,GEL-Ped instability guard,15,0,3,0,12
+crossing_90_e_2,311,constant velocity,45,1,6,1,37
+crossing_90_e_2,311,five-member graph ensemble,45,1,3,1,40
+crossing_90_e_2,311,coordinate-median graph ensemble,45,1,1,1,42
+crossing_90_e_2,311,anchored coarse HGB,45,1,8,1,35
+crossing_90_e_2,311,GEL-Ped instability guard,45,1,6,1,37
+crossing_90_e_2,351,constant velocity,55,1,7,2,45
+crossing_90_e_2,351,five-member graph ensemble,55,1,7,2,45
+crossing_90_e_2,351,coordinate-median graph ensemble,55,1,9,2,43
+crossing_90_e_2,351,anchored coarse HGB,55,1,6,2,46
+crossing_90_e_2,351,GEL-Ped instability guard,55,1,7,2,45
+crossing_90_e_2,391,constant velocity,55,3,8,1,43
+crossing_90_e_2,391,five-member graph ensemble,55,2,8,2,43
+crossing_90_e_2,391,coordinate-median graph ensemble,55,2,8,2,43
+crossing_90_e_2,391,anchored coarse HGB,55,3,5,1,46
+crossing_90_e_2,391,GEL-Ped instability guard,55,3,6,1,45
+crossing_90_e_2,431,constant velocity,66,1,9,4,52
+crossing_90_e_2,431,five-member graph ensemble,66,1,10,4,51
+crossing_90_e_2,431,coordinate-median graph ensemble,66,1,10,4,51
+crossing_90_e_2,431,anchored coarse HGB,66,2,8,3,53
+crossing_90_e_2,431,GEL-Ped instability guard,66,1,8,4,53
+crossing_90_e_2,471,constant velocity,36,1,1,0,34
+crossing_90_e_2,471,five-member graph ensemble,36,1,1,0,34
+crossing_90_e_2,471,coordinate-median graph ensemble,36,1,1,0,34
+crossing_90_e_2,471,anchored coarse HGB,36,1,3,0,32
+crossing_90_e_2,471,GEL-Ped instability guard,36,1,2,0,33
+crossing_90_e_2,511,constant velocity,21,1,3,1,16
+crossing_90_e_2,511,five-member graph ensemble,21,1,3,1,16
+crossing_90_e_2,511,coordinate-median graph ensemble,21,1,2,1,17
+crossing_90_e_2,511,anchored coarse HGB,21,1,2,1,17
+crossing_90_e_2,511,GEL-Ped instability guard,21,1,3,1,16
+crossing_90_e_2,551,constant velocity,21,2,0,2,17
+crossing_90_e_2,551,five-member graph ensemble,21,2,0,2,17
+crossing_90_e_2,551,coordinate-median graph ensemble,21,2,0,2,17
+crossing_90_e_2,551,anchored coarse HGB,21,3,0,1,17
+crossing_90_e_2,551,GEL-Ped instability guard,21,3,0,1,17
+crossing_90_e_3,118,constant velocity,6,1,1,0,4
+crossing_90_e_3,118,five-member graph ensemble,6,1,1,0,4
+crossing_90_e_3,118,coordinate-median graph ensemble,6,1,1,0,4
+crossing_90_e_3,118,anchored coarse HGB,6,1,1,0,4
+crossing_90_e_3,118,GEL-Ped instability guard,6,1,1,0,4
+crossing_90_e_3,158,constant velocity,28,0,2,2,24
+crossing_90_e_3,158,five-member graph ensemble,28,0,1,2,25
+crossing_90_e_3,158,coordinate-median graph ensemble,28,0,1,2,25
+crossing_90_e_3,158,anchored coarse HGB,28,0,1,2,25
+crossing_90_e_3,158,GEL-Ped instability guard,28,0,1,2,25
+crossing_90_e_3,198,constant velocity,15,1,3,1,10
+crossing_90_e_3,198,five-member graph ensemble,15,2,2,0,11
+crossing_90_e_3,198,coordinate-median graph ensemble,15,2,2,0,11
+crossing_90_e_3,198,anchored coarse HGB,15,2,3,0,10
+crossing_90_e_3,198,GEL-Ped instability guard,15,2,3,0,10
+crossing_90_e_3,238,constant velocity,78,2,7,2,67
+crossing_90_e_3,238,five-member graph ensemble,78,1,7,3,67
+crossing_90_e_3,238,coordinate-median graph ensemble,78,1,6,3,68
+crossing_90_e_3,238,anchored coarse HGB,78,1,8,3,66
+crossing_90_e_3,238,GEL-Ped instability guard,78,1,8,3,66
+crossing_90_e_3,278,constant velocity,78,4,8,3,63
+crossing_90_e_3,278,five-member graph ensemble,78,3,10,4,61
+crossing_90_e_3,278,coordinate-median graph ensemble,78,4,10,3,61
+crossing_90_e_3,278,anchored coarse HGB,78,4,9,3,62
+crossing_90_e_3,278,GEL-Ped instability guard,78,4,9,3,62
+crossing_90_e_3,318,constant velocity,91,3,3,0,85
+crossing_90_e_3,318,five-member graph ensemble,91,3,5,0,83
+crossing_90_e_3,318,coordinate-median graph ensemble,91,3,5,0,83
+crossing_90_e_3,318,anchored coarse HGB,91,2,6,1,82
+crossing_90_e_3,318,GEL-Ped instability guard,91,2,6,1,82
+crossing_90_e_3,358,constant velocity,66,2,11,1,52
+crossing_90_e_3,358,five-member graph ensemble,66,2,9,1,54
+crossing_90_e_3,358,coordinate-median graph ensemble,66,2,9,1,54
+crossing_90_e_3,358,anchored coarse HGB,66,2,10,1,53
+crossing_90_e_3,358,GEL-Ped instability guard,66,2,10,1,53
+crossing_90_e_3,398,constant velocity,105,8,24,5,68
+crossing_90_e_3,398,five-member graph ensemble,105,6,13,7,79
+crossing_90_e_3,398,coordinate-median graph ensemble,105,5,14,8,78
+crossing_90_e_3,398,anchored coarse HGB,105,6,15,7,77
+crossing_90_e_3,398,GEL-Ped instability guard,105,5,15,8,77
+crossing_90_e_3,438,constant velocity,190,9,18,10,153
+crossing_90_e_3,438,five-member graph ensemble,190,9,14,10,157
+crossing_90_e_3,438,coordinate-median graph ensemble,190,8,15,11,156
+crossing_90_e_3,438,anchored coarse HGB,190,11,16,8,155
+crossing_90_e_3,438,GEL-Ped instability guard,190,8,15,11,156
+crossing_90_e_3,478,constant velocity,276,8,24,3,241
+crossing_90_e_3,478,five-member graph ensemble,276,8,20,3,245
+crossing_90_e_3,478,coordinate-median graph ensemble,276,8,20,3,245
+crossing_90_e_3,478,anchored coarse HGB,276,8,19,3,246
+crossing_90_e_3,478,GEL-Ped instability guard,276,8,16,3,249
+crossing_90_e_3,518,constant velocity,153,0,23,4,126
+crossing_90_e_3,518,five-member graph ensemble,153,0,19,4,130
+crossing_90_e_3,518,coordinate-median graph ensemble,153,0,20,4,129
+crossing_90_e_3,518,anchored coarse HGB,153,0,14,4,135
+crossing_90_e_3,518,GEL-Ped instability guard,153,0,19,4,130
+crossing_90_e_3,558,constant velocity,210,3,10,5,192
+crossing_90_e_3,558,five-member graph ensemble,210,3,4,5,198
+crossing_90_e_3,558,coordinate-median graph ensemble,210,3,4,5,198
+crossing_90_e_3,558,anchored coarse HGB,210,2,7,6,195
+crossing_90_e_3,558,GEL-Ped instability guard,210,4,6,4,196
+crossing_90_e_4,92,constant velocity,6,0,1,0,5
+crossing_90_e_4,92,five-member graph ensemble,6,0,1,0,5
+crossing_90_e_4,92,coordinate-median graph ensemble,6,0,1,0,5
+crossing_90_e_4,92,anchored coarse HGB,6,0,2,0,4
+crossing_90_e_4,92,GEL-Ped instability guard,6,0,2,0,4
+crossing_90_e_4,132,constant velocity,10,1,2,0,7
+crossing_90_e_4,132,five-member graph ensemble,10,1,2,0,7
+crossing_90_e_4,132,coordinate-median graph ensemble,10,1,2,0,7
+crossing_90_e_4,132,anchored coarse HGB,10,1,2,0,7
+crossing_90_e_4,132,GEL-Ped instability guard,10,1,2,0,7
+crossing_90_e_4,172,constant velocity,55,3,10,5,37
+crossing_90_e_4,172,five-member graph ensemble,55,4,9,4,38
+crossing_90_e_4,172,coordinate-median graph ensemble,55,4,9,4,38
+crossing_90_e_4,172,anchored coarse HGB,55,3,6,5,41
+crossing_90_e_4,172,GEL-Ped instability guard,55,4,9,4,38
+crossing_90_e_4,212,constant velocity,78,2,9,4,63
+crossing_90_e_4,212,five-member graph ensemble,78,1,13,5,59
+crossing_90_e_4,212,coordinate-median graph ensemble,78,1,12,5,60
+crossing_90_e_4,212,anchored coarse HGB,78,1,10,5,62
+crossing_90_e_4,212,GEL-Ped instability guard,78,1,10,5,62
+crossing_90_e_4,252,constant velocity,171,6,20,9,136
+crossing_90_e_4,252,five-member graph ensemble,171,7,19,8,137
+crossing_90_e_4,252,coordinate-median graph ensemble,171,7,19,8,137
+crossing_90_e_4,252,anchored coarse HGB,171,6,22,9,134
+crossing_90_e_4,252,GEL-Ped instability guard,171,7,18,8,138
+crossing_90_e_4,292,constant velocity,78,2,11,3,62
+crossing_90_e_4,292,five-member graph ensemble,78,3,6,2,67
+crossing_90_e_4,292,coordinate-median graph ensemble,78,3,6,2,67
+crossing_90_e_4,292,anchored coarse HGB,78,2,7,3,66
+crossing_90_e_4,292,GEL-Ped instability guard,78,3,5,2,68
+crossing_90_e_4,332,constant velocity,91,4,5,1,81
+crossing_90_e_4,332,five-member graph ensemble,91,3,5,2,81
+crossing_90_e_4,332,coordinate-median graph ensemble,91,3,5,2,81
+crossing_90_e_4,332,anchored coarse HGB,91,4,5,1,81
+crossing_90_e_4,332,GEL-Ped instability guard,91,4,5,1,81
+crossing_90_e_4,372,constant velocity,153,7,16,2,128
+crossing_90_e_4,372,five-member graph ensemble,153,7,21,2,123
+crossing_90_e_4,372,coordinate-median graph ensemble,153,7,20,2,124
+crossing_90_e_4,372,anchored coarse HGB,153,7,14,2,130
+crossing_90_e_4,372,GEL-Ped instability guard,153,6,20,3,124
+crossing_90_e_4,412,constant velocity,231,11,25,4,191
+crossing_90_e_4,412,five-member graph ensemble,231,9,25,6,191
+crossing_90_e_4,412,coordinate-median graph ensemble,231,9,24,6,192
+crossing_90_e_4,412,anchored coarse HGB,231,10,27,5,189
+crossing_90_e_4,412,GEL-Ped instability guard,231,10,24,5,192
+crossing_90_e_4,452,constant velocity,300,10,32,8,250
+crossing_90_e_4,452,five-member graph ensemble,300,8,27,10,255
+crossing_90_e_4,452,coordinate-median graph ensemble,300,8,29,10,253
+crossing_90_e_4,452,anchored coarse HGB,300,10,27,8,255
+crossing_90_e_4,452,GEL-Ped instability guard,300,8,27,10,255
+crossing_90_e_4,492,constant velocity,595,22,49,20,504
+crossing_90_e_4,492,five-member graph ensemble,595,20,25,22,528
+crossing_90_e_4,492,coordinate-median graph ensemble,595,22,25,20,528
+crossing_90_e_4,492,anchored coarse HGB,595,20,31,22,522
+crossing_90_e_4,492,GEL-Ped instability guard,595,20,23,22,530
+crossing_90_e_4,532,constant velocity,561,17,26,17,501
+crossing_90_e_4,532,five-member graph ensemble,561,15,19,19,508
+crossing_90_e_4,532,coordinate-median graph ensemble,561,14,19,20,508
+crossing_90_e_4,532,anchored coarse HGB,561,16,15,18,512
+crossing_90_e_4,532,GEL-Ped instability guard,561,15,17,19,510
+crossing_90_e_5,96,constant velocity,6,0,0,0,6
+crossing_90_e_5,96,five-member graph ensemble,6,0,0,0,6
+crossing_90_e_5,96,coordinate-median graph ensemble,6,0,0,0,6
+crossing_90_e_5,96,anchored coarse HGB,6,0,0,0,6
+crossing_90_e_5,96,GEL-Ped instability guard,6,0,0,0,6
+crossing_90_e_5,136,constant velocity,55,2,2,2,49
+crossing_90_e_5,136,five-member graph ensemble,55,2,3,2,48
+crossing_90_e_5,136,coordinate-median graph ensemble,55,2,2,2,49
+crossing_90_e_5,136,anchored coarse HGB,55,2,2,2,49
+crossing_90_e_5,136,GEL-Ped instability guard,55,2,4,2,47
+crossing_90_e_5,176,constant velocity,171,6,17,5,143
+crossing_90_e_5,176,five-member graph ensemble,171,6,12,5,148
+crossing_90_e_5,176,coordinate-median graph ensemble,171,6,13,5,147
+crossing_90_e_5,176,anchored coarse HGB,171,6,13,5,147
+crossing_90_e_5,176,GEL-Ped instability guard,171,6,12,5,148
+crossing_90_e_5,216,constant velocity,325,7,33,12,273
+crossing_90_e_5,216,five-member graph ensemble,325,7,21,12,285
+crossing_90_e_5,216,coordinate-median graph ensemble,325,7,23,12,283
+crossing_90_e_5,216,anchored coarse HGB,325,6,27,13,279
+crossing_90_e_5,216,GEL-Ped instability guard,325,6,24,13,282
+crossing_90_e_5,256,constant velocity,630,25,86,15,504
+crossing_90_e_5,256,five-member graph ensemble,630,24,43,16,547
+crossing_90_e_5,256,coordinate-median graph ensemble,630,23,40,17,550
+crossing_90_e_5,256,anchored coarse HGB,630,22,49,18,541
+crossing_90_e_5,256,GEL-Ped instability guard,630,20,42,20,548
+crossing_90_e_5,296,constant velocity,666,23,81,23,539
+crossing_90_e_5,296,five-member graph ensemble,666,21,34,25,586
+crossing_90_e_5,296,coordinate-median graph ensemble,666,21,32,25,588
+crossing_90_e_5,296,anchored coarse HGB,666,20,48,26,572
+crossing_90_e_5,296,GEL-Ped instability guard,666,21,38,25,582
+crossing_90_e_5,336,constant velocity,780,29,62,25,664
+crossing_90_e_5,336,five-member graph ensemble,780,23,36,31,690
+crossing_90_e_5,336,coordinate-median graph ensemble,780,23,34,31,692
+crossing_90_e_5,336,anchored coarse HGB,780,26,40,28,686
+crossing_90_e_5,336,GEL-Ped instability guard,780,24,37,30,689
+crossing_90_e_5,376,constant velocity,1176,32,56,34,1054
+crossing_90_e_5,376,five-member graph ensemble,1176,31,32,35,1078
+crossing_90_e_5,376,coordinate-median graph ensemble,1176,30,31,36,1079
+crossing_90_e_5,376,anchored coarse HGB,1176,33,38,33,1072
+crossing_90_e_5,376,GEL-Ped instability guard,1176,30,36,36,1074
+crossing_90_e_5,416,constant velocity,1326,26,62,31,1207
+crossing_90_e_5,416,five-member graph ensemble,1326,28,35,29,1234
+crossing_90_e_5,416,coordinate-median graph ensemble,1326,28,33,29,1236
+crossing_90_e_5,416,anchored coarse HGB,1326,26,40,31,1229
+crossing_90_e_5,416,GEL-Ped instability guard,1326,27,33,30,1236
+crossing_90_e_5,456,constant velocity,1431,26,65,35,1305
+crossing_90_e_5,456,five-member graph ensemble,1431,23,35,38,1335
+crossing_90_e_5,456,coordinate-median graph ensemble,1431,23,32,38,1338
+crossing_90_e_5,456,anchored coarse HGB,1431,23,41,38,1329
+crossing_90_e_5,456,GEL-Ped instability guard,1431,23,35,38,1335
+crossing_90_e_5,496,constant velocity,1540,47,71,28,1394
+crossing_90_e_5,496,five-member graph ensemble,1540,44,35,31,1430
+crossing_90_e_5,496,coordinate-median graph ensemble,1540,43,34,32,1431
+crossing_90_e_5,496,anchored coarse HGB,1540,41,40,34,1425
+crossing_90_e_5,496,GEL-Ped instability guard,1540,43,34,32,1431
+crossing_90_e_5,536,constant velocity,1596,48,81,41,1426
+crossing_90_e_5,536,five-member graph ensemble,1596,41,31,48,1476
+crossing_90_e_5,536,coordinate-median graph ensemble,1596,41,29,48,1478
+crossing_90_e_5,536,anchored coarse HGB,1596,43,36,46,1471
+crossing_90_e_5,536,GEL-Ped instability guard,1596,41,31,48,1476
+crossing_90_e_6,66,constant velocity,10,0,0,0,10
+crossing_90_e_6,66,five-member graph ensemble,10,0,0,0,10
+crossing_90_e_6,66,coordinate-median graph ensemble,10,0,0,0,10
+crossing_90_e_6,66,anchored coarse HGB,10,0,1,0,9
+crossing_90_e_6,66,GEL-Ped instability guard,10,0,1,0,9
+crossing_90_e_6,106,constant velocity,231,6,20,10,195
+crossing_90_e_6,106,five-member graph ensemble,231,6,18,10,197
+crossing_90_e_6,106,coordinate-median graph ensemble,231,5,24,11,191
+crossing_90_e_6,106,anchored coarse HGB,231,4,12,12,203
+crossing_90_e_6,106,GEL-Ped instability guard,231,5,16,11,199
+crossing_90_e_6,146,constant velocity,820,20,62,28,710
+crossing_90_e_6,146,five-member graph ensemble,820,19,58,29,714
+crossing_90_e_6,146,coordinate-median graph ensemble,820,20,59,28,713
+crossing_90_e_6,146,anchored coarse HGB,820,16,58,32,714
+crossing_90_e_6,146,GEL-Ped instability guard,820,17,56,31,716
+crossing_90_e_6,186,constant velocity,1711,50,121,39,1501
+crossing_90_e_6,186,five-member graph ensemble,1711,47,74,42,1548
+crossing_90_e_6,186,coordinate-median graph ensemble,1711,47,77,42,1545
+crossing_90_e_6,186,anchored coarse HGB,1711,46,106,43,1516
+crossing_90_e_6,186,GEL-Ped instability guard,1711,46,87,43,1535
+crossing_90_e_6,226,constant velocity,2346,61,168,43,2074
+crossing_90_e_6,226,five-member graph ensemble,2346,45,70,59,2172
+crossing_90_e_6,226,coordinate-median graph ensemble,2346,47,72,57,2170
+crossing_90_e_6,226,anchored coarse HGB,2346,54,82,50,2160
+crossing_90_e_6,226,GEL-Ped instability guard,2346,53,69,51,2173
+crossing_90_e_6,266,constant velocity,3081,62,159,47,2813
+crossing_90_e_6,266,five-member graph ensemble,3081,55,77,54,2895
+crossing_90_e_6,266,coordinate-median graph ensemble,3081,55,76,54,2896
+crossing_90_e_6,266,anchored coarse HGB,3081,56,91,53,2881
+crossing_90_e_6,266,GEL-Ped instability guard,3081,54,81,55,2891
+crossing_90_e_6,306,constant velocity,4005,75,252,50,3628
+crossing_90_e_6,306,five-member graph ensemble,4005,72,85,53,3795
+crossing_90_e_6,306,coordinate-median graph ensemble,4005,73,80,52,3800
+crossing_90_e_6,306,anchored coarse HGB,4005,73,113,52,3767
+crossing_90_e_6,306,GEL-Ped instability guard,4005,71,85,54,3795
+crossing_90_e_6,346,constant velocity,5671,96,253,83,5239
+crossing_90_e_6,346,five-member graph ensemble,5671,91,77,88,5415
+crossing_90_e_6,346,coordinate-median graph ensemble,5671,91,76,88,5416
+crossing_90_e_6,346,anchored coarse HGB,5671,87,116,92,5376
+crossing_90_e_6,346,GEL-Ped instability guard,5671,92,79,87,5413
+crossing_90_e_6,386,constant velocity,7381,110,229,111,6931
+crossing_90_e_6,386,five-member graph ensemble,7381,117,74,104,7086
+crossing_90_e_6,386,coordinate-median graph ensemble,7381,117,75,104,7085
+crossing_90_e_6,386,anchored coarse HGB,7381,113,90,108,7070
+crossing_90_e_6,386,GEL-Ped instability guard,7381,117,67,104,7093
+crossing_90_e_6,426,constant velocity,7626,128,209,112,7177
+crossing_90_e_6,426,five-member graph ensemble,7626,139,77,101,7309
+crossing_90_e_6,426,coordinate-median graph ensemble,7626,138,82,102,7304
+crossing_90_e_6,426,anchored coarse HGB,7626,139,88,101,7298
+crossing_90_e_6,426,GEL-Ped instability guard,7626,138,76,102,7310
+crossing_90_e_6,466,constant velocity,8001,132,212,99,7558
+crossing_90_e_6,466,five-member graph ensemble,8001,136,57,95,7713
+crossing_90_e_6,466,coordinate-median graph ensemble,8001,137,60,94,7710
+crossing_90_e_6,466,anchored coarse HGB,8001,143,75,88,7695
+crossing_90_e_6,466,GEL-Ped instability guard,8001,135,59,96,7711
+crossing_90_e_6,506,constant velocity,7875,125,148,96,7506
+crossing_90_e_6,506,five-member graph ensemble,7875,125,67,96,7587
+crossing_90_e_6,506,coordinate-median graph ensemble,7875,124,65,97,7589
+crossing_90_e_6,506,anchored coarse HGB,7875,127,96,94,7558
+crossing_90_e_6,506,GEL-Ped instability guard,7875,127,71,94,7583

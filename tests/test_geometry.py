@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 import numpy as np
 
 from pedgeom.geometry import collision_free_speed, geometric_direction, local_metric

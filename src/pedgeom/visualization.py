@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Metric-field and spacetime-style visualisation helpers."""
 
 from __future__ import annotations
@@ -59,4 +60,3 @@ def weak_field_time_factor_deviation(
     """
 
     return potential / reference_speed**2
-

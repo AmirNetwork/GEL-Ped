@@ -1,0 +1,147 @@
+{
+  "eth": {
+    "geometry": {
+      "nominal_weight": 0.75,
+      "disagreement_threshold": 0.04210886547546827,
+      "disagreement_scale": 0.015241472711154388,
+      "epistemic_threshold": 0.022772978441560114,
+      "epistemic_scale": 0.006122436602347521,
+      "mahalanobis_threshold": 3.588152570703803,
+      "mahalanobis_scale": 1.3859956098382842
+    },
+    "coarse": {
+      "nominal_weight": 0.9500000000000001,
+      "disagreement_threshold": 0.04127298838894859,
+      "disagreement_scale": 0.014961618192736531,
+      "epistemic_threshold": 0.022772978441560114,
+      "epistemic_scale": 0.006122436602347521,
+      "mahalanobis_threshold": 3.588152570703803,
+      "mahalanobis_scale": 1.3859956098382842
+    },
+    "cv": {
+      "nominal_weight": 0.9500000000000001,
+      "disagreement_threshold": 0.055001298521494005,
+      "disagreement_scale": 0.018799330295944397,
+      "epistemic_threshold": 0.022772978441560114,
+      "epistemic_scale": 0.006122436602347521,
+      "mahalanobis_threshold": 3.588152570703803,
+      "mahalanobis_scale": 1.3859956098382842
+    }
+  },
+  "hotel": {
+    "geometry": {
+      "nominal_weight": 0.75,
+      "disagreement_threshold": 0.07233551487744543,
+      "disagreement_scale": 0.021042795661560712,
+      "epistemic_threshold": 0.037238726942564374,
+      "epistemic_scale": 0.01028427985047275,
+      "mahalanobis_threshold": 3.606049283334967,
+      "mahalanobis_scale": 1.5402662628756403
+    },
+    "coarse": {
+      "nominal_weight": 0.9,
+      "disagreement_threshold": 0.07282279533692301,
+      "disagreement_scale": 0.021008654199176125,
+      "epistemic_threshold": 0.037238726942564374,
+      "epistemic_scale": 0.01028427985047275,
+      "mahalanobis_threshold": 3.606049283334967,
+      "mahalanobis_scale": 1.5402662628756403
+    },
+    "cv": {
+      "nominal_weight": 0.9,
+      "disagreement_threshold": 0.09333477282562491,
+      "disagreement_scale": 0.028078858277340635,
+      "epistemic_threshold": 0.037238726942564374,
+      "epistemic_scale": 0.01028427985047275,
+      "mahalanobis_threshold": 3.606049283334967,
+      "mahalanobis_scale": 1.5402662628756403
+    }
+  },
+  "univ": {
+    "geometry": {
+      "nominal_weight": 0.7000000000000001,
+      "disagreement_threshold": 0.08652448556334462,
+      "disagreement_scale": 0.030275926579291835,
+      "epistemic_threshold": 0.03958769930940592,
+      "epistemic_scale": 0.011934904232442829,
+      "mahalanobis_threshold": 3.9697272908181835,
+      "mahalanobis_scale": 1.7328251940499915
+    },
+    "coarse": {
+      "nominal_weight": 0.8500000000000001,
+      "disagreement_threshold": 0.09053624121644313,
+      "disagreement_scale": 0.0319441496711293,
+      "epistemic_threshold": 0.03958769930940592,
+      "epistemic_scale": 0.011934904232442829,
+      "mahalanobis_threshold": 3.9697272908181835,
+      "mahalanobis_scale": 1.7328251940499915
+    },
+    "cv": {
+      "nominal_weight": 0.9,
+      "disagreement_threshold": 0.1171544170640924,
+      "disagreement_scale": 0.03744493198509265,
+      "epistemic_threshold": 0.03958769930940592,
+      "epistemic_scale": 0.011934904232442829,
+      "mahalanobis_threshold": 3.9697272908181835,
+      "mahalanobis_scale": 1.7328251940499915
+    }
+  },
+  "zara1": {
+    "geometry": {
+      "nominal_weight": 0.7000000000000001,
+      "disagreement_threshold": 0.07250871309182068,
+      "disagreement_scale": 0.022689970708949864,
+      "epistemic_threshold": 0.037809402389933154,
+      "epistemic_scale": 0.010737023603224368,
+      "mahalanobis_threshold": 3.5799505080601413,
+      "mahalanobis_scale": 1.461910475278611
+    },
+    "coarse": {
+      "nominal_weight": 0.8500000000000001,
+      "disagreement_threshold": 0.07252135490833833,
+      "disagreement_scale": 0.023057589583983455,
+      "epistemic_threshold": 0.037809402389933154,
+      "epistemic_scale": 0.010737023603224368,
+      "mahalanobis_threshold": 3.5799505080601413,
+      "mahalanobis_scale": 1.461910475278611
+    },
+    "cv": {
+      "nominal_weight": 0.8500000000000001,
+      "disagreement_threshold": 0.09592633825996935,
+      "disagreement_scale": 0.029292691836732603,
+      "epistemic_threshold": 0.037809402389933154,
+      "epistemic_scale": 0.010737023603224368,
+      "mahalanobis_threshold": 3.5799505080601413,
+      "mahalanobis_scale": 1.461910475278611
+    }
+  },
+  "zara2": {
+    "geometry": {
+      "nominal_weight": 0.75,
+      "disagreement_threshold": 0.07308919290749911,
+      "disagreement_scale": 0.023164741868849044,
+      "epistemic_threshold": 0.03943083740423102,
+      "epistemic_scale": 0.010382125310167876,
+      "mahalanobis_threshold": 3.650501819563694,
+      "mahalanobis_scale": 1.4756879112845467
+    },
+    "coarse": {
+      "nominal_weight": 0.8500000000000001,
+      "disagreement_threshold": 0.07299913044699204,
+      "disagreement_scale": 0.02306468305495879,
+      "epistemic_threshold": 0.03943083740423102,
+      "epistemic_scale": 0.010382125310167876,
+      "mahalanobis_threshold": 3.650501819563694,
+      "mahalanobis_scale": 1.4756879112845467
+    },
+    "cv": {
+      "nominal_weight": 0.8500000000000001,
+      "disagreement_threshold": 0.09630693069205468,
+      "disagreement_scale": 0.03019802353353398,
+      "epistemic_threshold": 0.03943083740423102,
+      "epistemic_scale": 0.010382125310167876,
+      "mahalanobis_threshold": 3.650501819563694,
+      "mahalanobis_scale": 1.4756879112845467
+    }
+  }
+}

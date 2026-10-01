@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Potential and analytic gradient used by the submitted model."""
 
 from __future__ import annotations

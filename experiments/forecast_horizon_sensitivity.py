@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Check whether conclusions persist across forecast horizons."""
 
 from __future__ import annotations
@@ -8,7 +9,13 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from pedgeom.calibration import build_velocity_samples, fit_velocity_model, velocity_metrics
+from pedgeom.calibration import (
+    build_velocity_samples,
+    fit_direction_speed_model,
+    fit_tensor_geometry_model,
+    fit_velocity_model,
+    velocity_metrics,
+)
 
 
 FEATURES = {
@@ -49,6 +56,26 @@ def main() -> None:
                         **velocity_metrics(batch.target, model.predict(batch), horizon_s),
                     }
                 )
+        model = fit_direction_speed_model(training)
+        for batch in validation:
+            rows.append(
+                {
+                    "horizon_s": horizon_s,
+                    "model": "decoupled_geometry",
+                    "run": batch.run,
+                    **velocity_metrics(batch.target, model.predict(batch), horizon_s),
+                }
+            )
+        model = fit_tensor_geometry_model(training)
+        for batch in validation:
+            rows.append(
+                {
+                    "horizon_s": horizon_s,
+                    "model": "tensor_geometry",
+                    "run": batch.run,
+                    **velocity_metrics(batch.target, model.predict(batch), horizon_s),
+                }
+            )
     results = pd.DataFrame(rows)
     processed = project / "data" / "processed"
     results.to_csv(processed / "forecast_horizon_sensitivity.csv", index=False)
@@ -65,8 +92,10 @@ def main() -> None:
         "persistence": "#94a3b8",
         "isotropic_social_force": "#2563eb",
         "anisotropic_geometry": "#dc2626",
+        "decoupled_geometry": "#059669",
+        "tensor_geometry": "#0891b2",
     }
-    for name in FEATURES:
+    for name in [*FEATURES, "decoupled_geometry", "tensor_geometry"]:
         model_summary = summary.xs(name, level="model")
         label = name.replace("_", " ")
         axes[0].plot(model_summary.index, model_summary["vector_rmse_mps"], "o-", label=label, color=colors[name])

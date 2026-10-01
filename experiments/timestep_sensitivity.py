@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 """Demonstrate the timestep dependence introduced by resetting velocity."""
 
 from __future__ import annotations
