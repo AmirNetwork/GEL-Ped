@@ -12,6 +12,7 @@ prediction bundle.  No held-out parameter selection is available.
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import json
 import os
@@ -90,18 +91,74 @@ def _load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def _atomic_write_text(path: Path, text: str) -> None:
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _exclusive_write_text(path: Path, text: str) -> None:
+    """Publish a final artefact without ever replacing an existing file."""
+
     path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with path.open("x", encoding="utf-8", newline="") as stream:
+            stream.write(text)
+            stream.flush()
+            os.fsync(stream.fileno())
+    except FileExistsError as error:
+        raise RuntimeError(f"refusing to overwrite one-shot output: {path}") from error
+
+
+def _atomic_replace_json(path: Path, payload: dict[str, Any]) -> None:
+    """Atomically update the analysis marker owned by this reservation."""
+
     temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
-    temporary.write_text(text, encoding="utf-8")
+    with temporary.open("x", encoding="utf-8", newline="") as stream:
+        json.dump(payload, stream, indent=2)
+        stream.write("\n")
+        stream.flush()
+        os.fsync(stream.fileno())
     os.replace(temporary, path)
 
 
-def _atomic_write_csv(path: Path, frame: pd.DataFrame) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
-    frame.to_csv(temporary, index=False)
-    os.replace(temporary, path)
+def _one_shot_paths(
+    prediction_directory: Path,
+    output_directory: Path,
+) -> tuple[Path, dict[str, Path]]:
+    marker = prediction_directory / "ONE_SHOT_ANALYSIS_RECEIPT.json"
+    outputs = {
+        "metrics": output_directory / "referee3_heldout_primary_run_metrics.csv",
+        "inference": output_directory / "referee3_heldout_confirmatory_inference.csv",
+        "equivalence": output_directory / "referee3_heldout_equivalence.csv",
+        "json": output_directory / "referee3_heldout_analysis.json",
+        "summary": output_directory / "referee3_heldout_summary.md",
+    }
+    return marker, outputs
+
+
+def _refuse_existing_one_shot_files(marker: Path, outputs: dict[str, Path]) -> None:
+    if marker.exists():
+        raise RuntimeError(
+            "one-shot held-out analysis marker already exists; refusing to analyse again: "
+            f"{marker}"
+        )
+    existing = [str(path) for path in outputs.values() if path.exists()]
+    if existing:
+        raise RuntimeError(
+            "one-shot held-out output already exists; refusing to overwrite: "
+            + ", ".join(existing)
+        )
+
+
+def _output_evidence(outputs: dict[str, Path]) -> dict[str, dict[str, Any]]:
+    evidence: dict[str, dict[str, Any]] = {}
+    for name, path in outputs.items():
+        if path.is_file():
+            evidence[name] = {
+                "path": str(path),
+                "bytes": path.stat().st_size,
+                "sha256": _sha256(path),
+            }
+    return evidence
 
 
 def _expected_member_seeds(config: dict[str, Any]) -> list[int]:
@@ -646,16 +703,24 @@ def analyse_heldout(
     *,
     project: Path | None = None,
 ) -> dict[str, Path]:
-    """Validate, analyse, and atomically publish the frozen held-out report."""
+    """Validate, reserve once, analyse, and publish without overwriting."""
 
     project = project_root() if project is None else project.resolve()
+    prediction_directory = prediction_directory.resolve()
+    output_directory = output_directory.resolve()
+    marker, paths = _one_shot_paths(prediction_directory, output_directory)
+    # Fast preflight prevents a completed or interrupted run from touching the
+    # labels again.  The same check is repeated after potentially slow input
+    # verification to close the ordinary race window.
+    _refuse_existing_one_shot_files(marker, paths)
     config, registry, bundles, verification = verify_prediction_receipt(
         project, prediction_directory
     )
     oof = _verified_oof_bundles(project, verification["config_sha256"])
-    metrics, calibration = _primary_run_metrics(bundles, oof, config)
-    inference = _paired_inference(metrics, config)
-    equivalence = _equivalence(metrics, config)
+    training_manifest = project / "data/processed/referee3_training_manifest.json"
+    verification["training_manifest_path"] = str(training_manifest)
+    verification["training_manifest_sha256"] = _sha256(training_manifest)
+    verification["verified_oof_bundle_count"] = len(oof)
     expected_family = list(config["multiplicity"]["confirmatory_family"])
     frozen_family = [
         "heldout_graph_vs_guard_run_rmse",
@@ -665,47 +730,90 @@ def analyse_heldout(
     ]
     if expected_family != frozen_family or config["multiplicity"]["adjustment"] != "Holm":
         raise RuntimeError("configuration no longer matches the frozen confirmatory family")
-
-    output_directory = output_directory.resolve()
-    paths = {
-        "metrics": output_directory / "referee3_heldout_primary_run_metrics.csv",
-        "inference": output_directory / "referee3_heldout_confirmatory_inference.csv",
-        "equivalence": output_directory / "referee3_heldout_equivalence.csv",
-        "json": output_directory / "referee3_heldout_analysis.json",
-        "summary": output_directory / "referee3_heldout_summary.md",
-    }
-    _atomic_write_csv(paths["metrics"], metrics)
-    _atomic_write_csv(paths["inference"], inference)
-    _atomic_write_csv(paths["equivalence"], equivalence)
-    payload = {
-        "analysis_schema_version": 1,
-        "analysis_mode": "frozen one-shot held-out confirmation",
-        "dataset": config["heldout"]["dataset"],
-        "role": EXPECTED_ROLE,
-        "verification": verification,
-        "calibration": calibration,
-        "confirmatory_endpoints": list(PRIMARY_ENDPOINTS),
-        "multiplicity_adjustment": "Holm",
-        "bootstrap": {
-            "unit": "complete T-junction run",
-            "repetitions": int(config["endpoints"]["bootstrap_replicates"]),
-            "seed": int(config["endpoints"]["bootstrap_seed"]),
-        },
-        "run_metrics": metrics.to_dict(orient="records"),
-        "confirmatory_inference": inference.to_dict(orient="records"),
-        "equivalence": equivalence.to_dict(orient="records"),
-        "small_run_inference": True,
-        "interpretation_boundary": (
-            "Complete runs are the independent units. Exact p-values are discrete, "
-            "bootstrap intervals are imprecise, and no universal shift claim is made."
+    _refuse_existing_one_shot_files(marker, paths)
+    running_marker = {
+        "analysis_marker_schema_version": 1,
+        "status": "running",
+        "reserved_at_utc": _utc_now(),
+        "performance_analysis_run": False,
+        "prediction_directory": str(prediction_directory),
+        "input_verification": verification,
+        "intended_outputs": {name: str(path) for name, path in paths.items()},
+        "rerun_policy": (
+            "This marker is an irreversible reservation. A running, failed, or complete "
+            "marker forbids another held-out analysis."
         ),
     }
-    _atomic_write_text(paths["json"], json.dumps(payload, indent=2) + "\n")
-    _atomic_write_text(
-        paths["summary"],
-        _summary_markdown(metrics, inference, equivalence, verification),
-    )
-    return paths
+    _exclusive_write_text(marker, json.dumps(running_marker, indent=2) + "\n")
+
+    try:
+        metrics, calibration = _primary_run_metrics(bundles, oof, config)
+        inference = _paired_inference(metrics, config)
+        equivalence = _equivalence(metrics, config)
+        payload = {
+            "analysis_schema_version": 1,
+            "analysis_mode": "frozen one-shot held-out confirmation",
+            "dataset": config["heldout"]["dataset"],
+            "role": EXPECTED_ROLE,
+            "verification": verification,
+            "calibration": calibration,
+            "confirmatory_endpoints": list(PRIMARY_ENDPOINTS),
+            "multiplicity_adjustment": "Holm",
+            "bootstrap": {
+                "unit": "complete T-junction run",
+                "repetitions": int(config["endpoints"]["bootstrap_replicates"]),
+                "seed": int(config["endpoints"]["bootstrap_seed"]),
+            },
+            "run_metrics": metrics.to_dict(orient="records"),
+            "confirmatory_inference": inference.to_dict(orient="records"),
+            "equivalence": equivalence.to_dict(orient="records"),
+            "small_run_inference": True,
+            "interpretation_boundary": (
+                "Complete runs are the independent units. Exact p-values are discrete, "
+                "bootstrap intervals are imprecise, and no universal shift claim is made."
+            ),
+        }
+        contents = {
+            "metrics": metrics.to_csv(index=False),
+            "inference": inference.to_csv(index=False),
+            "equivalence": equivalence.to_csv(index=False),
+            "json": json.dumps(payload, indent=2) + "\n",
+            "summary": _summary_markdown(
+                metrics, inference, equivalence, verification
+            ),
+        }
+        for name in ("metrics", "inference", "equivalence", "json", "summary"):
+            _exclusive_write_text(paths[name], contents[name])
+        complete_marker = {
+            **running_marker,
+            "status": "complete",
+            "completed_at_utc": _utc_now(),
+            "performance_analysis_run": True,
+            "outputs": _output_evidence(paths),
+        }
+        _atomic_replace_json(marker, complete_marker)
+    except BaseException as error:
+        failed_marker = {
+            **running_marker,
+            "status": "failed",
+            "failed_at_utc": _utc_now(),
+            "performance_analysis_run": False,
+            "error_type": type(error).__name__,
+            "error_message": str(error),
+            "outputs_present_after_failure": _output_evidence(paths),
+            "recovery_policy": (
+                "Preserve this marker and all partial outputs for audit; do not retry or "
+                "overwrite after held-out labels were exposed."
+            ),
+        }
+        try:
+            _atomic_replace_json(marker, failed_marker)
+        except BaseException:
+            # The original running marker remains as irreversible failure
+            # evidence even if finalising the diagnostic record itself fails.
+            pass
+        raise
+    return {**paths, "analysis_receipt": marker}
 
 
 def main() -> None:

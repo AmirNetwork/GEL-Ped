@@ -295,6 +295,44 @@ def test_receipt_rejects_tampered_bundle_before_analysis(tmp_path: Path) -> None
         analysis.verify_prediction_receipt(project, predictions)
 
 
+def test_existing_final_output_refuses_analysis_without_creating_marker(
+    tmp_path: Path,
+) -> None:
+    project, predictions, output = _synthetic_frozen_project(tmp_path)
+    output.mkdir(parents=True, exist_ok=True)
+    existing = output / "referee3_heldout_summary.md"
+    existing.write_text("preserve me", encoding="utf-8")
+
+    with pytest.raises(RuntimeError, match="output already exists"):
+        analysis.analyse_heldout(predictions, output, project=project)
+
+    assert existing.read_text(encoding="utf-8") == "preserve me"
+    assert not (predictions / "ONE_SHOT_ANALYSIS_RECEIPT.json").exists()
+
+
+def test_post_reservation_failure_is_persistent_and_forbids_retry(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    project, predictions, output = _synthetic_frozen_project(tmp_path)
+
+    def fail_after_reservation(*_args, **_kwargs):
+        raise ArithmeticError("synthetic analysis failure")
+
+    monkeypatch.setattr(analysis, "_primary_run_metrics", fail_after_reservation)
+    with pytest.raises(ArithmeticError, match="synthetic analysis failure"):
+        analysis.analyse_heldout(predictions, output, project=project)
+
+    marker = predictions / "ONE_SHOT_ANALYSIS_RECEIPT.json"
+    record = json.loads(marker.read_text(encoding="utf-8"))
+    assert record["status"] == "failed"
+    assert record["error_type"] == "ArithmeticError"
+    assert record["performance_analysis_run"] is False
+    assert record["outputs_present_after_failure"] == {}
+    with pytest.raises(RuntimeError, match="marker already exists"):
+        analysis.analyse_heldout(predictions, output, project=project)
+
+
 @pytest.mark.filterwarnings("ignore:Precision loss occurred")
 def test_synthetic_frozen_analysis_writes_strict_publication_contract(tmp_path: Path) -> None:
     project, predictions, output = _synthetic_frozen_project(tmp_path)
@@ -321,3 +359,20 @@ def test_synthetic_frozen_analysis_writes_strict_publication_contract(tmp_path: 
     assert payload["small_run_inference"] is True
     assert payload["calibration"]["heldout_labels_used_for_calibration"] is False
     assert "few runs" in paths["summary"].read_text(encoding="utf-8")
+    marker = json.loads(paths["analysis_receipt"].read_text(encoding="utf-8"))
+    assert marker["status"] == "complete"
+    assert marker["performance_analysis_run"] is True
+    assert set(marker["outputs"]) == {
+        "metrics",
+        "inference",
+        "equivalence",
+        "json",
+        "summary",
+    }
+    for name, evidence in marker["outputs"].items():
+        assert evidence["sha256"] == _sha256(paths[name])
+
+    before = {name: path.read_bytes() for name, path in paths.items()}
+    with pytest.raises(RuntimeError, match="marker already exists"):
+        analysis.analyse_heldout(predictions, output, project=project)
+    assert before == {name: path.read_bytes() for name, path in paths.items()}
