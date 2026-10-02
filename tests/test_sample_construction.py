@@ -91,6 +91,57 @@ def test_target_speed_filter_can_be_disabled_without_disabling_past_qc() -> None
     assert (1, 3) not in inclusive_origins
 
 
+def test_prior_velocity_uses_one_declared_history_and_future_only_as_label() -> None:
+    rows = []
+    for pedestrian_id, y_m in ((1, 0.0), (2, 1.0)):
+        for frame in range(13):
+            rows.append(
+                {
+                    "pedestrian_id": pedestrian_id,
+                    "frame": frame,
+                    "time_s": frame / 10.0,
+                    "x_m": frame / 10.0,
+                    "y_m": y_m,
+                    "height_m": 1.7,
+                }
+            )
+    source = pd.DataFrame(rows)
+
+    def build(frame: pd.DataFrame):
+        return build_velocity_samples(
+            "exact-history.txt",
+            interaction_range=0.8,
+            horizon_frames=4,
+            history_frames=8,
+            frame_stride=1,
+            frames_per_second=10.0,
+            maximum_samples=None,
+            wall_y_bounds=None,
+            goal_method="prior_velocity",
+            cardinal_routes=False,
+            speed_outlier_threshold=None,
+            filter_target_speed=False,
+            loader=lambda _: frame,
+        )
+
+    baseline = build(source)
+    assert np.min(baseline.frame) == 8
+
+    changed_future = source.copy()
+    changed_future.loc[changed_future["frame"] > 8, "x_m"] += 2.0
+    changed = build(changed_future)
+    baseline_origin = np.flatnonzero(baseline.frame == 8)
+    changed_origin = np.flatnonzero(changed.frame == 8)
+    np.testing.assert_allclose(
+        baseline.features[baseline_origin],
+        changed.features[changed_origin],
+    )
+    assert not np.allclose(
+        baseline.target[baseline_origin],
+        changed.target[changed_origin],
+    )
+
+
 def test_eth_ucy_interaction_range_is_explicit_and_changes_only_field_encoding(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

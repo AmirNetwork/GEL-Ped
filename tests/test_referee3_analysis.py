@@ -1,10 +1,16 @@
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 from referee3_analyse import (
     Bundle,
+    _crossed_draw_run_inference,
+    _equal_run_sample_weights,
+    _equivalence,
+    _evaluate_primary_draw,
     _site_online_weights,
+    _stable_run_seed,
     calibrate_draw,
     cap_vectors,
     draw_indices,
@@ -84,3 +90,106 @@ def test_calibration_and_site_online_rule_are_finite() -> None:
     )
     assert weight.shape == updates.shape == (12,)
     assert np.all((weight >= 0.0) & (weight <= 1.0))
+
+
+def test_learned_gate_sample_weights_give_each_complete_run_equal_mass() -> None:
+    weights = _equal_run_sample_weights([np.zeros((2, 1)), np.zeros((8, 1))])
+    assert np.sum(weights[:2]) == np.sum(weights[2:])
+    assert np.allclose(weights[:2], 0.5)
+    assert np.allclose(weights[2:], 0.125)
+
+
+def test_run_specific_random_streams_are_stable_and_independent() -> None:
+    assert _stable_run_seed(10, "run-a", 3) == _stable_run_seed(10, "run-a", 3)
+    assert _stable_run_seed(10, "run-a", 3) != _stable_run_seed(10, "run-b", 3)
+    assert _stable_run_seed(10, "run-a", 3) != _stable_run_seed(10, "run-a", 4)
+
+
+def test_crossed_draw_run_summary_retains_both_replication_axes() -> None:
+    rows = []
+    values = {("a", 0): 1.0, ("a", 1): 3.0, ("b", 0): 5.0, ("b", 1): 7.0}
+    endpoints = (
+        "rmse",
+        "q90",
+        "q95",
+        "q99",
+        "cvar95",
+        "cvar99",
+        "large_error_rate",
+    )
+    for (run, draw), value in values.items():
+        row = {"role": "familiar", "ensemble_size": 5, "run": run, "draw": draw}
+        row.update({f"guard_minus_graph_{name}": value for name in endpoints})
+        rows.append(row)
+    summary = _crossed_draw_run_inference(
+        pd.DataFrame(rows), repetitions=50, seed=123
+    )
+    rmse = summary.loc[summary["endpoint"].eq("rmse")].iloc[0]
+    assert rmse["n_runs"] == 2
+    assert rmse["n_draws"] == 2
+    assert rmse["mean_guard_minus_graph"] == 4.0
+    assert rmse["fraction_draws_with_improvement"] == 0.0
+
+
+def test_equivalence_reports_both_frozen_margin_scales() -> None:
+    table = pd.DataFrame(
+        {
+            "role": ["familiar"] * 4,
+            "run": ["a", "b", "c", "d"],
+            "ensemble_size": [5] * 4,
+            "draw": [0] * 4,
+            "graph_rmse": [1.0] * 4,
+            "guard_minus_graph_rmse": [-0.0001, 0.0001, -0.00005, 0.00005],
+        }
+    )
+    result = _equivalence(
+        table,
+        absolute_margin=0.002,
+        relative_margin=0.01,
+        primary_ensemble_size=5,
+    )
+    assert set(result["margin_type"]) == {
+        "absolute_mps",
+        "relative_to_run_graph_rmse",
+    }
+    assert result["equivalent_at_0.05"].all()
+    assert np.all(result["ci90_lower"] < result["ci90_upper"])
+
+
+def test_primary_analysis_synthetic_dry_run_writes_complete_outputs(tmp_path: Path) -> None:
+    config = {
+        "experts": {"fallback_prediction_speed_cap_mps": 3.0},
+        "guard": {"trailing_window_seconds": 1.6, "primary_shape": "exponential"},
+        "replication": {"member_seed_base": 17},
+        "controls": {
+            "fixed_blend_grid_step": 0.1,
+            "within_run_gate_permutations": 3,
+            "permutation_seed": 23,
+            "online_experts": {
+                "label_delay_seconds": 0.4,
+                "learning_rates": [0.5],
+                "fixed_share_rates": [0.0],
+                "cold_start_seconds": 0.8,
+            },
+        },
+    }
+    oof = [_bundle("cal-a"), _bundle("cal-b")]
+    test_bundle = _bundle("test-a", role="familiar")
+    calibration = calibrate_draw(oof, (0, 1, 2, 3, 4), config)
+    _evaluate_primary_draw(oof, [test_bundle], calibration, config, tmp_path)
+    required = {
+        "referee3_primary_run_metrics.csv",
+        "referee3_detection_metrics.csv",
+        "referee3_risk_retention_curve.csv",
+        "referee3_permuted_gate.csv",
+        "referee3_online_cold_start_metrics.csv",
+        "referee3_activation_by_track_age.csv",
+        "referee3_forecasts_primary.csv.gz",
+    }
+    assert required <= {path.name for path in tmp_path.iterdir()}
+    detection = pd.read_csv(tmp_path / "referee3_detection_metrics.csv")
+    test_detection = detection.loc[detection["run"].eq("test-a")]
+    assert set(test_detection["positive_count"]) == {1}
+    targeting = pd.read_csv(tmp_path / "referee3_permuted_gate.csv")
+    assert set(targeting["stratum"]) >= {"all"}
+    assert targeting["permutation"].nunique() == 3

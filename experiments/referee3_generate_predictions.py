@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
+from dataclasses import replace
 import hashlib
 import json
 import os
@@ -35,7 +36,7 @@ from pedgeom.graph_baseline import fit_graph_interaction_network
 _WORKER_TRAIN: list[VelocitySamples] | None = None
 _WORKER_EVALUATION: list[VelocitySamples] | None = None
 _WORKER_OPTIONS: dict[str, Any] | None = None
-_CACHE_SCHEMA_VERSION = 1
+_CACHE_SCHEMA_VERSION = 2
 _BUNDLE_SCHEMA_VERSION = 1
 
 
@@ -123,6 +124,12 @@ def _pool_cache_signature(
     return hashlib.sha256(
         json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
+
+
+def _target_blind_prediction_view(batch: VelocitySamples) -> VelocitySamples:
+    """Return an inference view whose target values carry no label information."""
+
+    return replace(batch, target=np.zeros_like(batch.target))
 
 
 def _worker_initialise(
@@ -293,6 +300,50 @@ def _build_controlled(
     )
 
 
+def build_julich_fit_batches(
+    project: Path, config: dict[str, Any]
+) -> list[VelocitySamples]:
+    splits = json.loads((project / "data/splits.json").read_text(encoding="utf-8"))
+    corridor = project / "data/raw/2013bidirectional"
+    base_seed = int(config["replication"]["member_seed_base"])
+    cap = int(config["task"]["training_samples_per_run"])
+
+    training_fit: list[VelocitySamples] = []
+    for index, run in enumerate(splits["calibration"]):
+        path = corridor / f"{run}.txt"
+        training_fit.append(
+            _build_controlled(
+                path,
+                crossing=False,
+                maximum_samples=cap,
+                seed=base_seed + index,
+                config=config,
+            )
+        )
+    return training_fit
+
+
+def build_julich_training_batches(
+    project: Path, config: dict[str, Any]
+) -> tuple[list[VelocitySamples], list[VelocitySamples]]:
+    splits = json.loads((project / "data/splits.json").read_text(encoding="utf-8"))
+    corridor = project / "data/raw/2013bidirectional"
+    base_seed = int(config["replication"]["member_seed_base"])
+    training_fit = build_julich_fit_batches(project, config)
+    calibration_full = [
+        _build_controlled(
+            corridor / f"{run}.txt",
+            crossing=False,
+            maximum_samples=None,
+            seed=base_seed + index,
+            config=config,
+        )
+        for index, run in enumerate(splits["calibration"])
+    ]
+
+    return training_fit, calibration_full
+
+
 def build_julich_batches(
     project: Path, config: dict[str, Any]
 ) -> tuple[
@@ -304,30 +355,7 @@ def build_julich_batches(
     corridor = project / "data/raw/2013bidirectional"
     crossing = project / "data/raw/2013crossing90/trajectories"
     base_seed = int(config["replication"]["member_seed_base"])
-    cap = int(config["task"]["training_samples_per_run"])
-
-    training_fit: list[VelocitySamples] = []
-    calibration_full: list[VelocitySamples] = []
-    for index, run in enumerate(splits["calibration"]):
-        path = corridor / f"{run}.txt"
-        calibration_full.append(
-            _build_controlled(
-                path,
-                crossing=False,
-                maximum_samples=None,
-                seed=base_seed + index,
-                config=config,
-            )
-        )
-        training_fit.append(
-            _build_controlled(
-                path,
-                crossing=False,
-                maximum_samples=cap,
-                seed=base_seed + index,
-                config=config,
-            )
-        )
+    training_fit, calibration_full = build_julich_training_batches(project, config)
 
     evaluation: list[tuple[str, VelocitySamples]] = []
     roles = (
@@ -362,6 +390,22 @@ def build_julich_batches(
             )
         )
     return training_fit, calibration_full, evaluation
+
+
+def build_julich_deployed_sentinel_batch(
+    project: Path, config: dict[str, Any]
+) -> VelocitySamples:
+    """Rebuild the first frozen deployed-evaluation run for refit verification."""
+
+    splits = json.loads((project / "data/splits.json").read_text(encoding="utf-8"))
+    run = splits["held_out_validation"][0]
+    return _build_controlled(
+        project / "data/raw/2013bidirectional" / f"{run}.txt",
+        crossing=False,
+        maximum_samples=None,
+        seed=int(config["replication"]["member_seed_base"]) + 100,
+        config=config,
+    )
 
 
 def _metadata(batch: VelocitySamples) -> dict[str, np.ndarray]:
@@ -489,6 +533,41 @@ def _member_seeds(config: dict[str, Any], pool_size: int | None = None) -> list[
     return seeds
 
 
+def _write_deployed_sentinel(
+    path: Path,
+    batch: VelocitySamples,
+    member_predictions: np.ndarray,
+    seeds: list[int],
+    *,
+    config_path: Path,
+    sample_count: int = 32,
+) -> None:
+    """Persist a small label-free fingerprint of the final deployed graph pool."""
+
+    predictions = np.asarray(member_predictions, dtype=np.float32)
+    count = min(sample_count, len(batch.target))
+    if predictions.shape != (len(seeds), len(batch.target), 2):
+        raise ValueError("deployed sentinel member predictions have the wrong shape")
+    if count < 1 or not np.all(np.isfinite(predictions[:, :count])):
+        raise ValueError("deployed sentinel predictions must be non-empty and finite")
+    _atomic_savez(
+        path,
+        sentinel_schema_version=np.asarray(1, dtype=np.int64),
+        run=np.asarray(batch.run),
+        sample_count=np.asarray(count, dtype=np.int64),
+        batch_fingerprint=np.asarray(
+            _batch_fingerprint(_target_blind_prediction_view(batch))
+        ),
+        config_sha256=np.asarray(_sha256(config_path)),
+        graph_implementation_sha256=np.asarray(
+            _sha256(project_root() / "src/pedgeom/graph_baseline.py")
+        ),
+        seeds=np.asarray(seeds, dtype=np.int64),
+        predictions=predictions[:, :count],
+        target_labels_included=np.asarray(False),
+    )
+
+
 def _member_cache_path(cache_prefix: Path, seed: int) -> Path:
     return cache_prefix.with_name(f"{cache_prefix.name}_{seed}.npz")
 
@@ -518,6 +597,9 @@ def _write_member_cache(
         "epochs": np.asarray(options["epochs"], dtype=np.int64),
         "width": np.asarray(options["width"], dtype=np.int64),
         "wall_features": np.asarray(False),
+        "evaluation_target_blind": np.asarray(
+            bool(options["evaluation_target_blind"])
+        ),
     }
     for index, (prediction, batch) in enumerate(zip(predictions, evaluation, strict=True)):
         values = np.asarray(prediction, dtype=np.float32)
@@ -571,6 +653,9 @@ def _load_member_cache(
                 "epochs": int(payload["epochs"].item()),
                 "width": int(payload["width"].item()),
                 "wall_features": bool(payload["wall_features"].item()),
+                "evaluation_target_blind": bool(
+                    payload["evaluation_target_blind"].item()
+                ),
             }
     except (KeyError, OSError, ValueError, EOFError, zipfile.BadZipFile):
         return None
@@ -586,6 +671,7 @@ def _predict_member_pool(
     config: dict[str, Any],
     workers: int,
     manifest_rows: list[dict[str, Any]],
+    evaluation_target_blind: bool = False,
 ) -> list[np.ndarray]:
     if workers < 1:
         raise ValueError("workers must be at least one")
@@ -597,6 +683,11 @@ def _predict_member_pool(
         raise ValueError("seeds must contain at least one member seed")
     if len(set(seeds)) != len(seeds):
         raise ValueError("member seeds must be unique")
+    prediction_evaluation = (
+        [_target_blind_prediction_view(batch) for batch in evaluation]
+        if evaluation_target_blind
+        else evaluation
+    )
     cache_prefix.parent.mkdir(parents=True, exist_ok=True)
     # A single thread per fit makes cache contents independent of the requested
     # process count and prevents CPU oversubscription on Windows.
@@ -607,11 +698,12 @@ def _predict_member_pool(
         "residual": True,
         "include_wall": False,
         "raw_prediction_speed_cap_mps": 100.0,
+        "evaluation_target_blind": evaluation_target_blind,
         "graph_implementation_sha256": _sha256(
             project_root() / "src/pedgeom/graph_baseline.py"
         ),
     }
-    signature = _pool_cache_signature(training, evaluation, options)
+    signature = _pool_cache_signature(training, prediction_evaluation, options)
     loaded: dict[int, tuple[list[np.ndarray], dict[str, Any]]] = {}
     missing: list[int] = []
     for seed in seeds:
@@ -620,7 +712,7 @@ def _predict_member_pool(
             cache_path,
             seed=seed,
             signature=signature,
-            evaluation=evaluation,
+            evaluation=prediction_evaluation,
         )
         if cached is None:
             missing.append(seed)
@@ -629,7 +721,7 @@ def _predict_member_pool(
     if missing:
         results: list[tuple[int, list[np.ndarray], float, int]] = []
         if workers == 1:
-            _worker_initialise(training, evaluation, options)
+            _worker_initialise(training, prediction_evaluation, options)
             results = [_fit_member_and_predict(seed) for seed in missing]
         else:
             # Windows uses spawn: passing VelocitySamples in ``initargs`` would
@@ -640,7 +732,7 @@ def _predict_member_pool(
                 dir=cache_prefix.parent,
             ) as temporary:
                 manifest = _stage_worker_payload(
-                    Path(temporary), training, evaluation
+                    Path(temporary), training, prediction_evaluation
                 )
                 with ProcessPoolExecutor(
                     max_workers=min(workers, len(missing)),
@@ -663,13 +755,13 @@ def _predict_member_pool(
                 parameters=parameters,
                 options=options,
                 signature=signature,
-                evaluation=evaluation,
+                evaluation=prediction_evaluation,
             )
             cached = _load_member_cache(
                 cache_path,
                 seed=seed,
                 signature=signature,
-                evaluation=evaluation,
+                evaluation=prediction_evaluation,
             )
             if cached is None:
                 raise RuntimeError(f"failed to verify member cache {cache_path}")
@@ -697,7 +789,7 @@ def _predict_member_pool(
     # evaluation axis. Return one M x N x 2 array for each complete run.
     per_run = [
         np.stack([member[index] for member in by_member], axis=0)
-        for index in range(len(evaluation))
+        for index in range(len(prediction_evaluation))
     ]
     return per_run
 
@@ -708,12 +800,17 @@ def _fit_non_neural(
     config: dict[str, Any],
 ) -> tuple[list[np.ndarray], list[np.ndarray], list[np.ndarray]]:
     project = project_root()
+    prediction_evaluation = [
+        _target_blind_prediction_view(batch) for batch in evaluation
+    ]
     _, hgb_settings, _ = settings(project)
     seed = int(config["replication"]["member_seed_base"])
     fallback = fit_gradient_boosted_residual(
         training,
         anchor(),
         seed=seed,
+        include_wall=False,
+        run_balanced=True,
         **hgb_settings,
     )
     location, precision = _fit_mahalanobis(training)
@@ -721,10 +818,15 @@ def _fit_non_neural(
         config["experts"]["fallback_prediction_speed_cap_mps"]
     )
     fallback_predictions = [
-        fallback.predict(batch, speed_cap=fallback_speed_cap) for batch in evaluation
+        fallback.predict(batch, speed_cap=fallback_speed_cap)
+        for batch in prediction_evaluation
     ]
-    cv_predictions = [anchor().predict(batch, speed_cap=100.0) for batch in evaluation]
-    mahalanobis = [_mahalanobis(batch, location, precision) for batch in evaluation]
+    cv_predictions = [
+        anchor().predict(batch, speed_cap=100.0) for batch in prediction_evaluation
+    ]
+    mahalanobis = [
+        _mahalanobis(batch, location, precision) for batch in prediction_evaluation
+    ]
     return fallback_predictions, cv_predictions, mahalanobis
 
 
@@ -755,6 +857,7 @@ def generate_julich(args: argparse.Namespace) -> None:
             config=config,
             workers=args.workers,
             manifest_rows=manifest_rows,
+            evaluation_target_blind=True,
         )
         fallback, cv, mahalanobis = _fit_non_neural(
             fold_training, [held_batch], config
@@ -793,6 +896,7 @@ def generate_julich(args: argparse.Namespace) -> None:
         config=config,
         workers=args.workers,
         manifest_rows=manifest_rows,
+        evaluation_target_blind=True,
     )
     fallback, cv, mahalanobis = _fit_non_neural(training, evaluation_batches, config)
     for index, (role, batch) in enumerate(evaluation):
@@ -822,6 +926,15 @@ def generate_julich(args: argparse.Namespace) -> None:
         )
         print(f"wrote test bundle {role}: {batch.run}", flush=True)
 
+    sentinel_path = processed / "referee3_deployed_sentinel.npz"
+    _write_deployed_sentinel(
+        sentinel_path,
+        evaluation_batches[0],
+        member_by_run[0],
+        seeds,
+        config_path=config_path,
+    )
+
     manifest_path = processed / "referee3_training_manifest.json"
     by_key = {(row["cache"], row["seed"]): row for row in manifest_rows}
     payload = {
@@ -842,6 +955,20 @@ def generate_julich(args: argparse.Namespace) -> None:
             "fallback_settings_loader": _sha256(
                 project / "experiments/causal_anchor_revision.py"
             ),
+        },
+        "fallback_specification": {
+            "type": "feature-based HGB residual",
+            "include_wall": False,
+            "run_balanced": True,
+            "focal_projection_columns": 10,
+            "base_prediction_columns": 2,
+        },
+        "deployed_sentinel": {
+            "path": str(sentinel_path.relative_to(project)),
+            "sha256": _sha256(sentinel_path),
+            "run": evaluation_batches[0].run,
+            "sample_count": min(32, len(evaluation_batches[0].target)),
+            "contains_target_labels": False,
         },
         "pool_size": len(seeds),
         "seeds": seeds,

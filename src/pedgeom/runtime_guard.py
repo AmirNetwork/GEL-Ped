@@ -287,6 +287,29 @@ def binary_detection_metrics(labels: ArrayLike, scores: ArrayLike) -> dict[str, 
     }
 
 
+def top_fraction_binary_labels(scores: ArrayLike, fraction: float) -> NDArray[np.int64]:
+    """Label exactly the highest-scoring fraction of a finite sample.
+
+    The number of positives is ``ceil(fraction * n)``, clipped so that at least
+    one positive and one negative remain.  A stable descending sort provides a
+    deterministic index-order tie break.  This rank convention avoids the
+    variable event prevalence produced by thresholding at an interpolated
+    quantile when several observations share the boundary value.
+    """
+
+    score = _float_vector("scores", scores)
+    if len(score) < 2:
+        raise ValueError("scores must contain at least two observations")
+    if not np.isfinite(fraction) or not 0 < fraction < 1:
+        raise ValueError("fraction must lie strictly between zero and one")
+    positive_count = min(max(int(np.ceil(fraction * len(score))), 1), len(score) - 1)
+    # Negating before a stable ascending sort retains input order within ties.
+    selected = np.argsort(-score, kind="stable")[:positive_count]
+    labels = np.zeros(len(score), dtype=np.int64)
+    labels[selected] = 1
+    return labels
+
+
 @dataclass(frozen=True)
 class RiskRetentionCurve:
     """Discrete risk-retention curve sorted from lowest to highest score."""
@@ -298,12 +321,14 @@ class RiskRetentionCurve:
 
 
 def risk_retention_curve(losses: ArrayLike, scores: ArrayLike) -> RiskRetentionCurve:
-    """Return retained-set risk and its discrete area under the curve.
+    """Return a tie-invariant retained-set risk curve and its discrete area.
 
-    Forecasts are retained in ascending score order.  At each ``k/n``, risk is
-    the mean loss among the first ``k`` retained forecasts.  AURC is the exact
-    right-Riemann average of those risks over the ``n`` equal retention steps.
-    Stable sorting makes ties deterministic and preserves input order.
+    Forecasts are retained from lower to higher score.  All observations with
+    the same score enter together because the score cannot order them.  Risk is
+    reported at the end of each score group and AURC is the right-continuous
+    area weighted by that group's share of observations.  Thus a constant
+    score has AURC equal to overall risk rather than an arbitrary value induced
+    by input order.  ``order`` still contains every row in stable sorted order.
     """
 
     loss = _float_vector("losses", losses)
@@ -314,13 +339,18 @@ def risk_retention_curve(losses: ArrayLike, scores: ArrayLike) -> RiskRetentionC
         raise ValueError("losses must be non-negative")
     order = np.argsort(score, kind="stable")
     ordered_loss = loss[order]
-    counts = np.arange(1, len(loss) + 1, dtype=float)
-    risk = np.cumsum(ordered_loss) / counts
+    ordered_score = score[order]
+    group_ends = np.flatnonzero(
+        np.r_[ordered_score[1:] != ordered_score[:-1], True]
+    )
+    counts = group_ends.astype(float) + 1.0
+    risk = np.cumsum(ordered_loss)[group_ends] / counts
     retention = counts / len(loss)
+    group_sizes = np.diff(np.r_[0, counts])
     return RiskRetentionCurve(
         retention=retention,
         risk=risk,
-        aurc=float(np.mean(risk)),
+        aurc=float(np.sum(risk * group_sizes) / len(loss)),
         order=order.astype(np.int64, copy=False),
     )
 
@@ -555,4 +585,5 @@ __all__ = [
     "per_run_tail_metrics",
     "permute_weights_within_runs",
     "risk_retention_curve",
+    "top_fraction_binary_labels",
 ]

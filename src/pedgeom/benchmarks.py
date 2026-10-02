@@ -348,18 +348,23 @@ class ResidualOnBaseRegressor:
     """Matched residual MLP around any frozen velocity predictor.
 
     This class is used for the reviewer-requested attribution study.  It has the
-    same 12 invariant inputs and two base-prediction inputs as the GEL-Ped
+    invariant focal inputs and two base-prediction inputs used by the GEL-Ped
     residual branch, but it does not assume that the base is a tensor model.
+    ``include_wall=False`` removes both wall projections for wall-free studies.
     """
 
     base: object
     estimator: RegressorMixin
+    include_wall: bool = True
 
     def _design(self, samples: VelocitySamples) -> np.ndarray:
         base_local = local_target_from_vectors(
             samples, self.base.predict(samples, speed_cap=100.0)
         )
-        return np.column_stack((invariant_design(samples), base_local))
+        invariant = invariant_design(samples)
+        if not self.include_wall:
+            invariant = np.delete(invariant, (5, 11), axis=1)
+        return np.column_stack((invariant, base_local))
 
     def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
         base_prediction = self.base.predict(samples, speed_cap=100.0)
@@ -840,17 +845,30 @@ def fit_gradient_boosted_residual(
     l2_regularization: float = 1.0,
     learning_rate: float = 0.05,
     seed: int = 20260722,
+    include_wall: bool = True,
+    run_balanced: bool = False,
 ) -> ResidualOnBaseRegressor:
-    """Fit a boosted residual around a frozen kinematic or geometric base."""
+    """Fit a boosted residual around a frozen kinematic or geometric base.
+
+    The legacy defaults retain all twelve invariant focal projections and give
+    every origin equal weight.  Referee-3 callers disable the two wall columns
+    and opt into per-origin weights whose aggregate is one for every complete
+    training run.
+    """
 
     design_parts = []
     residual_parts = []
+    weight_parts = []
     for batch in batches:
         base_local = local_target_from_vectors(
             batch, base.predict(batch, speed_cap=100.0)
         )
-        design_parts.append(np.column_stack((invariant_design(batch), base_local)))
+        invariant = invariant_design(batch)
+        if not include_wall:
+            invariant = np.delete(invariant, (5, 11), axis=1)
+        design_parts.append(np.column_stack((invariant, base_local)))
         residual_parts.append(local_target(batch) - base_local)
+        weight_parts.append(np.full(len(batch.target), 1.0 / len(batch.target)))
     estimator = _hist_gradient_boosting_estimator(
         max_iter=max_iter,
         max_leaf_nodes=max_leaf_nodes,
@@ -859,8 +877,19 @@ def fit_gradient_boosted_residual(
         learning_rate=learning_rate,
         seed=seed,
     )
-    estimator.fit(np.concatenate(design_parts), np.concatenate(residual_parts))
-    return ResidualOnBaseRegressor(base=base, estimator=estimator)
+    fit_kwargs: dict[str, np.ndarray] = {}
+    if run_balanced:
+        fit_kwargs["sample_weight"] = np.concatenate(weight_parts)
+    estimator.fit(
+        np.concatenate(design_parts),
+        np.concatenate(residual_parts),
+        **fit_kwargs,
+    )
+    return ResidualOnBaseRegressor(
+        base=base,
+        estimator=estimator,
+        include_wall=include_wall,
+    )
 
 
 def calibrate_disagreement_router(

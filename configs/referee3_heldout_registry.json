@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0",
+  "analysis_freeze_commit": "0825df3c5ded408f0f2165b3ba2db7d2149a5b0e",
+  "referee3_config_sha256": "be4e1d2f6423c6a7c5f54a25754603bc1363221fc7d2d1cb3826bcfd752a7ee8",
+  "source_url": "http://ped.fz-juelich.de/experiments/2009.05.12_Duesseldorf_Messe_Hermes/data/zip/2009tjunction_trajectories_txt.zip",
+  "archive_name": "2009tjunction_trajectories_txt.zip",
+  "archive_bytes": 4912940,
+  "archive_sha256": "182ef75f3c0fc71497bcccf7ec5b139a02b629071ed71a022aa1aee7bd7d3827",
+  "trajectory_schema": [
+    "pedestrian_id",
+    "frame",
+    "x_cm",
+    "y_cm",
+    "z_cm"
+  ],
+  "source_fps": 16.0,
+  "target_fps": 10.0,
+  "resampling": {
+    "method": "past-only two-sample linear projection",
+    "source_samples": 2,
+    "maximum_gap_factor": 1.5,
+    "maximum_source_gap_seconds": 0.09375,
+    "drop_without_two_prior_samples": true,
+    "drop_across_internal_gaps": true,
+    "extrapolate_beyond_observed_support": false
+  },
+  "fallback_specification": {
+    "type": "feature-based HGB residual",
+    "include_wall": false,
+    "run_balanced": true,
+    "focal_projection_columns": 10,
+    "base_prediction_columns": 2
+  },
+  "deployed_pool_verification": {
+    "method": "bitwise frozen sentinel prediction",
+    "sentinel_run": "first held_out_validation run",
+    "sentinel_origins": 32,
+    "target_labels_included": false
+  },
+  "members": [
+    {
+      "name": "ko-240-050-240.txt",
+      "bytes": 450145,
+      "compressed_bytes": 144922,
+      "crc32": "32aadbe3",
+      "rows": 13569,
+      "columns": 5
+    },
+    {
+      "name": "ko-240-060-240.txt",
+      "bytes": 507997,
+      "compressed_bytes": 163253,
+      "crc32": "f344b5ae",
+      "rows": 15331,
+      "columns": 5
+    },
+    {
+      "name": "ko-240-080-240.txt",
+      "bytes": 1081280,
+      "compressed_bytes": 339785,
+      "crc32": "6a6e4cc9",
+      "rows": 32058,
+      "columns": 5
+    },
+    {
+      "name": "ko-240-100-240.txt",
+      "bytes": 1133825,
+      "compressed_bytes": 355704,
+      "crc32": "1c4b38e1",
+      "rows": 33645,
+      "columns": 5
+    },
+    {
+      "name": "ko-240-120-240.txt",
+      "bytes": 2321821,
+      "compressed_bytes": 715374,
+      "crc32": "19697431",
+      "rows": 67992,
+      "columns": 5
+    },
+    {
+      "name": "ko-240-150-240.txt",
+      "bytes": 2569350,
+      "compressed_bytes": 791924,
+      "crc32": "95dba8eb",
+      "rows": 75373,
+      "columns": 5
+    },
+    {
+      "name": "ko-240-240-240.txt",
+      "bytes": 2769576,
+      "compressed_bytes": 845562,
+      "crc32": "9826fd66",
+      "rows": 80721,
+      "columns": 5
+    },
+    {
+      "name": "ko-300-050-300.txt",
+      "bytes": 458499,
+      "compressed_bytes": 146927,
+      "crc32": "2859456c",
+      "rows": 13749,
+      "columns": 5
+    },
+    {
+      "name": "ko-300-080-300.txt",
+      "bytes": 784613,
+      "compressed_bytes": 248593,
+      "crc32": "b9cc7f04",
+      "rows": 23378,
+      "columns": 5
+    },
+    {
+      "name": "ko-300-120-300.txt",
+      "bytes": 1731663,
+      "compressed_bytes": 538643,
+      "crc32": "fc390c8f",
+      "rows": 51078,
+      "columns": 5
+    },
+    {
+      "name": "ko-300-150-300.txt",
+      "bytes": 2001532,
+      "compressed_bytes": 620119,
+      "crc32": "6a30b0ef",
+      "rows": 58968,
+      "columns": 5
+    }
+  ]
+}

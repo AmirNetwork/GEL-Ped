@@ -241,10 +241,14 @@ def build_velocity_samples(
         ["pedestrian_id", "frame", "x_m", "y_m", "goal_x", "goal_y"]
     ].copy()
     current = current_all[data["goal_valid"].to_numpy()].copy()
-    previous = current[["pedestrian_id", "frame", "x_m", "y_m"]].copy()
+    # Only the forecast origin needs a valid goal direction.  History and
+    # offline scoring positions come from the full observed trajectory so a
+    # prior-velocity goal does not accidentally require a second history
+    # window, and the future row does not need its own goal to define a label.
+    previous = current_all[["pedestrian_id", "frame", "x_m", "y_m"]].copy()
     previous["frame"] += history_frames
     previous = previous.rename(columns={"x_m": "previous_x", "y_m": "previous_y"})
-    future = current[["pedestrian_id", "frame", "x_m", "y_m"]].copy()
+    future = current_all[["pedestrian_id", "frame", "x_m", "y_m"]].copy()
     future["frame"] -= horizon_frames
     future = future.rename(columns={"x_m": "future_x", "y_m": "future_y"})
     eligible = current.merge(previous, on=["pedestrian_id", "frame"], how="inner").merge(

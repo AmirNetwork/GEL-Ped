@@ -278,6 +278,8 @@ def _fit_fallback(
         list(training),
         anchor(),
         seed=seed,
+        include_wall=False,
+        run_balanced=True,
         **hgb_settings,
     )
     return [model.predict(batch, speed_cap=speed_cap) for batch in evaluation]

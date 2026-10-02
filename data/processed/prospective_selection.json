@@ -1,0 +1,17 @@
+{
+  "criterion": "lowest leave-one-complete-calibration-run-out RMSE",
+  "candidate": 3,
+  "horizon_s": 3.0,
+  "time_scale_s": 1.5,
+  "clearance_scale_m": 0.7,
+  "mean_validation_rmse_mps": 0.17255613574900502,
+  "backbone_candidate": 2,
+  "backbone_settings": {
+    "max_iter": 200,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 50,
+    "l2_regularization": 1.0,
+    "learning_rate": 0.05
+  },
+  "backbone_mean_validation_rmse_mps": 0.17255613574900502
+}

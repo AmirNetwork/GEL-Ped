@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from pathlib import Path
 import sys
 
@@ -285,3 +286,90 @@ def test_parallel_branch_passes_only_file_backed_manifest_to_spawned_workers(
     assert captured["initializer"] is pipeline._worker_initialise_file_backed
     assert [values.shape for values in predictions] == [(2, 2, 2), (2, 5, 2)]
     assert not list((tmp_path / "parallel").glob(".*_workers_*"))
+
+
+def test_target_blind_inference_cache_is_invariant_to_heldout_labels(
+    monkeypatch, tmp_path: Path
+) -> None:
+    fitted: list[int] = []
+
+    class FakeModel:
+        parameter_count = 23
+
+        def predict(self, batch: VelocitySamples, speed_cap: float) -> np.ndarray:
+            assert np.count_nonzero(batch.target) == 0
+            return batch.features[:, 0] / speed_cap
+
+    def fake_fit(_training, *, seed, **_kwargs):
+        fitted.append(seed)
+        return FakeModel()
+
+    monkeypatch.setattr(pipeline, "fit_graph_interaction_network", fake_fit)
+    evaluation = _batch("heldout", 4)
+    changed_labels = replace(evaluation, target=evaluation.target + 999.0)
+    prefix = tmp_path / "blind" / "final_pool"
+
+    first = pipeline._predict_member_pool(
+        [_batch("train", 3)],
+        [evaluation],
+        [11],
+        cache_prefix=prefix,
+        config=_config(),
+        workers=1,
+        manifest_rows=[],
+        evaluation_target_blind=True,
+    )
+    second = pipeline._predict_member_pool(
+        [_batch("train", 3)],
+        [changed_labels],
+        [11],
+        cache_prefix=prefix,
+        config=_config(),
+        workers=1,
+        manifest_rows=[],
+        evaluation_target_blind=True,
+    )
+
+    assert fitted == [11]
+    np.testing.assert_array_equal(first[0], second[0])
+
+
+def test_non_neural_prediction_path_never_exposes_evaluation_labels(
+    monkeypatch,
+) -> None:
+    class FakeFallback:
+        def predict(self, batch: VelocitySamples, speed_cap: float) -> np.ndarray:
+            assert np.count_nonzero(batch.target) == 0
+            return batch.features[:, 0] / speed_cap
+
+    monkeypatch.setattr(
+        pipeline,
+        "settings",
+        lambda _project: ({}, {}, {}),
+    )
+    monkeypatch.setattr(
+        pipeline,
+        "fit_gradient_boosted_residual",
+        lambda *_args, **_kwargs: FakeFallback(),
+    )
+    monkeypatch.setattr(
+        pipeline,
+        "_fit_mahalanobis",
+        lambda _training: (np.zeros(10), np.eye(10)),
+    )
+
+    def fake_mahalanobis(batch, _location, _precision):
+        assert np.count_nonzero(batch.target) == 0
+        return np.arange(len(batch.target), dtype=float)
+
+    monkeypatch.setattr(pipeline, "_mahalanobis", fake_mahalanobis)
+    config = _config()
+    config["experts"] = {"fallback_prediction_speed_cap_mps": 3.0}
+    first = _batch("heldout", 4)
+    changed = replace(first, target=first.target + 999.0)
+
+    original = pipeline._fit_non_neural([_batch("train", 3)], [first], config)
+    perturbed = pipeline._fit_non_neural([_batch("train", 3)], [changed], config)
+
+    for original_group, perturbed_group in zip(original, perturbed, strict=True):
+        np.testing.assert_array_equal(original_group[0], perturbed_group[0])

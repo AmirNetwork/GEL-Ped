@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Literal
+from zipfile import ZipFile
 
 import numpy as np
 import pandas as pd
@@ -14,11 +15,35 @@ TRAJECTORY_COLUMNS = ["pedestrian_id", "frame", "x_cm", "y_cm", "height_cm"]
 GoalMethod = Literal["endpoint", "entry", "prior_velocity"]
 
 
-def load_julich_trajectory(path: str | Path, fps: float = 25.0) -> pd.DataFrame:
-    """Load a Jülich PeTrack text trajectory and convert coordinates to SI units."""
+def _parse_julich_rows(source) -> pd.DataFrame:
+    data = pd.read_csv(source, sep=r"\s+", header=None, comment="#")
+    if data.shape[1] != len(TRAJECTORY_COLUMNS):
+        raise ValueError(
+            "Jülich trajectory rows must contain exactly five columns; "
+            f"found {data.shape[1]}"
+        )
+    data.columns = TRAJECTORY_COLUMNS
+    try:
+        data = data.apply(pd.to_numeric, errors="raise")
+    except (TypeError, ValueError) as error:
+        raise ValueError("Jülich trajectory columns must be numeric") from error
+    if data.empty:
+        raise ValueError("Jülich trajectory must contain at least one row")
+    if not np.all(np.isfinite(data.to_numpy(float))):
+        raise ValueError("Jülich trajectory columns must be finite")
+    for name in ("pedestrian_id", "frame"):
+        values = data[name].to_numpy(float)
+        if not np.all(values == np.round(values)):
+            raise ValueError(f"{name} must contain integers")
+        data[name] = values.astype(np.int64)
+    if data.duplicated(["pedestrian_id", "frame"]).any():
+        raise ValueError("Jülich trajectory contains duplicate pedestrian/frame rows")
+    return data
 
-    source = Path(path)
-    data = pd.read_csv(source, sep=r"\s+", header=None, names=TRAJECTORY_COLUMNS)
+
+def _normalise_julich_trajectory(data: pd.DataFrame, fps: float) -> pd.DataFrame:
+    if fps <= 0.0:
+        raise ValueError("fps must be positive")
     data = data.assign(
         time_s=data["frame"] / fps,
         x_m=data["x_cm"] / 100.0,
@@ -30,23 +55,70 @@ def load_julich_trajectory(path: str | Path, fps: float = 25.0) -> pd.DataFrame:
     ].sort_values(["pedestrian_id", "frame"], ignore_index=True)
 
 
+def load_julich_trajectory(path: str | Path, fps: float = 25.0) -> pd.DataFrame:
+    """Load a Jülich PeTrack text trajectory and convert coordinates to SI units."""
+
+    source = Path(path)
+    data = _parse_julich_rows(source)
+    return _normalise_julich_trajectory(data, fps)
+
+
+def load_julich_archive_trajectory(
+    archive_path: str | Path,
+    member: str,
+    *,
+    fps: float = 16.0,
+) -> pd.DataFrame:
+    """Load one flat PeTrack trajectory member directly from an official ZIP.
+
+    Reading the member in place avoids extracting an untouched evaluation
+    archive.  Directory components are rejected so the caller must identify an
+    exact top-level member from the frozen archive registry.
+    """
+
+    if Path(member).name != member or not member.lower().endswith(".txt"):
+        raise ValueError("member must be a flat .txt archive entry")
+    with ZipFile(Path(archive_path)) as archive:
+        try:
+            info = archive.getinfo(member)
+        except KeyError as error:
+            raise ValueError(f"archive member not found: {member}") from error
+        if info.is_dir():
+            raise ValueError(f"archive member is a directory: {member}")
+        with archive.open(info) as stream:
+            data = _parse_julich_rows(stream)
+    return _normalise_julich_trajectory(data, fps)
+
+
 def resample_trajectory_to_fps(
     data: pd.DataFrame,
     *,
     target_fps: float = 10.0,
+    source_fps: float = 16.0,
+    maximum_gap_factor: float = 1.5,
 ) -> pd.DataFrame:
-    """Linearly resample trajectories onto a common integer-frame time grid.
+    """Causally project trajectories onto a common integer-frame time grid.
 
     The target grid is anchored at time zero, so target frame ``k`` always
-    represents ``k / target_fps`` seconds for every pedestrian.  Each
-    pedestrian is evaluated only at grid times inside its own observed time
-    support; ``numpy.interp`` therefore never extrapolates.  The returned
-    schema is directly consumable by :func:`add_motion_features` and
-    ``build_velocity_samples(loader=...)``.
+    represents ``k / target_fps`` seconds for every pedestrian.  At each grid
+    time, position and height are linearly projected from the two most recent
+    source observations at or before that time.  Thus no observation after the
+    forecast origin is used.  A target is dropped unless both source samples
+    are consecutive enough and the latest sample is recent enough; this avoids
+    bridging internal tracking gaps.  Targets outside observed support and
+    targets without two prior observations are also dropped.
+
+    ``maximum_gap_factor`` multiplies the nominal source interval.  The frozen
+    16-Hz protocol uses 1.5, allowing harmless timestamp tolerance while still
+    rejecting a missing frame, whose gap is two nominal intervals.
     """
 
     if target_fps <= 0.0:
         raise ValueError("target_fps must be positive")
+    if source_fps <= 0.0:
+        raise ValueError("source_fps must be positive")
+    if not np.isfinite(maximum_gap_factor) or maximum_gap_factor < 1.0:
+        raise ValueError("maximum_gap_factor must be finite and at least one")
     required = {"pedestrian_id", "time_s", "x_m", "y_m"}
     missing = required.difference(data.columns)
     if missing:
@@ -57,6 +129,7 @@ def resample_trajectory_to_fps(
 
     blocks: list[pd.DataFrame] = []
     tolerance = 1e-10
+    maximum_gap_s = maximum_gap_factor / source_fps
     for pedestrian_id, group in data.groupby("pedestrian_id", sort=False):
         ordered = group.sort_values("time_s", kind="stable")
         source_time = ordered["time_s"].to_numpy(float)
@@ -78,12 +151,41 @@ def resample_trajectory_to_fps(
         )
         target_frame = target_frame[inside]
         target_time = target_time[inside]
+        if len(target_frame) == 0 or len(source_time) < 2:
+            continue
+
+        latest = np.searchsorted(source_time, target_time + tolerance, side="right") - 1
+        previous = latest - 1
+        enough_history = previous >= 0
+        safe_previous = np.maximum(previous, 0)
+        safe_latest = np.maximum(latest, 0)
+        pair_gap = source_time[safe_latest] - source_time[safe_previous]
+        sample_age = target_time - source_time[safe_latest]
+        valid = (
+            enough_history
+            & (pair_gap > tolerance)
+            & (pair_gap <= maximum_gap_s + tolerance)
+            & (sample_age >= -tolerance)
+            & (sample_age <= maximum_gap_s + tolerance)
+        )
+        target_frame = target_frame[valid]
+        target_time = target_time[valid]
+        previous = previous[valid]
+        latest = latest[valid]
+        pair_gap = pair_gap[valid]
         if len(target_frame) == 0:
             continue
 
+        fraction = (target_time - source_time[previous]) / pair_gap
+
+        def causal_projection(column: str) -> np.ndarray:
+            source_values = ordered[column].to_numpy(float)
+            return source_values[previous] + fraction * (
+                source_values[latest] - source_values[previous]
+            )
+
         if "height_m" in ordered:
-            source_height = ordered["height_m"].to_numpy(float)
-            height = np.interp(target_time, source_time, source_height)
+            height = causal_projection("height_m")
         else:
             height = np.full(len(target_time), np.nan, dtype=float)
         blocks.append(
@@ -92,12 +194,8 @@ def resample_trajectory_to_fps(
                     "pedestrian_id": [pedestrian_id] * len(target_frame),
                     "frame": target_frame,
                     "time_s": target_time,
-                    "x_m": np.interp(
-                        target_time, source_time, ordered["x_m"].to_numpy(float)
-                    ),
-                    "y_m": np.interp(
-                        target_time, source_time, ordered["y_m"].to_numpy(float)
-                    ),
+                    "x_m": causal_projection("x_m"),
+                    "y_m": causal_projection("y_m"),
                     "height_m": height,
                 }
             )
@@ -120,7 +218,32 @@ def load_resampled_julich_trajectory(
     if source_fps <= 0.0:
         raise ValueError("source_fps must be positive")
     source = load_julich_trajectory(path, fps=source_fps)
-    return resample_trajectory_to_fps(source, target_fps=target_fps)
+    return resample_trajectory_to_fps(
+        source,
+        target_fps=target_fps,
+        source_fps=source_fps,
+    )
+
+
+def load_resampled_julich_archive_trajectory(
+    archive_path: str | Path,
+    member: str,
+    *,
+    source_fps: float = 16.0,
+    target_fps: float = 10.0,
+) -> pd.DataFrame:
+    """Load and exactly resample one PeTrack member without extracting its ZIP."""
+
+    source = load_julich_archive_trajectory(
+        archive_path,
+        member,
+        fps=source_fps,
+    )
+    return resample_trajectory_to_fps(
+        source,
+        target_fps=target_fps,
+        source_fps=source_fps,
+    )
 
 
 def load_julich_crossing_trajectory(path: str | Path, fps: float = 25.0) -> pd.DataFrame:
@@ -152,7 +275,8 @@ def add_motion_features(data: pd.DataFrame) -> pd.DataFrame:
     first_x = groups["x_m"].transform("first")
     last_x = groups["x_m"].transform("last")
     result["direction"] = np.where(last_x >= first_x, 1, -1).astype(np.int8)
-    dt = groups["time_s"].diff()
+    frame_step = groups["frame"].diff()
+    dt = groups["time_s"].diff().where(frame_step == 1)
     result["vx_mps"] = groups["x_m"].diff() / dt
     result["vy_mps"] = groups["y_m"].diff() / dt
     result["speed_mps"] = np.hypot(result["vx_mps"], result["vy_mps"])

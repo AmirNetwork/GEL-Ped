@@ -3,12 +3,17 @@
 
 from __future__ import annotations
 
+from zipfile import ZipFile
+
 import numpy as np
 import pandas as pd
+import pytest
 
 from pedgeom.calibration import build_velocity_samples
 import pedgeom.datasets as datasets_module
 from pedgeom.datasets import (
+    add_motion_features,
+    load_resampled_julich_archive_trajectory,
     load_resampled_julich_trajectory,
     resample_trajectory_to_fps,
 )
@@ -37,16 +42,16 @@ def _source_trajectory() -> pd.DataFrame:
     return pd.concat(blocks, ignore_index=True)
 
 
-def test_resampling_uses_exact_common_times_without_extrapolation() -> None:
+def test_resampling_uses_only_past_samples_and_stays_inside_support() -> None:
     source = _source_trajectory()
     result = resample_trajectory_to_fps(source, target_fps=10.0)
 
     first = result[result["pedestrian_id"] == 7]
     second = result[result["pedestrian_id"] == 11]
-    np.testing.assert_array_equal(first["frame"], np.arange(1, 10))
-    np.testing.assert_allclose(first["time_s"], np.arange(1, 10) / 10.0)
-    np.testing.assert_array_equal(second["frame"], np.arange(3, 8))
-    np.testing.assert_allclose(second["time_s"], np.arange(3, 8) / 10.0)
+    np.testing.assert_array_equal(first["frame"], np.arange(2, 10))
+    np.testing.assert_allclose(first["time_s"], np.arange(2, 10) / 10.0)
+    np.testing.assert_array_equal(second["frame"], np.arange(4, 8))
+    np.testing.assert_allclose(second["time_s"], np.arange(4, 8) / 10.0)
 
     support = source.groupby("pedestrian_id")["time_s"].agg(["min", "max"])
     for pedestrian_id, group in result.groupby("pedestrian_id"):
@@ -80,7 +85,9 @@ def test_resampled_loader_preserves_schema_and_identifier_dtype(monkeypatch) -> 
 def test_ten_hz_grid_supports_exact_point_eight_and_point_four_second_horizons() -> None:
     blocks = []
     for pedestrian_id, y_m in ((1, 0.0), (2, 1.0)):
-        source_frame = np.arange(0, 33)
+        # Long enough to isolate exact 0.8/0.4-s compatibility from the
+        # builder's separate goal-history eligibility requirement.
+        source_frame = np.arange(0, 49)
         source_time = source_frame / 16.0
         blocks.append(
             pd.DataFrame(
@@ -117,3 +124,81 @@ def test_ten_hz_grid_supports_exact_point_eight_and_point_four_second_horizons()
     np.testing.assert_allclose(samples.target[:, 0], 1.0)
     np.testing.assert_allclose(samples.features[:, 0, 1], 0.0)
     np.testing.assert_allclose(samples.target[:, 1], 0.0)
+
+
+def test_archive_member_loader_resamples_in_place_without_extrapolation(tmp_path) -> None:
+    archive_path = tmp_path / "trajectories.zip"
+    rows = [
+        f"7 {frame} {200.0 * frame / 16.0:.6f} {-100.0 * frame / 16.0:.6f} 170"
+        for frame in range(1, 16)
+    ]
+    with ZipFile(archive_path, "w") as archive:
+        archive.writestr("run.txt", "\n".join(rows) + "\n")
+
+    result = load_resampled_julich_archive_trajectory(
+        archive_path,
+        "run.txt",
+        source_fps=16.0,
+        target_fps=10.0,
+    )
+
+    np.testing.assert_array_equal(result["frame"], np.arange(2, 10))
+    np.testing.assert_allclose(result["time_s"], np.arange(2, 10) / 10.0)
+    np.testing.assert_allclose(result["x_m"], 2.0 * result["time_s"])
+    np.testing.assert_allclose(result["y_m"], -result["time_s"])
+    with pytest.raises(ValueError, match="flat .txt"):
+        load_resampled_julich_archive_trajectory(archive_path, "../run.txt")
+
+
+def test_causal_resampling_does_not_bridge_a_missing_source_frame() -> None:
+    source_frame = np.array([0, 1, 2, 3, 6, 7, 8, 9])
+    source_time = source_frame / 16.0
+    source = pd.DataFrame(
+        {
+            "pedestrian_id": 1,
+            "frame": source_frame,
+            "time_s": source_time,
+            "x_m": source_time,
+            "y_m": 0.0,
+            "height_m": 1.7,
+        }
+    )
+
+    result = resample_trajectory_to_fps(source, target_fps=10.0, source_fps=16.0)
+
+    assert 3 not in set(result["frame"])
+    assert 4 not in set(result["frame"])
+    assert 5 in set(result["frame"])
+    motion = add_motion_features(result)
+    resumed = motion[motion["frame"] == 5].iloc[0]
+    assert np.isnan(resumed["vx_mps"])
+    assert np.isnan(resumed["vy_mps"])
+
+
+def test_causal_resampling_is_invariant_to_observations_after_grid_time() -> None:
+    source = _source_trajectory()
+    changed = source.copy()
+    changed.loc[changed["time_s"] > 0.4, ["x_m", "y_m"]] += 1000.0
+
+    original = resample_trajectory_to_fps(source, target_fps=10.0, source_fps=16.0)
+    perturbed = resample_trajectory_to_fps(changed, target_fps=10.0, source_fps=16.0)
+    early = original["time_s"] <= 0.4
+
+    np.testing.assert_allclose(
+        original.loc[early, ["x_m", "y_m"]],
+        perturbed.loc[early, ["x_m", "y_m"]],
+    )
+
+
+def test_archive_loader_rejects_wrong_width_and_duplicate_origins(tmp_path) -> None:
+    wrong_width = tmp_path / "wrong.zip"
+    with ZipFile(wrong_width, "w") as archive:
+        archive.writestr("run.txt", "1 0 0 0 170 99\n")
+    with pytest.raises(ValueError, match="exactly five"):
+        load_resampled_julich_archive_trajectory(wrong_width, "run.txt")
+
+    duplicate = tmp_path / "duplicate.zip"
+    with ZipFile(duplicate, "w") as archive:
+        archive.writestr("run.txt", "1 0 0 0 170\n1 0 1 0 170\n")
+    with pytest.raises(ValueError, match="duplicate"):
+        load_resampled_julich_archive_trajectory(duplicate, "run.txt")

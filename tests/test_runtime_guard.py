@@ -13,6 +13,7 @@ from pedgeom.runtime_guard import (
     per_run_tail_metrics,
     permute_weights_within_runs,
     risk_retention_curve,
+    top_fraction_binary_labels,
 )
 
 
@@ -110,6 +111,15 @@ def test_binary_detection_metrics_for_perfect_ranking() -> None:
         binary_detection_metrics([0, 0], [0.1, 0.2])
 
 
+def test_top_fraction_labels_have_exact_prevalence_even_at_a_tied_boundary() -> None:
+    scores = np.ones(40)
+    labels = top_fraction_binary_labels(scores, 0.05)
+    assert labels.sum() == 2
+    assert np.array_equal(np.flatnonzero(labels), [0, 1])
+    with pytest.raises(ValueError, match="at least two"):
+        top_fraction_binary_labels([1.0], 0.05)
+
+
 def test_risk_retention_curve_and_discrete_aurc_are_exact() -> None:
     curve = risk_retention_curve(losses=[4.0, 1.0, 2.0], scores=[3.0, 1.0, 2.0])
     expected_risk = np.array([1.0, 1.5, 7.0 / 3.0])
@@ -117,6 +127,17 @@ def test_risk_retention_curve_and_discrete_aurc_are_exact() -> None:
     assert np.allclose(curve.retention, [1 / 3, 2 / 3, 1.0])
     assert np.allclose(curve.risk, expected_risk)
     assert curve.aurc == pytest.approx(np.mean(expected_risk))
+
+
+def test_risk_retention_curve_is_invariant_to_rows_tied_by_the_score() -> None:
+    first = risk_retention_curve(losses=[100.0, 0.0, 2.0], scores=[1.0, 1.0, 2.0])
+    second = risk_retention_curve(losses=[0.0, 100.0, 2.0], scores=[1.0, 1.0, 2.0])
+    assert np.allclose(first.retention, [2 / 3, 1.0])
+    assert np.allclose(first.risk, second.risk)
+    assert first.aurc == pytest.approx(second.aurc)
+    constant = risk_retention_curve(losses=[1.0, 3.0], scores=[0.0, 0.0])
+    assert np.allclose(constant.retention, [1.0])
+    assert constant.aurc == pytest.approx(2.0)
 
 
 def test_ensemble_error_decomposition_satisfies_exact_vector_identity() -> None:

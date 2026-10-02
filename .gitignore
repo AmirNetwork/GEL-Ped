@@ -6,6 +6,10 @@ __pycache__/
 .pytest_cache/
 data/raw/*
 !data/raw/.gitkeep
+data/processed/referee3_member_cache/
+data/processed/referee3_predictions/
+data/processed/referee3_transformer_cache/
+data/processed/referee3_transformer_predictions/
 reports/generated/
 tmp/
 work/
@@ -13,4 +17,5 @@ manuscript/overleaf_trc/*.aux
 manuscript/overleaf_trc/*.log
 manuscript/overleaf_trc/*.out
 manuscript/overleaf_trc/*.blg
+manuscript/overleaf_trc/*.bbl
 manuscript/overleaf_trc/*.spl
