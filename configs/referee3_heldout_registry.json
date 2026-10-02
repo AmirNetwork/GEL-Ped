@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "analysis_freeze_commit": "0825df3c5ded408f0f2165b3ba2db7d2149a5b0e",
+  "analysis_freeze_commit": "4f40ec4d8544007e5fac2d30e8c88afff45764c7",
   "referee3_config_sha256": "be4e1d2f6423c6a7c5f54a25754603bc1363221fc7d2d1cb3826bcfd752a7ee8",
   "source_url": "http://ped.fz-juelich.de/experiments/2009.05.12_Duesseldorf_Messe_Hermes/data/zip/2009tjunction_trajectories_txt.zip",
   "archive_name": "2009tjunction_trajectories_txt.zip",
