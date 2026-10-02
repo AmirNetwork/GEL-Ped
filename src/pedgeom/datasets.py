@@ -30,6 +30,99 @@ def load_julich_trajectory(path: str | Path, fps: float = 25.0) -> pd.DataFrame:
     ].sort_values(["pedestrian_id", "frame"], ignore_index=True)
 
 
+def resample_trajectory_to_fps(
+    data: pd.DataFrame,
+    *,
+    target_fps: float = 10.0,
+) -> pd.DataFrame:
+    """Linearly resample trajectories onto a common integer-frame time grid.
+
+    The target grid is anchored at time zero, so target frame ``k`` always
+    represents ``k / target_fps`` seconds for every pedestrian.  Each
+    pedestrian is evaluated only at grid times inside its own observed time
+    support; ``numpy.interp`` therefore never extrapolates.  The returned
+    schema is directly consumable by :func:`add_motion_features` and
+    ``build_velocity_samples(loader=...)``.
+    """
+
+    if target_fps <= 0.0:
+        raise ValueError("target_fps must be positive")
+    required = {"pedestrian_id", "time_s", "x_m", "y_m"}
+    missing = required.difference(data.columns)
+    if missing:
+        raise ValueError(f"trajectory data are missing required columns: {sorted(missing)}")
+    columns = ["pedestrian_id", "frame", "time_s", "x_m", "y_m", "height_m"]
+    if data.empty:
+        return pd.DataFrame(columns=columns)
+
+    blocks: list[pd.DataFrame] = []
+    tolerance = 1e-10
+    for pedestrian_id, group in data.groupby("pedestrian_id", sort=False):
+        ordered = group.sort_values("time_s", kind="stable")
+        source_time = ordered["time_s"].to_numpy(float)
+        if not np.all(np.isfinite(source_time)):
+            raise ValueError("trajectory times must be finite")
+        if len(source_time) > 1 and np.any(np.diff(source_time) <= 0.0):
+            raise ValueError("each pedestrian must have strictly increasing times")
+
+        first_frame = int(np.ceil(source_time[0] * target_fps - tolerance))
+        last_frame = int(np.floor(source_time[-1] * target_fps + tolerance))
+        if last_frame < first_frame:
+            continue
+        target_frame = np.arange(first_frame, last_frame + 1, dtype=int)
+        target_time = target_frame.astype(float) / target_fps
+        # Guard explicitly against floating-point tolerance ever admitting an
+        # out-of-support grid point.
+        inside = (target_time >= source_time[0] - tolerance) & (
+            target_time <= source_time[-1] + tolerance
+        )
+        target_frame = target_frame[inside]
+        target_time = target_time[inside]
+        if len(target_frame) == 0:
+            continue
+
+        if "height_m" in ordered:
+            source_height = ordered["height_m"].to_numpy(float)
+            height = np.interp(target_time, source_time, source_height)
+        else:
+            height = np.full(len(target_time), np.nan, dtype=float)
+        blocks.append(
+            pd.DataFrame(
+                {
+                    "pedestrian_id": [pedestrian_id] * len(target_frame),
+                    "frame": target_frame,
+                    "time_s": target_time,
+                    "x_m": np.interp(
+                        target_time, source_time, ordered["x_m"].to_numpy(float)
+                    ),
+                    "y_m": np.interp(
+                        target_time, source_time, ordered["y_m"].to_numpy(float)
+                    ),
+                    "height_m": height,
+                }
+            )
+        )
+
+    if not blocks:
+        return pd.DataFrame(columns=columns)
+    result = pd.concat(blocks, ignore_index=True)
+    result["pedestrian_id"] = result["pedestrian_id"].astype(data["pedestrian_id"].dtype)
+    return result.sort_values(["pedestrian_id", "frame"], ignore_index=True)
+
+
+def load_resampled_julich_trajectory(
+    path: str | Path,
+    source_fps: float = 16.0,
+    target_fps: float = 10.0,
+) -> pd.DataFrame:
+    """Load centimetre-format Juelich data and resample it to an exact time grid."""
+
+    if source_fps <= 0.0:
+        raise ValueError("source_fps must be positive")
+    source = load_julich_trajectory(path, fps=source_fps)
+    return resample_trajectory_to_fps(source, target_fps=target_fps)
+
+
 def load_julich_crossing_trajectory(path: str | Path, fps: float = 25.0) -> pd.DataFrame:
     """Load the newer PeTrack crossing format whose coordinates are already in metres."""
 

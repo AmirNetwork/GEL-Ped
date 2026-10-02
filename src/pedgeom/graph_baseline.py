@@ -30,7 +30,9 @@ except ImportError as error:  # pragma: no cover - gives a useful optional-depen
     ) from error
 
 
-def _graph_arrays(samples: VelocitySamples) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def _graph_arrays(
+    samples: VelocitySamples, *, include_wall: bool = True
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Return standardized-ready node inputs, local edge inputs, and masks."""
 
     if samples.raw_neighbours is None:
@@ -76,7 +78,15 @@ def _graph_arrays(samples: VelocitySamples) -> tuple[np.ndarray, np.ndarray, np.
         axis=2,
     )
     edge[~mask] = 0.0
-    return invariant_design(samples), edge, mask
+    node = invariant_design(samples)
+    if not include_wall:
+        # ``invariant_design`` stores six forward projections followed by six
+        # lateral projections.  The wall field is feature 5 in each block.
+        # Removing both constant-zero columns makes the deployed feature
+        # schema agree with the scientific description without changing the
+        # frozen referee-2 default.
+        node = np.delete(node, (5, 11), axis=1)
+    return node, edge, mask
 
 
 class _InteractionGraph(nn.Module):
@@ -116,9 +126,10 @@ class GraphInteractionRegressor:
     network: _InteractionGraph
     node_scaler: StandardScaler
     residual: bool = True
+    include_wall: bool = True
 
     def predict(self, samples: VelocitySamples, speed_cap: float = 2.5) -> np.ndarray:
-        node, edge, mask = _graph_arrays(samples)
+        node, edge, mask = _graph_arrays(samples, include_wall=self.include_wall)
         device = next(self.network.parameters()).device
         self.network.eval()
         with torch.no_grad():
@@ -154,19 +165,28 @@ def fit_graph_interaction_network(
     batch_size: int = 512,
     seed: int = 20260722,
     residual: bool = True,
+    include_wall: bool = True,
+    num_threads: int | None = None,
 ) -> GraphInteractionRegressor:
     """Fit the graph baseline with equal aggregate weight for every run."""
 
     torch.manual_seed(seed)
     np.random.seed(seed)
-    torch.set_num_threads(min(4, max(1, torch.get_num_threads())))
+    requested_threads = (
+        min(4, max(1, torch.get_num_threads()))
+        if num_threads is None
+        else int(num_threads)
+    )
+    if requested_threads < 1:
+        raise ValueError("num_threads must be at least one")
+    torch.set_num_threads(requested_threads)
     node_parts: list[np.ndarray] = []
     edge_parts: list[np.ndarray] = []
     mask_parts: list[np.ndarray] = []
     target_parts: list[np.ndarray] = []
     weight_parts: list[np.ndarray] = []
     for batch in batches:
-        node, edge, mask = _graph_arrays(batch)
+        node, edge, mask = _graph_arrays(batch, include_wall=include_wall)
         anchor = local_target_from_vectors(batch, batch.features[:, 0])
         node_parts.append(node)
         edge_parts.append(edge)
@@ -217,5 +237,8 @@ def fit_graph_interaction_network(
             best_state = copy.deepcopy(network.state_dict())
     network.load_state_dict(best_state)
     return GraphInteractionRegressor(
-        network=network, node_scaler=scaler, residual=residual
+        network=network,
+        node_scaler=scaler,
+        residual=residual,
+        include_wall=include_wall,
     )

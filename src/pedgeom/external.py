@@ -30,20 +30,34 @@ def build_eth_ucy_samples(
     *,
     step_frames: int = 10,
     history_steps: int = 2,
-    maximum_samples: int = 6000,
+    maximum_samples: int | None = 6000,
+    frames_per_second: float = 25.0,
+    interaction_range: float = 0.35,
     neighbour_cutoff: float = 3.0,
     maximum_neighbours: int = 8,
-    speed_outlier_threshold: float = 3.0,
+    speed_outlier_threshold: float | None = 3.0,
+    past_speed_outlier_threshold: float | None = None,
+    target_speed_outlier_threshold: float | None = None,
+    filter_target_speed: bool = True,
+    minimum_past_speed: float | None = 0.05,
     seed: int = 20260722,
 ) -> VelocitySamples:
     """Reconstruct a 0.4-s task using only current and past observations.
 
     ETH/UCY positions are sampled at 2.5 Hz (ten raw frame units).  Recent
     velocity and route direction use ``history_steps`` observed intervals,
-    while the target is always the next single interval.
+    while the target is always the next single interval.  Legacy behaviour
+    uses a 0.35-m interaction range, filters past and target speeds above
+    3 m/s, and removes past speeds at or below 0.05 m/s.  These choices are
+    independently configurable for representation-parity and inclusive audits.
+    Set ``maximum_samples=None`` to retain every eligible forecast origin.
     """
 
     path = Path(path)
+    if frames_per_second <= 0.0:
+        raise ValueError("frames_per_second must be positive")
+    if interaction_range <= 0.0:
+        raise ValueError("interaction_range must be positive")
     data = load_eth_ucy(path)
     history_frames = history_steps * step_frames
     current = data.copy()
@@ -54,21 +68,45 @@ def build_eth_ucy_samples(
     eligible = current.merge(past, on=["pedestrian_id", "frame"]).merge(
         future, on=["pedestrian_id", "frame"]
     )
-    history_dt = 0.4 * history_steps
+    history_dt = history_frames / frames_per_second
+    prediction_dt = step_frames / frames_per_second
     eligible["previous_vx"] = (eligible["x_m"] - eligible["past_x"]) / history_dt
     eligible["previous_vy"] = (eligible["y_m"] - eligible["past_y"]) / history_dt
-    eligible["target_vx"] = (eligible["future_x"] - eligible["x_m"]) / 0.4
-    eligible["target_vy"] = (eligible["future_y"] - eligible["y_m"]) / 0.4
+    eligible["target_vx"] = (eligible["future_x"] - eligible["x_m"]) / prediction_dt
+    eligible["target_vy"] = (eligible["future_y"] - eligible["y_m"]) / prediction_dt
     previous_speed = np.hypot(eligible["previous_vx"], eligible["previous_vy"])
     target_speed = np.hypot(eligible["target_vx"], eligible["target_vy"])
-    eligible = eligible[
-        (previous_speed <= speed_outlier_threshold)
-        & (target_speed <= speed_outlier_threshold)
-        & (previous_speed > 0.05)
-    ].copy()
+    past_limit = (
+        speed_outlier_threshold
+        if past_speed_outlier_threshold is None
+        else past_speed_outlier_threshold
+    )
+    target_limit = (
+        speed_outlier_threshold
+        if target_speed_outlier_threshold is None
+        else target_speed_outlier_threshold
+    )
+    eligible_mask = np.ones(len(eligible), dtype=bool)
+    if past_limit is not None:
+        eligible_mask &= previous_speed <= past_limit
+    if filter_target_speed and target_limit is not None:
+        eligible_mask &= target_speed <= target_limit
+    if minimum_past_speed is not None:
+        eligible_mask &= previous_speed > minimum_past_speed
+    eligible = eligible[eligible_mask].copy()
     speed = np.hypot(eligible["previous_vx"], eligible["previous_vy"])
-    eligible["goal_x"] = eligible["previous_vx"] / speed
-    eligible["goal_y"] = eligible["previous_vy"] / speed
+    eligible["goal_x"] = np.divide(
+        eligible["previous_vx"],
+        speed,
+        out=np.zeros(len(eligible), dtype=float),
+        where=speed > 1e-12,
+    )
+    eligible["goal_y"] = np.divide(
+        eligible["previous_vy"],
+        speed,
+        out=np.zeros(len(eligible), dtype=float),
+        where=speed > 1e-12,
+    )
 
     motion = data.merge(past, on=["pedestrian_id", "frame"], how="left")
     motion["vx"] = (motion["x_m"] - motion["past_x"]) / history_dt
@@ -116,7 +154,7 @@ def build_eth_ucy_samples(
             positions,
             velocities,
             goals,
-            interaction_range=0.35,
+            interaction_range=interaction_range,
             radius=0.25,
             wall_range=0.25,
             wall_y_bounds=None,
@@ -164,7 +202,9 @@ def build_eth_ucy_samples(
         np.concatenate(occupancy_blocks),
         np.concatenate(raw_blocks),
     )
-    if len(arrays[1]) > maximum_samples:
+    if maximum_samples is not None and len(arrays[1]) > maximum_samples:
+        if maximum_samples <= 0:
+            raise ValueError("maximum_samples must be positive or None")
         selected = np.sort(
             np.random.default_rng(seed).choice(
                 len(arrays[1]), maximum_samples, replace=False
@@ -180,6 +220,7 @@ def build_eth_ucy_samples(
         position=arrays[4],
         neighbour_count=arrays[5],
         occupancy=arrays[6],
-        goal_method=f"past-{0.4 * history_steps:.1f}s",
+        goal_method=f"past-{history_dt:.1f}s",
         raw_neighbours=arrays[7],
+        origin_time_s=arrays[3].astype(float) / frames_per_second,
     )

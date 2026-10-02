@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-02T00:00:00+10:00",
+  "frozen_baseline_commit": "73b945b",
+  "namespace": "referee3",
+  "task": {
+    "history_seconds": 0.8,
+    "prediction_seconds": 0.4,
+    "origin_spacing_seconds": 0.4,
+    "primary_goal_axis": "prior_velocity",
+    "controlled_route_axis_sensitivity": "entry",
+    "interaction_range_m": 0.8,
+    "pedestrian_radius_m": 0.25,
+    "neighbour_cutoff_m": 3.0,
+    "maximum_neighbours": 8,
+    "wall_features": false,
+    "past_speed_quality_limit_mps": 3.0,
+    "target_speed_filter": false,
+    "training_samples_per_run": 6000,
+    "evaluation_sampling": "all eligible chronological origins"
+  },
+  "experts": {
+    "primary": "anchored graph interaction network",
+    "fallback": "feature-based HGB residual",
+    "fallback_prediction_speed_cap_mps": 3.0,
+    "graph_member_speed_cap_sensitivity_mps": [3.0, 100.0],
+    "matched_controls_use_same_expert_pair": true
+  },
+  "guard": {
+    "instantaneous_score": "root mean squared Euclidean member deviation",
+    "trailing_window_seconds": 1.6,
+    "new_pedestrian_rule": "mean of available causal origins",
+    "threshold_quantile": 0.9,
+    "quantile_convention": "ceil((n+1)*q)-th ordered value, clipped to [1,n]",
+    "scale": "interquartile range with 1e-6 lower bound",
+    "primary_shape": "exponential",
+    "shape_sensitivities": ["linear", "logistic"],
+    "inside_envelope_graph_weight": 1.0,
+    "calibration": "leave-one-complete-run-out on full chronological held-run origins"
+  },
+  "replication": {
+    "member_pool_size": 25,
+    "member_seed_base": 20260722,
+    "member_seed_stride": 997,
+    "ensemble_draw_seed": 20261002,
+    "five_member_draws": 30,
+    "ensemble_sizes": [3, 5, 10, 20],
+    "draws_per_size": 30,
+    "primary_ensemble_size": 5,
+    "primary_member_indices": [0, 1, 2, 3, 4],
+    "divergent_member_definition": "run RMSE greater than median member RMSE plus three scaled MADs",
+    "training_epochs": 25,
+    "graph_width": 48
+  },
+  "endpoints": {
+    "error_norm_unit": "m/s",
+    "mean": ["run_macro_rmse", "run_median_rmse"],
+    "tail": ["q90", "q95", "q99", "cvar95", "cvar99", "rate_error_gt_0.5"],
+    "detection_event": "top 5 percent graph-error norm within each complete run",
+    "detection": ["auroc", "auprc"],
+    "selective": ["risk_retention_curve", "aurc"],
+    "equivalence_absolute_margin_mps": 0.002,
+    "equivalence_relative_margin": 0.01,
+    "confidence_level": 0.95,
+    "bootstrap_seed": 20261002,
+    "bootstrap_replicates": 2000
+  },
+  "controls": {
+    "fixed_blend_grid_step": 0.01,
+    "within_run_gate_permutations": 200,
+    "permutation_seed": 20261003,
+    "signals": ["ensemble_spread", "graph_hgb_disagreement", "mahalanobis", "speed"],
+    "online_experts": {
+      "label_delay_seconds": 0.4,
+      "learning_rates": [0.25, 0.5, 1.0, 2.0, 4.0],
+      "fixed_share_rates": [0.0, 0.01, 0.05],
+      "selection": "run-balanced OOF calibration loss",
+      "cold_start_seconds": 1.6
+    }
+  },
+  "heldout": {
+    "dataset": "Juelich T-junction",
+    "doi": "10.26165/JUELICH-DATA/YNCHYF",
+    "role": "one-shot untouched topology-shift evaluation",
+    "allow_parameter_updates_after_first_label_inspection": false,
+    "minimum_complete_runs": 2,
+    "primary_claim_rule": "tail benefit plus in-support equivalence; no universal shift claim"
+  },
+  "reactive_planner": {
+    "scope": "open-loop replay of recorded pedestrians; no reciprocal-response claim",
+    "replan_seconds": 0.4,
+    "lookahead_seconds": 0.8,
+    "robot_radius_m": 0.3,
+    "pedestrian_radius_m": 0.25,
+    "nominal_speed_mps": 1.2,
+    "fixed_clearance_m": 0.65,
+    "adaptive_extra_clearance_m": 0.35,
+    "candidate_speeds_mps": [0.0, 0.4, 0.8, 1.2],
+    "candidate_heading_offsets_deg": [-60, -40, -20, 0, 20, 40, 60],
+    "intrusion_distance_m": 0.55,
+    "stop_speed_mps": 0.1,
+    "episode_policy": "paired fixed-margin and g-adaptive-margin replays with identical crowd trajectories"
+  },
+  "multiplicity": {
+    "confirmatory_family": [
+      "heldout_graph_vs_guard_run_rmse",
+      "heldout_graph_vs_guard_q95",
+      "heldout_graph_vs_guard_cvar95",
+      "heldout_graph_vs_guard_error_gt_0.5"
+    ],
+    "adjustment": "Holm",
+    "exploratory_regimes": ["crossing", "ETH/UCY", "bottleneck", "unidirectional"]
+  }
+}

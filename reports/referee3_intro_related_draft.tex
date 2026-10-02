@@ -1,0 +1,134 @@
+% Referee-3 front-matter and literature draft for later integration into main.tex.
+% This file is a fragment, not a standalone document.
+% All citation keys below are present in manuscript/overleaf_trc/references.bib.
+
+% Proposed title
+\title{GEL-Ped: An instability-triggered safeguard for short-horizon pedestrian prediction under changing crowd flows}
+
+% Proposed abstract
+\begin{abstract}
+Safe navigation around pedestrians depends on forecasts that are fast enough to change the next action of a robot, vehicle, or crowd-management system. Learned interaction models can be accurate in familiar conditions, yet they may produce an unstable correction when a crowd enters, crosses, or merges in a way that was poorly represented during training. Existing work offers strong predictors, uncertainty scores, and adaptation methods, but less often specifies what a deployed predictor should output at the moment a warning appears.
+
+This paper presents GEL-Ped (Guarded Ensemble Learning for Pedestrians), a safeguard for an existing short-horizon pedestrian predictor. Several independently trained graph models provide the default prediction. GEL-Ped monitors how strongly their local predictions disagree, compares that disagreement with an envelope learned only from complete training runs, and leaves the graph prediction unchanged while it remains inside that envelope. When disagreement exceeds the envelope, the method moves smoothly toward a bounded behavioural fallback built from recent motion and local interaction cues. The decision uses only information available at prediction time and also exposes an intervention signal to the surrounding system.
+
+The evaluation separates ordinary accuracy from the failure mode that motivates the safeguard. It uses complete-run and leave-one-scene-out tests, matched alternative gates, tail-error and risk--retention analyses, and checks of temporal causality and retraining sensitivity. The evidence is interpreted narrowly: the safeguard is useful when model members fail differently and their disagreement reveals the problem; it cannot detect a shared bias that moves all members in the same wrong direction. GEL-Ped therefore complements rather than replaces a strong trajectory model. Its contribution is an auditable link between a detectable neural instability and a usable short-horizon response under changing crowd flow.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction_referee3}
+
+A pedestrian forecast has operational value only if it arrives early enough to change a decision. A mobile robot may slow before entering a person's path, an automated vehicle may delay a turn, and a station-monitoring system may flag a developing conflict before it spreads through a crowd. In each case, the immediate question is modest but time-critical: given motion observed up to the present, what movement is plausible over the next short interval? This response problem differs from predicting a final destination or generating several long-range routes. It places greater weight on current velocity, nearby interactions, rapid updates, and graceful behaviour when the data no longer resemble training conditions \citep{rudenko2020survey,kothari2022}.
+
+Crowds make even this short horizon difficult. People preserve personal space, anticipate future encounters, form temporary groups, and adjust speed and passing side as a local flow changes. Recent transport studies have improved pedestrian prediction by learning interpretable interaction modes, combining trajectory and crossing-intent tasks, and bringing behavioural or physical structure into learned models \citep{liu2024,munir2025,li2023cyclist}. Related work on pedestrian flow shows the value of interpretable structure and online recalibration when conditions evolve \citep{mai2025}. These studies answer an important modelling question: how can a predictor represent human behaviour more faithfully? The present paper addresses a different deployment question: when a learned correction becomes unreliable during operation, can the system recognise a useful warning and produce a safer alternative without waiting for retraining?
+
+That question matters because average test accuracy is not a complete operating contract. A model can perform well on most observations and still issue a rare, unusually large correction in an unfamiliar crossing or merging pattern. Standard uncertainty scores can indicate that an input or prediction is unusual, but a score alone does not tell the motion planner which trajectory to use. A permanently mixed physics--learning model does produce a trajectory, but it also gives the simpler component influence when the learned model is working normally. Full online adaptation can recover performance in a new domain, although it changes model parameters and needs suitable feedback, time, and safeguards of its own \citep{ivanovic2023adaptive,park2024t4p}. For a fast pedestrian-response loop, detection and action must be designed together.
+
+We organise this deployment problem around four linked questions.
+
+\begin{enumerate}
+    \item \textbf{Detection:} what observable signal indicates that the learned correction may be unreliable before its future error is known?
+    \item \textbf{Action:} what prediction should replace or temper the learned output when that signal rises?
+    \item \textbf{Scope:} which failures can the signal reveal, and which failures remain invisible to it?
+    \item \textbf{Use:} how can the resulting prediction and warning support a downstream transport or robotic decision?
+\end{enumerate}
+
+Existing literatures address parts of this chain. Work on predictive uncertainty and out-of-distribution detection studies whether confidence degrades under shift and whether a feature vector lies far from the training distribution \citep{ovadia2019uncertainty,lee2018mahalanobis,malinin2021shifts}. Selective prediction studies when a model should reject an uncertain case and evaluates the trade-off between retained coverage and risk \citep{geifman2017selective,cortes2016rejection}. Runtime-assurance architectures combine an advanced controller with a simpler fallback, while online expert methods update how much competing predictors are trusted \citep{sha2001simplicity,herbster1998tracking,cesabianchi2006prediction}. Yet these components have rarely been joined and tested as one causal mechanism for short-horizon pedestrian response: a local warning derived from the deployed predictor, an immediate trajectory-producing fallback, an explicit boundary on what the warning can detect, and a signal that a downstream system can use.
+
+GEL-Ped joins those components with a deliberately small rule. Several graph predictors are trained independently around a recent-velocity anchor. Their mean is the default prediction. Their local spread is tracked for the same pedestrian using only observations already available, then compared with an envelope estimated from held-out complete training runs. Inside the envelope, the graph model keeps full control. Only an exceedance reduces its weight, moving the output smoothly toward a bounded predictor constructed from recent motion and compact behavioural interaction fields. The mechanism therefore does not attempt to recognise a named facility or classify a scene as generally out of distribution. It asks a narrower, directly observable question: are independently trained versions of the deployed model disagreeing more than they did in supported operation?
+
+This design also defines the method's limit. Disagreement can reveal a \emph{variance-type failure}, in which trained members respond differently to the same situation. It cannot reveal a \emph{shared-bias failure}, in which all members agree on the same wrong correction. Broader training data, richer context, parameter adaptation, or a more diverse model family may be needed for the latter. The experiments are consequently designed to test the monitor, not only the final mean error: they measure whether disagreement identifies large graph errors, whether the guarded output improves the high-risk tail at a stated intervention rate, whether generic distance scores or fixed blends explain the same effect, and whether the conclusion persists across complete runs, scenes, and retraining draws. Risk--retention reporting follows the principle that a warning mechanism must be judged together with how often it intervenes \citep{malinin2021shifts}.
+
+The contributions follow directly from the four gaps above:
+
+\begin{itemize}
+    \item \textbf{Detection contribution.} We formulate a local, past-only instability score from disagreement among independently trained graph predictors and calibrate its operating envelope without mixing frames from the same physical run across fitting and calibration.
+    \item \textbf{Action contribution.} We convert an exceedance into a one-sided, continuous move toward a bounded behavioural fallback. The fallback has no mandatory weight in supported conditions, so the method does not trade away ordinary graph performance merely to claim robustness.
+    \item \textbf{Scope contribution.} We evaluate average and tail error, detection quality, matched routing controls, temporal-window integrity, and sensitivity to retraining. This separates failures visible through member disagreement from shared errors that the guard cannot observe.
+    \item \textbf{Use contribution.} The method returns both a short-horizon prediction and an intervention level. The latter can be logged, passed to a planner, or used to request site recalibration; it is not presented as a formal safety guarantee.
+\end{itemize}
+
+The resulting claim is intentionally precise. GEL-Ped is not a replacement for a modern multimodal trajectory generator, and it is not expected to improve every scene average. It is a transparent safeguard for a particular deployment failure: an unstable learned correction that becomes visible through disagreement within the predictor family. This distinction makes a small short-horizon mechanism useful beyond one architecture while keeping its evidence and limitations auditable.
+
+\section{Related work and research gap}
+\label{sec:related_referee3}
+
+\subsection{Detection: recognising when a prediction may be unreliable}
+
+Uncertainty estimates are often least reliable when they are most needed. Large-scale evaluations show that confidence and calibration can deteriorate as test data move away from the training distribution \citep{ovadia2019uncertainty}. The Shifts benchmark extends this concern to real distribution changes and includes motion prediction among its tasks, while promoting evaluation that relates retained predictions to their risk \citep{malinin2021shifts}. These findings motivate an explicit shift audit rather than treating validation-set calibration as proof of reliability in a new crowd layout.
+
+Different detectors answer different questions. A Mahalanobis score measures distance from a reference feature distribution and is a useful, inexpensive signal for unusual inputs or representations \citep{lee2018mahalanobis}. Model disagreement instead asks whether plausible trained models give different answers. In autonomous driving, ensemble-based epistemic uncertainty has been used to identify novel scenes and support recovery or expert feedback \citep{filos2020distribution}. Neither score is automatically a probability that a pedestrian forecast is wrong. Its value must be established for the target error, horizon, and shift. GEL-Ped therefore treats local spread as a monitor to be tested against large forecast errors and compares it with matched distance and disagreement controls; it does not label the spread itself as calibrated risk.
+
+\subsection{Action: rejecting, adapting, or using a fallback}
+
+Selective prediction gives a clear response to uncertainty: withhold predictions above a threshold and report the resulting risk--coverage trade-off \citep{geifman2017selective,cortes2016rejection}. This is a valuable evaluation language, but a pedestrian motion planner may still require a trajectory when the primary model is uncertain. GEL-Ped accordingly borrows the selection principle while replacing pure abstention with a bounded fallback and reporting how often that fallback influences the output.
+
+Another response is to adapt the predictor. Adaptive meta-learning can update a trajectory model efficiently in an unseen environment, and recent test-time training methods update deeper representations using self-supervised trajectory information \citep{ivanovic2023adaptive,park2024t4p}. Adaptive conformal inference follows a different route: it updates uncertainty sets as sequential errors arrive under changing distributions \citep{gibbs2021adaptive}. For planning among dynamic agents, delayed observations can be used to update conformal regions that feed a motion planner \citep{dixit2023adaptive}. These approaches are complementary to GEL-Ped. Adaptation aims to improve the model after feedback; conformal methods aim to control the coverage of prediction sets; GEL-Ped aims to produce an immediate point prediction while keeping the primary predictor fixed.
+
+The fallback pattern has long roots in dependable control. Runtime-assurance architectures supervise a capable but complex component with a simpler response when operating conditions become unacceptable \citep{sha2001simplicity}. Prediction with expert advice similarly studies how to combine or track predictors as their losses change over time \citep{herbster1998tracking,cesabianchi2006prediction}. These foundations prevent an overclaim of algorithmic novelty for switching or weighting itself. The research question here is pedestrian-specific and empirical: whether a causally available, local neural-instability signal targets the occasions on which a compact behavioural expert is useful, beyond what fixed weighting or delayed generic expert updates can achieve.
+
+\subsection{Scope: pedestrian interaction, horizon, and transport setting}
+
+Human trajectory forecasting spans different tasks, from the next movement response to long-horizon multimodal paths. Surveys distinguish motion models by their dynamics, social and scene context, and output representation, and they caution that datasets and metrics do not transfer automatically across protocols \citep{rudenko2020survey,kothari2022}. A model that observes several seconds and proposes multiple destinations answers a different question from a short-horizon predictor that must update a controller repeatedly. Published displacement errors should therefore not be compared across unequal histories, horizons, sampling rates, or output types.
+
+Recent transport research further shows that useful structure depends on the operational level. Learned latent modes can make pedestrian interactions more interpretable \citep{liu2024}; contextual and visual cues can connect crossing intention with trajectory prediction \citep{munir2025}; and a utility layer can select among learned cyclist trajectories in rare interaction conditions \citep{li2023cyclist}. At the aggregate level, a diffusion-based pedestrian-flow model combines interpretable structure with online calibration for evolving facilities \citep{mai2025}. These works strengthen the case for behaviour-aware prediction, but they do not provide a matched answer to the present deployment problem. Their targets range from individual long-horizon paths and road-crossing intent to cyclist decisions and aggregate flow. GEL-Ped is scoped to repeated short-horizon pedestrian response from trajectory observations, where an immediate fallback is possible and a local intervention can be passed to the next planning update.
+
+\subsection{Use: connecting a warning to an operational decision}
+
+A warning is useful only if the surrounding system knows what to do with it. Distribution-aware driving work connects uncertainty to recovery or expert feedback \citep{filos2020distribution}. Adaptive conformal planning connects delayed prediction errors to uncertainty regions used by a controller \citep{dixit2023adaptive}. Runtime assurance connects a monitor to a simpler component with a defined role \citep{sha2001simplicity}. These examples motivate a separation between the predictor's evidence and the system's claim: a monitor can trigger a response without proving that every downstream motion is safe.
+
+GEL-Ped exposes two outputs for this reason. The blended velocity supplies continuity when the graph family becomes unstable, while the intervention level records how far operation has moved outside the calibration envelope. A planner may respond conservatively, and an operator may use persistent activation as evidence that site-specific recalibration is needed. The present study evaluates prediction and conflict-screen consequences, but does not equate them with closed-loop collision avoidance. Establishing that stronger claim would require a reciprocal simulator or field system in which pedestrians react to the controlled agent.
+
+\begin{table}[!htbp]
+\centering
+\caption{Positioning by the four questions that matter at deployment. The table distinguishes a detection signal from the action taken after detection and avoids treating studies with different targets as matched accuracy baselines.}
+\label{tab:positioning_referee3}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.19\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}X}
+\toprule
+Approach & Detection & Action & Scope & Main operational use \\
+\midrule
+Interpretable and hybrid transport predictors \citep{liu2024,mai2025,munir2025,li2023cyclist}
+& Learned interaction, context, intent, physics, or utility structure
+& Improve, recalibrate, or select within the predictor
+& Individual pedestrians/cyclists or aggregate pedestrian flow
+& More faithful and interpretable forecasts \\
+
+Shift and uncertainty monitoring \citep{ovadia2019uncertainty,lee2018mahalanobis,malinin2021shifts,filos2020distribution}
+& Confidence, feature distance, or model disagreement
+& Score, retain, recover, or request feedback
+& Generic prediction and autonomous driving under shift
+& Recognise when ordinary confidence may be unreliable \\
+
+Selective prediction \citep{geifman2017selective,cortes2016rejection}
+& Confidence threshold
+& Reject or abstain
+& Primarily classification
+& Trade coverage for lower retained risk \\
+
+Adaptive uncertainty and prediction \citep{gibbs2021adaptive,dixit2023adaptive,ivanovic2023adaptive,park2024t4p}
+& Sequential errors or self-supervised test information
+& Update uncertainty sets or model parameters
+& Changing streams and trajectory domains
+& Recover after feedback and support planning \\
+
+Runtime assurance and online experts \citep{sha2001simplicity,herbster1998tracking,cesabianchi2006prediction}
+& Safety condition or observed expert loss
+& Switch or update expert weights
+& General sequential systems
+& Keep an advanced component within a supervised operating pattern \\
+
+GEL-Ped (this study)
+& Past-only local disagreement relative to a complete-run envelope
+& Smoothly temper the graph output with a bounded behavioural fallback
+& Repeated short-horizon pedestrian response
+& Return a usable trajectory and an auditable intervention signal \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Research gap and resulting study design}
+
+The literature leaves one narrow but consequential gap. Strong pedestrian models improve representation; uncertainty methods provide warnings; selective methods formalise rejection; adaptation methods learn from a new stream; and runtime-assurance methods define a fallback pattern. What is missing is evidence that these pieces form an effective causal chain for short-horizon crowd prediction: the proposed monitor must detect the target failure before its label arrives, the action must produce a useful trajectory, the evaluation must identify the monitor's blind spots, and the intervention must have a clear role in the downstream system.
+
+GEL-Ped is designed and evaluated around that chain. Its detector is member disagreement, its action is one-sided shrinkage toward a behavioural expert, its scope is variance-type instability rather than all distribution shift, and its intended use is a fast prediction loop that can consume both the forecast and the intervention level. This framing makes the main empirical tests direct. Detection is tested by tail-error identification and risk--retention curves; action is tested against fixed, permuted, and matched alternative gates; scope is tested across retraining draws and untouched scenes or flows; and use is examined through intervention frequency, latency, and downstream conflict or planning consequences. A contribution is supported only when the corresponding link in this chain is supported.

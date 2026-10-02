@@ -35,6 +35,7 @@ class VelocitySamples:
     occupancy: np.ndarray | None = None
     goal_method: str = "entry"
     raw_neighbours: np.ndarray | None = None
+    origin_time_s: np.ndarray | None = None
 
     def select_features(self, names: tuple[str, ...]) -> np.ndarray:
         indices = [FEATURE_NAMES.index(name) for name in names]
@@ -201,19 +202,29 @@ def build_velocity_samples(
     history_frames: int | None = None,
     frame_stride: int = 10,
     frames_per_second: float = 25.0,
-    maximum_samples: int = 6000,
+    maximum_samples: int | None = 6000,
     radius: float = 0.25,
     wall_range: float = 0.25,
     wall_y_bounds: tuple[float, float] | None = (0.0, 4.0),
     neighbour_cutoff: float = 3.0,
     goal_method: GoalMethod = "entry",
     cardinal_routes: bool | None = None,
-    speed_outlier_threshold: float = 3.0,
+    speed_outlier_threshold: float | None = 3.0,
+    past_speed_outlier_threshold: float | None = None,
+    target_speed_outlier_threshold: float | None = None,
+    filter_target_speed: bool = True,
     loader=load_julich_trajectory,
     seed: int = 20260722,
     maximum_neighbours: int = 8,
 ) -> VelocitySamples:
-    """Construct manuscript Eqs. (1)-(5) without trajectory or endpoint leakage."""
+    """Construct manuscript Eqs. (1)-(5) without trajectory or endpoint leakage.
+
+    ``speed_outlier_threshold`` is the backward-compatible shared upper-speed
+    limit.  The past and target limits can be overridden independently.  Set
+    ``filter_target_speed=False`` when evaluation membership must not depend on
+    the future label.  ``maximum_samples=None`` retains every eligible forecast
+    origin, which is required before constructing a causal temporal guard.
+    """
 
     source = Path(source)
     if frames_per_second <= 0.0:
@@ -258,10 +269,22 @@ def build_velocity_samples(
     eligible = eligible[(eligible["frame"] - first_frame) % frame_stride == 0]
     previous_speed = np.hypot(eligible["previous_vx"], eligible["previous_vy"])
     target_speed = np.hypot(eligible["target_vx"], eligible["target_vy"])
-    eligible = eligible[
-        (previous_speed <= speed_outlier_threshold)
-        & (target_speed <= speed_outlier_threshold)
-    ]
+    past_limit = (
+        speed_outlier_threshold
+        if past_speed_outlier_threshold is None
+        else past_speed_outlier_threshold
+    )
+    target_limit = (
+        speed_outlier_threshold
+        if target_speed_outlier_threshold is None
+        else target_speed_outlier_threshold
+    )
+    eligible_mask = np.ones(len(eligible), dtype=bool)
+    if past_limit is not None:
+        eligible_mask &= previous_speed <= past_limit
+    if filter_target_speed and target_limit is not None:
+        eligible_mask &= target_speed <= target_limit
+    eligible = eligible[eligible_mask]
 
     feature_blocks: list[np.ndarray] = []
     target_blocks: list[np.ndarray] = []
@@ -339,7 +362,9 @@ def build_velocity_samples(
     neighbour_counts = np.concatenate(neighbour_blocks)
     occupancies = np.concatenate(occupancy_blocks)
     raw_neighbours = np.concatenate(raw_neighbour_blocks)
-    if len(targets) > maximum_samples:
+    if maximum_samples is not None and len(targets) > maximum_samples:
+        if maximum_samples <= 0:
+            raise ValueError("maximum_samples must be positive or None")
         rng = np.random.default_rng(seed)
         selected = np.sort(rng.choice(len(targets), maximum_samples, replace=False))
         features = features[selected]
@@ -351,16 +376,17 @@ def build_velocity_samples(
         occupancies = occupancies[selected]
         raw_neighbours = raw_neighbours[selected]
     return VelocitySamples(
-        source.stem,
-        features,
-        targets,
-        pedestrian_ids,
-        frames,
-        sample_positions,
-        neighbour_counts,
-        occupancies,
-        goal_method,
-        raw_neighbours,
+        run=source.stem,
+        features=features,
+        target=targets,
+        pedestrian_id=pedestrian_ids,
+        frame=frames,
+        position=sample_positions,
+        neighbour_count=neighbour_counts,
+        occupancy=occupancies,
+        goal_method=goal_method,
+        raw_neighbours=raw_neighbours,
+        origin_time_s=frames.astype(float) / frames_per_second,
     )
 
 
