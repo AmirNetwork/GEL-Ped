@@ -1,5 +1,7 @@
 # Author: Amir Ghorbani
-"""GEL-Ped geometry-encoded pedestrian forecasting package."""
+"""GEL-Ped instability-triggered pedestrian-forecast safeguard."""
+
+__version__ = "1.0.0"
 
 from .benchmarks import GELPedRegressor, GoalStableRegressor, TensorResidualRegressor
 from .calibration import TensorGeometryModel, VelocitySamples
@@ -21,6 +23,7 @@ from .simulation import (
 )
 
 __all__ = [
+    "__version__",
     "GELPedRegressor",
     "GoalStableRegressor",
     "TensorGeometryModel",

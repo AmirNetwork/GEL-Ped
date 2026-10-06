@@ -1,56 +1,55 @@
-# Submission positioning notes
+# Submission positioning and release notes
 
-## Recommended first outlet
+Author: Amir Ghorbani
 
-Transportation Research Part C: Emerging Technologies remains the strongest
-first target. The manuscript itself does not name the target journal.
+## Positioning
 
-## One-sentence value proposition
+The strongest outlet fit is a transport methods journal interested in
+operational prediction, trustworthy learning, and deployable decision support.
+The manuscript itself should not name or address a target journal.
 
-GEL-Ped leaves an accurate graph ensemble fully active while its members agree,
-then uses locally calibrated ensemble spread to limit rare unstable corrections
-with a bounded behavioural fallback.
+The central value proposition is narrow and testable: GEL-Ped leaves a modern
+short-horizon graph predictor fully active while independently trained members
+agree within a complete-run calibration envelope, then responds immediately to
+an observable instability by moving smoothly toward a bounded feature-based
+fallback.
 
-## Claim supported by the evidence
+## Claims to preserve
 
-The contribution is a transparent safeguard for a short-horizon neural crowd
-predictor. It is not a universal accuracy claim and it is not evidence that
-prospective encounter geometry causes the gain. The central comparison is
-between the five-member graph ensemble, its coordinate median, a bounded coarse
-HGB residual, and the guarded combination.
-
-## Primary evidence
-
-- Familiar and altered corridors: GEL-Ped is effectively unchanged relative
-  to the graph ensemble.
-- Perpendicular crossing: graph/GEL-Ped RMSE is 0.3543/0.3463 m/s; all 13 runs
-  improve and the Holm-adjusted exact p value is 0.0037. The median run-level
-  gain is small and run d_1 explains a substantial part of the mean.
-- Coarse HGB reaches 0.3455 m/s in crossing but is 5--8% worse than the graph
-  family in the other four controlled regimes. GEL-Ped is the useful operating
-  point, not the winner of every regime.
-- The >2-IQR instability stratum has graph/GEL-Ped RMSE of 0.5654/0.4665 m/s.
-- Additional bottleneck and unidirectional configurations show that the guard
-  leaves the graph essentially unchanged while the coarse model loses accuracy.
-- Five ETH/UCY leave-one-scene-out tests give a negligible, non-significant
-  equal-scene macro change (0.2267 to 0.2262 m/s).
-- Recursive audits show less compounding neural error, but coarse HGB and
-  constant velocity remain better at 3.2 s; do not present GEL-Ped as a
-  long-horizon trajectory generator.
+- The deployed score and action are causal and local to one pedestrian.
+- Complete runs or scenes, never shuffled frames, define evaluation units.
+- The fallback and matched controls use the same information budget specified
+  by the frozen protocol.
+- Accuracy, tail risk, detection, retention, intervention rate, retraining
+  sensitivity, and planner consequences answer different questions and should
+  not be collapsed into one headline metric.
+- Member disagreement detects variance-type instability but is blind to
+  errors shared by the ensemble.
+- The planner replay is open-loop with recorded pedestrians; it is not a
+  reciprocal simulation or safety proof.
 
 ## Claims to avoid
 
-- Do not call the method geometry-guarded or attribute its gain to prospective
-  closest-approach features.
-- Do not describe crossing as a clean confirmatory test; it informed method
-  development.
-- Do not hide the coarse-HGB crossing result or the d_1 outlier.
-- Do not claim significant improvement on ETH/UCY.
-- Do not convert the collision screen into a safety claim.
-- Do not compare published 3.2-s/4.8-s ADE values directly with this
-  0.8-s-history/0.4-s-response task.
+- universal robustness to distribution shift;
+- a formal uncertainty-coverage or collision-safety guarantee;
+- state-of-the-art long-horizon trajectory prediction;
+- causal attribution of every gain to one behavioural feature;
+- describing development-informed crossing data as untouched confirmation;
+- implying that the current referee-3 driver automatically reruns Tordeux or
+  ETH/UCY experiments.
 
-## Remaining submission action
+## Submission package checklist
 
-Archive the exact public release on Zenodo and replace the placeholder sentence
-in the Code Availability section with its DOI before acceptance.
+- verified manuscript PDF and editable Overleaf source;
+- bibliography and only the figures used by the manuscript;
+- response-to-referee document with every placeholder resolved;
+- public code at the exact release tag cited in the manuscript;
+- `CITATION.cff`, MIT code licence, data-provenance statement, and environment
+  lock files;
+- compact result tables/manifests required to audit manuscript values;
+- no raw third-party trajectories, caches, auxiliary LaTeX files, secrets,
+  temporary renders, or workstation-specific paths;
+- archived one-shot prediction receipt and confirmatory outputs, including
+  null or adverse findings;
+- a permanent software archive DOI added when available, without delaying the
+  reproducible Git tag.

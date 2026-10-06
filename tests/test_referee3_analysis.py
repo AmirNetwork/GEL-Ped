@@ -1,3 +1,4 @@
+# Author: Amir Ghorbani
 from pathlib import Path
 
 import numpy as np
@@ -9,6 +10,7 @@ from referee3_analyse import (
     _equal_run_sample_weights,
     _equivalence,
     _evaluate_primary_draw,
+    _resolve_declared_bundle_path,
     _site_online_weights,
     _stable_run_seed,
     calibrate_draw,
@@ -69,6 +71,58 @@ def test_signals_use_explicit_seconds_for_each_pedestrian() -> None:
     assert set(result) == {"spread", "disagreement", "mahalanobis", "speed"}
     assert all(value.shape == (12,) for value in result.values())
     assert np.all(np.isfinite(result["spread"]))
+
+
+def test_manifest_path_allows_only_the_frozen_prediction_archive(tmp_path: Path) -> None:
+    project = tmp_path / "project"
+    archive = project / "data/processed/referee3_predictions"
+    archive.mkdir(parents=True)
+    bundle = archive / "test_run.npz"
+    bundle.touch()
+
+    accepted = _resolve_declared_bundle_path(
+        project, "data/processed/referee3_predictions/test_run.npz"
+    )
+    assert accepted == bundle
+
+    outside = project / "data/processed/other/test_run.npz"
+    outside.parent.mkdir(parents=True)
+    outside.touch()
+    with np.testing.assert_raises_regex(RuntimeError, "leaves the prediction archive"):
+        _resolve_declared_bundle_path(
+            project, "data/processed/referee3_predictions/../other/test_run.npz"
+        )
+
+
+def test_manifest_path_accepts_allowlisted_relocated_archive(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Regression for the production junction without requiring link privileges."""
+
+    project = tmp_path / "project"
+    lexical_root = project / "data/processed/referee3_predictions"
+    lexical_path = lexical_root / "test_run.npz"
+    lexical_root.mkdir(parents=True)
+    lexical_path.touch()
+    relocated_root = tmp_path / "large-volume/referee3_predictions"
+    relocated_path = relocated_root / "test_run.npz"
+    relocated_root.mkdir(parents=True)
+    relocated_path.touch()
+
+    original_resolve = Path.resolve
+
+    def resolve(path: Path, strict: bool = False) -> Path:
+        if path == lexical_root:
+            return relocated_root
+        if path == lexical_path:
+            return relocated_path
+        return original_resolve(path, strict=strict)
+
+    monkeypatch.setattr(Path, "resolve", resolve)
+    accepted = _resolve_declared_bundle_path(
+        project, "data/processed/referee3_predictions/test_run.npz"
+    )
+    assert accepted == lexical_path
 
 
 def test_draws_are_unique_and_primary_is_first() -> None:

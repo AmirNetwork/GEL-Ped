@@ -1,97 +1,128 @@
 # GEL-Ped
 
-**GEL-Ped** is **Guarded Ensemble Learning for Pedestrians**, authored by
-**Amir Ghorbani**. It predicts mean pedestrian velocity over the next 0.4 s
-from a 0.8-s observed history.
+**GEL-Ped (Guarded Ensemble Learning for Pedestrians)** is an
+instability-triggered safeguard for short-horizon pedestrian prediction under
+changing crowd flows. It predicts mean planar velocity over the next 0.4 s
+from a causal 0.8-s observation history.
 
-The final model has three deliberately small parts:
+GEL-Ped is authored by **Amir Ghorbani**. The accompanying manuscript is titled
+*GEL-Ped: An instability-triggered safeguard for short-horizon pedestrian
+prediction under changing crowd flows*.
 
-1. five independently initialized graph residual learners whose mean is the
-   default forecast;
-2. a bounded histogram-gradient-boosted residual model using current
-   behaviour-aligned fields; and
-3. a local, past-only guard that measures graph-member spread. The graph
-   weight is exactly one inside a leave-one-complete-run-out calibration
-   envelope and decays only when local spread exceeds that envelope.
+## Method in one paragraph
 
-The primary method does **not** use prospective closest-approach geometry.
-That encoder is retained only as a mechanism control. The paper's claim is
-therefore about limiting a detectable neural-instability tail while preserving
-the graph ensemble in supported flow, not about universal state-of-the-art
-accuracy.
+Five independently initialized graph predictors form the default forecast.
+Their pedestrian-local disagreement is averaged over a trailing 1.6-s causal
+window and compared with an envelope estimated by leave-one-complete-run-out
+calibration. The graph ensemble keeps weight one while disagreement remains
+inside that envelope. Only an exceedance moves the forecast smoothly toward a
+feature-based histogram-gradient-boosting fallback with an explicit output
+speed cap. The method returns both the forecast and the graph weight, so an
+operational system can log or act on an intervention. Its scope is deliberately
+narrow: it responds to detectable member instability and is not a universal
+distribution-shift detector, uncertainty guarantee, or safety certificate.
 
-## Main evidence
+The immutable scientific specification is
+[`configs/referee3_lock.json`](configs/referee3_lock.json). The untouched
+T-junction registry is
+[`configs/referee3_heldout_registry.json`](configs/referee3_heldout_registry.json).
 
-- Complete physical runs, rather than frames, define every split and every
-  inferential unit.
-- In perpendicular crossing, GEL-Ped changes mean complete-run RMSE from
-  0.3543 to 0.3463 m/s relative to the five-member graph mean. All 13 runs
-  improve, but the median difference is only -0.0022 m/s and one unstable run
-  contributes substantially to the mean.
-- In the highest local-instability stratum, graph RMSE is 0.5654 m/s and
-  GEL-Ped RMSE is 0.4665 m/s.
-- Coarse HGB is marginally lower than GEL-Ped in crossing (0.3455 versus
-  0.3463 m/s) but is 5--8% worse in the other four controlled regimes.
-- On all five ETH/UCY leave-one-scene-out tests, the equal-scene macro RMSE is
-  0.2267 m/s for the graph ensemble and 0.2262 m/s for GEL-Ped. The difference
-  is descriptive and non-significant.
-- Recursive crossing audits show smaller graph-to-GEL error at 0.8, 1.6, and
-  3.2 s, but coarse HGB and constant velocity are better at 3.2 s. GEL-Ped is
-  not presented as a replacement for a dedicated long-horizon predictor.
+## Repository map
 
-## Manuscript-to-code map
+- `src/pedgeom/calibration.py`: causal samples, interaction fields, and metrics
+- `src/pedgeom/graph_baseline.py`: anchored graph interaction predictor
+- `src/pedgeom/benchmarks.py`: feature-based HGB fallback and matched experts
+- `src/pedgeom/runtime_guard.py`: time-windowed score, one-sided gate, tail and
+  online-control utilities
+- `src/pedgeom/reactive_planner.py`: paired fixed/adaptive open-loop planner
+  replay
+- `experiments/referee3_generate_predictions.py`: leakage-resistant
+  out-of-fold and controlled-data prediction bundles
+- `experiments/referee3_analyse.py`: frozen draw, tail, targeting,
+  decomposition, online, and equivalence analyses
+- `experiments/referee3_transformer_generalization.py`: matched compact
+  Transformer-backbone check on the controlled-data batches
+- `experiments/referee3_reactive_planner.py`: consequence and latency audit on
+  those controlled-data bundles
+- `experiments/referee3_generate_heldout.py`: prediction-only, execute-once
+  untouched T-junction path
+- `experiments/referee3_analyse_heldout.py`: frozen confirmatory held-out
+  analysis
+- `manuscript/overleaf_trc/`: manuscript source, bibliography, and figures
+- `tests/`: causality, leakage, schema, statistics, and planner regression tests
 
-- sample construction and frame-rate handling:
-  `src/pedgeom/calibration.py` and `src/pedgeom/datasets.py`
-- graph residual learner: `src/pedgeom/graph_baseline.py`
-- behavioural features, boosted models, and controls:
-  `src/pedgeom/benchmarks.py`
-- ETH/UCY adapter: `src/pedgeom/external.py`
-- primary five-seed experiment: `experiments/referee2_revision.py`
-- complete Holm family and per-run statistics:
-  `experiments/referee2_statistics.py`
-- collision, sensitivity, uncertainty, and rollout audits:
-  `experiments/referee2_operational_audit.py`
-- route-axis and all-speed audits: `experiments/referee2_route_axis.py`
-- calibration-only graph capacity sweep:
-  `experiments/graph_capacity_sweep.py`
-- publication figures: `experiments/referee2_figures.py`
-- frozen specification: `configs/referee2_lock.json`
-- final manuscript: `manuscript/overleaf_trc/main.tex`
+The current `referee3_*` automation covers the Jülich corridor/crossing data
+and the separately registered T-junction. Tordeux and ETH/UCY adapters and
+earlier exploratory workflows remain available in the repository, but they
+are not silently included by the referee-3 driver. This distinction prevents a
+single command from being misrepresented as reproducing every historical
+analysis.
+
+The equation-to-code correspondence and exact execution order are documented
+in [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md).
 
 ## Installation
 
-Python 3.11 or newer is required.
+Python 3.11 or newer is required. The reference environment was run with
+Python 3.12 on CPU.
+
+For a convenient editable development environment:
 
 ```powershell
 python -m venv .venv
+.\.venv\Scripts\python -m pip install --upgrade pip
 .\.venv\Scripts\python -m pip install -e ".[dev]"
 .\.venv\Scripts\python -m pip install -r requirements-graph.txt
 ```
 
-The last command installs the CPU build of PyTorch used by the graph model.
-
-## Reproduce the final analysis
-
-Download the Juelich, Tordeux, and ETH/UCY archives documented in
-`data/README.md` and place their extracted trajectories in the stated
-directories. Raw third-party data are not redistributed.
+For the exact recorded package versions, install the two lock files first and
+then install this package without resolving dependencies again:
 
 ```powershell
-.\.venv\Scripts\python experiments\referee2_revision.py
-.\.venv\Scripts\python experiments\referee2_statistics.py
-.\.venv\Scripts\python experiments\referee2_operational_audit.py
-.\.venv\Scripts\python experiments\referee2_route_axis.py
-.\.venv\Scripts\python experiments\graph_capacity_sweep.py
-.\.venv\Scripts\python experiments\referee2_figures.py
-.\.venv\Scripts\python -m pytest -q
+.\.venv\Scripts\python -m pip install -r requirements-lock.txt
+.\.venv\Scripts\python -m pip install -r requirements-graph.txt
+.\.venv\Scripts\python -m pip install -e . --no-deps
 ```
 
-The experiment scripts record random seeds, run identifiers, fitted guard
-parameters, and complete-run outputs in `data/processed/`.
+`requirements-graph.txt` selects the official CPU PyTorch wheel index. A CUDA
+build is optional and is not required to reproduce the reported protocol.
+
+## Data
+
+Raw third-party trajectories are not redistributed. Sources, checksums,
+expected directories, and dataset roles are listed in
+[`data/README.md`](data/README.md). Dataset copyrights and licence terms remain
+with their respective providers.
+
+The untouched T-junction evaluation is different from the development runs.
+Do **not** execute it while changing features, thresholds, models, endpoints,
+or inclusion rules. Freeze and tag the complete protocol first, verify the
+registered archive and sentinel, generate target-blind predictions once, and
+only then run the locked confirmatory analysis. See the explicit firewall in
+[`REPRODUCIBILITY.md`](REPRODUCIBILITY.md).
+
+## Reproduce the controlled-data development analysis
+
+After placing the controlled archives in the documented locations:
+
+```powershell
+.\.venv\Scripts\python -m pytest
+.\.venv\Scripts\ruff check .
+.\.venv\Scripts\python experiments\referee3_generate_predictions.py --workers 4
+.\.venv\Scripts\python experiments\referee3_analyse.py
+.\.venv\Scripts\python experiments\referee3_transformer_generalization.py
+.\.venv\Scripts\python experiments\referee3_reactive_planner.py
+```
+
+`run_research.ps1` runs this controlled-data development sequence but
+intentionally never opens the untouched T-junction outcomes. The training
+scripts are resumable; their large member caches and prediction bundles are
+generated locally and excluded from Git.
 
 ## Licence and citation
 
-Code is released under the MIT licence. Dataset terms remain with their source
-archives. See `CITATION.cff` and cite the original dataset records when using
-the controlled or naturalistic experiments.
+The source code is released under the [MIT License](LICENSE). This licence does
+not cover third-party datasets, photographs, or publisher-formatted material.
+Please cite the accompanying article and the software metadata in
+[`CITATION.cff`](CITATION.cff), as well as every original dataset record used
+in an analysis.

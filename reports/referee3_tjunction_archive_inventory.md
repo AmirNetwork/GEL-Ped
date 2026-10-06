@@ -5,10 +5,10 @@ This record was made after the analysis freeze at commit
 performance calculation on the T-junction data.
 
 - Official URL: `http://ped.fz-juelich.de/experiments/2009.05.12_Duesseldorf_Messe_Hermes/data/zip/2009tjunction_trajectories_txt.zip`
-- Downloaded archive: `E:\GEL-Ped-TRC-Review-Compute\tjunction\2009tjunction_trajectories_txt.zip`
+- Downloaded archive: `<scratch>\tjunction\2009tjunction_trajectories_txt.zip`
 - Size: 4,912,940 bytes
 - SHA-256: `182ef75f3c0fc71497bcccf7ec5b139a02b629071ed71a022aa1aee7bd7d3827`
-- Schema-only inventory JSON: `E:\GEL-Ped-TRC-Review-Compute\tjunction\archive_inventory.json`
+- Schema-only inventory JSON: `<scratch>\tjunction\archive_inventory.json`
   (SHA-256 `4ce8f655e8467cab617178daeed2b5fa4cadbd3fb9ab5bdd229df7ae7d39f701`)
 - Structure: 11 flat text members, no header/comment rows, five whitespace-separated numeric columns in every data row
 - Frozen schema: pedestrian identifier, frame, x (cm), y (cm), z/height (cm)

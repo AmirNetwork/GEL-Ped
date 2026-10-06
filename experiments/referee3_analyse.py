@@ -13,6 +13,7 @@ import argparse
 from dataclasses import dataclass
 import hashlib
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -104,6 +105,43 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _resolve_declared_bundle_path(project: Path, declared: str) -> Path:
+    """Validate a manifest path while allowing the frozen cache junction.
+
+    Large prediction archives may live behind the intentional
+    ``data/processed/referee3_predictions`` junction.  A resolved-path check
+    against the repository root alone therefore rejects valid archives on a
+    different volume.  We first enforce lexical containment in that one
+    declared project directory, then allow only resolved targets below the
+    directory's own resolved root.  This admits the junction without admitting
+    absolute paths, ``..`` traversal, sibling caches, or nested links that
+    escape the allowlisted target.
+    """
+
+    relative = Path(declared)
+    if relative.is_absolute():
+        raise RuntimeError("training manifest bundle path must be relative")
+    lexical_project = Path(os.path.abspath(project))
+    lexical_root = Path(
+        os.path.abspath(lexical_project / "data/processed/referee3_predictions")
+    )
+    lexical_path = Path(os.path.abspath(lexical_project / relative))
+    if not lexical_path.is_relative_to(lexical_root):
+        raise RuntimeError("training manifest bundle path leaves the prediction archive")
+    try:
+        resolved_root = lexical_root.resolve(strict=True)
+        resolved_path = lexical_path.resolve(strict=True)
+    except OSError as error:
+        raise RuntimeError(
+            f"training manifest bundle path cannot be resolved: {lexical_path}"
+        ) from error
+    if not resolved_path.is_relative_to(resolved_root):
+        raise RuntimeError(
+            "training manifest bundle path leaves the allowlisted archive target"
+        )
+    return lexical_path
+
+
 def _manifest_bundles(project: Path) -> tuple[list[Bundle], list[Bundle]]:
     """Load only checksum-verified archives declared by the training manifest."""
 
@@ -122,13 +160,10 @@ def _manifest_bundles(project: Path) -> tuple[list[Bundle], list[Bundle]]:
     oof: list[Bundle] = []
     tests: list[Bundle] = []
     seen: set[Path] = set()
-    root = project.resolve()
     for row in declared:
         if not isinstance(row, dict) or "path" not in row or "sha256" not in row:
             raise RuntimeError("training manifest contains an invalid bundle entry")
-        path = (project / str(row["path"])).resolve()
-        if not path.is_relative_to(root):
-            raise RuntimeError("training manifest bundle path leaves the project")
+        path = _resolve_declared_bundle_path(project, str(row["path"]))
         if path in seen:
             raise RuntimeError(f"duplicate bundle entry in manifest: {path.name}")
         seen.add(path)

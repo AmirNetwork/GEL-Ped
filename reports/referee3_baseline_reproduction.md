@@ -20,8 +20,8 @@ The unmodified baseline suite was run with the source checkout's virtual
 environment and this worktree's `src` directory on `PYTHONPATH`:
 
 ```powershell
-$env:PYTHONPATH='C:\Users\61411\Desktop\GEL-Ped-TRC-Review\src'
-& 'C:\Users\61411\Documents\Codex\2026-07-22\re\work\pedestrian_geometry\.venv\Scripts\python.exe' -m pytest -q
+$env:PYTHONPATH=(Join-Path $PWD 'src')
+& '.\.venv\Scripts\python.exe' -m pytest -q
 ```
 
 Result: **38 passed**.  Six expected scikit-learn warnings were emitted by

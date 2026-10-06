@@ -35,7 +35,7 @@ from pedgeom.reactive_planner import (
     replay_episode,
 )
 from pedgeom.runtime_guard import one_sided_gate_weights
-from referee3_analyse import load_bundle, selected_predictions, signals
+from referee3_analyse import _manifest_bundles, selected_predictions, signals
 from referee3_generate_predictions import _atomic_write_json, _sha256, project_root
 
 
@@ -215,22 +215,21 @@ def evaluate(args: argparse.Namespace) -> None:
     project = project_root()
     config_path = project / "configs/referee3_lock.json"
     calibration_path = project / "data/processed/referee3_primary_calibration.json"
-    bundle_dir = project / "data/processed/referee3_predictions"
     config = json.loads(config_path.read_text(encoding="utf-8"))
     if not calibration_path.exists():
         raise RuntimeError("run referee3_analyse.py before the planner audit")
     calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
     parameters = PlannerParameters.from_mapping(config["reactive_planner"])
-    bundle_paths = sorted(bundle_dir.glob("test_*.npz"))
-    if not bundle_paths:
+    _, bundles = _manifest_bundles(project)
+    if not bundles:
         raise RuntimeError("no referee-3 test prediction bundles were found")
+    bundle_paths = [bundle.path for bundle in bundles]
 
     metric_rows: list[dict[str, Any]] = []
     trace_rows: list[dict[str, Any]] = []
     latency_rows: list[dict[str, Any]] = []
     route_rows: list[dict[str, Any]] = []
-    for path in bundle_paths:
-        bundle = load_bundle(path)
+    for bundle in bundles:
         members, direct, fallback, guarded, graph_weight = _predictions(
             bundle, calibration, config
         )

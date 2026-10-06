@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gel-ped"
-version = "0.1.0"
-description = "GEL-Ped: instability-aware guarded ensemble learning for pedestrian forecasting"
+version = "1.0.0"
+description = "GEL-Ped: an instability-triggered safeguard for short-horizon pedestrian prediction"
 authors = [{ name = "Amir Ghorbani" }]
 readme = "README.md"
 license = "MIT"

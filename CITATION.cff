@@ -1,11 +1,24 @@
 cff-version: 1.2.0
-message: "If you use GEL-Ped, please cite the accompanying article and this software."
-title: "GEL-Ped: Instability-Aware Guarded Ensemble Learning for Short-Horizon Crowd Prediction under Flow Shift"
+message: "If you use GEL-Ped, please cite the accompanying article, this software, and the original datasets."
+title: "GEL-Ped: An instability-triggered safeguard for short-horizon pedestrian prediction under changing crowd flows"
 type: software
 authors:
   - family-names: Ghorbani
     given-names: Amir
 repository-code: "https://github.com/AmirNetwork/GEL-Ped"
 license: MIT
-version: 0.4.0
-date-released: 2026-10-01
+version: 1.0.0
+date-released: 2026-10-02
+keywords:
+  - pedestrian prediction
+  - ensemble disagreement
+  - runtime safeguard
+  - distribution shift
+  - crowd dynamics
+preferred-citation:
+  type: article
+  title: "GEL-Ped: An instability-triggered safeguard for short-horizon pedestrian prediction under changing crowd flows"
+  authors:
+    - family-names: Ghorbani
+      given-names: Amir
+  year: 2026
