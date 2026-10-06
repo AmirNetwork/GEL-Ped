@@ -1,0 +1,20 @@
+{
+  "indices": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "tau": 0.04430794369174538,
+  "scale": 0.011955491428161557,
+  "disagreement_tau": 0.1382311925622364,
+  "disagreement_scale": 0.0471741880929572,
+  "mahalanobis_tau": 4.70346212387085,
+  "mahalanobis_scale": 1.7125501036643982,
+  "speed_tau": 0.9589212164090559,
+  "speed_scale": 0.3725496162964595,
+  "fixed_graph_weight": 0.96,
+  "calibration_weighting": "pooled eligible origins across complete OOF runs",
+  "uncertainty_resampling_unit": "complete OOF run"
+}

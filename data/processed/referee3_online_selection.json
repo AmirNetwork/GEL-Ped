@@ -1,0 +1,5 @@
+{
+  "scope": "site",
+  "learning_rate": 4.0,
+  "fixed_share": 0.0
+}

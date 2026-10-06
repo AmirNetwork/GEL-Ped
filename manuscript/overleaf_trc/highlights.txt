@@ -1,0 +1,5 @@
+GEL-Ped leaves neural forecasts unchanged inside a run-calibrated envelope
+Tail errors fall on an untouched T-junction under a frozen one-shot test
+Thirty retrained ensemble draws reproduce the crossing-tail benefit
+Fixed and permuted controls show that the safeguard targets unstable cases
+Shared model bias, not member variance, dominates error under flow shift

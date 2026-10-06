@@ -353,14 +353,16 @@ def _table(
     header: Sequence[str],
     rows: Sequence[Sequence[str]],
     notes: str | None = None,
+    size_command: str = r"\small",
+    tabcolsep: str = "4.2pt",
 ) -> str:
     body = [
         r"\begin{table}[!htbp]",
         r"\centering",
         rf"\caption{{{caption}}}",
         rf"\label{{{label}}}",
-        r"\small",
-        r"\setlength{\tabcolsep}{4.2pt}",
+        size_command,
+        rf"\setlength{{\tabcolsep}}{{{tabcolsep}}}",
         r"\renewcommand{\arraystretch}{1.08}",
         rf"\begin{{tabular}}{{{column_specification}}}",
         r"\toprule",
@@ -510,6 +512,8 @@ def _draw_assets(frame: pd.DataFrame, table_dir: Path, figure_dir: Path) -> tupl
                 "and complete member draws; overlapping member subsets are not treated "
                 "as independent training experiments."
             ),
+            size_command=r"\scriptsize",
+            tabcolsep="2.4pt",
         ),
     )
 

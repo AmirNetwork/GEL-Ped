@@ -1,0 +1,29 @@
+role,run,partial_spearman_spread_error_given_speed
+calibration,bi_corr_400_a_01,0.08924212313389476
+calibration,bi_corr_400_a_02,0.12613717635908114
+calibration,bi_corr_400_b_01,0.04329475093908785
+calibration,bi_corr_400_b_03,0.10017481567441094
+calibration,bi_corr_400_b_05,0.06335844662665706
+calibration,bi_corr_400_b_07,0.07097272138414815
+calibration,bi_corr_400_b_09,0.10461593967018935
+altered geometry,bi_corr_400_a_04,0.08065068667367667
+altered geometry,bi_corr_400_a_05,0.09250497199513373
+altered geometry,bi_corr_400_b_08,0.10139447796744747
+crossing topology,crossing_90_d_1,0.16389721264310703
+crossing topology,crossing_90_d_2,0.19813558104562962
+crossing topology,crossing_90_d_3,0.2015383658635187
+crossing topology,crossing_90_d_5,0.16297337792366834
+crossing topology,crossing_90_d_6,0.1826367999901138
+crossing topology,crossing_90_d_7,0.1819956291173307
+crossing topology,crossing_90_d_8,0.1317532238252079
+crossing topology,crossing_90_e_1,0.15659378299564874
+crossing topology,crossing_90_e_2,0.17513393316435769
+crossing topology,crossing_90_e_3,0.17081531546874726
+crossing topology,crossing_90_e_4,0.17630434660369937
+crossing topology,crossing_90_e_5,0.14938987778565338
+crossing topology,crossing_90_e_6,0.1445696422785723
+familiar corridor,bi_corr_400_a_03,0.07388407441939432
+familiar corridor,bi_corr_400_b_02,0.05719629177463912
+familiar corridor,bi_corr_400_b_04,0.11995158823192542
+familiar corridor,bi_corr_400_b_06,0.10092294375822403
+familiar corridor,bi_corr_400_b_10,0.10718396558865118

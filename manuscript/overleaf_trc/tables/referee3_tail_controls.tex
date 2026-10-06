@@ -1,0 +1,33 @@
+\begin{table}[!htbp]
+\centering
+\caption{Run-macro mean and tail error for GEL-Ped and matched controls. All methods use the same evaluation origins; gates use the same graph--fallback expert pair.}
+\label{tab:r3-tail-controls}
+\small
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{llrrrr}
+\toprule
+Regime & Method & RMSE & $q_{.95}$ & CVaR$_{.95}$ & $e>0.5$ \\
+\midrule
+altered geometry & Graph ensemble & 0.1684 & 0.3135 & 0.3846 & 0.36\% \\
+altered geometry & GEL-Ped & 0.1684 & 0.3134 & 0.3844 & 0.36\% \\
+altered geometry & HGB fallback & 0.1903 & 0.3496 & 0.4214 & 0.59\% \\
+altered geometry & Fixed blend & 0.1684 & 0.3131 & 0.3844 & 0.36\% \\
+altered geometry & Learned matched gate & 0.1710 & 0.3163 & 0.3874 & 0.36\% \\
+altered geometry & Delayed-error gate & 0.1685 & 0.3135 & 0.3847 & 0.36\% \\
+crossing topology & Graph ensemble & 0.3761 & 0.6839 & 0.8479 & 15.78\% \\
+crossing topology & GEL-Ped & 0.3687 & 0.6684 & 0.8326 & 14.72\% \\
+crossing topology & HGB fallback & 0.3646 & 0.6602 & 0.8294 & 13.98\% \\
+crossing topology & Fixed blend & 0.3747 & 0.6810 & 0.8452 & 15.59\% \\
+crossing topology & Learned matched gate & 0.3664 & 0.6637 & 0.8296 & 14.36\% \\
+crossing topology & Delayed-error gate & 0.3636 & 0.6580 & 0.8264 & 13.90\% \\
+familiar corridor & Graph ensemble & 0.1735 & 0.3192 & 0.3961 & 0.50\% \\
+familiar corridor & GEL-Ped & 0.1737 & 0.3194 & 0.3963 & 0.50\% \\
+familiar corridor & HGB fallback & 0.2004 & 0.3649 & 0.4445 & 0.88\% \\
+familiar corridor & Fixed blend & 0.1736 & 0.3196 & 0.3960 & 0.50\% \\
+familiar corridor & Learned matched gate & 0.1773 & 0.3248 & 0.4012 & 0.52\% \\
+familiar corridor & Delayed-error gate & 0.1738 & 0.3200 & 0.3967 & 0.51\% \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}\footnotesize Velocity-error quantities are in m/s. The final column is a forecast share.
+\end{table}

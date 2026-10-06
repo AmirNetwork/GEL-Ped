@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\centering
+\caption{Implementation footprint and latency. Parameter counts and timings are kept in separate rows because saved-array timing excludes model forward passes.}
+\label{tab:r3-runtime-parameters}
+\small
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lrrrl}
+\toprule
+Component & Parameters & Median (ms) & $p_{.95}$ (ms) & Scope \\
+\midrule
+Graph member & 13,203 & -- & -- & Trainable weights \\
+5-member graph ensemble & 66,015 & -- & -- & No weight sharing \\
+Transformer member & 3,442 & -- & -- & Trainable weights \\
+5-member Transformer ensemble & 17,210 & -- & -- & No weight sharing \\
+five-member reduction & -- & 0.006 & 0.007 & Post-prediction CPU \\
+instantaneous guard and blend & -- & 0.028 & 0.032 & Post-prediction CPU \\
+reactive search with direct forecast & -- & 0.161 & 0.205 & Post-prediction CPU \\
+reactive search with guarded adaptive forecast & -- & 0.162 & 0.210 & Post-prediction CPU \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}\footnotesize Latency is the median across complete-run timing records for each stage; each record uses its declared warm-up and repeated calls.
+\end{table}

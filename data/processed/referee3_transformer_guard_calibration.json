@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "config_sha256": "be4e1d2f6423c6a7c5f54a25754603bc1363221fc7d2d1cb3826bcfd752a7ee8",
+  "window_seconds": 1.6,
+  "quantile": 0.9,
+  "quantile_convention": "ceil((n+1)*q)-th ordered value, clipped to [1,n]",
+  "threshold_mps": 0.04412296552519983,
+  "scale_iqr_mps": 0.011609012871843665,
+  "calibration_forecasts": 156498,
+  "calibration_firing_rate": 0.09998849825556876,
+  "member_seeds": [
+    20260722,
+    20261719,
+    20262716,
+    20263713,
+    20264710
+  ],
+  "speed_cap_mps": 3.0,
+  "transformer_options": {
+    "width": 16,
+    "num_heads": 4,
+    "num_layers": 1,
+    "max_epochs": 15,
+    "patience": 3,
+    "weight_average_epochs": 3,
+    "batch_size": 1024,
+    "learning_rate": 0.001,
+    "weight_decay": 0.001,
+    "num_threads": 1,
+    "residual": true,
+    "wall_features": false
+  }
+}

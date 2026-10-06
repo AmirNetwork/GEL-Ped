@@ -1,0 +1,85 @@
+role,run,stage,scope,pedestrians,warmup,repeats,mean_ms,median_ms,p95_ms,minimum_ms,maximum_ms
+altered geometry,bi_corr_400_a_04,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,120,10,100,0.007904000000000001,0.0078,0.008505,0.0076,0.0091
+altered geometry,bi_corr_400_a_04,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,120,10,100,0.031939999999999996,0.03175,0.032905,0.0312,0.0385
+altered geometry,bi_corr_400_a_04,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,120,10,100,0.19155199999999997,0.186,0.21447999999999998,0.1828,0.3053
+altered geometry,bi_corr_400_a_04,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,120,10,100,0.19510099999999997,0.18525,0.23787999999999992,0.1818,0.408
+altered geometry,bi_corr_400_a_05,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,122,10,100,0.007628999999999998,0.0075,0.008305,0.0073,0.0121
+altered geometry,bi_corr_400_a_05,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,122,10,100,0.032054,0.0317,0.033604999999999996,0.0312,0.0428
+altered geometry,bi_corr_400_a_05,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,122,10,100,0.19857499999999997,0.18664999999999998,0.25841,0.1836,0.3638
+altered geometry,bi_corr_400_a_05,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,122,10,100,0.19325200000000003,0.18619999999999998,0.23621999999999999,0.1836,0.3228
+altered geometry,bi_corr_400_b_08,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,121,10,100,0.007641,0.0076,0.007809999999999999,0.0075,0.0087
+altered geometry,bi_corr_400_b_08,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,121,10,100,0.031665,0.0314,0.032915,0.0307,0.0383
+altered geometry,bi_corr_400_b_08,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,121,10,100,0.18585099999999993,0.18135,0.218535,0.1787,0.2744
+altered geometry,bi_corr_400_b_08,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,121,10,100,0.20026400000000003,0.18575,0.25342,0.1791,0.4783
+crossing topology,crossing_90_d_1,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,18,10,100,0.0032069999999999998,0.0032,0.0033,0.0031,0.0034
+crossing topology,crossing_90_d_1,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,18,10,100,0.021251999999999997,0.0194,0.03185499999999999,0.0187,0.0632
+crossing topology,crossing_90_d_1,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,18,10,100,0.122201,0.112,0.21517499999999998,0.1088,0.3039
+crossing topology,crossing_90_d_1,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,18,10,100,0.11477599999999999,0.1121,0.11861,0.11,0.2804
+crossing topology,crossing_90_d_2,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,27,10,100,0.0036819999999999995,0.0036,0.0041,0.0035,0.0048
+crossing topology,crossing_90_d_2,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,27,10,100,0.021549000000000006,0.0206,0.022544999999999992,0.0197,0.0775
+crossing topology,crossing_90_d_2,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,27,10,100,0.128238,0.119,0.151025,0.1166,0.3933
+crossing topology,crossing_90_d_2,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,27,10,100,0.12161000000000001,0.1183,0.12504999999999997,0.1153,0.2997
+crossing topology,crossing_90_d_3,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,38,10,100,0.004164999999999999,0.0042,0.0043,0.004,0.0043
+crossing topology,crossing_90_d_3,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,38,10,100,0.024373,0.02185,0.026705,0.0214,0.2353
+crossing topology,crossing_90_d_3,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,38,10,100,0.147529,0.1274,0.20487499999999992,0.1245,1.2868
+crossing topology,crossing_90_d_3,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,38,10,100,0.12897699999999998,0.1269,0.13554999999999998,0.1246,0.205
+crossing topology,crossing_90_d_5,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,69,10,100,0.005479999999999998,0.0055,0.0056,0.0054,0.0057
+crossing topology,crossing_90_d_5,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,69,10,100,0.025820999999999997,0.0256,0.0262,0.0252,0.0334
+crossing topology,crossing_90_d_5,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,69,10,100,0.154851,0.148,0.19661499999999998,0.145,0.2817
+crossing topology,crossing_90_d_5,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,69,10,100,0.15086799999999997,0.14855000000000002,0.155725,0.1459,0.2694
+crossing topology,crossing_90_d_6,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,110,10,100,0.007363000000000001,0.0071,0.0086,0.0069,0.0162
+crossing topology,crossing_90_d_6,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,110,10,100,0.031053999999999995,0.03055,0.0316,0.0301,0.0664
+crossing topology,crossing_90_d_6,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,110,10,100,0.18407299999999996,0.1788,0.206345,0.1727,0.3265
+crossing topology,crossing_90_d_6,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,110,10,100,0.18548,0.1781,0.21043499999999998,0.1754,0.4734
+crossing topology,crossing_90_d_7,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,124,10,100,0.007827000000000002,0.0077,0.0086,0.0075,0.0092
+crossing topology,crossing_90_d_7,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,124,10,100,0.03267200000000001,0.032,0.032805,0.0312,0.0729
+crossing topology,crossing_90_d_7,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,124,10,100,0.20239500000000002,0.1877,0.239585,0.1842,0.9561
+crossing topology,crossing_90_d_7,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,124,10,100,0.190774,0.1875,0.20001000000000002,0.1847,0.2811
+crossing topology,crossing_90_d_8,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,163,10,100,0.009455999999999999,0.0094,0.0096,0.0092,0.0119
+crossing topology,crossing_90_d_8,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,163,10,100,0.036537999999999994,0.0363,0.0376,0.0356,0.043
+crossing topology,crossing_90_d_8,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,163,10,100,0.23598800000000003,0.21535,0.32823499999999983,0.2114,1.0104
+crossing topology,crossing_90_d_8,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,163,10,100,0.23170100000000005,0.2157,0.2576,0.2119,1.1992
+crossing topology,crossing_90_e_1,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.0036040000000000004,0.0035,0.0039,0.0033,0.0049
+crossing topology,crossing_90_e_1,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.020235,0.0197,0.021534999999999995,0.0193,0.0516
+crossing topology,crossing_90_e_1,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.11755700000000001,0.11255000000000001,0.14143499999999995,0.1104,0.2232
+crossing topology,crossing_90_e_1,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.11698199999999997,0.112,0.13183499999999992,0.1102,0.2495
+crossing topology,crossing_90_e_2,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,28,10,100,0.0037220000000000005,0.0037,0.0038,0.0036,0.004
+crossing topology,crossing_90_e_2,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,28,10,100,0.020691,0.0206,0.020905,0.0203,0.0277
+crossing topology,crossing_90_e_2,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,28,10,100,0.12863999999999998,0.1193,0.19377499999999995,0.117,0.2478
+crossing topology,crossing_90_e_2,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,28,10,100,0.12140099999999998,0.1193,0.13093,0.1178,0.2049
+crossing topology,crossing_90_e_3,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,42,10,100,0.004242000000000001,0.0042,0.0044,0.0041,0.0045
+crossing topology,crossing_90_e_3,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,42,10,100,0.033525,0.0221,0.030479999999999997,0.0215,0.9172
+crossing topology,crossing_90_e_3,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,42,10,100,0.13022599999999998,0.12915,0.13757499999999998,0.1255,0.1638
+crossing topology,crossing_90_e_3,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,42,10,100,0.132023,0.1299,0.147975,0.1273,0.1725
+crossing topology,crossing_90_e_4,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,64,10,100,0.005345999999999998,0.005350000000000001,0.0055,0.0052,0.0055
+crossing topology,crossing_90_e_4,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,64,10,100,0.025824,0.0251,0.02712,0.0244,0.0556
+crossing topology,crossing_90_e_4,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,64,10,100,0.14647999999999997,0.14505,0.151615,0.1433,0.2083
+crossing topology,crossing_90_e_4,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,64,10,100,0.1564,0.1463,0.15669,0.1422,0.712
+crossing topology,crossing_90_e_5,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,80,10,100,0.005998000000000001,0.0059,0.0065,0.0058,0.0071
+crossing topology,crossing_90_e_5,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,80,10,100,0.037989999999999996,0.0273,0.030669999999999996,0.0267,0.8102
+crossing topology,crossing_90_e_5,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,80,10,100,0.160607,0.1563,0.17607499999999998,0.1535,0.3635
+crossing topology,crossing_90_e_5,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,80,10,100,0.173097,0.1569,0.22466999999999995,0.1521,0.9351
+crossing topology,crossing_90_e_6,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,118,10,100,0.01091,0.0077,0.014024999999999982,0.0075,0.1465
+crossing topology,crossing_90_e_6,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,118,10,100,0.032272999999999996,0.03155,0.03350499999999999,0.0306,0.0737
+crossing topology,crossing_90_e_6,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,118,10,100,0.18769099999999997,0.18145,0.22273500000000002,0.1775,0.2793
+crossing topology,crossing_90_e_6,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,118,10,100,0.19391499999999998,0.17815,0.21905499999999997,0.1731,1.052
+familiar corridor,bi_corr_400_a_03,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,119,10,100,0.007858999999999998,0.0077,0.0086,0.0075,0.0125
+familiar corridor,bi_corr_400_a_03,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,119,10,100,0.032875999999999996,0.0317,0.03498,0.031,0.0964
+familiar corridor,bi_corr_400_a_03,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,119,10,100,0.202865,0.18385,0.2590949999999999,0.181,1.1423
+familiar corridor,bi_corr_400_a_03,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,119,10,100,0.19194099999999994,0.1839,0.21875499999999998,0.1782,0.4461
+familiar corridor,bi_corr_400_b_02,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.003389000000000001,0.0034,0.003505,0.0033,0.0037
+familiar corridor,bi_corr_400_b_02,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.020076999999999998,0.0197,0.020014999999999998,0.0193,0.0441
+familiar corridor,bi_corr_400_b_02,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.117163,0.1107,0.14763,0.1087,0.2781
+familiar corridor,bi_corr_400_b_02,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,20,10,100,0.11206100000000001,0.1099,0.11859999999999998,0.1078,0.2158
+familiar corridor,bi_corr_400_b_04,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,87,10,100,0.006398999999999999,0.0062,0.007,0.006,0.0078
+familiar corridor,bi_corr_400_b_04,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,87,10,100,0.03749299999999999,0.0277,0.03702499999999999,0.027,0.8844
+familiar corridor,bi_corr_400_b_04,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,87,10,100,0.163371,0.16085,0.168545,0.1587,0.2645
+familiar corridor,bi_corr_400_b_04,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,87,10,100,0.17928199999999997,0.16244999999999998,0.22698999999999997,0.1596,0.9362
+familiar corridor,bi_corr_400_b_06,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,112,10,100,0.00736,0.0073,0.0079,0.0071,0.0084
+familiar corridor,bi_corr_400_b_06,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,112,10,100,0.031379000000000004,0.0312,0.032,0.0306,0.0387
+familiar corridor,bi_corr_400_b_06,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,112,10,100,0.19820700000000005,0.1789,0.290375,0.1751,0.3962
+familiar corridor,bi_corr_400_b_06,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,112,10,100,0.18512900000000002,0.1786,0.21022999999999997,0.1761,0.4183
+familiar corridor,bi_corr_400_b_10,five-member reduction,post-prediction CPU timing; excludes neural and HGB forward passes,92,10,100,0.006653999999999998,0.0067,0.0069,0.0062,0.0095
+familiar corridor,bi_corr_400_b_10,instantaneous guard and blend,post-prediction CPU timing; excludes neural and HGB forward passes,92,10,100,0.031692,0.0283,0.03218499999999999,0.0276,0.3054
+familiar corridor,bi_corr_400_b_10,reactive search with direct forecast,post-prediction CPU timing; excludes neural and HGB forward passes,92,10,100,0.16924899999999998,0.1643,0.18730999999999995,0.1623,0.3208
+familiar corridor,bi_corr_400_b_10,reactive search with guarded adaptive forecast,post-prediction CPU timing; excludes neural and HGB forward passes,92,10,100,0.18267299999999995,0.16494999999999999,0.25020499999999996,0.1595,1.1773

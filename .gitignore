@@ -18,7 +18,9 @@ data/processed/referee3_member_cache/
 data/processed/referee3_predictions/
 data/processed/referee3_transformer_cache/
 data/processed/referee3_transformer_predictions/
+/data/processed/referee3_forecasts_primary.csv.gz
 reports/generated/
+release/
 tmp/
 work/
 manuscript/overleaf_trc/*.aux

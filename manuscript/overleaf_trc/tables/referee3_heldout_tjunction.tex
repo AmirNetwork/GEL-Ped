@@ -1,0 +1,19 @@
+\begin{table}[!htbp]
+\centering
+\caption{One-shot untouched T-junction evaluation. Inference is paired by complete physical run and adjusted across the four locked endpoints.}
+\label{tab:r3-heldout-tjunction}
+\small
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lrrrrrr}
+\toprule
+Endpoint & Graph & GEL-Ped & $\Delta$ & 95\% CI & Relative $\Delta$ & Holm $p$ \\
+\midrule
+RMSE (m/s) & 0.3262 & 0.3141 & -0.0121 & [-0.0211, -0.0042] & -3.1\% & 0.055 \\
+$q_{.95}$ (m/s) & 0.6189 & 0.5942 & -0.0247 & [-0.0412, -0.0085] & -3.3\% & 0.041 \\
+CVaR$_{.95}$ (m/s) & 0.7281 & 0.7004 & -0.0277 & [-0.0461, -0.0105] & -3.3\% & 0.008 \\
+$e>0.5$ (share) & 0.1192 & 0.1043 & -0.0149 & [-0.0281, -0.0043] & -7.1\% & 0.055 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}\footnotesize Negative differences favour GEL-Ped. The archive, inclusion rules, models, guard, and endpoints were frozen before labelled inspection.
+\end{table}

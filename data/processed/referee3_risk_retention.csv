@@ -1,0 +1,141 @@
+role,run,signal,aurc_squared_error,curve_points
+calibration,bi_corr_400_a_01,spread,0.026919154260804132,12951
+calibration,bi_corr_400_a_01,disagreement,0.029133711541552497,12951
+calibration,bi_corr_400_a_01,mahalanobis,0.026347562926812552,12950
+calibration,bi_corr_400_a_01,speed,0.028111854049841564,12951
+calibration,bi_corr_400_a_01,neighbour density,0.03289782998768971,49
+calibration,bi_corr_400_a_02,spread,0.02669229372108518,32687
+calibration,bi_corr_400_a_02,disagreement,0.029241493982613463,32687
+calibration,bi_corr_400_a_02,mahalanobis,0.028640906988124985,32680
+calibration,bi_corr_400_a_02,speed,0.027565091820228364,32687
+calibration,bi_corr_400_a_02,neighbour density,0.03448853496037248,77
+calibration,bi_corr_400_b_01,spread,0.02619251249871152,2205
+calibration,bi_corr_400_b_01,disagreement,0.025051734149678116,2205
+calibration,bi_corr_400_b_01,mahalanobis,0.028541369676103417,2205
+calibration,bi_corr_400_b_01,speed,0.031718962303464215,2205
+calibration,bi_corr_400_b_01,neighbour density,0.030230757674846745,16
+calibration,bi_corr_400_b_03,spread,0.03133212028952973,10645
+calibration,bi_corr_400_b_03,disagreement,0.031199946459653898,10645
+calibration,bi_corr_400_b_03,mahalanobis,0.032807794827555206,10645
+calibration,bi_corr_400_b_03,speed,0.039552506948210435,10645
+calibration,bi_corr_400_b_03,neighbour density,0.03767497860779857,33
+calibration,bi_corr_400_b_05,spread,0.03219434908088536,38340
+calibration,bi_corr_400_b_05,disagreement,0.03248776695412525,38340
+calibration,bi_corr_400_b_05,mahalanobis,0.03270272226544497,38332
+calibration,bi_corr_400_b_05,speed,0.028130530424251027,38340
+calibration,bi_corr_400_b_05,neighbour density,0.03831135210048063,81
+calibration,bi_corr_400_b_07,spread,0.033832727581198284,44193
+calibration,bi_corr_400_b_07,disagreement,0.03368563660935934,44193
+calibration,bi_corr_400_b_07,mahalanobis,0.03533708113329576,44177
+calibration,bi_corr_400_b_07,speed,0.0305904173246588,44193
+calibration,bi_corr_400_b_07,neighbour density,0.03964773877481556,98
+calibration,bi_corr_400_b_09,spread,0.027502152529051634,15477
+calibration,bi_corr_400_b_09,disagreement,0.030306935603221372,15477
+calibration,bi_corr_400_b_09,mahalanobis,0.028221280748424227,15473
+calibration,bi_corr_400_b_09,speed,0.03139524952775559,15477
+calibration,bi_corr_400_b_09,neighbour density,0.034997787819154254,44
+altered geometry,bi_corr_400_a_04,spread,0.02432231731330209,44460
+altered geometry,bi_corr_400_a_04,disagreement,0.024577215944222464,44460
+altered geometry,bi_corr_400_a_04,mahalanobis,0.028662757781152255,44440
+altered geometry,bi_corr_400_a_04,speed,0.022622521512070205,44460
+altered geometry,bi_corr_400_a_04,neighbour density,0.035061931610917495,89
+altered geometry,bi_corr_400_a_05,spread,0.024430659742643142,45371
+altered geometry,bi_corr_400_a_05,disagreement,0.02647941880287301,45371
+altered geometry,bi_corr_400_a_05,mahalanobis,0.02773662418958593,45357
+altered geometry,bi_corr_400_a_05,speed,0.02405112290828651,45370
+altered geometry,bi_corr_400_a_05,neighbour density,0.03458121876740784,83
+altered geometry,bi_corr_400_b_08,spread,0.02452504971155207,65350
+altered geometry,bi_corr_400_b_08,disagreement,0.026026943864275738,65350
+altered geometry,bi_corr_400_b_08,mahalanobis,0.029958791006236,65318
+altered geometry,bi_corr_400_b_08,speed,0.022750152153449856,65350
+altered geometry,bi_corr_400_b_08,neighbour density,0.03456460695285609,108
+crossing topology,crossing_90_d_1,spread,0.12036093686962453,12298
+crossing topology,crossing_90_d_1,disagreement,0.10956049497159116,12298
+crossing topology,crossing_90_d_1,mahalanobis,0.12871882698362513,12297
+crossing topology,crossing_90_d_1,speed,0.1989991739912502,12297
+crossing topology,crossing_90_d_1,neighbour density,0.1424907617626312,71
+crossing topology,crossing_90_d_2,spread,0.13047154102263842,11487
+crossing topology,crossing_90_d_2,disagreement,0.11621704729640656,11487
+crossing topology,crossing_90_d_2,mahalanobis,0.14784134295733703,11487
+crossing topology,crossing_90_d_2,speed,0.15972462145376312,11487
+crossing topology,crossing_90_d_2,neighbour density,0.13591099881910249,76
+crossing topology,crossing_90_d_3,spread,0.11172206693612632,9713
+crossing topology,crossing_90_d_3,disagreement,0.09752030891508641,9713
+crossing topology,crossing_90_d_3,mahalanobis,0.17457473580326238,9710
+crossing topology,crossing_90_d_3,speed,0.20654541301632798,9710
+crossing topology,crossing_90_d_3,neighbour density,0.09616083888437231,30
+crossing topology,crossing_90_d_5,spread,0.12142294922257793,13230
+crossing topology,crossing_90_d_5,disagreement,0.10835796338094429,13230
+crossing topology,crossing_90_d_5,mahalanobis,0.1338928712985274,13230
+crossing topology,crossing_90_d_5,speed,0.19929692681611494,13228
+crossing topology,crossing_90_d_5,neighbour density,0.15813830467131845,59
+crossing topology,crossing_90_d_6,spread,0.11031656760294274,20347
+crossing topology,crossing_90_d_6,disagreement,0.10481268754188768,20347
+crossing topology,crossing_90_d_6,mahalanobis,0.11561747847175846,20345
+crossing topology,crossing_90_d_6,speed,0.13148814455461294,20346
+crossing topology,crossing_90_d_6,neighbour density,0.11937707449343415,88
+crossing topology,crossing_90_d_7,spread,0.10205931892297417,24166
+crossing topology,crossing_90_d_7,disagreement,0.10245487214036014,24166
+crossing topology,crossing_90_d_7,mahalanobis,0.11242069530538679,24165
+crossing topology,crossing_90_d_7,speed,0.11242780415509505,24166
+crossing topology,crossing_90_d_7,neighbour density,0.125076507041307,94
+crossing topology,crossing_90_d_8,spread,0.10079496842851139,25671
+crossing topology,crossing_90_d_8,disagreement,0.10432180208678507,25671
+crossing topology,crossing_90_d_8,mahalanobis,0.11081990536202291,25668
+crossing topology,crossing_90_d_8,speed,0.10855602083685602,25669
+crossing topology,crossing_90_d_8,neighbour density,0.13841958663613282,100
+crossing topology,crossing_90_e_1,spread,0.10892709234788732,15082
+crossing topology,crossing_90_e_1,disagreement,0.10467572522030365,15082
+crossing topology,crossing_90_e_1,mahalanobis,0.11892011474963199,15080
+crossing topology,crossing_90_e_1,speed,0.1263792895524842,15082
+crossing topology,crossing_90_e_1,neighbour density,0.11575086208482716,62
+crossing topology,crossing_90_e_2,spread,0.11499193607630848,13191
+crossing topology,crossing_90_e_2,disagreement,0.11569693062409443,13191
+crossing topology,crossing_90_e_2,mahalanobis,0.14737212654602053,13189
+crossing topology,crossing_90_e_2,speed,0.12093195924243282,13190
+crossing topology,crossing_90_e_2,neighbour density,0.15474729017733233,78
+crossing topology,crossing_90_e_3,spread,0.1320202871647766,12450
+crossing topology,crossing_90_e_3,disagreement,0.1297774817748301,12450
+crossing topology,crossing_90_e_3,mahalanobis,0.14333653235424978,12448
+crossing topology,crossing_90_e_3,speed,0.155945407994657,12450
+crossing topology,crossing_90_e_3,neighbour density,0.15042344789242415,65
+crossing topology,crossing_90_e_4,spread,0.11573616295914671,16889
+crossing topology,crossing_90_e_4,disagreement,0.11816302912101907,16889
+crossing topology,crossing_90_e_4,mahalanobis,0.12185721494645763,16885
+crossing topology,crossing_90_e_4,speed,0.12353337468313398,16888
+crossing topology,crossing_90_e_4,neighbour density,0.14086488613502443,59
+crossing topology,crossing_90_e_5,spread,0.10983843909780956,20508
+crossing topology,crossing_90_e_5,disagreement,0.11689773297401033,20508
+crossing topology,crossing_90_e_5,mahalanobis,0.12541991583926423,20505
+crossing topology,crossing_90_e_5,speed,0.11475661040414906,20507
+crossing topology,crossing_90_e_5,neighbour density,0.1350236377898866,71
+crossing topology,crossing_90_e_6,spread,0.09877898498874589,24989
+crossing topology,crossing_90_e_6,disagreement,0.10207088676652301,24989
+crossing topology,crossing_90_e_6,mahalanobis,0.1153424142736537,24982
+crossing topology,crossing_90_e_6,speed,0.10355162332148896,24987
+crossing topology,crossing_90_e_6,neighbour density,0.13287471537606582,86
+familiar corridor,bi_corr_400_a_03,spread,0.02517137010996482,35898
+familiar corridor,bi_corr_400_a_03,disagreement,0.026258466209335,35898
+familiar corridor,bi_corr_400_a_03,mahalanobis,0.02779561139384933,35884
+familiar corridor,bi_corr_400_a_03,speed,0.024519321881914996,35898
+familiar corridor,bi_corr_400_a_03,neighbour density,0.03348827986532777,80
+familiar corridor,bi_corr_400_b_02,spread,0.028487035370207615,4507
+familiar corridor,bi_corr_400_b_02,disagreement,0.026323987166678952,4507
+familiar corridor,bi_corr_400_b_02,mahalanobis,0.029533813916692412,4507
+familiar corridor,bi_corr_400_b_02,speed,0.03563334337751403,4507
+familiar corridor,bi_corr_400_b_02,neighbour density,0.03336461227966887,20
+familiar corridor,bi_corr_400_b_04,spread,0.02850872181151612,37902
+familiar corridor,bi_corr_400_b_04,disagreement,0.0319364171399622,37902
+familiar corridor,bi_corr_400_b_04,mahalanobis,0.030398356438552352,37893
+familiar corridor,bi_corr_400_b_04,speed,0.03022675404158503,37902
+familiar corridor,bi_corr_400_b_04,neighbour density,0.038636029977665874,76
+familiar corridor,bi_corr_400_b_06,spread,0.0265259837253375,64268
+familiar corridor,bi_corr_400_b_06,disagreement,0.028348714862590736,64268
+familiar corridor,bi_corr_400_b_06,mahalanobis,0.03107093620251831,64236
+familiar corridor,bi_corr_400_b_06,speed,0.02544877370965039,64268
+familiar corridor,bi_corr_400_b_06,neighbour density,0.03502538737843365,91
+familiar corridor,bi_corr_400_b_10,spread,0.02359447842127264,44371
+familiar corridor,bi_corr_400_b_10,disagreement,0.025727928952024165,44371
+familiar corridor,bi_corr_400_b_10,mahalanobis,0.02577120688732805,44354
+familiar corridor,bi_corr_400_b_10,speed,0.024807187207126838,44371
+familiar corridor,bi_corr_400_b_10,neighbour density,0.03182043138467718,74

@@ -1,0 +1,22 @@
+role,run,first_frame,start_x,start_y,goal_x,goal_y,route_definition
+altered geometry,bi_corr_400_a_04,48,2.3670300006866456,2.518670082092285,3.6670300006866454,2.518670082092285,minor spatial axis of first observed frame
+altered geometry,bi_corr_400_a_05,26,-5.699220085144043,2.72268009185791,-4.399220085144043,2.72268009185791,minor spatial axis of first observed frame
+altered geometry,bi_corr_400_b_08,42,-5.345559978485108,3.4940500259399414,-4.045559978485107,3.4940500259399414,minor spatial axis of first observed frame
+crossing topology,crossing_90_d_1,94,4.092000102996826,1.225000023841858,5.3920001029968265,1.225000023841858,minor spatial axis of first observed frame
+crossing topology,crossing_90_d_2,67,-4.6430000305175785,1.3580000400543213,-3.343000030517578,1.3580000400543213,minor spatial axis of first observed frame
+crossing topology,crossing_90_d_3,93,4.021999931335449,1.4190000295639038,5.32199993133545,1.4190000295639038,minor spatial axis of first observed frame
+crossing topology,crossing_90_d_5,20,-4.766000175476075,-0.014000000432133675,-3.4660001754760743,-0.014000000432133675,minor spatial axis of first observed frame
+crossing topology,crossing_90_d_6,62,-6.92299976348877,1.7630000114440918,-5.622999763488769,1.7630000114440918,minor spatial axis of first observed frame
+crossing topology,crossing_90_d_7,64,0.09754463015303833,6.965820518492784,0.7564553794433095,5.845179351807509,minor spatial axis of first observed frame
+crossing topology,crossing_90_d_8,68,-6.551999950408936,0.3540000021457672,-5.251999950408935,0.3540000021457672,minor spatial axis of first observed frame
+crossing topology,crossing_90_e_1,76,-1.5050000190734862,4.9120001792907715,-0.2050000190734863,4.9120001792907715,minor spatial axis of first observed frame
+crossing topology,crossing_90_e_2,66,-6.200000190734864,1.2649999856948853,-4.900000190734863,1.2649999856948853,minor spatial axis of first observed frame
+crossing topology,crossing_90_e_3,104,2.036000108718872,2.5239999294281006,3.336000108718872,2.5239999294281006,minor spatial axis of first observed frame
+crossing topology,crossing_90_e_4,82,-0.5499999985098839,-2.3580000400543213,0.7500000014901161,-2.3580000400543213,minor spatial axis of first observed frame
+crossing topology,crossing_90_e_5,88,-0.9649999976158142,4.635000228881836,0.3350000023841858,4.635000228881836,minor spatial axis of first observed frame
+crossing topology,crossing_90_e_6,81,-3.025340673440084,-1.8860172527510526,-2.411659213787928,-0.7399827567260859,minor spatial axis of first observed frame
+familiar corridor,bi_corr_400_a_03,123,2.3448599338531495,0.8236219882965088,3.6448599338531493,0.8236219882965088,minor spatial axis of first observed frame
+familiar corridor,bi_corr_400_b_02,147,-4.876860046386719,2.7397799491882324,-3.576860046386719,2.7397799491882324,minor spatial axis of first observed frame
+familiar corridor,bi_corr_400_b_04,124,-4.965360069274903,3.391479969024658,-3.6653600692749024,3.391479969024658,minor spatial axis of first observed frame
+familiar corridor,bi_corr_400_b_06,145,-4.987399959564209,1.1346100568771362,-3.687399959564209,1.1346100568771362,minor spatial axis of first observed frame
+familiar corridor,bi_corr_400_b_10,124,-4.973040008544922,0.7800930142402649,-3.673040008544922,0.7800930142402649,minor spatial axis of first observed frame

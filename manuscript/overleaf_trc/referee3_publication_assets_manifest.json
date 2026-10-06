@@ -1,0 +1,112 @@
+{
+  "inputs": [
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_draw_run_inference.csv",
+      "sha256": "4332d562fc3444f5a82a6908da90fbb9d4e6156dee4366db3c757e6ca6c52311"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_primary_run_metrics.csv",
+      "sha256": "46f7967adc6ff25c26e4860dd5ff5a8da5f5ee4bfbcf597c3a34a56dc5f98a49"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_targeting_by_stratum.csv",
+      "sha256": "e13080aa5712ba397c37f807723d3fabe754528314ce9753ac8c65fa6540c19a"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_error_decomposition.csv",
+      "sha256": "f0ace8360e237837520a2fbc1b57b1c746668a4b587c21011e6a6419d5b6ce6f"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_permuted_gate.csv",
+      "sha256": "152c5a9dce0ece1ce6933e56f38be4a75d5e08a297ee5b38bf8757aff49e2fe5"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\reports\\generated\\referee3_heldout_primary_run_metrics.csv",
+      "sha256": "a937d3620361e2b4127ed71a68f52103c29115f0cbe7a5e8271b142b6d4a1b50"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\reports\\generated\\referee3_heldout_confirmatory_inference.csv",
+      "sha256": "cec0eccc2a4d456128782f2c9b3cb1c5248665c779c8374fb8a0bdcdf0df3732"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_planner_metrics.csv",
+      "sha256": "b61930d05f0452c41a4f6ef47bce015a8b915a1e65b57576e6a02a27eadd6189"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_transformer_regime_summary.csv",
+      "sha256": "09a41adad893bf16e3f08f8f26400ad37fd1f3fabe3a49a0d95f3192c568a83c"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_planner_latency.csv",
+      "sha256": "a50a6115a6a6480ed92628fa9419b65ffe6ca370d0d8fa65d49f6b3e4d4e508d"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_training_manifest.json",
+      "sha256": "27bd9b0251c8a69bcb92dd44300ef2576836e519f5fca6a9ef57e95efb780472"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\data\\processed\\referee3_transformer_manifest.json",
+      "sha256": "0c4e74bfccac0845325f1a40ae103dc5e1674f8682915f96680bdc60f034fa06"
+    },
+    {
+      "path": "C:\\Users\\61411\\Desktop\\GEL-Ped-TRC-Review\\configs\\referee3_lock.json",
+      "sha256": "be4e1d2f6423c6a7c5f54a25754603bc1363221fc7d2d1cb3826bcfd752a7ee8"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "tables\\referee3_draw_stability.tex",
+      "sha256": "d63434a535c1727d542fa4fd6e5731f9cc4b5b23868ac151bfd715037387d690"
+    },
+    {
+      "path": "tables\\referee3_tail_controls.tex",
+      "sha256": "9d0e4ecbb03ff2fcb1c62af627c5bb80945dd48eea3476f344c244d4093cec53"
+    },
+    {
+      "path": "tables\\referee3_targeting_decomposition.tex",
+      "sha256": "551da57e3dc5a6ee07687b6a94e90dfe6afea8d99e66c2479d061b98294356cf"
+    },
+    {
+      "path": "tables\\referee3_heldout_tjunction.tex",
+      "sha256": "6a4ba44c66f0ca12eb7eb89c605d4d0f06b7389839ede6c8dd5383934d340a1c"
+    },
+    {
+      "path": "tables\\referee3_planner_utility.tex",
+      "sha256": "648050e4c56e2e7202b7d20db1f9abaacc2891924a9153d9d7cd388241e78c53"
+    },
+    {
+      "path": "tables\\referee3_transformer_generalization.tex",
+      "sha256": "e1e40983f2c95fc55c4c699b5c6b79890eed3c3680dd4bbd6651ed4aa12646a2"
+    },
+    {
+      "path": "tables\\referee3_runtime_parameters.tex",
+      "sha256": "51fab839dc8bc001f8bccde113007c8e48bbf394f211862b102873525e19e63a"
+    },
+    {
+      "path": "figures\\referee3_draw_stability.pdf",
+      "sha256": "fd4df592491551289e6f48062d7da208cb648c8328c72da05a34a4a5816145f5"
+    },
+    {
+      "path": "figures\\referee3_tail_controls.pdf",
+      "sha256": "2d1913d484b77dac9f1cc83aeb7abbda60e2695d45c0a3e4273a582d658dca77"
+    },
+    {
+      "path": "figures\\referee3_targeting_decomposition.pdf",
+      "sha256": "e27294d1246b6bc276da268a2fab1743f68f220822f3868bac4a3c2852657fe2"
+    },
+    {
+      "path": "figures\\referee3_heldout_tjunction.pdf",
+      "sha256": "a6051be1e0ecfaa79cf7dfb97bb40752398b6ef2ac9e8915e0d74ed296bec2c9"
+    },
+    {
+      "path": "figures\\referee3_planner_utility.pdf",
+      "sha256": "59ed483f6beb8ed41c37c933e94bd8e822efec3e4eb9097d8f08781ce7447117"
+    },
+    {
+      "path": "tables\\referee3_figure_snippets.tex",
+      "sha256": "3953c43dc70979c762f84450869f5f77888f2cfeab5f0eb3b9bb6decb0b70d72"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "presentation-only; no model fitting or endpoint selection"
+}

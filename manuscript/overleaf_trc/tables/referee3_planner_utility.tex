@@ -1,0 +1,24 @@
+\begin{table}[!htbp]
+\centering
+\caption{Paired reactive-planner replay on identical recorded crowd motion and routes. The replay tests operational consequence, not reciprocal human response.}
+\label{tab:r3-planner-utility}
+\small
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{llrrrrr}
+\toprule
+Regime & Policy & Complete & Travel (s) & Intrusion rate & Min. sep. (m) & Stop rate \\
+\midrule
+altered geometry & Direct + fixed margin & 100\% & 3.47 & 0.541 & 0.183 & 0.276 \\
+altered geometry & GEL-Ped + fixed margin & 100\% & 3.87 & 0.596 & 0.230 & 0.397 \\
+altered geometry & GEL-Ped + adaptive margin & 100\% & 2.53 & 0.419 & 0.172 & 0.467 \\
+crossing topology & Direct + fixed margin & 100\% & 1.78 & 0.144 & 0.497 & 0.158 \\
+crossing topology & GEL-Ped + fixed margin & 100\% & 1.82 & 0.144 & 0.497 & 0.173 \\
+crossing topology & GEL-Ped + adaptive margin & 100\% & 2.49 & 0.207 & 0.394 & 0.356 \\
+familiar corridor & Direct + fixed margin & 100\% & 1.60 & 0.217 & 0.486 & 0.167 \\
+familiar corridor & GEL-Ped + fixed margin & 100\% & 1.60 & 0.217 & 0.486 & 0.167 \\
+familiar corridor & GEL-Ped + adaptive margin & 100\% & 1.68 & 0.217 & 0.488 & 0.217 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}\footnotesize Travel time is averaged over completed replays. Intrusions use the predeclared 0.55-m personal-space threshold.
+\end{table}

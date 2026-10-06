@@ -1,0 +1,27 @@
+\begin{table}[!htbp]
+\centering
+\caption{Where the guard acts. Strata are defined by calibration-normalised ensemble spread; permutation gaps compare the observed routing with the same weights randomly reassigned within a run.}
+\label{tab:r3-targeting-decomposition}
+\small
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{llrrrrr}
+\toprule
+Regime & Spread stratum & Share & Graph RMSE & GEL-Ped RMSE & Permutation gap & Variance share \\
+\midrule
+altered geometry & inside & 96.4\% & 0.1668 & 0.1668 & 0.0001 & 3.5\% \\
+altered geometry & 0--1 IQR & 3.2\% & 0.2062 & 0.2062 & 0.0001 & 5.7\% \\
+altered geometry & 1--2 IQR & 0.3\% & 0.2336 & 0.2342 & -0.0006 & 7.7\% \\
+altered geometry & >2 IQR & 0.1\% & 0.2293 & 0.2235 & 0.0055 & 12.9\% \\
+crossing topology & inside & 59.5\% & 0.3434 & 0.3434 & -0.0031 & 1.2\% \\
+crossing topology & 0--1 IQR & 24.0\% & 0.4035 & 0.3944 & 0.0041 & 1.7\% \\
+crossing topology & 1--2 IQR & 9.3\% & 0.4393 & 0.4204 & 0.0119 & 2.2\% \\
+crossing topology & >2 IQR & 7.2\% & 0.4760 & 0.4554 & 0.0127 & 5.7\% \\
+familiar corridor & inside & 98.0\% & 0.1721 & 0.1721 & 0.0001 & 2.9\% \\
+familiar corridor & 0--1 IQR & 1.8\% & 0.2321 & 0.2353 & -0.0031 & 4.6\% \\
+familiar corridor & 1--2 IQR & 0.2\% & 0.2176 & 0.2310 & -0.0134 & 8.7\% \\
+familiar corridor & >2 IQR & 0.1\% & 0.2466 & 0.2294 & 0.0172 & 15.8\% \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}\footnotesize Positive permutation gaps favour targeted routing. Variance share is between-member variance divided by mean member MSE.
+\end{table}

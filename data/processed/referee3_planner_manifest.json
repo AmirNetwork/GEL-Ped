@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "scope": "open-loop replay of recorded pedestrians; no reciprocal-response claim",
+  "episode_policy": "paired fixed-margin and g-adaptive-margin replays with identical crowd trajectories",
+  "route_definition": "minor spatial axis of first observed frame",
+  "latency_scope": "post-prediction CPU timing only; use benchmark_model_stack with resident trained models for full inference latency",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "logical_cpu_count": 28,
+  "config_sha256": "be4e1d2f6423c6a7c5f54a25754603bc1363221fc7d2d1cb3826bcfd752a7ee8",
+  "calibration_sha256": "de8e787df4a2fed6a61d94ff1f9bedfb26a37a4e48674831a9141b9021e31832",
+  "bundles": [
+    {
+      "path": "data\\processed\\referee3_predictions\\test_altered_geometry_bi_corr_400_a_04.npz",
+      "sha256": "a952792e5e4bc03d0a310c54c4d5fbac1c737924314a0aca640a07c1f83fc498"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_altered_geometry_bi_corr_400_a_05.npz",
+      "sha256": "2f82acb96e7c057323801af39ed7da45cde0fa723d598d701f00c18dab785839"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_altered_geometry_bi_corr_400_b_08.npz",
+      "sha256": "6f0a9b7e7d4695bf8562cd03d4947de65beccfbe87756b44fa75509fa0704de6"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_d_1.npz",
+      "sha256": "33c9bb5e775bac48bff6f9302ded2e4d3f7639eb185b6ecbd9096f744ea7b5d0"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_d_2.npz",
+      "sha256": "34bcc1320c76cc14a71eb4ccf87dd73a3e565a3d4acd6b518d08dc4f39a362f8"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_d_3.npz",
+      "sha256": "7e324e03807a35af1b0bf57d6dfdd8e07583e98446bec40e802096a8256c0601"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_d_5.npz",
+      "sha256": "d10f9f965d79b7e191cade829a076cfb54860878fe293a5b3c1a95695ee21c71"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_d_6.npz",
+      "sha256": "eb056d72f907f2e34939e8df0551d48de1c76bcebac16c4d6db043232ab70102"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_d_7.npz",
+      "sha256": "43b3720dba31906c21afa53d51aa88c976c05ab577c562a883d422f67d69c98d"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_d_8.npz",
+      "sha256": "8428460aae1fb8db4244058308d59a4e375f3a4ff7846ab8a982fabfeed76c9a"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_e_1.npz",
+      "sha256": "eb9160a0302ca4862e065b0a9c3248a966bd0037de3ebbc2e404bfb3f9102f1f"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_e_2.npz",
+      "sha256": "240fd44562db9e13c527dfe6894ecad95eec40025f697e633d832de5da5a6cf9"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_e_3.npz",
+      "sha256": "8963614ac0fd5d91e12d9a0b12687125fe1054e896212c3f29911a9958a0f1c0"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_e_4.npz",
+      "sha256": "e1254045d2d3c94e7de272747fc99b76ba7e9b4c7b84fd8a1f45267c321d841e"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_e_5.npz",
+      "sha256": "96245640a086ad84a6f2bf47b480ad2e3123a94914b0f6ebd5160aedcd2d521f"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_crossing_topology_crossing_90_e_6.npz",
+      "sha256": "4c9c67fc517b88e497806f0fd31d32e43445be71c787ee72aba070de8677ea1d"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_familiar_corridor_bi_corr_400_a_03.npz",
+      "sha256": "74c9c3979be6a2e645e2cb69804c174bbafdf1a48352aee07c6033e888c5439d"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_familiar_corridor_bi_corr_400_b_02.npz",
+      "sha256": "92da95f01152db9b8a58f1b57ac67e877dc4895df0b430c54cef5853be3ab318"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_familiar_corridor_bi_corr_400_b_04.npz",
+      "sha256": "acacb50c11f865c9dad9dc5c86d8c9e07079c742338944ae51c7eb499c966905"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_familiar_corridor_bi_corr_400_b_06.npz",
+      "sha256": "2f3f80e4af16a38c46561eaf8e984116b2ccef032ffad8637f9ee3187629160e"
+    },
+    {
+      "path": "data\\processed\\referee3_predictions\\test_familiar_corridor_bi_corr_400_b_10.npz",
+      "sha256": "b68feaf5a79e18d1dc4d0fa44251c71840bf3c5bedf21b7ec2aaf3f88fc9e023"
+    }
+  ],
+  "outputs": {
+    "metrics": "b61930d05f0452c41a4f6ef47bce015a8b915a1e65b57576e6a02a27eadd6189",
+    "trace": "37862ba64b015f976ce251d50f9ddf637336a0dc6ca460f1925ab89acbdff440",
+    "latency": "a50a6115a6a6480ed92628fa9419b65ffe6ca370d0d8fa65d49f6b3e4d4e508d",
+    "routes": "5040aaad27d405743784f4c4638c0ec713151a4934850c0ac44212ccf1c4fbe5"
+  }
+}
